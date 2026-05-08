@@ -1,0 +1,19 @@
+/* Smooth transitions for interactive elements */
+button {
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+a {
+    transition: color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}

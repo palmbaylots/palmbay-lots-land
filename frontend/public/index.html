@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#d97706" />
+
+        <!-- Force www → non-www canonical redirect + noindex signal for www (runs before anything else) -->
+        <script>
+          (function () {
+            if (window.location.hostname === 'www.palmbaylots-land.com') {
+              // Synchronously inject noindex so even if Googlebot snapshots the www URL, it sees "do not index"
+              document.write('<meta name="robots" content="noindex,nofollow">');
+              document.write('<link rel="canonical" href="https://palmbaylots-land.com' + window.location.pathname + '">');
+              window.location.replace(
+                'https://palmbaylots-land.com' + window.location.pathname + window.location.search + window.location.hash
+              );
+            }
+          })();
+        </script>
+        
+        <!-- Google Search Console Verification -->
+        <meta name="google-site-verification" content="rwf7PuF7tZ_lloUZShn8CUgfpZ_5y4B-ZXXLkQpR-L0" />
+        
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QBCCM8T2YG"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-QBCCM8T2YG');
+        </script>
+        
+        <!-- Primary SEO Meta Tags -->
+        <title>Palm Bay Land & Lots for Sale | Vahid Rajabian Real Estate</title>
+        <meta name="title" content="Palm Bay Land & Lots for Sale | Vahid Rajabian Real Estate" />
+        <meta name="description" content="Find residential lots, land, and new homes for sale in Palm Bay, Florida. 20+ years experience. Owner financing available. Browse 500+ lots and land. First-time homebuyers welcome. Moving to Florida? Start here." />
+        <meta name="keywords" content="Palm Bay real estate, Brevard County real estate, Florida vacant land, land for sale Florida, off-market land deals, Florida land broker, buy land Florida, sell land Florida, Palm Bay land for sale, Brevard County land, Florida real estate broker, vacant lots Florida, residential land Florida, Florida property for sale, land acquisition Florida, off-market properties Florida, Florida land deals, Palm Bay property, direct land sales Florida, Florida lot for sale, land broker Brevard County, Palm Bay homes for sale, Florida real estate investment, land investor Florida, cheap land Florida, raw land Florida, Florida property broker, Brevard County property, Palm Bay FL real estate, Florida land specialist, owner financing Palm Bay, buildable lots Florida, Palm Bay Florida homes, lots for sale Palm Bay" />
+        <meta name="author" content="Vahid Reza Rajabian - M. David Moallem, Inc." />
+        <meta name="robots" content="index, follow" />
+        <!-- NOTE: canonical, og:url, twitter:url are set per-page via react-helmet-async (see each page component). Do NOT add a static canonical here — it would create duplicate canonical tags on every route. -->
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Vahid Rajabian - Palm Bay Florida Real Estate | Lots & Land for Sale" />
+        <meta property="og:description" content="Find residential lots, land, and new homes for sale in Palm Bay, Florida. 20+ years experience. Owner financing available. Browse 500+ lots and land." />
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Vahid Rajabian Real Estate" />
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="Vahid Rajabian - Palm Bay Florida Real Estate | Lots & Land for Sale" />
+        <meta property="twitter:description" content="Find residential lots, land, and new homes for sale in Palm Bay, Florida. 20+ years experience. Owner financing available. Browse 500+ lots and land." />
+        <meta property="twitter:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+        
+        <!-- Additional SEO Meta Tags -->
+        <meta name="classification" content="Real Estate" />
+        <meta name="category" content="Real Estate, Land Sales, Property" />
+        <meta name="coverage" content="Palm Bay, Brevard County, Florida, USA" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="subject" content="Palm Bay Land for Sale, Florida Real Estate, Brevard County Land, Vacant Lots" />
+        <meta name="topic" content="Palm Bay real estate, Florida land broker, Brevard County real estate, vacant land Florida" />
+        <meta name="summary" content="Florida land specialist offering 500+ residential and commercial lots in Palm Bay and Brevard County. Owner financing available. Off-market land deals." />
+        <meta name="abstract" content="Buy land in Palm Bay, Florida from a trusted Brevard County real estate broker. Vacant lots, residential land, and off-market properties available." />
+        <meta name="hashtags" content="#PalmBayRealEstate, #BrevardCountyRealEstate, #FloridaVacantLand, #LandForSaleFL, #OffMarketLand, #FloridaLandBroker, #BuyLandFlorida, #SellLandFlorida, #PalmBayLand, #BrevardCountyLand, #FloridaRealEstateBroker, #VacantLotsFlorida, #ResidentialLandFlorida, #FloridaLandDeals, #PalmBayProperty, #FloridaLandSpecialist" />
+        
+        <!-- Location / Geo Tags -->
+        <meta name="geo.region" content="US-FL" />
+        <meta name="geo.placename" content="Palm Bay, Florida" />
+        <meta name="geo.position" content="27.9859;-80.5887" />
+        <meta name="ICBM" content="27.9859, -80.5887" />
+        
+        <!-- Structured Data for Local Business (JSON-LD) -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "RealEstateAgent",
+          "name": "Vahid Reza Rajabian",
+          "image": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
+          "url": "https://palmbaylots-land.com/",
+          "telephone": "+13213337230",
+          "email": "vahid@palmbayland.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1663 Georgia St NE #700",
+            "addressLocality": "Palm Bay",
+            "addressRegion": "FL",
+            "postalCode": "32907",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9859,
+            "longitude": -80.5887
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "10:00",
+              "closes": "16:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.facebook.com/vahid.rajabian.144",
+            "https://www.linkedin.com/in/vahid-rajabian",
+            "https://www.instagram.com/lotsandland",
+            "https://www.tiktok.com/@lots_and_land"
+          ],
+          "priceRange": "$$",
+          "areaServed": {
+            "@type": "City",
+            "name": "Palm Bay",
+            "containedInPlace": {
+              "@type": "State",
+              "name": "Florida"
+            }
+          },
+          "knowsAbout": ["Palm Bay real estate", "Brevard County real estate", "Florida vacant land", "land for sale Florida", "off-market land deals", "Florida land broker", "buy land Florida", "sell land Florida", "Palm Bay land for sale", "Brevard County land", "Florida real estate broker", "vacant lots Florida", "residential land Florida", "owner financing", "land acquisition Florida", "Florida land deals", "direct land sales Florida", "Florida real estate investment", "raw land Florida", "Florida land specialist"],
+          "memberOf": {
+            "@type": "Organization",
+            "name": "M. David Moallem, Inc."
+          }
+        }
+        </script>
+        
+        <!--
+        manifest.json provides metadata used when your web app is installed on a
+        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+        -->
+        <!--
+        Notice the use of %PUBLIC_URL% in the tags above.
+        It will be replaced with the URL of the `public` folder during the build.
+        Only files inside the `public` folder can be referenced from the HTML.
+
+        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+        work correctly both with client-side routing and a non-root public URL.
+        Learn how to configure a non-root public URL by running `npm run build`.
+        -->
+        <title>Palm Bay Land & Lots for Sale | Vahid Rajabian Real Estate</title>
+        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
+        <!--
+        These two scripts have been added for the Visual Edits, please do not edit or remove them
+        -->
+        <script>
+            // Only load visual edit scripts when inside an iframe
+            if (window.self !== window.top) {
+                // Load debug monitor script
+                var debugMonitorScript = document.createElement('script');
+                debugMonitorScript.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
+                document.head.appendChild(debugMonitorScript);
+
+                // Configure Tailwind
+                window.tailwind = window.tailwind || {};
+                tailwind.config = {
+                    corePlugins: { preflight: false },
+                };
+
+                // Load Tailwind CDN
+                var tailwindScript = document.createElement('script');
+                tailwindScript.src = 'https://cdn.tailwindcss.com';
+                document.head.appendChild(tailwindScript);
+            }
+        </script>
+    </head>
+    <body>
+        <noscript>
+            <h1>Palm Bay Land for Sale - Vahid Rajabian Real Estate</h1>
+            <p>Find residential lots, land, and new homes for sale in Palm Bay, Florida. Vahid Rajabian has 20+ years of experience helping buyers find the perfect lot in Palm Bay, Brevard County.</p>
+            <h2>Why Choose Palm Bay?</h2>
+            <p>Palm Bay is Florida's fastest-growing city with no state income tax, Space Coast employment opportunities, and affordable land starting at $41,000. Owner financing available with 25% down payment and no credit check required.</p>
+            <h2>Our Services</h2>
+            <ul>
+                <li>582+ residential lots available</li>
+                <li>Commercial and multi-family land</li>
+                <li>Owner financing with flexible terms</li>
+                <li>Zoning and permit guidance</li>
+                <li>Free land value assessments</li>
+            </ul>
+            <h2>Browse Our Inventory</h2>
+            <p>Visit our <a href="/inventory">full inventory page</a> to search 582+ lots by location, size, and utility availability. View our <a href="/listings">commercial listings</a> for investment opportunities.</p>
+            <h2>Contact Us</h2>
+            <p>Call Vahid Rajabian at 321-333-7230 or email vahid@palmbayland.com. Visit our <a href="/contact">contact page</a> to send us a message.</p>
+            <p>Learn more <a href="/about">about us</a>, read our <a href="/blog">blog articles</a>, or check our <a href="/price-guide">price guide</a> for financing details.</p>
+        </noscript>
+        <div id="root"></div>
+        <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+        <a
+            id="emergent-badge"
+            target="_blank"
+            href="https://app.emergent.sh/?utm_source=emergent-badge"
+            style="
+                display: flex !important;
+                align-items: center !important;
+                position: fixed !important;
+                bottom: 20px;
+                right: 20px;
+                text-decoration: none;
+                padding: 6px 10px;
+                font-family: -apple-system, BlinkMacSystemFont,
+                    &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell,
+                    &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;,
+                    sans-serif !important;
+                font-size: 12px !important;
+                z-index: 9999 !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+                border-radius: 8px !important;
+                background-color: #ffffff !important;
+                border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            "
+        >
+            <div
+                style="display: flex; flex-direction: row; align-items: center"
+            >
+                <img
+                    style="width: 20px; height: 20px; margin-right: 8px"
+                    src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"
+                    alt="Emergent logo"
+                />
+                <p
+                    style="
+                        color: #000000;
+                        font-family: -apple-system, BlinkMacSystemFont,
+                            &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu,
+                            Cantarell, &quot;Open Sans&quot;,
+                            &quot;Helvetica Neue&quot;, sans-serif !important;
+                        font-size: 12px !important;
+                        align-items: center;
+                        margin-bottom: 0;
+                    "
+                >
+                    Made with Emergent
+                </p>
+            </div>
+        </a>
+        <script>
+            !(function (t, e) {
+                var o, n, p, r;
+                e.__SV ||
+                    ((window.posthog = e),
+                    (e._i = []),
+                    (e.init = function (i, s, a) {
+                        function g(t, e) {
+                            var o = e.split(".");
+                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                                (t[e] = function () {
+                                    t.push(
+                                        [e].concat(
+                                            Array.prototype.slice.call(
+                                                arguments,
+                                                0,
+                                            ),
+                                        ),
+                                    );
+                                });
+                        }
+                        ((p = t.createElement("script")).type =
+                            "text/javascript"),
+                            (p.crossOrigin = "anonymous"),
+                            (p.async = !0),
+                            (p.src =
+                                s.api_host.replace(
+                                    ".i.posthog.com",
+                                    "-assets.i.posthog.com",
+                                ) + "/static/array.js"),
+                            (r =
+                                t.getElementsByTagName(
+                                    "script",
+                                )[0]).parentNode.insertBefore(p, r);
+                        var u = e;
+                        for (
+                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                                u.people = u.people || [],
+                                u.toString = function (t) {
+                                    var e = "posthog";
+                                    return (
+                                        "posthog" !== a && (e += "." + a),
+                                        t || (e += " (stub)"),
+                                        e
+                                    );
+                                },
+                                u.people.toString = function () {
+                                    return u.toString(1) + ".people (stub)";
+                                },
+                                o =
+                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
+                                        " ",
+                                    ),
+                                n = 0;
+                            n < o.length;
+                            n++
+                        )
+                            g(u, o[n]);
+                        e._i.push([i, s, a]);
+                    }),
+                    (e.__SV = 1));
+            })(document, window.posthog || []);
+            posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
+                api_host: "https://us.i.posthog.com",
+                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
+            });
+        </script>
+    </body>
+</html>
