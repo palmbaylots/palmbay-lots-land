@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -12,7 +13,16 @@ const API = `${BACKEND_URL}/api`;
 // Production reCAPTCHA v2 Site Key
 const RECAPTCHA_SITE_KEY = '6Ld6n0csAAAAACRRArAW-vltcD_BiHwkUinAZC77';
 
+// Detect mobile / small viewports — popup never shows on these
+const isMobileDevice = () => {
+  if (typeof window === 'undefined') return false;
+  const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const smallViewport = window.innerWidth < 768;
+  return mobileUA || smallViewport;
+};
+
 const LeadCaptureModal = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -24,19 +34,41 @@ const LeadCaptureModal = () => {
   const [submitted, setSubmitted] = useState(false);
   const [captchaValue, setCaptchaValue] = useState(null);
   const recaptchaRef = useRef(null);
+  const triggeredRef = useRef(false);
 
+  // Track page navigations within the SPA — popup opens on 2nd unique page view
   useEffect(() => {
-    // Check if user has already submitted or dismissed
-    const hasInteracted = localStorage.getItem('leadCaptureInteracted');
-    
-    if (!hasInteracted) {
-      // Show popup after 5 seconds for easier testing
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 5000);
+    if (isMobileDevice()) return;
+    if (localStorage.getItem('leadCaptureInteracted')) return;
+    if (triggeredRef.current) return;
 
-      return () => clearTimeout(timer);
+    const visitedPaths = JSON.parse(sessionStorage.getItem('visitedPaths') || '[]');
+    if (!visitedPaths.includes(location.pathname)) {
+      visitedPaths.push(location.pathname);
+      sessionStorage.setItem('visitedPaths', JSON.stringify(visitedPaths));
     }
+
+    if (visitedPaths.length >= 2) {
+      triggeredRef.current = true;
+      setIsOpen(true);
+    }
+  }, [location.pathname]);
+
+  // Exit-intent detection — popup opens when mouse moves toward top of viewport (closing the tab)
+  useEffect(() => {
+    if (isMobileDevice()) return;
+    if (localStorage.getItem('leadCaptureInteracted')) return;
+
+    const handleMouseLeave = (e) => {
+      // Only trigger if cursor leaves through the top edge (heading for tab close / address bar)
+      if (e.clientY <= 0 && !triggeredRef.current) {
+        triggeredRef.current = true;
+        setIsOpen(true);
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    return () => document.removeEventListener('mouseleave', handleMouseLeave);
   }, []);
 
   const handleClose = () => {
