@@ -291,7 +291,7 @@ const PropertyDetail = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 <div className="relative rounded-xl overflow-hidden">
                   <img 
-                    src={property.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop'} 
+                    src={property.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop&auto=format,compress&q=75'} 
                     alt={`${property.title} - ${property.acres} buildable lot in ${property.city}`}
                     className="w-full h-80 object-cover"
                     loading="eager"

@@ -797,9 +797,10 @@ const Admin = () => {
                     <div className="mt-2 flex items-start gap-3">
                       <img
                         src={propertyForm.image}
-                        alt="preview"
+                        alt={propertyForm.title ? `Preview of ${propertyForm.title}` : 'Property image preview'}
                         className="w-32 h-24 object-cover rounded border border-slate-200"
                         loading="lazy"
+                        decoding="async"
                         data-testid="property-image-preview"
                       />
                       <button

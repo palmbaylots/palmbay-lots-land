@@ -459,7 +459,7 @@ const OwnerFinancingLand = () => {
                     >
                       <div className="h-36 overflow-hidden">
                         <img 
-                          src={prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop'} 
+                          src={prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop&auto=format,compress&q=75'} 
                           alt={`${prop.title} - Owner financing available`}
                           className="w-full h-full object-cover"
                           loading="lazy"

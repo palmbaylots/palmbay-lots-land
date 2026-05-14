@@ -21,7 +21,7 @@ const About = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1661793275924-0fada016a273?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85" 
+            src="https://images.unsplash.com/photo-1661793275924-0fada016a273?auto=format,compress&fit=crop&w=1920&q=80" 
             alt="Palm Bay Florida coastal landscape"
             className="w-full h-full object-cover"
             loading="eager"

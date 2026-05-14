@@ -76,7 +76,7 @@ const CrexiListings = () => {
               type: prop.propertyType,
               tags: prop.tags || [],
               valueStatement: prop.description || '',
-              image: prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=716&h=444&fit=crop',
+              image: prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=716&h=444&fit=crop&auto=format,compress&q=75',
               crexiUrl: prop.crexiUrl || null,
               sold: prop.sold || false
             };
@@ -254,7 +254,7 @@ const CrexiListings = () => {
                     decoding="async"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=716&h=444&fit=crop';
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=716&h=444&fit=crop&auto=format,compress&q=75';
                     }}
                   />
                 </div>

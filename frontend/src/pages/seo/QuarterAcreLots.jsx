@@ -345,7 +345,7 @@ const QuarterAcreLots = () => {
                     >
                       <div className="h-40 overflow-hidden">
                         <img 
-                          src={prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop'} 
+                          src={prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop&auto=format,compress&q=75'} 
                           alt={`${prop.title} - Quarter acre lot in Palm Bay`}
                           className="w-full h-full object-cover"
                           loading="lazy"
