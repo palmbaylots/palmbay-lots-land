@@ -303,126 +303,165 @@ export const blogContent = {
   },
 
   'palm-bay-zoning-explained': {
-    title: 'Palm Bay Zoning Explained: What Can You Build on Your Lot?',
-    metaTitle: 'Palm Bay Zoning Explained: RS-1, RS-2, RM-6, C-1, C-2 — What Can You Build?',
-    metaDescription: 'What do Palm Bay zoning codes actually mean? Learn what you can build on any lot before you buy. Full 2026 guide by a 20-year Palm Bay land broker.',
-    subtitle: 'RS-1, RS-2, RM-6, C-1, C-2 — what do Palm Bay zoning codes actually mean? Learn what you can build on any lot in Palm Bay, Florida before you buy.',
+    title: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots',
+    metaTitle: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots | 2026 Guide',
+    metaDescription: 'What can you build on a residential lot in Palm Bay, Florida? RS-1, RS-2, RS-3 setbacks, lot sizes, corner lot rules, and pie-shaped lots explained. Full 2026 guide by a 20-year Palm Bay land specialist.',
+    subtitle: 'What can you build on a residential lot in Palm Bay? A full 2026 guide to RS-1, RS-2, RS-3, corner lots, and pie-shaped lots from a 20-year Palm Bay land specialist.',
     category: 'Zoning',
-    date: 'April 2026',
+    date: 'May 2026',
     readTime: '8 min read',
     image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/1qlykxsv_image.png',
     content: `
       <blockquote style="border-left: 4px solid #d97706; padding: 16px 20px; background: #fffbeb; margin: 24px 0; font-style: italic;">
-        Buy the wrong zoned lot for your plans and you'll face expensive variances — or worse, a useless property. Here's everything you need to know about Palm Bay zoning before you buy.
+        Buy the wrong zoned lot for your plans and you'll face expensive variances — or worse, a useless property. Here's everything you need to know about Palm Bay residential zoning before you buy.
       </blockquote>
 
-      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/1qlykxsv_image.png" alt="Aerial view of Palm Bay residential neighborhood showing lot layouts and zoning patterns" style="width:100%; border-radius: 12px; margin-bottom: 24px;" />
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/1qlykxsv_image.png" alt="Aerial view of a Palm Bay residential neighborhood showing typical single-family lot layouts and zoning patterns" style="width:100%; border-radius: 12px; margin-bottom: 12px;" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Most vacant lots in Palm Bay are zoned RS-1 — the standard for single-family home construction throughout the city.</p>
 
-      <h2>Why Zoning Matters When Buying Land</h2>
-      <p>Before you buy any lot in Palm Bay, you need to understand what you can actually build on it. Zoning determines everything — the type of structure allowed, setback requirements, maximum building height, and even whether you can run a home business.</p>
-      <p>The good news? Palm Bay's zoning is relatively straightforward compared to larger Florida cities. This guide breaks down everything you need to know.</p>
-
-      <h2>Residential Zoning in Palm Bay</h2>
-      <p>Most vacant lots in Palm Bay fall under residential zoning. Here are the main categories:</p>
-
-      <h3>RS-1 (Single-Family Residential — Low Density)</h3>
-      <p>This is the most common zoning for Palm Bay lots. Key characteristics:</p>
+      <h2>Why Zoning Matters Before You Buy</h2>
+      <p>Before you purchase any lot in Palm Bay, you need to understand what you can actually build on it. Zoning determines everything — the type of structure allowed, setback requirements, maximum building height, and even whether you can run a home business. This guide covers everything you need to know about residential zoning in Palm Bay specifically.</p>
+      <p>For official zoning verification on any specific parcel, contact the City of Palm Bay Land Development Division:</p>
       <ul>
-        <li><strong>Minimum lot size:</strong> 7,500 square feet</li>
-        <li><strong>Allowed uses:</strong> Single-family homes only</li>
-        <li><strong>Setbacks:</strong> 25 ft front, 7.5 ft sides, 20 ft rear</li>
-        <li><strong>Max height:</strong> 35 feet</li>
-        <li><strong>Max lot coverage:</strong> 40%</li>
-      </ul>
-      <p>This is perfect for building a standard single-family home. Most of our quarter-acre lots are RS-1 zoned.</p>
-
-      <h3>RS-2 (Single-Family Residential — Medium Density)</h3>
-      <p>Similar to RS-1 but allows slightly smaller lots:</p>
-      <ul>
-        <li><strong>Minimum lot size:</strong> 6,000 square feet</li>
-        <li><strong>Allowed uses:</strong> Single-family homes</li>
-        <li><strong>Building rules:</strong> Same as RS-1</li>
-      </ul>
-      <p>Good for slightly more compact development. Same building rules apply.</p>
-
-      <h3>RM-6 (Multi-Family Residential)</h3>
-      <p>If you want to build rental units, you need RM zoning:</p>
-      <ul>
-        <li><strong>Density:</strong> Up to 6 units per acre</li>
-        <li><strong>Allowed uses:</strong> Single-family, duplexes, townhomes, apartments</li>
-        <li><strong>Min lot size:</strong> 7,500 sq ft for single-family, more for multi-unit</li>
-      </ul>
-      <p>RM-6 zoned land is valuable for investors wanting to build rental income properties. We occasionally have assemblages available. <a href="/contact">Contact us</a> if you're looking for multi-family sites.</p>
-
-      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8t9keyvw_image.png" alt="Palm Bay Plaza — commercial zoning opens up retail, office, restaurant, and mixed-use development possibilities" style="width:100%; border-radius: 12px; margin: 24px 0;" />
-
-      <h2>Commercial Zoning in Palm Bay</h2>
-      <p>Commercial zoning opens up business and retail possibilities:</p>
-
-      <h3>C-1 (Neighborhood Commercial)</h3>
-      <p>Low-intensity commercial uses compatible with residential areas:</p>
-      <ul>
-        <li>Small retail stores</li>
-        <li>Professional offices</li>
-        <li>Personal service businesses</li>
-        <li>Restaurants (with restrictions)</li>
+        <li><strong>Phone:</strong> (321) 733-3042</li>
+        <li><strong>Email:</strong> landdevelopmentweb@pbfl.org</li>
+        <li><strong>Address:</strong> 120 Malabar Road SE, Palm Bay, FL 32907</li>
       </ul>
 
-      <h3>C-2 (Community Commercial)</h3>
-      <p>More intensive commercial uses:</p>
-      <ul>
-        <li>Larger retail</li>
-        <li>Auto services</li>
-        <li>Hotels/motels</li>
-        <li>Entertainment venues</li>
-      </ul>
+      <h2>The Three Residential Zoning Districts in Palm Bay</h2>
+      <p>Most vacant lots in Palm Bay fall under one of three single-family residential zoning designations — RS-1, RS-2, or RS-3 — as defined in Chapter 185 of the City of Palm Bay Code of Ordinances.</p>
 
-      <h3>C-3 (Heavy Commercial)</h3>
-      <p>Most permissive commercial zone:</p>
+      <h3>RS-1 — Single-Family Residential District (Most Common)</h3>
+      <p>RS-1 is the most common zoning designation for Palm Bay lots and covers the majority of our inventory. It is designed for low-density, single-family residential development on standard quarter-acre lots.</p>
+      <div style="overflow-x:auto; margin: 16px 0;">
+        <table style="width:100%; border-collapse: collapse; border: 1px solid #e2e8f0;">
+          <thead style="background:#fef3c7;">
+            <tr>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">RS-1 Requirement</th>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Minimum Lot Size</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">7,500 sq ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Allowed Uses</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Single-family homes only</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Front Setback</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">25 ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Side Setbacks</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">7.5 ft each side</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Rear Setback</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">20 ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Max Height</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">35 ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Max Lot Coverage</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">40%</td></tr>
+            <tr><td style="padding:10px 14px;">Garage Requirement</td><td style="padding:10px 14px;">Minimum 2-car enclosed garage required</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Most of our quarter-acre residential lots are RS-1 zoned — perfect for building a standard single-family home throughout Palm Bay.</p>
+
+      <h3>RS-2 — Single-Family Residential District</h3>
+      <p>RS-2 follows the same rules as RS-1 but allows slightly smaller minimum lot sizes. Same building standards apply.</p>
+      <div style="overflow-x:auto; margin: 16px 0;">
+        <table style="width:100%; border-collapse: collapse; border: 1px solid #e2e8f0;">
+          <thead style="background:#fef3c7;">
+            <tr>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">RS-2 Requirement</th>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Minimum Lot Size</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">6,000 sq ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Allowed Uses</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Single-family homes only</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Front Setback</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">25 ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Side Setbacks</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">7.5 ft each side</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Rear Setback</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">20 ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Max Height</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">35 ft</td></tr>
+            <tr><td style="padding:10px 14px;">Garage Requirement</td><td style="padding:10px 14px;">Minimum 2-car enclosed garage required</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>RS-3 — Single-Family Residential District</h3>
+      <p>RS-3 allows the smallest single-family lots in Palm Bay and is typically found in more densely developed areas of the city.</p>
+      <div style="overflow-x:auto; margin: 16px 0;">
+        <table style="width:100%; border-collapse: collapse; border: 1px solid #e2e8f0;">
+          <thead style="background:#fef3c7;">
+            <tr>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">RS-3 Requirement</th>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Minimum Lot Size</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">5,000 sq ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Allowed Uses</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Single-family homes only</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Front Setback</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">25 ft</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Side Setbacks</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">7.5 ft each side</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Rear Setback</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">20 ft</td></tr>
+            <tr><td style="padding:10px 14px;">Max Height</td><td style="padding:10px 14px;">35 ft</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/5785eoeo_image.png" alt="Palm Bay street view showing typical residential lots and single-family homes" style="width:100%; border-radius: 12px; margin-top: 24px; margin-bottom: 12px;" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">RS-1, RS-2, and RS-3 all allow single-family homes — the difference is minimum lot size.</p>
+
+      <h2>Corner Lots — What You Need to Know</h2>
+      <p>A corner lot fronts on two streets instead of one. In Palm Bay, corner lots are required to maintain a 25-foot setback from both street-facing sides as well as the rear — meaning three sides at 25 feet instead of just the front.</p>
+      <p>However, corner lots are purposely platted larger to compensate for these additional setbacks, so your actual buildable footprint is still very workable. Here is how typical lot sizes compare in Palm Bay:</p>
+      <div style="overflow-x:auto; margin: 16px 0;">
+        <table style="width:100%; border-collapse: collapse; border: 1px solid #e2e8f0;">
+          <thead style="background:#fef3c7;">
+            <tr>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Lot Type</th>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Typical Size</th>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Interior Lot (standard)</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">80 × 125 ft</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Most common in Palm Bay</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Interior Lot (larger)</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">83 or 85 × 125 ft</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Rare — slightly wider than standard</td></tr>
+            <tr><td style="padding:10px 14px;">Corner Lot</td><td style="padding:10px 14px;">95 × 125 ft or larger</td><td style="padding:10px 14px;">Larger to offset 3-sided setbacks. Sizes vary widely.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Many buyers are drawn to corner lots for their open, spacious feel — more light, more yard visibility, and a greater sense of space. The tradeoff is the additional setback requirement on both street-facing sides and the rear, which you should factor into your building footprint before purchasing.</p>
+      <p style="background:#f1f5f9; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #475569;"><strong>Corner Lot Setback Summary:</strong> 25 ft from both street-facing sides + 25 ft rear. Interior non-street side: 7.5 ft.</p>
+
+      <h2>Pie-Shaped Lots — The Hidden Gem of Palm Bay</h2>
+      <p>Pie-shaped lots are among the most sought-after lot types in Palm Bay — and for good reason. They are typically located on curved roads, which gives them a narrow frontage along the street but a dramatically wider rear yard. That rear width can sometimes be double the standard 80-foot interior lot width, or even larger. Some pie-shaped lots are nearly the equivalent of two standard lots in total area.</p>
+      <p>Here is what makes pie-shaped lots so appealing to buyers:</p>
       <ul>
-        <li>Wholesale businesses</li>
-        <li>Warehousing</li>
-        <li>Light manufacturing</li>
-        <li>All C-1 and C-2 uses</li>
+        <li>You live in your backyard, not your front yard — the narrow street frontage gives you privacy from the road</li>
+        <li>The rear yard is large and deep — ideal for a pool, playground, organic garden, or outdoor living space</li>
+        <li>The irregular shape often means more total lot area than a standard rectangular lot</li>
+        <li>Located on curved streets, they have a more natural, less grid-like neighborhood feel</li>
+        <li>Less through-traffic noise since curved roads naturally slow vehicles down</li>
+        <li>Some pie-shaped lots are almost the size of two standard lots — at a cost savings of purchasing a double lot</li>
       </ul>
+      <p>From a zoning and setback standpoint, pie-shaped lots follow the same rules as interior lots — 25 ft front, 7.5 ft sides, 20 ft rear. The wider rear of the lot means your rear setback still leaves you with a very generous buildable area. A pie-shaped lot with a 160-ft rear width, for example, leaves you with 145 feet of usable width after the 7.5-ft side setbacks on each side — significantly more than the 65 feet you would have on a standard 80-ft wide interior lot.</p>
+      <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>Pro tip:</strong> Pie-shaped lots do not stay on the market long. If you see one that fits your budget and location — move quickly. Call us and we will tell you the exact rear width and total square footage of any lot in our inventory.</p>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8t9keyvw_image.png" alt="Aerial view of a curved Palm Bay street showing pie-shaped residential lots with wide rear yards" style="width:100%; border-radius: 12px; margin-top: 24px; margin-bottom: 12px;" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Pie-shaped lots on curved streets offer dramatically larger rear yards — popular for pools, gardens, and outdoor living.</p>
 
       <h2>How to Check Zoning Before You Buy</h2>
-      <p>Never assume a lot's zoning based on appearance or neighbor uses. Here's how to verify:</p>
-      <ol>
-        <li><strong>Ask us:</strong> We verify zoning on every property we sell and can provide documentation.</li>
-        <li><strong>Brevard County Property Appraiser:</strong> Search by address at bcpao.us for parcel details including zoning designation.</li>
-        <li><strong>City of Palm Bay Planning:</strong> Call (321) 409-7106 or visit the Planning & Zoning department for official determination.</li>
-      </ol>
-
-      <h2>Can You Change Zoning?</h2>
-      <p>Yes, but it's not easy. Rezoning requires:</p>
+      <p>Never assume a lot's zoning based on appearance or what neighbors have built. Here's how to verify:</p>
       <ul>
-        <li>Application fee ($500-$2,000+)</li>
-        <li>Site plan and justification</li>
-        <li>Public hearings</li>
-        <li>Planning Board approval</li>
-        <li>City Council approval</li>
+        <li><strong>Brevard County Property Appraiser</strong> (bcpao.us) — Search by address for parcel details including zoning designation</li>
+        <li><strong>City of Palm Bay GIS Map</strong> — Interactive zoning map for any Palm Bay parcel</li>
+        <li><strong>City of Palm Bay Land Development Division</strong> — Call (321) 733-3042 for official zoning confirmation</li>
+        <li><strong>Ask us</strong> — We check zoning, setbacks, utilities, and flood zone status on every lot we represent and can provide a full parcel report within 24 hours</li>
       </ul>
-      <p>The process takes 3-6 months minimum with no guarantee of approval. It's almost always better to buy land that's already zoned correctly for your intended use.</p>
 
-      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/5785eoeo_image.png" alt="Palm Bay residential lot with paved roads and utility infrastructure — always verify zoning, setbacks, and deed restrictions before purchasing" style="width:100%; border-radius: 12px; margin: 24px 0;" />
-
-      <h2>Common Zoning Mistakes to Avoid</h2>
-      <p><strong>Assuming RS-1 and RS-2 allow multi-family</strong> — They don't. If you want to build rental units, you need RM zoning. Check first.</p>
-      <p><strong>Planning a home business without checking</strong> — Some businesses require commercial zoning regardless of whether customers visit. Always verify before purchasing.</p>
-      <p><strong>Ignoring setbacks</strong> — That "spacious" corner lot might have less buildable area than you think once setbacks are applied.</p>
-      <p><strong>Not checking deed restrictions</strong> — Even if zoning allows something, HOA or deed restrictions might prohibit it. We disclose all known restrictions on our lots.</p>
-
-      <h2>Know What You're Buying Before You Buy It</h2>
-      <p>Zoning is one of the most important factors in any land purchase. We've been navigating Palm Bay's zoning codes since 2003 — we can tell you exactly what's buildable, what's not, and which lots match your plans.</p>
-      <p><a href="/inventory"><strong>Browse Available Lots by Zoning</strong></a> | <a href="/contact"><strong>Request a Free Parcel & Zoning Report</strong></a> | <a href="/listings"><strong>View Commercial Listings</strong></a></p>
+      <h2>Ready to Find Your Lot in Palm Bay?</h2>
+      <p>We have been navigating Palm Bay's zoning codes since 2003. We will tell you exactly what's buildable, what's not, and which lots match your plans. Call us — straight answers, no pressure.</p>
+      <p><a href="/inventory"><strong>Browse Available Lots</strong></a> | <a href="/contact"><strong>Request a Free Parcel & Zoning Report</strong></a></p>
       <p>Or call/text Vahid directly: <strong><a href="tel:3213337230">321-333-7230</a></strong></p>
+
+      <p style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; color:#64748b; font-size: 0.9em;"><em>Vahid Rajabian is a licensed Florida Real Estate Broker Associate with M. David Moallem, Inc. He has been selling lots and land in Palm Bay and Brevard County since 2003.</em></p>
+      <p style="color:#64748b; font-size: 0.85em;"><em>Source: City of Palm Bay Code of Ordinances, Chapter 185: Zoning Code. For official verification contact Land Development Division at (321) 733-3042.</em></p>
     `,
     faqs: [
-      { q: 'Can I build an ADU (accessory dwelling unit) in Palm Bay?', a: 'Palm Bay has specific rules for ADUs. Generally, you can build a small accessory structure on RS-1/RS-2 lots, but it cannot be rented separately. Check current ordinances as Florida is updating ADU laws.' },
-      { q: 'What if my lot has multiple zoning designations?', a: 'Split-zoned lots exist. The buildable area of each zone is determined separately — consult with the city planning department before purchasing.' },
-      { q: 'How do I find RM-zoned (multi-family) lots?', a: 'These are less common and don\'t stay on market long. Contact us directly — we often have assemblages that could be developed as multi-family.' },
-      { q: 'Do you provide zoning information on every lot you sell?', a: 'Yes. We check zoning, setbacks, utilities, and flood zone status on every lot we represent. We can also provide a full parcel and zoning report on any Palm Bay lot — delivered within 24 hours.' }
+      { q: 'Can I build an ADU (accessory dwelling unit) in Palm Bay?', a: 'Palm Bay has specific rules for ADUs on RS-1 and RS-2 lots. Generally you can build a small accessory structure, but it cannot be rented separately. Check current ordinances as Florida is actively updating ADU laws statewide.' },
+      { q: 'What if my lot has multiple zoning designations?', a: 'Split-zoned lots exist. The buildable area of each zone is determined separately. Consult with the City of Palm Bay Land Development Division at (321) 733-3042 before purchasing.' },
+      { q: 'Do you provide zoning information on every lot you sell?', a: 'Yes. We check zoning, setbacks, utilities, and flood zone status on every lot we represent. We can also provide a full parcel and zoning report on any Palm Bay lot — delivered within 24 hours.' },
+      { q: 'Are corner lots or pie-shaped lots available in your inventory?', a: 'Yes — we have corner lots, pie-shaped lots, and standard interior lots throughout Palm Bay. Call us and tell us what you are looking for. We will match you with available inventory that fits your needs and budget.' }
     ]
   },
 

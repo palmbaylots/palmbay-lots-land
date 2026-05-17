@@ -37,9 +37,9 @@ const blogPosts = [
   },
   {
     slug: 'palm-bay-zoning-explained',
-    title: 'Palm Bay Zoning Explained: What Can You Build on Your Lot?',
-    excerpt: 'RS-1, RS-2, RM-6, C-1, C-2 — what do Palm Bay zoning codes actually mean? Learn what you can build on any lot before you buy.',
-    date: 'April 2026',
+    title: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots',
+    excerpt: 'What can you build on a residential lot in Palm Bay? RS-1, RS-2, RS-3 setbacks, lot sizes, corner lot rules, and pie-shaped lots — the full 2026 guide.',
+    date: 'May 2026',
     readTime: '8 min read',
     category: 'Zoning',
     image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/1qlykxsv_image.png',
