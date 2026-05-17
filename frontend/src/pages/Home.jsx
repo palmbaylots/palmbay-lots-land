@@ -607,7 +607,7 @@ const Home = () => {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/3">
                 <img 
-                  src={`${BACKEND_URL}/api/images/d91dd65f-6382-4cce-86a5-0ebdea7c4dd9`} 
+                  src="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" 
                   alt="Vahid Reza Rajabian - Palm Bay Real Estate Broker Associate"
                   className="w-full rounded-lg shadow-lg"
                   loading="lazy"
