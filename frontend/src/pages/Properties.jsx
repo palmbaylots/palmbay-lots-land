@@ -151,10 +151,10 @@ const Properties = () => {
   return (
     <>
       <Helmet>
-        <title>Palm Bay Lot Price Guide | Per-Square-Foot Pricing by Unit</title>
-        <meta name="description" content="Palm Bay lot pricing guide by unit and zoning. Calculate fair market value of any residential lot using current per-square-foot rates and utility access." />
+        <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
+        <meta name="description" content="Palm Bay lot pricing guide and owner-financing terms. Calculate fair market value of any residential lot using current per-square-foot rates, plus see financing options." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
-        <meta property="og:title" content="Palm Bay Lot Price Guide | Per-Square-Foot Pricing" />
+        <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />
         <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Updated pricing guide from a 20-year Palm Bay land broker." />
         <meta property="og:url" content="https://palmbaylots-land.com/price-guide" />
         <meta property="og:type" content="website" />
@@ -164,8 +164,8 @@ const Properties = () => {
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-amber-400">Palm Bay Properties</h1>
-              <p className="text-sm text-gray-300">Browse available lots and land</p>
+              <h1 className="text-3xl font-bold text-amber-400">Price Guide & Financing Terms</h1>
+              <p className="text-sm text-gray-300">Browse available lots and land — see pricing and owner-financing options</p>
             </div>
           </div>
           
