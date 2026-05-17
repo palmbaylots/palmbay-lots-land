@@ -46,6 +46,16 @@ const blogPosts = [
     hasContent: true
   },
   {
+    slug: 'palm-bay-commercial-zoning-explained',
+    title: 'Palm Bay Commercial, Multifamily & Industrial Zoning Explained — NC, CC, HC, GC, RM, IU & HI',
+    excerpt: 'Planning to build commercial, multifamily, or industrial in Palm Bay? NC, CC, HC, GC, RM-15, RM-20, IU, HI — what each zone allows, what it costs to rezone, and how to find the right parcel.',
+    date: 'May 2026',
+    readTime: '8 min read',
+    category: 'Zoning',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8t9keyvw_image.png',
+    hasContent: true
+  },
+  {
     slug: 'city-water-vs-well-septic',
     title: 'City Water vs. Well & Septic in Palm Bay — An Honest Comparison',
     excerpt: 'Well and septic isn\'t the inferior option people assume. Here\'s an honest comparison — real costs, real advantages, and what actually matters for your situation.',

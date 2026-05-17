@@ -465,6 +465,188 @@ export const blogContent = {
     ]
   },
 
+  'palm-bay-commercial-zoning-explained': {
+    title: 'Palm Bay Commercial, Multifamily & Industrial Zoning Explained — NC, CC, HC, GC, RM, IU & HI',
+    metaTitle: 'Palm Bay Zoning for Commercial, Multifamily & Industrial Land — NC, CC, HC, GC, RM, IU, HI Explained | 2026',
+    metaDescription: 'Planning to build commercial, multifamily, or industrial in Palm Bay? NC, CC, HC, GC, RM-15, RM-20, IU, HI — what each zone allows, what it costs to rezone, and how to find the right parcel. 2026 guide.',
+    subtitle: 'Whether you are building a rental property, a retail center, or an industrial facility in Palm Bay — zoning determines what is possible. Here is everything investors, builders, and developers need to know.',
+    category: 'Zoning',
+    date: 'May 2026',
+    readTime: '8 min read',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8t9keyvw_image.png',
+    content: `
+      <blockquote style="border-left: 4px solid #d97706; padding: 16px 20px; background: #fffbeb; margin: 24px 0; font-style: italic;">
+        Whether you are building a rental property, a retail center, or an industrial facility in Palm Bay — zoning determines what is possible. Here is everything investors, builders, and developers need to know.
+      </blockquote>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8t9keyvw_image.png" alt="Aerial view of a Palm Bay commercial corridor showing retail, office, and mixed-use development" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Palm Bay's commercial, multifamily, and industrial zoning districts are defined in Chapter 185 of the City Code of Ordinances.</p>
+
+      <h2>Why This Guide Is for Investors and Developers</h2>
+      <p>Residential buyers need to know RS-1, RS-2, and RS-3. But if you are an investor, builder, or developer looking at Palm Bay for multifamily housing, retail, office, or industrial uses — the zoning picture is completely different. This guide covers everything beyond single-family residential.</p>
+      <p>For official zoning verification on any specific parcel contact the City of Palm Bay Land Development Division:</p>
+      <ul>
+        <li><strong>Phone:</strong> (321) 733-3042</li>
+        <li><strong>Email:</strong> landdevelopmentweb@pbfl.org</li>
+        <li><strong>Address:</strong> 120 Malabar Road SE, Palm Bay, FL 32907</li>
+      </ul>
+
+      <h2>Multifamily Residential Zoning — RM Districts</h2>
+      <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format,compress&fit=crop&w=1600&q=75" alt="Modern Florida apartment complex with palm trees, representing RM-15 and RM-20 multifamily zoning in Palm Bay" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">RM-15 and RM-20 zoning supports everything from duplexes to full apartment complexes in Palm Bay.</p>
+
+      <p>If you want to build rental units, duplexes, triplexes, townhomes, or apartment buildings in Palm Bay, you need RM zoning. Palm Bay's current code recognizes two multifamily residential districts.</p>
+
+      <h3>RM-15 — Multiple-Family Residential District</h3>
+      <p>RM-15 accommodates medium-density multifamily development throughout Palm Bay.</p>
+      <div style="overflow-x:auto; margin: 16px 0;">
+        <table style="width:100%; border-collapse: collapse; border: 1px solid #e2e8f0;">
+          <thead style="background:#fef3c7;">
+            <tr>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">RM-15 Requirement</th>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Maximum Density</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Up to 15 units per acre</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Allowed Uses</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Single-family, duplexes, triplexes, quadplexes, townhomes, apartments</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Minimum Separation</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">30 ft between multi-family buildings on same property</td></tr>
+            <tr><td style="padding:10px 14px;">Best For</td><td style="padding:10px 14px;">Smaller rental portfolios, townhome developments, duplex investors</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>RM-20 — Multiple-Family Residential District</h3>
+      <p>RM-20 allows higher density development and is suited for larger apartment complexes and high-density housing projects.</p>
+      <div style="overflow-x:auto; margin: 16px 0;">
+        <table style="width:100%; border-collapse: collapse; border: 1px solid #e2e8f0;">
+          <thead style="background:#fef3c7;">
+            <tr>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">RM-20 Requirement</th>
+              <th style="text-align:left; padding:10px 14px; border-bottom: 2px solid #d97706;">Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Maximum Density</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Up to 20 units per acre</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Allowed Uses</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">All RM-15 uses plus higher density apartment buildings</td></tr>
+            <tr><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">Minimum Separation</td><td style="padding:10px 14px; border-bottom:1px solid #f1f5f9;">30 ft between multi-family buildings on same property</td></tr>
+            <tr><td style="padding:10px 14px;">Best For</td><td style="padding:10px 14px;">Larger apartment developments, workforce housing, Build-to-Rent platforms</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>Note:</strong> RM-zoned parcels are less common than residential lots and don't stay on the market long. We occasionally have RM-zoned assemblages available. Contact us directly — <a href="tel:3213337230">321-333-7230</a>.</p>
+
+      <h2>Commercial Zoning in Palm Bay — NC, CC, HC, GC</h2>
+      <img src="https://images.unsplash.com/photo-1555529771-7888783a18d3?auto=format,compress&fit=crop&w=1600&q=75" alt="Palm Bay commercial corridor with retail storefronts and mixed-use buildings" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Palm Bay's four commercial zones — NC, CC, HC, and GC — serve everything from neighborhood shops to large-scale highway commercial development.</p>
+
+      <p>Palm Bay's commercial zoning is divided into four districts based on intensity and location, as defined in Chapter 185 of the City Code of Ordinances. Understanding which commercial district applies to a parcel determines what businesses can operate there.</p>
+
+      <h3>NC — Neighborhood Commercial District</h3>
+      <p>The least intensive commercial zone — designed to serve nearby residential neighborhoods with everyday goods and services.</p>
+      <ul>
+        <li>Small retail stores</li>
+        <li>Professional offices</li>
+        <li>Personal service businesses — hair salons, dry cleaners, etc.</li>
+        <li>Restaurants (with restrictions)</li>
+        <li>Medical and dental offices</li>
+      </ul>
+      <p>NC parcels are typically smaller and located at neighborhood intersections. Good for owner-operated small businesses serving local residents.</p>
+
+      <h3>CC — Community Commercial District</h3>
+      <p>More intensive commercial uses serving a broader community area — typically located on collector roads.</p>
+      <ul>
+        <li>Larger retail centers and shopping plazas</li>
+        <li>Restaurants and food service</li>
+        <li>Auto services — repair, detailing</li>
+        <li>Hotels and motels</li>
+        <li>Entertainment venues</li>
+        <li>Banks and financial services</li>
+      </ul>
+
+      <h3>HC — Highway Commercial District</h3>
+      <p>Commercial uses specifically designed for high-traffic highway corridors — typically along US-1, Babcock Street, and Palm Bay Road.</p>
+      <ul>
+        <li>Auto dealerships</li>
+        <li>Large format retail</li>
+        <li>Drive-through services</li>
+        <li>Contractor offices and showrooms</li>
+        <li>Warehousing (limited)</li>
+        <li>Truck stops and fuel stations</li>
+      </ul>
+
+      <h3>GC — General Commercial District</h3>
+      <p>The most permissive commercial zone in Palm Bay — allows the broadest range of commercial and mixed-use development. Suitable for larger-scale projects combining retail, office, and residential uses.</p>
+      <ul>
+        <li>All CC and HC uses</li>
+        <li>Larger mixed-use commercial developments</li>
+        <li>Commercial projects requiring maximum flexibility</li>
+      </ul>
+      <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>Available now:</strong> We have commercial parcels zoned NC, CC, HC, and GC available throughout Palm Bay and Brevard County. Call us to discuss your specific project requirements — <a href="tel:3213337230">321-333-7230</a>.</p>
+
+      <h2>Industrial Zoning in Palm Bay — IU and HI</h2>
+      <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format,compress&fit=crop&w=1600&q=75" alt="Large industrial warehouse and distribution facility, representing HI heavy industrial zoning in Palm Bay" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Heavy Industrial (HI) zoning supports manufacturing, warehousing, and logistics near Palm Bay's major transportation corridors.</p>
+
+      <p>Palm Bay has two industrial-related zoning designations for non-residential, non-commercial uses.</p>
+
+      <h3>IU — Institutional Use District</h3>
+      <p>Despite its name, the IU district in Palm Bay covers a broad range of institutional and quasi-public uses:</p>
+      <ul>
+        <li>Schools and educational facilities</li>
+        <li>Churches and religious institutions</li>
+        <li>Government buildings and public facilities</li>
+        <li>Hospitals and medical campuses</li>
+        <li>Community centers</li>
+      </ul>
+      <p>IU-zoned parcels are well suited for non-profit organizations, educational institutions, and civic uses. We occasionally have IU-zoned commercial parcels available — including a notable parcel on San Filippo Drive.</p>
+
+      <h3>HI — Heavy Industrial District</h3>
+      <p>HI zoning is Palm Bay's most intensive land use designation, intended for manufacturing, logistics, and industrial operations near major transportation corridors.</p>
+      <ul>
+        <li>Manufacturing and assembly</li>
+        <li>Warehousing and distribution</li>
+        <li>Last-mile logistics facilities</li>
+        <li>Aerospace-related manufacturing</li>
+        <li>Truck terminals and freight handling</li>
+        <li>Contractor storage yards</li>
+      </ul>
+      <p>Given Palm Bay's proximity to I-95, the Saint Johns Heritage Parkway corridor, and the Space Coast aerospace industry, HI-zoned land is in increasing demand for logistics and industrial development. We have industrial acreage available — contact us to discuss your specific requirements.</p>
+
+      <h2>Can You Change Zoning in Palm Bay?</h2>
+      <p>Yes — but it is not a quick or guaranteed process. Rezoning in Palm Bay requires:</p>
+      <ul>
+        <li>Application fee ($500–$2,000+) submitted to the Land Development Division</li>
+        <li>Site plan and written justification for the requested change</li>
+        <li>Public notice and neighborhood outreach</li>
+        <li>Public hearing before the Planning and Zoning Board</li>
+        <li>City Council approval</li>
+      </ul>
+      <p>The process typically takes 3–6 months minimum with no guarantee of approval. The city evaluates requests based on compatibility with surrounding uses, Future Land Use Map designations, and consistency with the City's Comprehensive Plan. It is almost always better — and significantly faster — to purchase land already zoned for your intended use.</p>
+      <p style="background:#f1f5f9; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #475569;"><strong>Pro tip:</strong> Before purchasing any parcel for commercial or industrial development, verify the current zoning AND the Future Land Use (FLU) designation. Both must align with your intended use. Call us — we check both on every parcel we represent.</p>
+
+      <h2>Common Mistakes Investors and Developers Make</h2>
+      <p><strong>Assuming RM zoning allows any density —</strong> RM-15 caps at 15 units per acre and RM-20 caps at 20. Always confirm your project's unit count fits within the density limits before purchasing.</p>
+      <p><strong>Not checking the Future Land Use Map —</strong> Zoning and FLU must both support your intended use. A parcel can be zoned commercial but have a residential FLU designation that prevents commercial development.</p>
+      <p><strong>Buying based on neighboring uses —</strong> Never assume a parcel's zoning based on what has been built nearby. Always verify through the city or property appraiser before purchasing.</p>
+      <p><strong>Ignoring setback requirements on commercial lots —</strong> Commercial setbacks vary by district and can significantly reduce your buildable area. Get a site plan review before committing to a purchase.</p>
+
+      <h2>Looking for Commercial, Multifamily, or Industrial Land in Palm Bay?</h2>
+      <p>We have been selling commercial, industrial, and multifamily land in Palm Bay since 2003. We know which parcels are zoned correctly for your project and can move quickly. Call us — straight answers, no pressure.</p>
+      <p><a href="/listings"><strong>View Commercial Listings</strong></a> | <a href="/contact"><strong>Contact Vahid Directly</strong></a></p>
+      <p>Or call/text Vahid directly: <strong><a href="tel:3213337230">321-333-7230</a></strong></p>
+
+      <p style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; color:#64748b; font-size: 0.9em;"><em>Vahid Rajabian is a licensed Florida Real Estate Broker Associate with M. David Moallem, Inc. He has been selling commercial, industrial, and residential land in Palm Bay and Brevard County since 2003.</em></p>
+      <p style="color:#64748b; font-size: 0.85em;"><em>Source: City of Palm Bay Code of Ordinances, Chapter 185: Zoning Code. For official verification contact Land Development Division at (321) 733-3042.</em></p>
+    `,
+    faqs: [
+      { q: 'Do you have RM-zoned multifamily lots available?', a: 'We occasionally have RM-zoned assemblages available in Palm Bay. These don\'t stay on the market long. Contact us directly at 321-333-7230 and we will let you know what is currently available.' },
+      { q: 'Do you have commercial or industrial land available?', a: 'Yes — we have commercial parcels zoned NC, CC, HC, and GC, as well as IU and industrial acreage throughout Brevard County. Contact us to discuss your specific project size and requirements.' },
+      { q: 'What is the Port Malabar Industrial area?', a: 'The northern section of the compound area in SW Palm Bay has been studied for a Port Malabar Industrial designation. No zoning change has been adopted yet, but planning studies are ongoing. Our office holds significant acreage in this area. Contact us for updates.' },
+      { q: 'Can I build a warehouse or distribution center in Palm Bay?', a: 'Yes — on HI-zoned parcels near major transportation corridors. Given Palm Bay\'s I-95 access and Space Coast logistics demand, warehousing and distribution are active uses. We can identify available HI-zoned parcels for your project requirements.' }
+    ]
+  },
+
   'city-water-vs-well-septic': {
     title: 'City Water vs. Well & Septic in Palm Bay — An Honest Comparison',
     metaTitle: 'City Water vs. Well & Septic in Palm Bay FL — Honest 2026 Comparison',
