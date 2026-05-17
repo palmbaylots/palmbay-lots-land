@@ -492,7 +492,7 @@ export const blogContent = {
       </ul>
 
       <h2>Multifamily Residential Zoning — RM Districts</h2>
-      <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format,compress&fit=crop&w=1600&q=75" alt="Modern Florida apartment complex with palm trees, representing RM-15 and RM-20 multifamily zoning in Palm Bay" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/xrclfiym_ChatGPT%20Image%20May%2017%2C%202026%2C%2007_16_16%20PM.jpg" alt="Modern multifamily townhome and apartment development at dusk with landscaped grounds, representing RM-15 and RM-20 zoning in Palm Bay" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
       <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">RM-15 and RM-20 zoning supports everything from duplexes to full apartment complexes in Palm Bay.</p>
 
       <p>If you want to build rental units, duplexes, triplexes, townhomes, or apartment buildings in Palm Bay, you need RM zoning. Palm Bay's current code recognizes two multifamily residential districts.</p>
@@ -537,7 +537,7 @@ export const blogContent = {
       <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>Note:</strong> RM-zoned parcels are less common than residential lots and don't stay on the market long. We occasionally have RM-zoned assemblages available. Contact us directly — <a href="tel:3213337230">321-333-7230</a>.</p>
 
       <h2>Commercial Zoning in Palm Bay — NC, CC, HC, GC</h2>
-      <img src="https://images.unsplash.com/photo-1555529771-7888783a18d3?auto=format,compress&fit=crop&w=1600&q=75" alt="Palm Bay commercial corridor with retail storefronts and mixed-use buildings" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/2fhcu419_Plaza%20design.jpg" alt="Palm Bay-style retail plaza with palm trees, glass storefronts, and commercial parking — representing NC, CC, HC, and GC commercial zoning" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
       <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Palm Bay's four commercial zones — NC, CC, HC, and GC — serve everything from neighborhood shops to large-scale highway commercial development.</p>
 
       <p>Palm Bay's commercial zoning is divided into four districts based on intensity and location, as defined in Chapter 185 of the City Code of Ordinances. Understanding which commercial district applies to a parcel determines what businesses can operate there.</p>
@@ -585,7 +585,7 @@ export const blogContent = {
       <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>Available now:</strong> We have commercial parcels zoned NC, CC, HC, and GC available throughout Palm Bay and Brevard County. Call us to discuss your specific project requirements — <a href="tel:3213337230">321-333-7230</a>.</p>
 
       <h2>Industrial Zoning in Palm Bay — IU and HI</h2>
-      <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format,compress&fit=crop&w=1600&q=75" alt="Large industrial warehouse and distribution facility, representing HI heavy industrial zoning in Palm Bay" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/3vg3o5wk_image_229fca0e.jpg" alt="Light-industrial precision engineering facility with shipping bay, fleet vehicles, and warehouse — representing IU and HI industrial zoning in Palm Bay" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
       <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Heavy Industrial (HI) zoning supports manufacturing, warehousing, and logistics near Palm Bay's major transportation corridors.</p>
 
       <p>Palm Bay has two industrial-related zoning designations for non-residential, non-commercial uses.</p>
