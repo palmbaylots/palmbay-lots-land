@@ -99,6 +99,15 @@ Build a professional real estate website for Vahid Reza Rajabian featuring:
 - **UNDER CONTRACT** red badge added to 181 Dailey Street in Cash Buyer Specials modal
 - Kept all existing: lead capture form, cash deals banner/modal, urgency banner, FAQ schema, testimonials, featured properties
 
+## Completed Work (Session - May 18, 2026)
+
+### ✅ "The Compound — Buyers" Blog Published (`/blog/the-compound-palm-bay-buyers-2026`)
+- Buyer-angle companion to the existing Sellers Compound post
+- Covers: EPA study, $1.5M brownfields grant, Port Malabar Industrial designation, city-owned parcels, gateway vision, J.A. Bombardier Blvd access
+- 4 new images situated throughout: Action Plan cover, regional context map, business park gateway rendering, J.A. Bombardier Blvd entrance
+- 9 min read, 6 FAQs, full internal links to inventory + owner's guide
+- Added to `Blog.jsx` index card + `sitemap.xml` (priority 0.8)
+
 ## Completed Work (Session - April 18-19, 2026)
 
 ### ✅ Backend Codebase Refactoring
