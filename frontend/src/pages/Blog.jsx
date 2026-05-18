@@ -46,6 +46,16 @@ const blogPosts = [
     hasContent: true
   },
   {
+    slug: 'the-compound-palm-bay-buyers-2026',
+    title: 'The Compound Palm Bay — Why Smart Buyers Are Looking at Units 51, 52 & 53 in 2026',
+    excerpt: 'Palm Bay\'s compound — Port Malabar Units 51, 52, and 53 — has been called unbuildable for 50 years. Now EPA studies, brownfields grants, and city planning signal real progress. Here\'s what buyers need to know.',
+    date: 'May 2026',
+    readTime: '9 min read',
+    category: 'Compound',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/os5hth2k_Compound%20Redevelopment%20Action%20Plan.jpg',
+    hasContent: true
+  },
+  {
     slug: 'palm-bay-zoning-explained',
     title: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots',
     excerpt: 'What can you build on a residential lot in Palm Bay? RS-1, RS-2, RS-3 setbacks, lot sizes, corner lot rules, and pie-shaped lots — the full 2026 guide.',
