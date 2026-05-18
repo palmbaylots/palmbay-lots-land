@@ -36,6 +36,16 @@ const blogPosts = [
     hasContent: true
   },
   {
+    slug: 'the-compound-palm-bay-lot-owners',
+    title: 'The Compound Palm Bay — What Current Lot Owners in Units 51, 52 & 53 Need to Know',
+    excerpt: 'Own a lot in The Compound (Units 51, 52, or 53)? Here\'s what\'s happening with infrastructure, assessments, and your options in 2026 — straight from a 20-year Palm Bay specialist.',
+    date: 'May 2026',
+    readTime: '8 min read',
+    category: 'Compound',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8uv62qos_The%20Compound.jpg',
+    hasContent: true
+  },
+  {
     slug: 'palm-bay-zoning-explained',
     title: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots',
     excerpt: 'What can you build on a residential lot in Palm Bay? RS-1, RS-2, RS-3 setbacks, lot sizes, corner lot rules, and pie-shaped lots — the full 2026 guide.',

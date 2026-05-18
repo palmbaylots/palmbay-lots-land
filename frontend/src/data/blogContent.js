@@ -302,6 +302,91 @@ export const blogContent = {
     ]
   },
 
+  'the-compound-palm-bay-lot-owners': {
+    title: 'The Compound Palm Bay — What Current Lot Owners in Units 51, 52 & 53 Need to Know',
+    metaTitle: 'The Compound Palm Bay — What Current Lot Owners in Units 51, 52 & 53 Need to Know',
+    metaDescription: "Own a lot in Palm Bay's compound area — Units 51, 52, or 53? Here's what's happening with infrastructure, assessments, and what your options are in 2026. Honest information from a 20-year Palm Bay land specialist.",
+    subtitle: "If you own a lot in Port Malabar Units 51, 52, or 53 — known as 'The Compound' — this post is written specifically for you. An honest update on where things stand in 2026, what infrastructure plans mean for your holding costs, and what your options are.",
+    category: 'Compound',
+    date: 'May 2026',
+    readTime: '8 min read',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8uv62qos_The%20Compound.jpg',
+    content: `
+      <blockquote style="border-left: 4px solid #d97706; padding: 16px 20px; background: #fffbeb; margin: 24px 0; font-style: italic;">
+        If you own a lot in Port Malabar Units 51, 52, or 53 — known as "The Compound" — this post is written specifically for you. Here's an honest update on where things stand in 2026, what infrastructure plans mean for your holding costs, and what your options are.
+      </blockquote>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8uv62qos_The%20Compound.jpg" alt="Aerial view of Palm Bay's Compound area — Port Malabar Units 51, 52, and 53 — showing platted roads and undeveloped parcels stretching across thousands of acres" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Aerial view of The Compound — Port Malabar Units 51, 52, and 53 — where roads were platted in the 1970s but utilities never arrived.</p>
+
+      <h2>Who Owns The Compound?</h2>
+      <p>You are not alone. The compound contains approximately <strong>4,978 parcels across 2,492 acres</strong>, owned by <strong>over 2,755 individual property owners</strong>. Many of those owners — perhaps like you — purchased their lot years or even decades ago, are located out of state or out of the country, and have been holding and waiting ever since.</p>
+      <p>The area has been largely undeveloped since General Development Corporation (GDC) originally platted the lots in the 1970s and went bankrupt in 1991 — leaving behind roads but no water, sewer, or electrical infrastructure. That situation has remained largely unchanged for over 50 years.</p>
+      <p>Until recently.</p>
+
+      <h2>What Is Actually Happening Now</h2>
+      <p>For the first time in decades, there is meaningful activity surrounding the compound. Here's what's real and verified:</p>
+
+      <h3>EPA Land Revitalization Study (2024-2025)</h3>
+      <p>The City of Palm Bay secured a <strong>$100,000 technical assistance grant</strong> from the U.S. Environmental Protection Agency specifically focused on Port Malabar Unit 53. This study will produce an action plan to encourage economic development in the area. This is real progress — but it is a study, not a construction commitment.</p>
+
+      <h3>$1.5 Million Brownfields Assessment Grant</h3>
+      <p>The compound has been named a priority site in a <strong>$1.5 million brownfields assessment grant</strong> awarded to the Resilient Corridors Coalition. This funds the environmental and land use assessments that must happen before any development can occur.</p>
+
+      <h3>Port Malabar Industrial Study</h3>
+      <p>The northern section of the compound has been studied for potential industrial designation — "<strong>Port Malabar Industrial</strong>." No zoning change has occurred, but the city has invested significant resources in studying the area's potential.</p>
+
+      <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>What this means for you as a current owner:</strong> These studies are real signs of progress. They represent more government attention on this area than at any point in the past 50 years. However, they are studies — not approved plans with funded construction timelines. The honest reality is that no one can tell you exactly when infrastructure will arrive.</p>
+
+      <h2>The Assessment — What You Need to Understand</h2>
+      <p>This is the part that every compound lot owner needs to clearly understand <em>before</em> making any decisions.</p>
+      <p>If and when the city brings utilities to the compound, the cost will not be absorbed entirely by taxpayers. Historically, the City of Palm Bay has funded infrastructure expansion through bonds — borrowing money, completing the work, and then recovering costs from property owners through <strong>special assessments</strong>.</p>
+      <p>You saw this happen in Unit 31 when the city brought city water to that area. Property owners were assessed a fee proportional to their lot size. That assessment was spread over a period of years — typically 10 to 20 years — and added directly to property tax bills.</p>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8wvwqg21_Compound%20Image-2.jpg" alt="Close-up aerial view of streets and undeveloped lots in The Compound, Palm Bay — illustrating platted parcels along Kentucky Drive and surrounding SW Palm Bay roads" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Streets like Kentucky Drive are platted and named — but most parcels in the compound still lack water, sewer, and power.</p>
+
+      <p style="background:#fee2e2; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #dc2626;"><strong>What this means practically:</strong> If infrastructure comes to the compound, you will likely receive an assessment notice requiring you to pay your proportional share of the cost — whether you asked for it or not, whether you plan to build or not, and whether you live in Florida or not.</p>
+
+      <p>For a quarter-acre lot, that assessment could be a meaningful cost spread over many years. The exact amount would depend on the scope of infrastructure installed and the total number of parcels sharing the cost — numbers that are not yet known because no plan has been finalized.</p>
+      <p>This is not meant to alarm you — it is information you need to make an informed decision about whether to continue holding your lot or explore your options now.</p>
+
+      <h2>Your Options as a Current Owner</h2>
+      <p>Every compound lot owner is in a different situation. Here are the realistic options:</p>
+
+      <h3>Option 1 — Continue Holding</h3>
+      <p>If you purchased your lot as a long-term investment and are comfortable with the possibility of a future assessment, holding may make sense. The planning activity happening now suggests the area's trajectory is improving. Patience has always been required for compound lots — and may continue to be required.</p>
+
+      <h3>Option 2 — Build Now</h3>
+      <p>A small number of homes have been successfully built in the compound using well and septic for water and waste, and by extending power poles from nearby infrastructure in Unit 49. This is possible for <em>some</em> lots — particularly those close enough to existing power lines. It requires upfront investment and planning but has been done.</p>
+
+      <h3>Option 3 — Sell Before the Assessment</h3>
+      <p>If you are an out-of-state or out-of-country owner who does not plan to build, and the prospect of a future assessment concerns you — this may be the right time to explore selling. The market for compound lots exists. Buyers who understand the area and its long-term potential are actively looking.</p>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/1c8lll2j_The%20Compound-1.jpg" alt="Aerial view of The Compound at Port Malabar in Palm Bay, FL — Units 51, 52, and 53 — showing the scale of the undeveloped grid stretching to the horizon" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">The Compound covers roughly 2,492 acres of platted parcels — one of the largest blocks of undeveloped urban land in Brevard County.</p>
+
+      <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;">If you are thinking about selling your compound lot — call me. I have been selling land in Palm Bay since 2003 and have extensive experience with compound lots specifically. I can give you an honest assessment of what your lot is worth in today's market and what your realistic options are.<br/><br/>📞 <a href="tel:3213337230"><strong>321-333-7230</strong></a><br/>✉️ <a href="mailto:vahid@palmbayland.com"><strong>vahid@palmbayland.com</strong></a></p>
+
+      <h2>The Bottom Line for Current Owners</h2>
+      <p>The compound is finally getting real attention from the city and state after more than 50 years of inactivity. That is genuinely good news for the area's long-term trajectory.</p>
+      <p>At the same time, infrastructure will come with costs for lot owners — and those costs are uncertain in timing and amount.</p>
+      <p>If you are holding a compound lot and wondering what to do, the most important thing is to make an informed decision based on accurate information — not fear, and not false optimism.</p>
+      <p>I have been navigating this market for over two decades. I will give you straight answers.</p>
+      <p><strong>Call or text me anytime: <a href="tel:3213337230">321-333-7230</a></strong><br/>Or visit: <a href="/">palmbaylots-land.com</a></p>
+
+      <p style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; color:#64748b; font-size: 0.9em;"><em>Vahid Rajabian is a licensed Florida Real Estate Broker Associate with M. David Moallem, Inc. He has been selling lots and land in Palm Bay and Brevard County since 2003, including significant inventory in the compound area.</em></p>
+      <p style="color:#64748b; font-size: 0.85em;"><em>Sources: City of Palm Bay Compound Update (palmbayfl.gov), EPA Land Revitalization Technical Assistance Program, Resilient Corridors Coalition Brownfields Assessment Grant.</em></p>
+    `,
+    faqs: [
+      { q: "Will I be forced to pay an assessment even if I don't want utilities?", a: 'Historically yes — special assessments in Palm Bay have been mandatory for all property owners in the affected area regardless of whether they requested the improvement or plan to use it. This is standard municipal practice.' },
+      { q: 'How much would the assessment be?', a: 'No one can answer this accurately yet because no infrastructure plan has been finalized or costed. When a plan is adopted, the city will notify property owners and hold public hearings before assessments are levied.' },
+      { q: 'How will I know when an assessment is coming?', a: 'The city is required to notify property owners by mail before any assessment is approved. Make sure your mailing address on file with Brevard County Property Appraiser is current — many out-of-state owners have outdated addresses on file.' },
+      { q: 'Is now a good time to sell?', a: 'That depends on your personal situation and timeline. What I can tell you is that there are buyers for compound lots today. If you want to know what your specific lot is worth — call me for a free, honest assessment.' },
+      { q: 'Can I build on my compound lot right now?', a: 'Some lots can be developed today using well, septic, and extended power poles. Feasibility depends on your specific lot\'s location relative to existing infrastructure. Call me and I can tell you what\'s realistic for your specific parcel.' }
+    ]
+  },
+
   'palm-bay-zoning-explained': {
     title: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots',
     metaTitle: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots | 2026 Guide',
