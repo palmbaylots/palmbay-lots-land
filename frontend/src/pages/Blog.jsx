@@ -52,7 +52,7 @@ const blogPosts = [
     date: 'May 2026',
     readTime: '9 min read',
     category: 'Compound',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/os5hth2k_Compound%20Redevelopment%20Action%20Plan.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/0sujmm20_Compound3.jpg',
     hasContent: true
   },
   {

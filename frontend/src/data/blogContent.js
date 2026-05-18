@@ -395,10 +395,10 @@ export const blogContent = {
     category: 'Compound',
     date: 'May 2026',
     readTime: '9 min read',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/57ymj9nq_Compound%20Redevelopment%20Action%20Plan.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/0sujmm20_Compound3.jpg',
     content: `
-      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/57ymj9nq_Compound%20Redevelopment%20Action%20Plan.jpg" alt="Cover image of the City of Palm Bay's Compound Redevelopment Action Plan — featuring the platted but undeveloped roads of Port Malabar Units 51, 52, and 53" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
-      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">The Compound — 2,492 acres of platted but underdeveloped land in southwest Palm Bay — is finally on the city's redevelopment radar.</p>
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/0sujmm20_Compound3.jpg" alt="The Compound — cover image showing a weathered paved cul-de-sac surrounded by tall golden grass and palmettos in southwest Palm Bay, Florida" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">The Compound — 2,492 acres of platted but underdeveloped land in southwest Palm Bay, finally on the city's redevelopment radar.</p>
 
       <blockquote style="border-left: 4px solid #d97706; padding: 16px 20px; background: #fffbeb; margin: 24px 0; font-style: italic;">
         For 50 years, Port Malabar Units 51, 52, and 53 — known locally as "The Compound" — have sat with roads but no utilities. In 2024 and 2025 that finally started to change. If you are a buyer, builder, or patient investor, this is the area you should understand before everyone else does.
@@ -425,6 +425,9 @@ export const blogContent = {
       <h2>What Is Actually Happening — Verified, 2024–2026</h2>
       <p>This is not speculation. Each of these is documented public record:</p>
 
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/57ymj9nq_Compound%20Redevelopment%20Action%20Plan.jpg" alt="Cover of the City of Palm Bay's Compound Redevelopment Action Plan — outlining the formal strategy for Port Malabar Units 51, 52, and 53" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">The City of Palm Bay's Compound Redevelopment Action Plan — the first official strategic document for the area in 50 years.</p>
+
       <h3>1. EPA Land Revitalization Study (Unit 53)</h3>
       <p>The City of Palm Bay secured a <strong>$100,000 technical assistance grant</strong> from the U.S. Environmental Protection Agency, specifically focused on Port Malabar Unit 53. The output is a formal action plan to encourage economic development in the area. The study has been delivered — and the public-facing "Compound Redevelopment Action Plan" is the result.</p>
 
@@ -436,6 +439,9 @@ export const blogContent = {
 
       <h3>4. City-Owned Parcels Inside The Compound</h3>
       <p>The City of Palm Bay itself owns multiple parcels <em>inside</em> the compound boundary. Cities do not commit staff time, planning dollars, and EPA partnerships to areas they intend to leave alone. The city has skin in the game.</p>
+
+      <img src="/images/the-compound-city-owned-parcels.jpg" alt="Parcel map showing the full extent of The Compound in Palm Bay, Florida, with individual parcels outlined in yellow and city-owned parcels highlighted in red" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Parcel-level view of the entire Compound — yellow outlines are individual lots; red outlines are city-owned parcels inside the boundary.</p>
 
       <h3>5. A Gateway Vision — Port Malabar Business Park</h3>
       <p>The redevelopment action plan includes a specific gateway concept: a branded business-park entry at the main access point, anchoring the future identity of the area. This is the kind of detail that signals the city is thinking about the compound as a real district — not just a problem to be inherited.</p>
