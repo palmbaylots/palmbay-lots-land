@@ -68,7 +68,7 @@ const Header = () => {
               to="/listings" 
               className={`font-medium transition-colors border-b-2 pb-1 ${isActive('/listings') ? 'text-amber-600 border-amber-600' : 'text-slate-700 hover:text-amber-600 border-transparent hover:border-amber-600'}`}
             >
-              Listings
+              Commercial & Investment Listings
             </Link>
             <Link 
               to="/inventory" 
@@ -133,7 +133,7 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
               className={`block py-2 px-4 rounded-lg font-medium transition-colors ${isActive('/listings') ? 'bg-amber-100 text-amber-600' : 'text-slate-700 hover:bg-gray-100'}`}
             >
-              Listings
+              Commercial & Investment Listings
             </Link>
             <Link 
               to="/inventory" 

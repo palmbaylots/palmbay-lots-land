@@ -17,13 +17,13 @@ const fallbackListings = [
   { id: 1, title: "2418 Fleming Avenue SW", city: "Palm Bay, FL", price: "$60,000", acres: "10,019 SF", type: "Residential", tags: ["City Water", "Buildable", "SF Home Site"], valueStatement: "Ready-to-build single family lot with city water. No HOA.", image: "https://images.crexi.com/assets/1658353/99c521fefb5c4f2990049f3f366577ea_716x444.jpg" },
 ];
 
-// Category definitions - Reordered: Commercial first, All Properties last
+// Category definitions - Reordered: Commercial first, All Listings last
 const categories = [
-  { id: 'Commercial', label: 'Commercial / Mixed-Use', color: 'bg-blue-600' },
-  { id: 'Multi-Family', label: 'Multifamily', color: 'bg-purple-600' },
-  { id: 'Assemblage', label: 'Assemblages', color: 'bg-red-600' },
-  { id: 'Residential', label: 'Residential Lots', color: 'bg-amber-600' },
-  { id: 'all', label: 'All Properties', color: 'bg-slate-700' },
+  { id: 'Commercial', label: 'Commercial & Industrial', color: 'bg-blue-600' },
+  { id: 'Multi-Family', label: 'Multifamily & RM-Zoned', color: 'bg-purple-600' },
+  { id: 'Assemblage', label: 'Bulk & Assemblages', color: 'bg-red-600' },
+  { id: 'Residential', label: 'Investment Residential Lots', color: 'bg-amber-600' },
+  { id: 'all', label: 'All Listings', color: 'bg-slate-700' },
 ];
 
 // Tag colors
@@ -67,6 +67,18 @@ const CrexiListings = () => {
         const response = await axios.get(`${API}/properties/curated`);
         if (response.data && response.data.length > 0) {
           const dbListings = response.data.map(prop => {
+            // Build a sensible fallback description when the DB entry is missing one
+            const typeLabel = {
+              'Commercial': 'commercial',
+              'Multi-Family': 'multifamily',
+              'Assemblage': 'bulk / assemblage',
+              'Residential': 'residential investment',
+              'Industrial': 'industrial',
+              'Land': 'land'
+            }[prop.propertyType] || 'investment';
+            const tagSnippet = (prop.tags && prop.tags.length > 0) ? ` — ${prop.tags.slice(0, 2).join(', ').toLowerCase()}.` : '.';
+            const fallbackDescription = `${prop.acres || ''} ${typeLabel} parcel on ${prop.title} in ${(prop.city || 'Palm Bay').split(',')[0]}${tagSnippet}`.trim();
+
             return {
               id: prop.id,
               title: prop.title,
@@ -75,7 +87,7 @@ const CrexiListings = () => {
               acres: prop.acres,
               type: prop.propertyType,
               tags: prop.tags || [],
-              valueStatement: prop.description || '',
+              valueStatement: (prop.description && prop.description.trim()) ? prop.description : fallbackDescription,
               image: prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=716&h=444&fit=crop&auto=format,compress&q=75',
               crexiUrl: prop.crexiUrl || null,
               sold: prop.sold || false
@@ -138,31 +150,54 @@ const CrexiListings = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <Helmet>
-        <title>Palm Bay Listings | Commercial, Multifamily & Residential Land</title>
-        <meta name="description" content="Browse curated Palm Bay land listings: commercial corners, multifamily parcels, residential lots, and large acreage tracts. Updated weekly with prices and zoning." />
+        <title>Palm Bay Commercial, Industrial & Investment Land for Sale | Vahid Rajabian</title>
+        <meta name="description" content="Commercial, industrial, multifamily, assemblages, and investment land for sale in Palm Bay and Brevard County, Florida. Signalized corners, development parcels, IU-zoned land, and bulk residential lots. Call 321-333-7230." />
         <link rel="canonical" href="https://palmbaylots-land.com/listings" />
-        <meta property="og:title" content="Palm Bay Listings | Commercial, Multifamily & Residential Land" />
-        <meta property="og:description" content="Curated Palm Bay land listings — commercial, multifamily, residential, and acreage tracts." />
+        <meta property="og:title" content="Palm Bay Commercial, Industrial & Investment Land for Sale | Vahid Rajabian" />
+        <meta property="og:description" content="Commercial, industrial, multifamily, assemblages, and investment land for sale in Palm Bay and Brevard County, Florida." />
         <meta property="og:url" content="https://palmbaylots-land.com/listings" />
         <meta property="og:type" content="website" />
+        {/* RealEstateListing JSON-LD schema for each listing */}
+        {filteredListings.length > 0 && (
+          <script type="application/ld+json">{JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": filteredListings.map(l => ({
+              "@type": "RealEstateListing",
+              "name": l.title,
+              "url": `https://palmbaylots-land.com/listings`,
+              "description": l.valueStatement || `${l.acres} ${l.type} parcel in ${l.city}.`,
+              "image": l.image,
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": l.title,
+                "addressLocality": (l.city || '').split(',')[0]?.trim() || 'Palm Bay',
+                "addressRegion": "FL",
+                "addressCountry": "US"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": (l.price || '').replace(/[^0-9.]/g, '') || undefined,
+                "priceCurrency": "USD",
+                "availability": l.sold ? "https://schema.org/SoldOut" : "https://schema.org/InStock"
+              },
+              "category": l.type,
+              "keywords": (l.tags || []).join(', ')
+            }))
+          })}</script>
+        )}
       </Helmet>
       {/* ===== 1. HERO SECTION - GPT FINAL COPY ===== */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-14 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Headline - DO NOT CHANGE */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-400 mb-2">
-              Palm Bay Land Specialists
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-400 mb-4">
+              Commercial, Industrial & Investment Land in Palm Bay, Florida
             </h1>
-            {/* Subline - Matches menu exactly */}
-            <p className="text-base md:text-lg text-gray-300 mb-6">
-              Commercial · Industrial · Multifamily · Institutional · Buildable Residential Lots
-            </p>
             
             {/* Subheadline */}
-            <p className="text-base md:text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-              Local expertise since 2003.<br />
-              Zoning clarity, real market values, and straight answers — no inflated pricing, no wasted time.
+            <p className="text-base md:text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+              Commercial, industrial, multifamily, assemblages, and residential investment lots. Local expertise since 2003. Zoning clarity, real market values, and straight answers — no inflated pricing, no wasted time.
             </p>
             
             {/* Primary Button - ONLY ONE */}
@@ -223,7 +258,7 @@ const CrexiListings = () => {
             />
           </div>
           <p className="text-center text-sm text-gray-500 mt-3">
-            Showing {visibleListings.length} of {filteredListings.length} properties
+            Showing {visibleListings.length} of {filteredListings.length} listings
           </p>
         </div>
       </section>
@@ -339,6 +374,37 @@ const CrexiListings = () => {
               </Button>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ===== Looking for Something Specific? ===== */}
+      <section className="py-12 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+              Looking for Something Specific?
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6">
+              Our listed inventory represents a portion of what is available. We have off-market commercial, industrial, and multifamily parcels throughout Palm Bay and Brevard County that never appear online. If you have specific size, zoning, or location requirements — call us directly. We have been sourcing deals in this market since 2003.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+              <a
+                href="tel:3213337230"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-bold transition-colors"
+                data-testid="off-market-phone-cta"
+              >
+                <Phone className="w-5 h-5" />
+                321-333-7230
+              </a>
+              <a
+                href="mailto:vahid@palmbayland.com"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold transition-colors"
+                data-testid="off-market-email-cta"
+              >
+                vahid@palmbayland.com
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -462,6 +528,39 @@ const CrexiListings = () => {
           <p className="text-sm text-gray-500 mt-4">
             Serving Palm Bay since 2003.
           </p>
+        </div>
+      </section>
+
+      {/* ===== Internal Links - SEO + UX ===== */}
+      <section className="py-10 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-center text-sm font-semibold text-slate-500 uppercase tracking-wider mb-5">
+              Continue Exploring
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Link
+                to="/inventory"
+                className="flex items-center justify-between gap-3 px-5 py-4 bg-white rounded-lg border border-slate-200 hover:border-amber-500 hover:shadow-md transition-all group"
+                data-testid="footer-link-inventory"
+              >
+                <span className="font-semibold text-slate-900 group-hover:text-amber-600">
+                  Browse Residential Lot Inventory
+                </span>
+                <ArrowRight className="w-4 h-4 text-amber-600 flex-shrink-0" />
+              </Link>
+              <Link
+                to="/contact"
+                className="flex items-center justify-between gap-3 px-5 py-4 bg-white rounded-lg border border-slate-200 hover:border-amber-500 hover:shadow-md transition-all group"
+                data-testid="footer-link-assessment"
+              >
+                <span className="font-semibold text-slate-900 group-hover:text-amber-600">
+                  Get a Free Land Value Assessment
+                </span>
+                <ArrowRight className="w-4 h-4 text-amber-600 flex-shrink-0" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>
