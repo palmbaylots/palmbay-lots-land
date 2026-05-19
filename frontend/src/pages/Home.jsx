@@ -250,10 +250,17 @@ const Home = () => {
       {/* URGENCY BANNER */}
       <section className="bg-gradient-to-r from-amber-500 to-orange-500 py-3">
         <div className="container mx-auto px-4">
-          <p className="text-center text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 flex-wrap">
+          <a
+            href="https://www.facebook.com/share/v/1Gi2aTJqkS/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 flex-wrap hover:opacity-90 transition-opacity cursor-pointer"
+            data-testid="property-tax-banner"
+          >
             <AlertCircle className="w-5 h-5 animate-pulse" />
-            <span>Florida Legislature Just Passed a Bill to ELIMINATE Property Taxes for Homeowners by 2027 — Lock In Your Lot Now</span>
-          </p>
+            <span>Florida House Votes to Eliminate Homestead Property Taxes — Senate and Voters Still Must Approve. Lock In Your Lot Before Prices Rise.</span>
+            <ArrowRight className="w-4 h-4 flex-shrink-0" />
+          </a>
         </div>
       </section>
       
