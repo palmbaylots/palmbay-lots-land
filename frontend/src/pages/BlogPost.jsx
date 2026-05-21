@@ -1,11 +1,22 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Navigate } from 'react-router-dom';
 import { Phone, ArrowLeft, HelpCircle } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { blogContent } from '../data/blogContent';
 
+// Permanent redirects for renamed/legacy slugs (preserves SEO + existing GSC index)
+const SLUG_REDIRECTS = {
+  'city-water-vs-well-septic': 'city-water-vs-well-water',
+};
+
 const BlogPost = () => {
   const { slug } = useParams();
+
+  // Handle legacy slug redirects
+  if (SLUG_REDIRECTS[slug]) {
+    return <Navigate to={`/blog/${SLUG_REDIRECTS[slug]}`} replace />;
+  }
+
   const post = blogContent[slug];
   
   if (!post) {

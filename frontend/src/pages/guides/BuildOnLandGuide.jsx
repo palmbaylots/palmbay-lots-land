@@ -54,8 +54,8 @@ const BuildOnLandGuide = () => {
   return (
     <>
       <Helmet>
-        <title>Can You Build on Land in Palm Bay? Full Guide | Palm Bay Lots</title>
-        <meta name="description" content="Complete guide to building on vacant land in Palm Bay, FL. Zoning requirements, permits, building costs ($125-150/sqft), utility options, and step-by-step process. From a 20+ year local expert." />
+        <title>How to Build on a Lot in Palm Bay FL | Palm Bay Lots & Land</title>
+        <meta name="description" content="Thinking about building on a vacant lot in Palm Bay? Learn the steps, permits, and what to expect — from a team that has sold thousands of Palm Bay lots." />
         <meta name="keywords" content="build on land Palm Bay, building permit Palm Bay FL, zoning Palm Bay, construction cost Palm Bay, well septic Palm Bay, vacant land buildable" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/guide/build-on-land-palm-bay" />
@@ -203,8 +203,8 @@ const BuildOnLandGuide = () => {
                   <p className="font-bold text-slate-900">Owner Financing Guide</p>
                   <p className="text-sm text-slate-500">What to watch out for</p>
                 </Link>
-                <Link to="/inventory" className="p-4 bg-slate-50 rounded-lg hover:shadow-md transition-shadow text-center">
-                  <p className="font-bold text-slate-900">Browse Inventory</p>
+                <Link to="/inventory" className="p-4 bg-slate-50 rounded-lg hover:shadow-md transition-shadow text-center" data-testid="buildguide-inventory-link">
+                  <p className="font-bold text-slate-900">Browse Our Palm Bay Lot Inventory</p>
                   <p className="text-sm text-slate-500">582+ buildable lots</p>
                 </Link>
               </div>

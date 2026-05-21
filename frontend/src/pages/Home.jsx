@@ -377,6 +377,13 @@ const Home = () => {
                 >
                   Get a Free Land Value Assessment
                 </Link>
+                <Link
+                  to="/inventory"
+                  className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:border-amber-400 text-white rounded-lg text-lg font-bold hover:bg-white/20 transition-all"
+                  data-testid="hero-inventory-link"
+                >
+                  Browse Our Palm Bay Lot Inventory
+                </Link>
               </div>
               <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 text-gray-200">
                 <a href="tel:3213337230" className="flex items-center gap-2 hover:text-amber-400 transition-colors">

@@ -863,11 +863,11 @@ export const blogContent = {
     ]
   },
 
-  'city-water-vs-well-septic': {
-    title: 'City Water vs. Well & Septic in Palm Bay — An Honest Comparison',
-    metaTitle: 'City Water vs. Well & Septic in Palm Bay FL — Honest 2026 Comparison',
-    metaDescription: 'Honest comparison of city water vs. well and septic for Palm Bay lots. Real costs, real advantages — including why well/septic lots are often the smarter buy.',
-    subtitle: 'Thinking about buying a lot in Palm Bay with well and septic? Here\'s an honest, balanced comparison of city water/sewer vs. well and septic — real costs, real advantages, and what actually matters.',
+  'city-water-vs-well-water': {
+    title: 'City Water vs. Well Water in Palm Bay — An Honest Comparison',
+    metaTitle: 'City Water vs. Well Water in Palm Bay FL — Honest 2026 Comparison',
+    metaDescription: 'Honest comparison of city water vs. well water for Palm Bay lots. Real costs, real advantages — including why well water lots are often the smarter buy.',
+    subtitle: 'Thinking about buying a lot in Palm Bay with well water? Here\'s an honest, balanced comparison of city water vs. well water — real costs, real advantages, and what actually matters.',
     category: 'Utilities',
     date: 'April 2026',
     readTime: '7 min read',

@@ -54,8 +54,8 @@ const FloodZonesGuide = () => {
   return (
     <>
       <Helmet>
-        <title>Flood Zones in Palm Bay FL Explained | What to Know Before Buying Land</title>
-        <meta name="description" content="Complete guide to flood zones in Palm Bay, Florida. Most lots are Zone X (minimal risk). Learn about FEMA zones, insurance requirements, and building rules. From a 20+ year local expert." />
+        <title>Palm Bay Flood Zones Explained | Palm Bay Lots & Land</title>
+        <meta name="description" content="Find out which flood zone your Palm Bay lot is in before you buy. We explain FEMA flood zones, what they mean, and how they affect building in Palm Bay, FL." />
         <meta name="keywords" content="flood zone Palm Bay FL, FEMA flood map Palm Bay, flood insurance Palm Bay, Zone X Palm Bay, building in flood zone Florida" />
         <link rel="canonical" href="https://palmbaylots-land.com/guide/flood-zones-palm-bay" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -123,7 +123,7 @@ const FloodZonesGuide = () => {
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">If Your Lot Is Zone X</h3>
                   <p className="text-slate-700">
-                    You're in the clear. No flood insurance needed (though you can buy it cheaply as optional protection). Build at standard construction costs — $125-150/sqft with a local builder. No elevation requirements. This is the majority of our inventory.
+                    You're in the clear. No flood insurance needed (though you can buy it cheaply as optional protection). Build at standard construction costs — $125-150/sqft with a local builder. No elevation requirements. The majority of our inventory falls in Zone X — <Link to="/inventory" className="text-amber-600 font-semibold hover:underline" data-testid="floodzone-inventory-link">browse our Palm Bay lot inventory</Link> to see what's available.
                   </p>
                 </div>
 

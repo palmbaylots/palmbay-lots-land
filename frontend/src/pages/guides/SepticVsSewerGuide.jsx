@@ -62,8 +62,8 @@ const SepticVsSewerGuide = () => {
   return (
     <>
       <Helmet>
-        <title>Septic vs Sewer in Palm Bay FL Explained | Which Units Have What</title>
-        <meta name="description" content="Complete guide to septic vs sewer in Palm Bay, Florida. Know which units have city water & sewer, city water only, or require well & septic. Cost comparison and pros/cons from a local expert." />
+        <title>Septic vs Sewer in Palm Bay FL | Palm Bay Lots & Land</title>
+        <meta name="description" content="Not sure if your Palm Bay lot is on septic or sewer? We break down the difference, the costs, and what it means for building your home." />
         <meta name="keywords" content="septic Palm Bay FL, sewer Palm Bay, city water Palm Bay, well water Palm Bay, utility cost Palm Bay lots, septic system cost Florida" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/guide/septic-vs-sewer-palm-bay" />

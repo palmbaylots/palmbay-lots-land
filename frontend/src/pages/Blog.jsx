@@ -76,9 +76,9 @@ const blogPosts = [
     hasContent: true
   },
   {
-    slug: 'city-water-vs-well-septic',
-    title: 'City Water vs. Well & Septic in Palm Bay — An Honest Comparison',
-    excerpt: 'Well and septic isn\'t the inferior option people assume. Here\'s an honest comparison — real costs, real advantages, and what actually matters for your situation.',
+    slug: 'city-water-vs-well-water',
+    title: 'City Water vs. Well Water in Palm Bay — An Honest Comparison',
+    excerpt: 'Well water isn\'t the inferior option people assume. Here\'s an honest comparison — real costs, real advantages, and what actually matters for your situation.',
     date: 'April 2026',
     readTime: '7 min read',
     category: 'Utilities',

@@ -249,11 +249,12 @@ const Inventory = () => {
   return (
     <div className="min-h-screen bg-slate-50 relative">
       <Helmet>
-        <title>Palm Bay Lots for Sale | Residential & Commercial Land | Brevard County</title>
-        <meta name="description" content="Browse 500+ residential lots, commercial and industrial land in Palm Bay, FL. Owner financing available. Updated listings with zoning, utilities, and pricing." />
+        <title>Lots for Sale in Palm Bay FL | Owner Financing Available</title>
+        <meta name="description" content="Browse available residential lots for sale in Palm Bay, FL. Owner financing available. No banks, no hassle. Call us today." />
+        <meta name="keywords" content="lots for sale Palm Bay FL, vacant land Palm Bay, Palm Bay residential lots, owner financing land Florida" />
         <link rel="canonical" href="https://palmbaylots-land.com/inventory" />
-        <meta property="og:title" content="Palm Bay Lots for Sale | Residential & Commercial Land" />
-        <meta property="og:description" content="Browse 500+ residential lots and commercial land in Palm Bay, FL. Owner financing available." />
+        <meta property="og:title" content="Lots for Sale in Palm Bay FL | Owner Financing Available" />
+        <meta property="og:description" content="Browse 500+ residential lots for sale in Palm Bay, FL. Owner financing available — no banks, no hassle." />
         <meta property="og:url" content="https://palmbaylots-land.com/inventory" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -282,6 +283,28 @@ const Inventory = () => {
                 Request Parcel & Zoning Review
               </Link>
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SEO Intro / Keyword Content ===== */}
+      <section className="py-10 bg-white border-b border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+              Lots for Sale in Palm Bay, FL
+            </h2>
+            <div className="space-y-4 text-slate-700 leading-relaxed">
+              <p>
+                Browse our up-to-date list of <strong>residential lots for sale in Palm Bay, FL</strong>. We focus exclusively on <strong>vacant land in Palm Bay</strong> — single-family buildable parcels, quarter-acre lots, oversized lots, corner lots, and assemblage opportunities throughout Brevard County. Whether you are looking to build your first home, hold land as a long-term investment, or assemble a builder package, you will find <strong>Palm Bay residential lots</strong> here at honest, real-market pricing.
+              </p>
+              <p>
+                Every lot in our inventory is offered with <strong>owner financing</strong> — no banks, no credit committees, no traditional mortgage process. Our standard terms start at <strong>25% down with the deed transferring at 35% paid</strong>, with the balance amortized over a fixed term. This is one of the most flexible <strong>owner financing land Florida</strong> programs available, and we have closed thousands of transactions on these exact terms since 2003.
+              </p>
+              <p>
+                Each listing below shows the inventory ID, unit/block/lot, acreage, street address, and a direct link to the Brevard County Property Appraiser so you can verify zoning, utilities, and tax assessment before you call. If you already know what you are looking for — call or text us at <a href="tel:3213337230" className="text-amber-600 font-semibold hover:underline">321-333-7230</a> and we will match you to the right parcel. If you are still figuring out what works for your build, we are happy to walk you through it.
+              </p>
+            </div>
           </div>
         </div>
       </section>
