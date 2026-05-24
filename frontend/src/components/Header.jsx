@@ -76,15 +76,47 @@ const Header = () => {
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center py-4 gap-4">
               {/* Logo/Brand */}
-              <Link to="/" className="flex flex-col leading-tight" data-testid="header-brand-link">
-                <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">VAHID R. RAJABIAN</h1>
-                <p className="text-xl md:text-2xl font-bold text-white tracking-tight">M. DAVID MOALLEM, INC.</p>
-                <p className="text-xs md:text-sm font-bold mt-1" style={{ color: ORANGE }}>
-                  BROKER ASSOCIATE · SINCE 2003
-                </p>
-                <p className="text-[10px] md:text-xs font-medium" style={{ color: LIGHT_BLUE }}>
-                  ESTABLISHED &amp; SERVING BREVARD COUNTY SINCE 1983
-                </p>
+              <Link to="/" className="flex items-center gap-3 md:gap-4 leading-tight" data-testid="header-brand-link">
+                {/* VR concentric-circle emblem */}
+                <svg
+                  viewBox="0 0 100 100"
+                  className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0"
+                  aria-label="VR Vahid Rajabian logo"
+                  data-testid="header-vr-logo"
+                >
+                  {/* Outer orange ring */}
+                  <circle cx="50" cy="50" r="47" fill="none" stroke={ORANGE} strokeWidth="3" />
+                  {/* Thin light-blue ring */}
+                  <circle cx="50" cy="50" r="41" fill="none" stroke={LIGHT_BLUE} strokeWidth="1.5" />
+                  {/* Inner solid circle (slightly lighter navy for contrast) */}
+                  <circle cx="50" cy="50" r="36" fill="#21456a" />
+                  {/* VR letters */}
+                  <text
+                    x="50"
+                    y="50"
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fill={ORANGE}
+                    fontFamily="Georgia, 'Times New Roman', serif"
+                    fontWeight="700"
+                    fontSize="34"
+                    letterSpacing="2"
+                  >
+                    VR
+                  </text>
+                </svg>
+
+                {/* Brand text block */}
+                <div className="flex flex-col leading-tight">
+                  <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">VAHID R. RAJABIAN</h1>
+                  <p className="text-xl md:text-2xl font-bold text-white tracking-tight">M. DAVID MOALLEM, INC.</p>
+                  <p className="text-xs md:text-sm font-bold mt-1" style={{ color: ORANGE }}>
+                    BROKER ASSOCIATE · SINCE 2003
+                  </p>
+                  <p className="text-[10px] md:text-xs font-medium" style={{ color: LIGHT_BLUE }}>
+                    ESTABLISHED &amp; SERVING BREVARD COUNTY SINCE 1983
+                  </p>
+                </div>
               </Link>
 
               {/* Desktop Navigation */}
