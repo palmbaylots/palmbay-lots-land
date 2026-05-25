@@ -76,11 +76,11 @@ const Header = () => {
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center py-4 gap-4">
               {/* Logo/Brand */}
-              <Link to="/" className="flex items-center gap-3 md:gap-4 leading-tight" data-testid="header-brand-link">
+              <Link to="/" className="flex items-stretch gap-3 md:gap-4 leading-tight" data-testid="header-brand-link">
                 {/* VR concentric-circle emblem */}
                 <svg
                   viewBox="0 0 100 100"
-                  className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0"
+                  className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 self-center"
                   aria-label="VR Vahid Rajabian logo"
                   data-testid="header-vr-logo"
                 >
@@ -106,14 +106,31 @@ const Header = () => {
                   </text>
                 </svg>
 
-                {/* Brand text block */}
-                <div className="flex flex-col leading-tight">
-                  <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">VAHID R. RAJABIAN</h1>
-                  <p className="text-xl md:text-2xl font-bold text-white tracking-tight">M. DAVID MOALLEM, INC.</p>
-                  <p className="text-xs md:text-sm font-bold mt-1" style={{ color: ORANGE }}>
+                {/* Vertical divider between emblem and text */}
+                <div className="hidden md:block w-px" style={{ backgroundColor: LIGHT_BLUE, opacity: 0.4 }} />
+
+                {/* Brand text block - matches business card layout */}
+                <div className="flex flex-col justify-center leading-tight">
+                  {/* Line 1: Name */}
+                  <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                    VAHID R. RAJABIAN
+                  </h1>
+                  {/* Line 2: Broker tagline (above orange divider) */}
+                  <p className="text-[10px] md:text-xs font-bold tracking-wider mt-1" style={{ color: ORANGE }}>
                     BROKER ASSOCIATE · SINCE 2003
                   </p>
-                  <p className="text-[10px] md:text-xs font-medium" style={{ color: LIGHT_BLUE }}>
+                  {/* Orange horizontal divider */}
+                  <hr className="my-1.5 border-0 h-px" style={{ backgroundColor: ORANGE }} />
+                  {/* Line 3: Business mark */}
+                  <p className="text-[10px] md:text-xs font-bold tracking-wider" style={{ color: ORANGE }}>
+                    PALM BAY LOTS · LAND
+                  </p>
+                  {/* Line 4: Brokerage name (same prominence as Vahid name) */}
+                  <p className="text-xl md:text-2xl font-bold text-white tracking-tight mt-0.5">
+                    M. DAVID MOALLEM, INC.
+                  </p>
+                  {/* Line 5: Heritage line */}
+                  <p className="text-[10px] md:text-xs font-medium tracking-wider mt-1" style={{ color: LIGHT_BLUE }}>
                     ESTABLISHED &amp; SERVING BREVARD COUNTY SINCE 1983
                   </p>
                 </div>
