@@ -8,12 +8,38 @@ const About = () => {
     <>
     <Helmet>
       <title>About Vahid Reza Rajabian | Palm Bay Real Estate Broker Since 2003</title>
-      <meta name="description" content="Vahid Reza Rajabian — Florida licensed broker associate specializing in Palm Bay land and lots since 2003. Commercial, multifamily, residential, and new construction." />
+      <meta name="description" content="Vahid Rajabian — Palm Bay land specialist since 2003. 20+ years selling residential, commercial, and industrial lots throughout Brevard County." />
       <link rel="canonical" href="https://palmbaylots-land.com/about" />
       <meta property="og:title" content="About Vahid Reza Rajabian | Palm Bay Real Estate Broker" />
-      <meta property="og:description" content="Florida licensed broker associate specializing in Palm Bay land since 2003." />
+      <meta property="og:description" content="Palm Bay land specialist since 2003. 20+ years selling residential, commercial, and industrial lots throughout Brevard County." />
       <meta property="og:url" content="https://palmbaylots-land.com/about" />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="profile" />
+      <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+      <script type="application/ld+json">{JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        url: 'https://palmbaylots-land.com/about',
+        dateModified: new Date().toISOString().split('T')[0],
+        mainEntity: {
+          '@type': 'Person',
+          name: 'Vahid Reza Rajabian',
+          jobTitle: 'Real Estate Broker Associate',
+          worksFor: {
+            '@type': 'Organization',
+            name: 'M. David Moallem, Inc.'
+          },
+          telephone: '321-333-7230',
+          email: 'vahid@palmbayland.com',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '1663 Georgia St NE Suite 700',
+            addressLocality: 'Palm Bay',
+            addressRegion: 'FL',
+            postalCode: '32907',
+            addressCountry: 'US'
+          }
+        }
+      })}</script>
     </Helmet>
     <div className="min-h-screen">
       {/* Hero Section */}

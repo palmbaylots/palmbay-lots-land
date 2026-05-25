@@ -250,13 +250,44 @@ const Inventory = () => {
     <div className="min-h-screen bg-slate-50 relative">
       <Helmet>
         <title>Lots for Sale in Palm Bay FL | Owner Financing Available</title>
-        <meta name="description" content="Browse available residential lots for sale in Palm Bay, FL. Owner financing available. No banks, no hassle. Call us today." />
+        <meta name="description" content="Browse 583+ residential lots in Palm Bay, Florida. Filter by location, size, and utility availability. Owner financing on most lots." />
         <meta name="keywords" content="lots for sale Palm Bay FL, vacant land Palm Bay, Palm Bay residential lots, owner financing land Florida" />
         <link rel="canonical" href="https://palmbaylots-land.com/inventory" />
         <meta property="og:title" content="Lots for Sale in Palm Bay FL | Owner Financing Available" />
-        <meta property="og:description" content="Browse 500+ residential lots for sale in Palm Bay, FL. Owner financing available — no banks, no hassle." />
+        <meta property="og:description" content="Browse 583+ residential lots for sale in Palm Bay, FL. Owner financing available — no banks, no hassle." />
         <meta property="og:url" content="https://palmbaylots-land.com/inventory" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+        {/* ItemList schema — lot categories available */}
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: 'Palm Bay Residential Lot Inventory',
+          description: 'Available residential lots for sale in Palm Bay, FL with owner financing.',
+          url: 'https://palmbaylots-land.com/inventory',
+          numberOfItems: inventory.length,
+          dateModified: new Date().toISOString().split('T')[0],
+          provider: {
+            '@type': 'RealEstateAgent',
+            name: 'Vahid Reza Rajabian',
+            telephone: '321-333-7230',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '1663 Georgia St NE Suite 700',
+              addressLocality: 'Palm Bay',
+              addressRegion: 'FL',
+              postalCode: '32907',
+              addressCountry: 'US'
+            }
+          },
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Quarter-acre buildable residential lots', url: 'https://palmbaylots-land.com/inventory' },
+            { '@type': 'ListItem', position: 2, name: 'Oversized & corner lots', url: 'https://palmbaylots-land.com/inventory' },
+            { '@type': 'ListItem', position: 3, name: 'Bulk and assemblage residential packages', url: 'https://palmbaylots-land.com/inventory' },
+            { '@type': 'ListItem', position: 4, name: 'Lots with city water & sewer', url: 'https://palmbaylots-land.com/inventory' },
+            { '@type': 'ListItem', position: 5, name: 'Well & septic compatible lots', url: 'https://palmbaylots-land.com/inventory' }
+          ]
+        })}</script>
       </Helmet>
       {/* ===== STEP 1: Hero Section with Authority ===== */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-14 md:py-20">

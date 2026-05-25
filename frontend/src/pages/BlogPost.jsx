@@ -30,20 +30,50 @@ const BlogPost = () => {
     );
   }
 
+  const todayDate = new Date().toISOString().split('T')[0];
+
+  // Parse a human-readable date like "May 2026" to ISO. Fallback to today.
+  const parsePostDate = (dateStr) => {
+    if (!dateStr) return todayDate;
+    const d = new Date(dateStr);
+    return isNaN(d.getTime()) ? todayDate : d.toISOString().split('T')[0];
+  };
+
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     "headline": post.title,
     "description": post.subtitle,
+    "image": post.image || "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
     "author": {
       "@type": "Person",
-      "name": "Vahid Rajabian"
+      "name": "Vahid Reza Rajabian",
+      "url": "https://palmbaylots-land.com/about"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Palm Bay Land Expert"
+      "name": "Palm Bay Lots-Land",
+      "url": "https://palmbaylots-land.com",
+      "telephone": "321-333-7230",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1663 Georgia St NE Suite 700",
+        "addressLocality": "Palm Bay",
+        "addressRegion": "FL",
+        "postalCode": "32907",
+        "addressCountry": "US"
+      },
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png"
+      }
     },
-    "datePublished": "2025-01-01",
+    "datePublished": parsePostDate(post.date),
+    "dateModified": todayDate,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://palmbaylots-land.com/blog/${slug}`
+    },
     "url": `https://palmbaylots-land.com/blog/${slug}`
   };
 
@@ -70,6 +100,12 @@ const BlogPost = () => {
         <link rel="canonical" href={`https://palmbaylots-land.com/blog/${slug}`} />
         <meta property="og:title" content={post.metaTitle || post.title} />
         <meta property="og:description" content={post.metaDescription || post.subtitle} />
+        <meta property="og:url" content={`https://palmbaylots-land.com/blog/${slug}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={post.image || "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png"} />
+        <meta property="article:published_time" content={parsePostDate(post.date)} />
+        <meta property="article:modified_time" content={todayDate} />
+        <meta property="article:author" content="Vahid Reza Rajabian" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
         {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
       </Helmet>

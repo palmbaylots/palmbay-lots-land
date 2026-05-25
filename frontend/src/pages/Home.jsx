@@ -8,6 +8,7 @@ import { Button } from '../components/ui/button';
 import axios from 'axios';
 import { useToast } from '../hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
+import { homepageSchemaGraph, todayISO } from '../data/businessSchema';
 
 // Cash Deal Properties
 const cashDealProperties = [
@@ -232,15 +233,22 @@ const Home = () => {
     <>
       <Helmet>
         <title>Palm Bay Land for Sale | 500+ Lots | Owner Financing Available</title>
-        <meta name="description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available. Serving individuals, builders, and investors in Brevard County since 2003. Call 321-333-7230." />
+        <meta name="description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available. Serving buyers, builders, and investors since 2003. Call 321-333-7230." />
         <meta name="keywords" content="lots for sale in Palm Bay Florida, Palm Bay FL land for sale, owner financing lots Palm Bay, residential lots Brevard County, buy land Palm Bay Florida, Palm Bay lots no HOA, bulk lots for sale Brevard County, commercial land Palm Bay FL, industrial land Palm Bay Florida, land for sale near Space Coast Florida, Palm Bay buildable lots, SW Palm Bay lots for sale, Palm Bay land broker, Brevard County lots owner financing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/" />
         <meta property="og:title" content="Palm Bay Land for Sale | Owner Financing Available" />
-        <meta property="og:description" content="500+ lots for sale in Palm Bay, FL. Residential and commercial land from $32,000. Owner financing available." />
+        <meta property="og:description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available. Serving buyers, builders, and investors since 2003." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/" />
-        <script type="application/ld+json">{JSON.stringify(realEstateAgentSchema)}</script>
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+        {/* Organization + LocalBusiness + RealEstateAgent schema graph */}
+        <script type="application/ld+json">{JSON.stringify({
+          ...homepageSchemaGraph(),
+          dateModified: todayISO()
+        })}</script>
+        {/* Keep legacy RealEstateAgent + FAQ schemas */}
+        <script type="application/ld+json">{JSON.stringify({...realEstateAgentSchema, dateModified: todayISO()})}</script>
         <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
       </Helmet>
       
@@ -515,7 +523,7 @@ const Home = () => {
           <div className="max-w-4xl mx-auto text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Palm Bay, Florida — One of the Southeast's Best Land Markets</h2>
             <p className="text-lg text-slate-600">
-              Palm Bay is Brevard County's largest city, with over 130,000 residents and rapid population growth fueled by Space Coast employers including L3Harris Technologies, Blue Origin, and NASA's Kennedy Space Center. As development pushes south and west, land values in Palm Bay continue to rise — making now an ideal time to buy.
+              Palm Bay is <a href="https://www.bcpao.us/" target="_blank" rel="noopener noreferrer" className="underline decoration-amber-500 underline-offset-2 hover:text-amber-700">Brevard County's</a> largest city, with over 130,000 residents and rapid population growth fueled by <a href="https://www.spacecoastedc.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-amber-500 underline-offset-2 hover:text-amber-700">Space Coast employers</a> including L3Harris Technologies, Blue Origin, and NASA's Kennedy Space Center. As development pushes south and west, land values in Palm Bay continue to rise — making now an ideal time to buy.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">

@@ -82,6 +82,31 @@ const Contact = () => {
         <meta property="og:description" content="Call or text 321-333-7230 for land valuation, zoning info, or to discuss buying or selling lots in Palm Bay, FL." />
         <meta property="og:url" content="https://palmbaylots-land.com/contact" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          url: 'https://palmbaylots-land.com/contact',
+          name: 'Contact Palm Bay Lots-Land',
+          description: 'Contact Vahid Reza Rajabian — Palm Bay land broker since 2003. Call, text, or email for land valuation, zoning, or buying/selling Palm Bay lots.',
+          dateModified: new Date().toISOString().split('T')[0],
+          mainEntity: {
+            '@type': 'RealEstateAgent',
+            name: 'Vahid Reza Rajabian',
+            telephone: '321-333-7230',
+            email: 'vahid@palmbayland.com',
+            url: 'https://palmbaylots-land.com',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '1663 Georgia St NE Suite 700',
+              addressLocality: 'Palm Bay',
+              addressRegion: 'FL',
+              postalCode: '32907',
+              addressCountry: 'US'
+            },
+            areaServed: ['Palm Bay, FL', 'Brevard County, FL', 'Melbourne, FL']
+          }
+        })}</script>
       </Helmet>
       {/* Hero Section - Strong headline */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16">

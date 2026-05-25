@@ -66,7 +66,7 @@ const SellLand = () => {
         <title>Sell Your Lot or Land in Palm Bay FL | Free Land Value Assessment</title>
         <meta
           name="description"
-          content="Get an honest, free land value assessment from a 20-year Palm Bay broker. Learn about wholesaler red flags before you sign anything. Call 321-333-7230."
+          content="Get a free honest land value assessment for your Palm Bay lot. No obligation. Protection against wholesaler tactics. Call 321-333-7230."
         />
         <meta name="keywords" content="sell land Palm Bay Florida, sell my lot Palm Bay FL, land value assessment Palm Bay, sell vacant lot Brevard County, Palm Bay land broker, wholesaler warning land Palm Bay, lot value Palm Bay Florida, sell land without realtor Palm Bay" />
         <link rel="canonical" href="https://palmbaylots-land.com/sell-land" />
@@ -74,6 +74,40 @@ const SellLand = () => {
         <meta property="og:description" content="Honest Palm Bay land value assessment from a broker with 20+ years in the market. No pressure, no wholesaler games." />
         <meta property="og:url" content="https://palmbaylots-land.com/sell-land" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Palm Bay Land Value Assessment',
+          description: 'Free, honest market value assessment for residential, commercial, and investment land in Palm Bay and Brevard County, Florida.',
+          serviceType: 'Real Estate Land Valuation',
+          provider: {
+            '@type': 'RealEstateAgent',
+            name: 'Vahid Reza Rajabian',
+            telephone: '321-333-7230',
+            email: 'vahid@palmbayland.com',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '1663 Georgia St NE Suite 700',
+              addressLocality: 'Palm Bay',
+              addressRegion: 'FL',
+              postalCode: '32907',
+              addressCountry: 'US'
+            }
+          },
+          areaServed: [
+            { '@type': 'City', name: 'Palm Bay' },
+            { '@type': 'AdministrativeArea', name: 'Brevard County, FL' }
+          ],
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            description: 'Free no-obligation land value assessment'
+          },
+          url: 'https://palmbaylots-land.com/sell-land',
+          dateModified: new Date().toISOString().split('T')[0]
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen bg-white">

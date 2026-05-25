@@ -152,12 +152,53 @@ const Properties = () => {
     <>
       <Helmet>
         <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
-        <meta name="description" content="Palm Bay lot pricing guide and owner-financing terms. Calculate fair market value of any residential lot using current per-square-foot rates, plus see financing options." />
+        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 25% down, 10% APR, up to 10 years. No bank required." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
         <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />
-        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Updated pricing guide from a 20-year Palm Bay land broker." />
+        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 25% down, 10% APR, up to 10 years. No bank required." />
         <meta property="og:url" content="https://palmbaylots-land.com/price-guide" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          url: 'https://palmbaylots-land.com/price-guide',
+          dateModified: new Date().toISOString().split('T')[0],
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'How much does a residential lot cost in Palm Bay?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Most quarter-acre residential lots in Palm Bay range from $41,000 to $80,000 depending on unit, utilities, and lot characteristics. Pricing is calculated per square foot starting around $4.10/sqft for inland units, with premiums added for city water, sewer, oversized lots, and canal frontage.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'What are the owner financing terms?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Standard owner financing terms are 25% down, 10% APR, amortized over up to 10 years. The deed transfers when 35% of the purchase price has been paid. No banks, no credit checks, no traditional mortgage process.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'Do all units have city water and sewer?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'No. Only some Palm Bay units have city water and sewer. Many residential units require well and septic, which is typically less expensive than long-term city water and sewer assessments. Each unit\'s utility status is listed in the price guide.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'Can I buy multiple lots at once?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Yes. Bulk and assemblage pricing is available for builders and investors purchasing multiple contiguous lots. Call 321-333-7230 for a custom quote on bulk packages.'
+              }
+            }
+          ]
+        })}</script>
       </Helmet>
       <div className="min-h-screen bg-slate-50">
       <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 shadow-lg sticky top-0 z-20">

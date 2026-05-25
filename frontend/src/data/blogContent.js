@@ -672,6 +672,11 @@ export const blogContent = {
 
       <p style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; color:#64748b; font-size: 0.9em;"><em>Vahid Rajabian is a licensed Florida Real Estate Broker Associate with M. David Moallem, Inc. He has been selling lots and land in Palm Bay and Brevard County since 2003.</em></p>
       <p style="color:#64748b; font-size: 0.85em;"><em>Source: City of Palm Bay Code of Ordinances, Chapter 185: Zoning Code. For official verification contact Land Development Division at (321) 733-3042.</em></p>
+      <h3 style="font-size: 1em; color:#475569; margin-top: 20px;">Additional References</h3>
+      <ul style="color:#64748b; font-size: 0.85em; line-height: 1.7;">
+        <li><a href="https://www.palmbayfl.gov/government/departments/growth-management" target="_blank" rel="noopener noreferrer">City of Palm Bay Growth Management &amp; Planning Department</a></li>
+        <li><a href="https://www.bcpao.us/" target="_blank" rel="noopener noreferrer">Brevard County Property Appraiser (BCPAO)</a></li>
+      </ul>
     `,
     faqs: [
       { q: 'Can I build an ADU (accessory dwelling unit) in Palm Bay?', a: 'Palm Bay has specific rules for ADUs on RS-1 and RS-2 lots. Generally you can build a small accessory structure, but it cannot be rented separately. Check current ordinances as Florida is actively updating ADU laws statewide.' },
@@ -854,6 +859,12 @@ export const blogContent = {
 
       <p style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; color:#64748b; font-size: 0.9em;"><em>Vahid Rajabian is a licensed Florida Real Estate Broker Associate with M. David Moallem, Inc. He has been selling commercial, industrial, and residential land in Palm Bay and Brevard County since 2003.</em></p>
       <p style="color:#64748b; font-size: 0.85em;"><em>Source: City of Palm Bay Code of Ordinances, Chapter 185: Zoning Code. For official verification contact Land Development Division at (321) 733-3042.</em></p>
+      <h3 style="font-size: 1em; color:#475569; margin-top: 20px;">Additional References</h3>
+      <ul style="color:#64748b; font-size: 0.85em; line-height: 1.7;">
+        <li><a href="https://www.palmbayfl.gov/government/departments/growth-management" target="_blank" rel="noopener noreferrer">City of Palm Bay Growth Management &amp; Planning Department</a></li>
+        <li><a href="https://www.spacecoastedc.org/" target="_blank" rel="noopener noreferrer">Space Coast Economic Development Commission</a> — regional industrial &amp; commercial demand data</li>
+        <li><a href="https://www.bcpao.us/" target="_blank" rel="noopener noreferrer">Brevard County Property Appraiser (BCPAO)</a></li>
+      </ul>
     `,
     faqs: [
       { q: 'Do you have RM-zoned multifamily lots available?', a: 'We occasionally have RM-zoned assemblages available in Palm Bay. These don\'t stay on the market long. Contact us directly at 321-333-7230 and we will let you know what is currently available.' },
@@ -1075,6 +1086,13 @@ export const blogContent = {
       <p>We disclose flood zone information on every lot we sell. If you want to know the flood zone, elevation, and utility situation on any specific lot before making a decision — just ask. That's what we're here for.</p>
       <p><a href="/inventory"><strong>Browse Available Lots</strong></a> | <a href="/contact"><strong>Request a Full Parcel & Flood Zone Report</strong></a> | <a href="/listings"><strong>View All Listings</strong></a></p>
       <p>Or call/text Vahid directly: <strong><a href="tel:3213337230">321-333-7230</a></strong></p>
+
+      <h3 style="font-size: 1em; color:#475569; margin-top: 24px;">Additional References &amp; Official Sources</h3>
+      <ul style="color:#64748b; font-size: 0.85em; line-height: 1.7;">
+        <li><a href="https://msc.fema.gov/portal/home" target="_blank" rel="noopener noreferrer">FEMA Flood Map Service Center (MSC)</a> — look up the official flood zone for any address</li>
+        <li><a href="https://www.palmbayfl.gov/government/departments/growth-management" target="_blank" rel="noopener noreferrer">City of Palm Bay Growth Management Department</a></li>
+        <li><a href="https://www.bcpao.us/" target="_blank" rel="noopener noreferrer">Brevard County Property Appraiser (BCPAO)</a> — parcel-level flood &amp; elevation data</li>
+      </ul>
     `,
     faqs: [
       { q: 'Can flood zones change over time?', a: 'Yes. FEMA periodically updates flood maps based on new data. A Zone X property could become Zone AE (or vice versa) in a future map revision. You can view proposed map changes at FEMA\'s Map Service Center.' },
