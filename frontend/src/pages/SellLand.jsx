@@ -66,7 +66,7 @@ const SellLand = () => {
         <title>Sell Your Lot or Land in Palm Bay FL | Free Land Value Assessment</title>
         <meta
           name="description"
-          content="Get a free honest land value assessment for your Palm Bay lot. No obligation. Protection against wholesaler tactics. Call 321-333-7230."
+          content="Get a free honest land value assessment for your Palm Bay lot. No obligation. Protection against wholesaler tactics. Call Vahid Rajabian at 321-333-7230."
         />
         <meta name="keywords" content="sell land Palm Bay Florida, sell my lot Palm Bay FL, land value assessment Palm Bay, sell vacant lot Brevard County, Palm Bay land broker, wholesaler warning land Palm Bay, lot value Palm Bay Florida, sell land without realtor Palm Bay" />
         <link rel="canonical" href="https://palmbaylots-land.com/sell-land" />

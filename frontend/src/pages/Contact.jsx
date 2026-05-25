@@ -76,7 +76,7 @@ const Contact = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Contact Vahid Rajabian | Palm Bay Land Broker | 321-333-7230</title>
-        <meta name="description" content="Contact Vahid Reza Rajabian, Palm Bay's land broker since 2003. Call or text 321-333-7230 for land valuation, zoning info, or to discuss buying or selling lots." />
+        <meta name="description" content="Contact Vahid Rajabian — Palm Bay land broker since 2003. Call 321-333-7230 or email vahid@palmbayland.com. Free land value assessments available." />
         <link rel="canonical" href="https://palmbaylots-land.com/contact" />
         <meta property="og:title" content="Contact Vahid Rajabian | Palm Bay Land Broker" />
         <meta property="og:description" content="Call or text 321-333-7230 for land valuation, zoning info, or to discuss buying or selling lots in Palm Bay, FL." />

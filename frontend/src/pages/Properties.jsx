@@ -152,7 +152,7 @@ const Properties = () => {
     <>
       <Helmet>
         <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
-        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 25% down, 10% APR, up to 10 years. No bank required." />
+        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 25% down, 10% APR, up to 10 years. No bank required. See current pricing by unit and area." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
         <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />
         <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 25% down, 10% APR, up to 10 years. No bank required." />

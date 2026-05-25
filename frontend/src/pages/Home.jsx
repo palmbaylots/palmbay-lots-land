@@ -233,7 +233,7 @@ const Home = () => {
     <>
       <Helmet>
         <title>Palm Bay Land for Sale | 500+ Lots | Owner Financing Available</title>
-        <meta name="description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available. Serving buyers, builders, and investors since 2003. Call 321-333-7230." />
+        <meta name="description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available — 25% down, no bank required. Serving individuals, builders, and investors since 2003. Call 321-333-7230." />
         <meta name="keywords" content="lots for sale in Palm Bay Florida, Palm Bay FL land for sale, owner financing lots Palm Bay, residential lots Brevard County, buy land Palm Bay Florida, Palm Bay lots no HOA, bulk lots for sale Brevard County, commercial land Palm Bay FL, industrial land Palm Bay Florida, land for sale near Space Coast Florida, Palm Bay buildable lots, SW Palm Bay lots for sale, Palm Bay land broker, Brevard County lots owner financing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/" />

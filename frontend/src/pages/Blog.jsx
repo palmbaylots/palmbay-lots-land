@@ -114,7 +114,7 @@ const Blog = () => {
     <>
       <Helmet>
         <title>Palm Bay Land Guide | Real Estate Tips & Market Insights</title>
-        <meta name="description" content="Expert guides on buying land in Palm Bay, Florida. Investment tips, financing options, building costs, zoning explained, and local market insights from a 20+ year expert." />
+        <meta name="description" content="Palm Bay land buying guides, market updates, zoning explained, owner financing tips, and investment analysis from a 23-year Palm Bay land specialist." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/blog" />
         <meta property="og:title" content="Palm Bay Land Guide | Real Estate Tips" />

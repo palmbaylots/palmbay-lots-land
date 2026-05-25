@@ -250,7 +250,7 @@ const Inventory = () => {
     <div className="min-h-screen bg-slate-50 relative">
       <Helmet>
         <title>Lots for Sale in Palm Bay FL | Owner Financing Available</title>
-        <meta name="description" content="Browse 583+ residential lots in Palm Bay, Florida. Filter by location, size, and utility availability. Owner financing on most lots." />
+        <meta name="description" content="Browse 583+ residential lots in Palm Bay, Florida. Filter by location, size, and utility availability. Owner financing on most lots. Starting at $41,000." />
         <meta name="keywords" content="lots for sale Palm Bay FL, vacant land Palm Bay, Palm Bay residential lots, owner financing land Florida" />
         <link rel="canonical" href="https://palmbaylots-land.com/inventory" />
         <meta property="og:title" content="Lots for Sale in Palm Bay FL | Owner Financing Available" />

@@ -151,7 +151,7 @@ const CrexiListings = () => {
     <div className="min-h-screen bg-slate-50">
       <Helmet>
         <title>Palm Bay Commercial, Industrial & Investment Land for Sale | Vahid Rajabian</title>
-        <meta name="description" content="Commercial, industrial, multifamily, assemblages, and investment land for sale in Palm Bay and Brevard County, Florida. Signalized corners, development parcels, IU-zoned land, and bulk residential lots. Call 321-333-7230." />
+        <meta name="description" content="Commercial, industrial, multifamily, and investment land for sale in Palm Bay and Brevard County. Signalized corners, bulk packages, and development parcels available." />
         <link rel="canonical" href="https://palmbaylots-land.com/listings" />
         <meta property="og:title" content="Palm Bay Commercial, Industrial & Investment Land for Sale | Vahid Rajabian" />
         <meta property="og:description" content="Commercial, industrial, multifamily, assemblages, and investment land for sale in Palm Bay and Brevard County, Florida." />
