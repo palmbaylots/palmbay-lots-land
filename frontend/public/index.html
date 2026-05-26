@@ -5,19 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#d97706" />
 
-        <!-- Force www → non-www canonical redirect + noindex signal for www (runs before anything else) -->
-        <script>
-          (function () {
-            if (window.location.hostname === 'www.palmbaylots-land.com') {
-              // Synchronously inject noindex so even if Googlebot snapshots the www URL, it sees "do not index"
-              document.write('<meta name="robots" content="noindex,nofollow">');
-              document.write('<link rel="canonical" href="https://palmbaylots-land.com' + window.location.pathname + '">');
-              window.location.replace(
-                'https://palmbaylots-land.com' + window.location.pathname + window.location.search + window.location.hash
-              );
-            }
-          })();
-        </script>
+        <!-- www → apex redirect is now handled at the Cloudflare edge (308 permanent).
+             JS fallback redirect removed 2026-05-26 — verified via curl on all 4 URL variants. -->
         
         <!-- Google Search Console Verification -->
         <meta name="google-site-verification" content="rwf7PuF7tZ_lloUZShn8CUgfpZ_5y4B-ZXXLkQpR-L0" />
