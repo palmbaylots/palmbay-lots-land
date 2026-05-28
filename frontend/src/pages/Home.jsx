@@ -376,7 +376,7 @@ const Home = () => {
                 Own Land in Florida's Fastest-Growing City — <span className="text-amber-400">Residential Lots Starting at $41,000</span> with Owner Financing
               </h1>
               <p className="text-lg text-gray-200 mb-6">
-                Whether you're building your first home, developing a subdivision, or acquiring lots at scale — we have the inventory and the expertise to get the deal done. Thousands of lots sold to individuals, builders, and investors since 2003.
+                Whether you're buying your first residential lot, building a new home, purchasing an existing home, developing a subdivision, investing in commercial or industrial land, or acquiring lots at scale — we have the inventory and the expertise to get the deal done. Thousands of transactions completed with individuals, builders, and investors since 2003.
               </p>
               <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-6">
                 <Link 
