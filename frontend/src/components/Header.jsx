@@ -77,34 +77,15 @@ const Header = () => {
             <div className="flex justify-between items-center py-4 gap-4">
               {/* Logo/Brand */}
               <Link to="/" className="flex items-stretch gap-3 md:gap-4 leading-tight" data-testid="header-brand-link">
-                {/* VR concentric-circle emblem */}
-                <svg
-                  viewBox="0 0 100 100"
-                  className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 self-center"
-                  aria-label="VR Vahid Rajabian logo"
-                  data-testid="header-vr-logo"
-                >
-                  {/* Outer orange ring */}
-                  <circle cx="50" cy="50" r="47" fill="none" stroke={ORANGE} strokeWidth="3" />
-                  {/* Thin light-blue ring */}
-                  <circle cx="50" cy="50" r="41" fill="none" stroke={LIGHT_BLUE} strokeWidth="1.5" />
-                  {/* Inner solid circle (slightly lighter navy for contrast) */}
-                  <circle cx="50" cy="50" r="36" fill="#21456a" />
-                  {/* VR letters */}
-                  <text
-                    x="50"
-                    y="50"
-                    textAnchor="middle"
-                    dominantBaseline="central"
-                    fill={ORANGE}
-                    fontFamily="Georgia, 'Times New Roman', serif"
-                    fontWeight="700"
-                    fontSize="34"
-                    letterSpacing="2"
-                  >
-                    VR
-                  </text>
-                </svg>
+                {/* Palm Bay Lot-Land brand seal — equal height to the text block */}
+                <img
+                  src="/images/palm-bay-logo.png"
+                  alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo"
+                  className="h-20 md:h-24 w-auto flex-shrink-0 self-center"
+                  loading="eager"
+                  decoding="async"
+                  data-testid="header-brand-logo"
+                />
 
                 {/* Vertical divider between emblem and text */}
                 <div className="hidden md:block w-px" style={{ backgroundColor: LIGHT_BLUE, opacity: 0.4 }} />
