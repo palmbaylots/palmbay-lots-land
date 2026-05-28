@@ -228,15 +228,15 @@ const FeaturedSpecialListing = () => {
               {/* Map links — Street View + Google Maps */}
               <div className="grid grid-cols-2 gap-3 mt-1">
                 <a
-                  href="https://www.google.com/maps/place/1039+Hooper+Ave+NE,+Palm+Bay,+FL+32905/@28.0506,-80.5762,3a,75y,90t/data=!3m4!1e1!3m2!1s0:0!2e0"
+                  href="https://www.bcpao.us/map/?r=2836768"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-sm font-bold text-white transition-colors"
                   style={{ backgroundColor: '#21456a', border: '1px solid rgba(126,184,232,0.3)' }}
-                  data-testid="featured-street-view-link"
+                  data-testid="featured-bcpao-map-link"
                 >
-                  <span aria-hidden>👁️</span>
-                  <span>Street View</span>
+                  <span aria-hidden>🏛️</span>
+                  <span>Property Appraiser Map</span>
                 </a>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=1039+Hooper+Ave+NE,+Palm+Bay,+FL+32905"
