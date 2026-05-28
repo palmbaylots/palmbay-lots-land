@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useToast } from '../hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
 import { homepageSchemaGraph, todayISO } from '../data/businessSchema';
+import FeaturedSpecialListing from '../components/FeaturedSpecialListing';
 
 // Cash Deal Properties
 const cashDealProperties = [
@@ -469,6 +470,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Featured Special Listing — 1039 Hooper Ave NE */}
+      <FeaturedSpecialListing />
 
       {/* Property Types Banner */}
       <section className="bg-slate-800 py-4">
