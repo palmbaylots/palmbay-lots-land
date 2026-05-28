@@ -31,9 +31,15 @@ const unitUtilities = {
   '50': { water: true, sewer: false },
 };
 
-// Helper to get utility type for a unit
-const getUtilityType = (unit) => {
-  const info = unitUtilities[unit];
+// Helper to get utility type for a lot.
+// Tags take precedence over unit-based rules (used for exceptions like Country Club, Foundation Park, etc.)
+const getUtilityType = (item) => {
+  const tags = (item.tags || []).map(t => String(t).toLowerCase());
+  if (tags.includes('city-water-sewer') || tags.includes('water-sewer')) return 'water_sewer';
+  if (tags.includes('city-water-only') || tags.includes('water-only')) return 'water_only';
+  if (tags.includes('well-septic')) return 'well_septic';
+  // Fallback: unit-based lookup (covers the bulk of Port Malabar lots)
+  const info = unitUtilities[item.unit];
   if (info?.water && info?.sewer) return 'water_sewer';
   if (info?.water) return 'water_only';
   return 'well_septic';
@@ -176,7 +182,7 @@ const Inventory = () => {
     const wellSeptic = [];
 
     filteredInventory.forEach(item => {
-      const utilityType = getUtilityType(item.unit);
+      const utilityType = getUtilityType(item);
       if (utilityType === 'water_sewer') {
         waterSewer.push(item);
       } else if (utilityType === 'water_only') {
