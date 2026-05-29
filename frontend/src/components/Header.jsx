@@ -76,12 +76,12 @@ const Header = () => {
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center py-4 gap-4">
               {/* Logo/Brand */}
-              <Link to="/" className="flex items-stretch gap-3 md:gap-4 leading-tight" data-testid="header-brand-link">
-                {/* Palm Bay Lot-Land brand seal — equal height to the text block */}
+              <Link to="/" className="flex items-center gap-3 md:gap-4 leading-tight" data-testid="header-brand-link">
+                {/* Palm Bay Lot-Land brand seal — auto-scales to match the rendered text-block height */}
                 <img
                   src="/images/palm-bay-logo.png"
                   alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo"
-                  className="h-20 md:h-28 w-auto flex-shrink-0 self-center md:-ml-1"
+                  className="self-stretch w-auto flex-shrink-0 object-contain -ml-1 md:-ml-2"
                   loading="eager"
                   decoding="async"
                   data-testid="header-brand-logo"
