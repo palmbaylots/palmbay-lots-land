@@ -1,5 +1,103 @@
 // Blog article content data
 export const blogContent = {
+  'malabar-road-widening-palm-bay-2026': {
+    title: 'Malabar Road Widening Palm Bay — What It Means for Land Values in 2026',
+    metaTitle: 'Malabar Road Widening Palm Bay 2026 — What It Means for Land Values',
+    metaDescription: "Palm Bay's Malabar Road is being widened from 2 to 4 lanes. Here's what it means for land values, development, and why buyers should pay attention now.",
+    subtitle: "If you own land near Malabar Road in Palm Bay — or you're thinking about buying — this is one of the most important infrastructure updates you need to know about right now.",
+    category: 'Market & Infrastructure',
+    date: 'June 2026',
+    readTime: '7 min read',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/95dmb95l_5705878e-337e-45ce-b9ae-bdc2ca9a5836_1024x1024.jpg',
+    content: `
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/95dmb95l_5705878e-337e-45ce-b9ae-bdc2ca9a5836_1024x1024.jpg" alt="Malabar Road in Palm Bay, Florida — heavy congestion ahead of the planned widening from 2 to 4 lanes" style="width:100%; border-radius: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Malabar Road is being widened from 2 to 4 lanes — a major infrastructure investment that will significantly increase accessibility and land values along the corridor.</p>
+
+      <p style="font-size: 1.05em;">If you own land near Malabar Road in Palm Bay — or you're thinking about buying — this is one of the most important infrastructure updates you need to know about right now.</p>
+
+      <h2>What Is Happening</h2>
+      <p>The City of Palm Bay received <strong>Location and Design Concept Acceptance in December 2025</strong> for widening Malabar Road from two lanes to four lanes — specifically from <strong>St. Johns Heritage Parkway to Minton Road</strong>. This project has now moved into the official design phase.</p>
+      <p>This is not a rumor or a proposal. The Location and Design Concept Acceptance is a formal milestone in the Florida Department of Transportation process — it means the project has been officially approved for design and is moving toward construction funding.</p>
+
+      <h2>Why This Matters for Land Values</h2>
+      <p>Every major road widening project in Florida's history has followed the same pattern:</p>
+      <ol>
+        <li><strong>Road widening announced</strong> — land prices start rising near the corridor</li>
+        <li><strong>Design phase begins</strong> — commercial interest increases</li>
+        <li><strong>Construction starts</strong> — residential development accelerates</li>
+        <li><strong>Road opens</strong> — values reflect the full infrastructure improvement</li>
+      </ol>
+      <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>We are currently at Stage 2.</strong> Buyers who act at Stage 2 get Stage 1 prices. That window does not stay open long.</p>
+
+      <h2>The Malabar Road Corridor — What's There Now</h2>
+      <p>Malabar Road is one of Palm Bay's primary east–west corridors connecting:</p>
+      <ul>
+        <li><strong>St. Johns Heritage Parkway</strong> — the main north–south growth corridor</li>
+        <li><strong>Minton Road</strong> — major north–south connector to Melbourne</li>
+        <li><strong>US-1</strong> — the primary coastal highway</li>
+        <li><strong>I-95 interchange area</strong> (via the Heritage Parkway connection)</li>
+      </ul>
+      <p>The widening directly serves the areas of Palm Bay experiencing the most active residential and commercial development — <strong>SW and NW Palm Bay</strong>.</p>
+
+      <h2>The Bigger Picture — Infrastructure Convergence</h2>
+      <p>The Malabar Road widening does not exist in isolation. It is part of a broader infrastructure investment happening simultaneously in Palm Bay:</p>
+      <ul>
+        <li><strong>St. Johns Heritage Parkway</strong> design funded at $3.3 million — widening from Malabar Road north to Emerson Drive</li>
+        <li><strong>New I-95 interchange at Babcock Street</strong> — completed and operational</li>
+        <li><strong>Saint Johns Heritage Parkway missing link study</strong> — completed, handed to City of Palm Bay for next phase</li>
+        <li><strong>EPA and brownfields studies</strong> in SW Palm Bay compound area — active</li>
+      </ul>
+      <p>When multiple infrastructure projects converge on the same area at the same time, the effect on land values is <em>multiplied</em>. Palm Bay's SW and NW corridors are experiencing exactly this convergence right now.</p>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/74r6eckr_638766759582100000.jpeg" alt="City of Palm Bay Malabar Road PD&E Study — preferred typical road sections from St. Johns Heritage Parkway to Minton Road showing 4-lane configuration with shared-use path and sidewalk" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">City of Palm Bay's preferred typical sections for the Malabar Road widening — four 11-ft travel lanes, 10-ft shared-use path, sidewalks, and a center median. Source: City of Palm Bay PD&amp;E Study, Financial Project ID 437210-1-28-01.</p>
+
+      <h2>What This Means for Different Buyers</h2>
+
+      <h3>For Individual Homebuyers</h3>
+      <p>Lots near Malabar Road are becoming more accessible and more desirable. As the road improves, commute times decrease and neighborhood quality increases. <strong>Buying now — before construction is complete — means getting in at pre-improvement prices.</strong></p>
+
+      <h3>For Builders and Developers</h3>
+      <p>The widening signals city commitment to this corridor. National builders follow infrastructure investment. DR Horton, Lennar, and Adams Homes are already active in Palm Bay — road improvements accelerate their acquisition activity in adjacent areas.</p>
+
+      <h3>For Investors and Land Bankers</h3>
+      <p>Infrastructure investment is one of the most reliable leading indicators of appreciation. The combination of Malabar Road widening, Heritage Parkway expansion, and the new I-95 interchange creates a convergence that historically drives significant value increases in surrounding parcels.</p>
+
+      <h3>For Commercial Land Buyers</h3>
+      <p>Four-lane roads attract commercial development. Widened roads support higher traffic counts — the primary metric for retail and commercial site selection. <strong>NC, CC, and HC-zoned parcels</strong> along this corridor become significantly more attractive once the widening is complete.</p>
+
+      <h2>What to Do Right Now</h2>
+      <p>The time to buy near a road widening project is <strong>before construction begins</strong> — not after. Once construction starts, prices reflect the anticipated improvement. Once the road opens, prices fully reflect it.</p>
+      <p>We have residential lots, commercial parcels, and investment land available throughout the Malabar Road corridor and the broader SW and NW Palm Bay area. If you want to know which specific parcels have the most upside from this infrastructure investment — call me directly.</p>
+
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/brdbalds_ff020024-7541-4484-a812-9358b713bf36_1248x653.jpg" alt="Rendering of the future widened Malabar Road in Palm Bay, Florida — four-lane configuration with palm-lined median and improved access" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Future Malabar Road — once widened to four lanes with palm-lined median, residential lots and commercial parcels along the corridor are positioned directly in the path of Palm Bay's infrastructure expansion. Residential lots start at $41,000 with owner financing available.</p>
+
+      <h2>Ready to Buy Near Palm Bay's Growth Corridor?</h2>
+      <p>
+        <a href="/inventory"><strong>Browse Available Lots</strong></a> &nbsp;|&nbsp;
+        <a href="/listings"><strong>View Commercial Listings</strong></a> &nbsp;|&nbsp;
+        <a href="/contact"><strong>Get a Free Land Value Assessment</strong></a>
+      </p>
+      <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;">📞 Call or text Vahid: <a href="tel:3213337230"><strong>321-333-7230</strong></a><br/>Vahid Rajabian — Licensed Florida Real Estate Broker Associate, M. David Moallem, Inc. License #BK3454072 — selling Palm Bay land since 2003.</p>
+
+      <h3 style="font-size: 1em; color:#475569; margin-top: 24px;">Sources &amp; References</h3>
+      <ul style="color:#64748b; font-size: 0.85em; line-height: 1.7;">
+        <li><a href="https://www.palmbayfl.gov/" target="_blank" rel="noopener noreferrer">City of Palm Bay Public Works Department</a></li>
+        <li><a href="https://www.fdot.gov/" target="_blank" rel="noopener noreferrer">Florida Department of Transportation</a> — Location and Design Concept Acceptance, December 2025</li>
+        <li>City of Palm Bay Capital Improvements Program · PD&amp;E Study, Financial Project ID 437210-1-28-01</li>
+        <li><a href="https://www.bcpao.us/" target="_blank" rel="noopener noreferrer">Brevard County Property Appraiser (BCPAO)</a></li>
+      </ul>
+    `,
+    faqs: [
+      { q: 'When will Malabar Road widening construction start?', a: 'The project received Location and Design Concept Acceptance in December 2025 and is now in the design phase. Construction funding and timeline have not been officially announced. Based on typical FDOT timelines, design takes 1–2 years followed by construction funding approval.' },
+      { q: 'What stretch of Malabar Road is being widened?', a: 'The current approved project covers Malabar Road from St. Johns Heritage Parkway to Minton Road — widening from two lanes to four lanes.' },
+      { q: 'Does this affect property taxes on nearby lots?', a: 'Infrastructure improvements generally increase assessed values over time as the market reflects improved accessibility. However, assessed value increases in Florida are subject to the Save Our Homes cap for homesteaded properties.' },
+      { q: 'How does this relate to the St. Johns Heritage Parkway?', a: "The Malabar Road widening directly connects to the Heritage Parkway — Palm Bay's primary north–south growth corridor. The two projects together significantly improve connectivity throughout SW and NW Palm Bay." },
+      { q: 'Are there lots available near the Malabar Road corridor right now?', a: 'Yes — we have residential lots, commercial parcels, and investment land available throughout the corridor. Owner financing available on most residential lots. Call 321-333-7230 for current availability.' }
+    ]
+  },
+
   'is-palm-bay-good-investment-2025': {
     title: 'Why Investors Are Buying Land in Palm Bay, Florida in 2026',
     metaTitle: 'Why Investors Are Buying Land in Palm Bay Florida in 2026',

@@ -6,6 +6,16 @@ import { Helmet } from 'react-helmet-async';
 // Blog posts - with links to actual content
 const blogPosts = [
   {
+    slug: 'malabar-road-widening-palm-bay-2026',
+    title: 'Malabar Road Widening Palm Bay — What It Means for Land Values in 2026',
+    excerpt: "Palm Bay's Malabar Road is being widened from 2 to 4 lanes. Here's what it means for land values, development, and why buyers should pay attention now.",
+    date: 'June 2026',
+    readTime: '7 min read',
+    category: 'Market & Infrastructure',
+    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/95dmb95l_5705878e-337e-45ce-b9ae-bdc2ca9a5836_1024x1024.jpg',
+    hasContent: true
+  },
+  {
     slug: 'is-palm-bay-good-investment-2025',
     title: 'Why Investors Are Buying Land in Palm Bay, Florida in 2026',
     excerpt: 'Palm Bay is one of Florida\'s fastest-growing cities. Here\'s why smart investors, builders, and families are buying lots now — and how to get started with owner financing.',
