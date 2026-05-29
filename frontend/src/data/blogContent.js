@@ -68,7 +68,7 @@ export const blogContent = {
 
       <h2>What to Do Right Now</h2>
       <p>The time to buy near a road widening project is <strong>before construction begins</strong> — not after. Once construction starts, prices reflect the anticipated improvement. Once the road opens, prices fully reflect it.</p>
-      <p>We have residential lots, commercial parcels, and investment land available throughout the Malabar Road corridor and the broader SW and NW Palm Bay area. If you want to know which specific parcels have the most upside from this infrastructure investment — call me directly.</p>
+      <p>We have residential lots and investment land available throughout the Malabar Road corridor — plus commercial parcels nearby and across the broader SW and NW Palm Bay area. If you want to know which specific parcels have the most upside from this infrastructure investment — call me directly.</p>
 
       <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/brdbalds_ff020024-7541-4484-a812-9358b713bf36_1248x653.jpg" alt="Rendering of the future widened Malabar Road in Palm Bay, Florida — four-lane configuration with palm-lined median and improved access" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
       <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">Future Malabar Road — once widened to four lanes with palm-lined median, residential lots and commercial parcels along the corridor are positioned directly in the path of Palm Bay's infrastructure expansion. Residential lots start at $41,000 with owner financing available.</p>
@@ -94,7 +94,7 @@ export const blogContent = {
       { q: 'What stretch of Malabar Road is being widened?', a: 'The current approved project covers Malabar Road from St. Johns Heritage Parkway to Minton Road — widening from two lanes to four lanes.' },
       { q: 'Does this affect property taxes on nearby lots?', a: 'Infrastructure improvements generally increase assessed values over time as the market reflects improved accessibility. However, assessed value increases in Florida are subject to the Save Our Homes cap for homesteaded properties.' },
       { q: 'How does this relate to the St. Johns Heritage Parkway?', a: "The Malabar Road widening directly connects to the Heritage Parkway — Palm Bay's primary north–south growth corridor. The two projects together significantly improve connectivity throughout SW and NW Palm Bay." },
-      { q: 'Are there lots available near the Malabar Road corridor right now?', a: 'Yes — we have residential lots, commercial parcels, and investment land available throughout the corridor. Owner financing available on most residential lots. Call 321-333-7230 for current availability.' }
+      { q: 'Are there lots available near the Malabar Road corridor right now?', a: 'Yes — we have residential lots and investment land available throughout the Malabar Road corridor. Commercial parcels are available nearby and in other areas of Palm Bay. Owner financing available on most residential lots. Call 321-333-7230 for current availability.' }
     ]
   },
 
