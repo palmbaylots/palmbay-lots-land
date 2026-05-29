@@ -81,7 +81,7 @@ const Header = () => {
                 <img
                   src="/images/palm-bay-logo.png"
                   alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo"
-                  className="h-20 md:h-24 w-auto flex-shrink-0 self-center"
+                  className="h-20 md:h-28 w-auto flex-shrink-0 self-center md:-ml-1"
                   loading="eager"
                   decoding="async"
                   data-testid="header-brand-logo"
