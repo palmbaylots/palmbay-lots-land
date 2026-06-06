@@ -22,6 +22,12 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <Helmet>
+          <title>Article Not Found | Palm Bay Lots-Land Blog</title>
+          <meta name="description" content="This blog article could not be found. Browse our latest Palm Bay land buying guides and market analysis." />
+          <meta name="robots" content="noindex, follow" />
+          <link rel="canonical" href={`https://palmbaylots-land.com/blog/${slug}`} />
+        </Helmet>
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-4">Article Not Found</h1>
           <Link to="/blog" className="text-amber-600 hover:underline">Back to Blog</Link>

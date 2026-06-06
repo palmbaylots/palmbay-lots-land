@@ -36,6 +36,7 @@ import SepticVsSewerGuide from "./pages/guides/SepticVsSewerGuide";
 import OwnerFinancingWatchGuide from "./pages/guides/OwnerFinancingWatchGuide";
 import BuyWithoutRealtorGuide from "./pages/guides/BuyWithoutRealtorGuide";
 import FloodZonesGuide from "./pages/guides/FloodZonesGuide";
+import NotFound from "./pages/NotFound";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -91,6 +92,9 @@ function App() {
                   <Route path="/guide/owner-financing-what-to-watch" element={<OwnerFinancingWatchGuide />} />
                   <Route path="/guide/buy-land-without-realtor" element={<BuyWithoutRealtorGuide />} />
                   <Route path="/guide/flood-zones-palm-bay" element={<FloodZonesGuide />} />
+                  {/* Catch-all 404 — must be the LAST route. Renders NotFound with noindex meta
+                      so unknown URLs (mistyped, stale, hallucinated) never get indexed as duplicates. */}
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
                 <LeadCaptureModal />

@@ -186,8 +186,16 @@ const PropertyDetail = () => {
   if (error || !property) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <Helmet>
+          <title>Property Not Found | Palm Bay Lots-Land</title>
+          <meta name="description" content="The property you are looking for is no longer available or has been moved. Browse current Palm Bay land inventory." />
+          {/* Tell search engines not to index this not-found page */}
+          <meta name="robots" content="noindex, follow" />
+          <link rel="canonical" href={`https://palmbaylots-land.com/property/${slug}`} />
+        </Helmet>
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-4">Property Not Found</h1>
+          <p className="text-slate-600 mb-6">This property is no longer available or has been moved.</p>
           <Link to="/inventory" className="px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700">
             Browse Inventory
           </Link>
