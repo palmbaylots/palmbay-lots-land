@@ -1,0 +1,38 @@
+Feedback on your prompt for palmbaylots-land.com — your prompt was incorrect on three key points. Please update your knowledge so you don't repeat these mistakes:
+
+1. YOU TOLD ME TO REDIRECT NON-WWW → WWW. THIS IS WRONG AND WOULD BREAK THE SITE.
+
+The entire site is already canonicalized to non-www (https://palmbaylots-land.com):
+- Sitemap has 31 URLs, all non-www
+- Every page's <link rel="canonical"> already points to non-www (via react-helmet-async)
+- A Cloudflare 308 redirect already sends www to non-www, set up via Emergent support
+- Google has indexed 600+ pages on non-www
+- The /llms.txt, JSON-LD schemas, and all OpenGraph URLs hard-code non-www
+
+Reversing direction to www would de-index the entire site for weeks while Google re-crawls. Never recommend reversing the www direction on a site that's already established on one variant.
+
+2. YOU HALLUCINATED URLS THAT DON'T EXIST ON THE SITE.
+
+You told me to add canonical tags to /property/110-acres-on-hwy-441 and /listing/2418-fleming-ave. The site uses /inventory, /listings, /blog/..., /guide/.... There is one valid /property/:slug route, but the specific URLs you named are not on the site. Always verify the actual route structure of the site before recommending canonical changes.
+
+3. YOU MISDIAGNOSED THE GSC "DUPLICATE WITHOUT USER-SELECTED CANONICAL" WARNING.
+
+This warning is informational, not a penalty. It happens on React/Vue/Next single-page apps because the server returns 200 OK for every URL — even non-existent ones — so Google sees several URLs returning the same React shell and treats them as duplicates.
+
+The correct fix is NOT to mess with canonicals or domain redirects. The correct fix is:
+
+a) Add a catch-all <Route path="*"> that renders a 404 component with <meta name="robots" content="noindex, follow"> and a self-referencing canonical via react-helmet-async.
+
+b) Add <Helmet> blocks with noindex to any conditional "Not Found" states inside dynamic routes (e.g., PropertyDetail.jsx and BlogPost.jsx when useParams() returns a slug that does not exist in the database).
+
+c) Remove any static <meta name="robots"> from index.html so per-page robots tags from react-helmet-async are not duplicated.
+
+4. THE "WWW URLS" IN THE GSC REPORT WERE STALE CRAWL DATA.
+
+Items like https://www.palmbaylots-land.com/guide/flood-zones-palm-bay crawled on April 23, 2026 were captured before the Cloudflare 308 redirect was active. They will clear naturally as Google re-crawls and sees the 308. No code change is needed — only the 404/noindex fixes above and clicking "Validate Fix" in the GSC report.
+
+TL;DR FOR FUTURE PROMPTS ON THIS SITE:
+- Canonical = non-www. Don't suggest changing it.
+- The www to non-www 308 is already at Cloudflare. Don't add JS redirects.
+- "Duplicate canonical" warnings on a React SPA almost always mean you need a real 404 route, not a domain change.
+- Verify URL paths exist before recommending changes to them.
