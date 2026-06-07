@@ -6,6 +6,16 @@ import { Helmet } from 'react-helmet-async';
 // Blog posts - with links to actual content
 const blogPosts = [
   {
+    slug: 'land-lease-palm-bay-florida',
+    title: 'Land Lease in Palm Bay Florida — Commercial, Industrial, and Institutional Ground Leases Explained',
+    excerpt: "Looking for land lease options in Palm Bay Florida? Here's what ground leases are, how commercial and industrial land leasing works in Brevard County, and what buyers should know instead.",
+    date: 'June 2026',
+    readTime: '7 min read',
+    category: 'Commercial & Investment',
+    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200&auto=format&q=80',
+    hasContent: true
+  },
+  {
     slug: 'malabar-road-widening-palm-bay-2026',
     title: 'Malabar Road Widening Palm Bay — What It Means for Land Values in 2026',
     excerpt: "Palm Bay's Malabar Road is being widened from 2 to 4 lanes. Here's what it means for land values, development, and why buyers should pay attention now.",
