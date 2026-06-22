@@ -49,6 +49,15 @@ function ScrollToTop() {
   return null;
 }
 
+// Show the lead-capture popup only on top-of-funnel pages — never on /admin
+// or article detail pages where it overlays the content.
+function ConditionalLeadCapture() {
+  const { pathname } = useLocation();
+  const SUPPRESS_PREFIXES = ['/admin', '/blog/', '/contact'];
+  if (SUPPRESS_PREFIXES.some((p) => pathname.startsWith(p))) return null;
+  return <LeadCaptureModal />;
+}
+
 function App() {
   return (
     <HelmetProvider>
@@ -97,7 +106,7 @@ function App() {
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
-                <LeadCaptureModal />
+                <ConditionalLeadCapture />
                 <ChatWidget />
               </>
             } />
