@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Search, Download, Phone, Mail, Calendar, TrendingUp, Plus, Edit, Trash2, X, Building2, Home, Users, Upload, Loader2 } from 'lucide-react';
+import { Search, Download, Phone, Mail, Calendar, TrendingUp, Plus, Edit, Trash2, X, Building2, Home, Users, Upload, Loader2, BookOpen } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Checkbox } from '../components/ui/checkbox';
+import AdminBlogsTab from '../components/AdminBlogsTab';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const Admin = () => {
+const Admin = ({ adminPassword = '' }) => {
   const [activeTab, setActiveTab] = useState('leads');
   const [leads, setLeads] = useState([]);
   const [properties, setProperties] = useState([]);
@@ -412,6 +413,18 @@ const Admin = () => {
                 <Building2 className="w-5 h-5" />
                 Properties ({stats.totalProperties})
               </button>
+              <button
+                onClick={() => setActiveTab('blogs')}
+                className={`px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors ${
+                  activeTab === 'blogs'
+                    ? 'border-amber-500 text-amber-600'
+                    : 'border-transparent text-slate-600 hover:text-slate-900'
+                }`}
+                data-testid="admin-tab-blogs"
+              >
+                <BookOpen className="w-5 h-5" />
+                Blogs
+              </button>
             </div>
           </div>
         </section>
@@ -420,6 +433,7 @@ const Admin = () => {
         <section className="py-8">
           <div className="container mx-auto px-4">
             {/* Search Bar */}
+            {activeTab !== 'blogs' && (
             <div className="mb-6 flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
@@ -477,6 +491,12 @@ const Admin = () => {
                 </>
               )}
             </div>
+            )}
+
+            {/* BLOGS TAB */}
+            {activeTab === 'blogs' && (
+              <AdminBlogsTab adminPassword={adminPassword} />
+            )}
 
             {/* LEADS TAB */}
             {activeTab === 'leads' && (

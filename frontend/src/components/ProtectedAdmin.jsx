@@ -4,6 +4,7 @@ import Admin from '../pages/Admin';
 const ProtectedAdmin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
+  const [authedPassword, setAuthedPassword] = useState('');
   const [error, setError] = useState('');
 
   // You should change this password!
@@ -13,6 +14,7 @@ const ProtectedAdmin = () => {
     e.preventDefault();
     if (password === ADMIN_PASSWORD) {
       setIsAuthenticated(true);
+      setAuthedPassword(password);
       setError('');
     } else {
       setError('Incorrect password. Please try again.');
@@ -21,7 +23,7 @@ const ProtectedAdmin = () => {
   };
 
   if (isAuthenticated) {
-    return <Admin />;
+    return <Admin adminPassword={authedPassword} />;
   }
 
   return (

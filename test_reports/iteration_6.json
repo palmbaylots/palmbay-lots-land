@@ -1,0 +1,34 @@
+{
+  "summary": "Tested Blog CMS end-to-end. Backend pytest suite (16 tests) covers public list/get, 404, auth gates (401/403), create/duplicate-409/invalid-slug-400, patch update + persistence, reindex (401/200/404), delete + persistence, admin password gate (200/403), and IndexNow key file. All 16 passed. Frontend Playwright run verified /blog renders 11 cards (incl. blog-card-land-lease-palm-bay-florida), /blog/land-lease-palm-bay-florida renders H1+content (not stuck on Loading), IndexNow .txt served by React, /admin password gate, Blogs tab renders 11 rows with API key loaded, New Blog button enabled, reindex toast 'Re-pinging Google + IndexNow…' appears, create flow (auto-slug, save → row appears) works, delete with window.confirm dialog removes row. qa-test-blog-001 and qa-ui-test-* slugs cleaned up; list confirmed back to 11 blogs.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/admin login", "issues": ["Lead-capture popup ('Find Your Perfect Property') overlays the admin password form on load — testing agent had to press Escape to dismiss. Real admin users may have to dismiss the popup every time before entering the password. Consider suppressing the popup on /admin routes."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_blogs_api.py",
+    "/app/test_reports/pytest/iteration_6_results.xml"
+  ],
+  "action_items": [
+    "(Optional) Suppress lead-capture popup on /admin and /blog/* routes so admin/article views are not obscured.",
+    "(Optional) Add data-testid to the admin password input + submit button in ProtectedAdmin.jsx for more stable automation.",
+    "Reminder per request brief: Google Indexing API currently returns 403 (service account not added as Search Console owner) — tests intentionally only assert indexingPing='queued'."
+  ],
+  "critical_code_review_comments": [
+    "indexing.py uses sync `requests` inside `run_in_executor` — acceptable, but consider `httpx.AsyncClient` for a fully-async pipeline.",
+    "blogs.py invalid-slug validation runs AFTER Pydantic (which already enforces min_length=3). Strings with uppercase/spaces still reach _validate_slug and return 400 correctly, but pattern could be moved into Pydantic Field(pattern=...) for earlier rejection.",
+    "AdminBlogsTab.jsx fetches the BLOG_API_KEY via POST with the admin password in the body — this works but the key is then held in React state and used as Bearer for every CRUD call. Acceptable for an internal admin page; flag if exposure surface grows.",
+    "Background tasks use `loop.run_in_executor` in indexing.notify_search_engines but `_ping_async` is added as a `BackgroundTasks` task — FastAPI runs background tasks after response, so this is correct fire-and-forget behaviour.",
+    "Static fallback in Blog.jsx/BlogPost.jsx is well-implemented (seeds initial state from blogContent.js for instant render, then upgrades to API data)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (16/16)", "frontend": "100% of critical flows"},
+  "test_credentials": "Admin password PalmBay2024!  |  Blog Bearer token M-quMx2zP7boDfUQ5jahRdSPJYciiAv4a2-Kt5FC60I",
+  "seed_data_creation": "Created and then DELETED qa-test-blog-001 (backend) and qa-ui-test-* (frontend). Production blog count verified back at 11.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend test file is /app/backend/tests/test_blogs_api.py — run with `pytest backend/tests/test_blogs_api.py -v`. It cleans up after itself. For frontend admin testing remember to press Escape (or dismiss the lead-capture popup) before filling the admin password — the popup overlays the form on first load."
+}

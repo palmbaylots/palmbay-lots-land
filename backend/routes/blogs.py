@@ -170,6 +170,17 @@ async def update_blog(slug: str, payload: BlogPatch, background: BackgroundTasks
     return {**result, "url": url, "indexingPing": "queued"}
 
 
+@router.post("/blogs/{slug}/reindex")
+async def reindex_blog(slug: str, background: BackgroundTasks, authorization: Optional[str] = Header(None)):
+    """Manually re-ping Google + IndexNow for an existing blog."""
+    _require_auth(authorization)
+    if not await db.blogs.find_one({"slug": slug}, {"_id": 1}):
+        raise HTTPException(404, "Blog not found")
+    url = f"{SITE_URL}/blog/{slug}"
+    background.add_task(_ping_async, url, 'URL_UPDATED')
+    return {"ok": True, "url": url, "indexingPing": "queued"}
+
+
 @router.delete("/blogs/{slug}")
 async def delete_blog(slug: str, background: BackgroundTasks, authorization: Optional[str] = Header(None)):
     _require_auth(authorization)

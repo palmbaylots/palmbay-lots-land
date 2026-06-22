@@ -32,11 +32,15 @@ from routes.leads import router as leads_router
 from routes.properties import router as properties_router
 from routes.chat import router as chat_router
 from routes.images import router as images_router
+from routes.blogs import router as blogs_router
+from routes.admin import router as admin_router
 
 api_router.include_router(leads_router)
 api_router.include_router(properties_router)
 api_router.include_router(chat_router)
 api_router.include_router(images_router)
+api_router.include_router(blogs_router)
+api_router.include_router(admin_router)
 
 
 @api_router.get("/")
@@ -209,6 +213,40 @@ async def startup_seed_inventory():
                 logger.info(f"Auto-seeded {len(curated_records)} curated Crexi listings")
     except Exception as e:
         logger.error(f"Auto-seed error: {str(e)}")
+
+
+@app.on_event("startup")
+async def startup_seed_blogs():
+    """Non-destructive: seed blogs collection from seed_blogs.json on first run."""
+    import json as json_mod
+    try:
+        existing = await db.blogs.count_documents({})
+        if existing > 0:
+            logger.info(f"Blogs collection already has {existing} docs — skipping seed")
+            return
+        seed_path = Path(__file__).parent / "seed_blogs.json"
+        if not seed_path.exists():
+            logger.warning("seed_blogs.json not found — skipping blog seed")
+            return
+        with open(seed_path, 'r') as f:
+            docs = json_mod.load(f)
+        if not docs:
+            return
+        now = datetime.now(timezone.utc).isoformat()
+        for d in docs:
+            d.setdefault("faqs", [])
+            d["publishedAt"] = now
+            d["updatedAt"] = now
+        await db.blogs.insert_many(docs)
+        # Ensure unique slug index
+        await db.blogs.create_index("slug", unique=True)
+        logger.info(f"Seeded {len(docs)} blogs into MongoDB")
+    except Exception as e:
+        logger.error(f"Blog seed error: {e}")
+
+
+# IndexNow key verification file is served by the React frontend at
+# /app/frontend/public/{KEY}.txt (see services/indexing.py for the key).
 
 
 @app.on_event("shutdown")

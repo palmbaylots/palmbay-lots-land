@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { Phone, ArrowLeft, HelpCircle } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 import { blogContent } from '../data/blogContent';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 // Permanent redirects for renamed/legacy slugs (preserves SEO + existing GSC index)
 const SLUG_REDIRECTS = {
@@ -11,14 +15,39 @@ const SLUG_REDIRECTS = {
 
 const BlogPost = () => {
   const { slug } = useParams();
+  // Seed from static fallback so we render immediately (no flash); upgrade to live API data on mount.
+  const [post, setPost] = useState(() => blogContent[slug] || null);
+  const [loading, setLoading] = useState(!blogContent[slug]);
+
+  useEffect(() => {
+    if (SLUG_REDIRECTS[slug]) return;
+    let cancelled = false;
+    axios.get(`${API}/blogs/${slug}`)
+      .then((res) => {
+        if (!cancelled && res.data) {
+          setPost(res.data);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [slug]);
 
   // Handle legacy slug redirects
   if (SLUG_REDIRECTS[slug]) {
     return <Navigate to={`/blog/${SLUG_REDIRECTS[slug]}`} replace />;
   }
 
-  const post = blogContent[slug];
-  
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-slate-600">Loading article…</div>
+      </div>
+    );
+  }
+
   if (!post) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">

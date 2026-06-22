@@ -1,123 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, BookOpen, ArrowRight } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
+import { blogContent as staticBlogContent } from '../data/blogContent';
 
-// Blog posts - with links to actual content
-const blogPosts = [
-  {
-    slug: 'land-lease-palm-bay-florida',
-    title: 'Land Lease in Palm Bay Florida — Commercial, Industrial, and Institutional Ground Leases Explained',
-    excerpt: "Looking for land lease options in Palm Bay Florida? Here's what ground leases are, how commercial and industrial land leasing works in Brevard County, and what buyers should know instead.",
-    date: 'June 2026',
-    readTime: '7 min read',
-    category: 'Commercial & Investment',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200&auto=format&q=80',
-    hasContent: true
-  },
-  {
-    slug: 'malabar-road-widening-palm-bay-2026',
-    title: 'Malabar Road Widening Palm Bay — What It Means for Land Values in 2026',
-    excerpt: "Palm Bay's Malabar Road is being widened from 2 to 4 lanes. Here's what it means for land values, development, and why buyers should pay attention now.",
-    date: 'June 2026',
-    readTime: '7 min read',
-    category: 'Market & Infrastructure',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/95dmb95l_5705878e-337e-45ce-b9ae-bdc2ca9a5836_1024x1024.jpg',
-    hasContent: true
-  },
-  {
-    slug: 'is-palm-bay-good-investment-2025',
-    title: 'Why Investors Are Buying Land in Palm Bay, Florida in 2026',
-    excerpt: 'Palm Bay is one of Florida\'s fastest-growing cities. Here\'s why smart investors, builders, and families are buying lots now — and how to get started with owner financing.',
-    date: 'April 2026',
-    readTime: '10 min read',
-    category: 'Investment',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/uh4y9lfx_image.png',
-    hasContent: true
-  },
-  {
-    slug: 'how-owner-financing-works',
-    title: 'How to Buy Land in Palm Bay With No Bank — Owner Financing Explained',
-    excerpt: 'Buy land in Palm Bay, Florida without bank approval. Learn exactly how owner financing works, what it costs, and how to get started with as little as 25% down.',
-    date: 'April 2026',
-    readTime: '10 min read',
-    category: 'Financing',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/drfpkn57_image.png',
-    hasContent: true
-  },
-  {
-    slug: 'building-costs-palm-bay',
-    title: 'Cost to Build a Home in Palm Bay, Florida in 2026 — Full Breakdown',
-    excerpt: 'How much does it cost to build a home in Palm Bay, FL in 2026? Full breakdown of land, permits, construction, utilities, and landscaping costs — with a real $363,000 example.',
-    date: 'April 2026',
-    readTime: '9 min read',
-    category: 'Building',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/5mul8t6i_image.png',
-    hasContent: true
-  },
-  {
-    slug: 'the-compound-palm-bay-lot-owners',
-    title: 'The Compound Palm Bay — What Current Lot Owners in Units 51, 52 & 53 Need to Know',
-    excerpt: 'Own a lot in The Compound (Units 51, 52, or 53)? Here\'s what\'s happening with infrastructure, assessments, and your options in 2026 — straight from a 20-year Palm Bay specialist.',
-    date: 'May 2026',
-    readTime: '8 min read',
-    category: 'Compound',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8uv62qos_The%20Compound.jpg',
-    hasContent: true
-  },
-  {
-    slug: 'the-compound-palm-bay-buyers-2026',
-    title: 'The Compound Palm Bay — Why Smart Buyers Are Looking at Units 51, 52 & 53 in 2026',
-    excerpt: 'Palm Bay\'s compound — Port Malabar Units 51, 52, and 53 — has been called unbuildable for 50 years. Now EPA studies, brownfields grants, and city planning signal real progress. Here\'s what buyers need to know.',
-    date: 'May 2026',
-    readTime: '9 min read',
-    category: 'Compound',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/0sujmm20_Compound3.jpg',
-    hasContent: true
-  },
-  {
-    slug: 'palm-bay-zoning-explained',
-    title: 'Palm Bay Residential Zoning Explained — RS-1, RS-2, RS-3, Corner Lots & Pie-Shaped Lots',
-    excerpt: 'What can you build on a residential lot in Palm Bay? RS-1, RS-2, RS-3 setbacks, lot sizes, corner lot rules, and pie-shaped lots — the full 2026 guide.',
-    date: 'May 2026',
-    readTime: '8 min read',
-    category: 'Zoning',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/1qlykxsv_image.png',
-    hasContent: true
-  },
-  {
-    slug: 'palm-bay-commercial-zoning-explained',
-    title: 'Palm Bay Commercial, Multifamily & Industrial Zoning Explained — NC, CC, HC, GC, RM, IU & HI',
-    excerpt: 'Planning to build commercial, multifamily, or industrial in Palm Bay? NC, CC, HC, GC, RM-15, RM-20, IU, HI — what each zone allows, what it costs to rezone, and how to find the right parcel.',
-    date: 'May 2026',
-    readTime: '8 min read',
-    category: 'Zoning',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/8t9keyvw_image.png',
-    hasContent: true
-  },
-  {
-    slug: 'city-water-vs-well-water',
-    title: 'City Water vs. Well Water in Palm Bay — An Honest Comparison',
-    excerpt: 'Well water isn\'t the inferior option people assume. Here\'s an honest comparison — real costs, real advantages, and what actually matters for your situation.',
-    date: 'April 2026',
-    readTime: '7 min read',
-    category: 'Utilities',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/e96ydvyw_image.png',
-    hasContent: true
-  },
-  {
-    slug: 'flood-zones-palm-bay',
-    title: 'Understanding Flood Zones in Palm Bay — What Land Buyers Actually Need to Know',
-    excerpt: 'Nearly all of Palm Bay is in some type of flood zone — but that doesn\'t mean what most people think. Here\'s what matters and why most lots end up above flood risk.',
-    date: 'April 2026',
-    readTime: '6 min read',
-    category: 'Due Diligence',
-    image: 'https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/ter4yuyo_image.png',
-    hasContent: true
-  }
-];
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+// Build a fallback list from the static JS file so the page still renders
+// if the API is unavailable (preserves SEO + content visibility).
+const fallbackPosts = Object.entries(staticBlogContent).map(([slug, p]) => ({
+  slug,
+  title: p.title,
+  excerpt: p.metaDescription || p.subtitle || '',
+  date: p.date,
+  readTime: p.readTime,
+  category: p.category,
+  image: p.image,
+}));
 
 const Blog = () => {
+  const [posts, setPosts] = useState(fallbackPosts);
+
+  useEffect(() => {
+    let cancelled = false;
+    axios.get(`${API}/blogs`).then((res) => {
+      if (cancelled || !Array.isArray(res.data) || res.data.length === 0) return;
+      const live = res.data.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.metaDescription || p.subtitle || '',
+        date: p.date,
+        readTime: p.readTime,
+        category: p.category,
+        image: p.image,
+      }));
+      setPosts(live);
+    }).catch(() => { /* keep fallback */ });
+    return () => { cancelled = true; };
+  }, []);
+
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -165,9 +88,9 @@ const Blog = () => {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {blogPosts.map((post) => (
-                  <article key={post.slug} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-testid="blog-posts-grid">
+                {posts.map((post) => (
+                  <article key={post.slug} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow" data-testid={`blog-card-${post.slug}`}>
                     {post.image ? (
                       <div className="h-40 overflow-hidden">
                         <img src={post.image} alt={post.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
@@ -184,35 +107,24 @@ const Blog = () => {
                         </span>
                         <span className="text-slate-400 text-xs">{post.readTime}</span>
                       </div>
-                      {post.hasContent ? (
-                        <Link to={`/blog/${post.slug}`}>
-                          <h2 className="text-lg font-bold text-slate-900 mb-2 hover:text-amber-600 transition-colors">
-                            {post.title}
-                          </h2>
-                        </Link>
-                      ) : (
-                        <h2 className="text-lg font-bold text-slate-900 mb-2">
+                      <Link to={`/blog/${post.slug}`}>
+                        <h2 className="text-lg font-bold text-slate-900 mb-2 hover:text-amber-600 transition-colors">
                           {post.title}
                         </h2>
-                      )}
+                      </Link>
                       <p className="text-slate-600 text-sm mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-slate-400">{post.date}</span>
-                        {post.hasContent ? (
-                          <Link 
-                            to={`/blog/${post.slug}`}
-                            className="text-amber-600 text-sm font-semibold flex items-center gap-1 hover:text-amber-700"
-                          >
-                            Read Article
-                            <ArrowRight className="w-4 h-4" />
-                          </Link>
-                        ) : (
-                          <span className="text-slate-400 text-sm font-semibold">
-                            Coming Soon
-                          </span>
-                        )}
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="text-amber-600 text-sm font-semibold flex items-center gap-1 hover:text-amber-700"
+                          data-testid={`blog-read-${post.slug}`}
+                        >
+                          Read Article
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
                       </div>
                     </div>
                   </article>
@@ -232,7 +144,7 @@ const Blog = () => {
               <p className="text-slate-600 mb-6">
                 Get notified when new guides are published. Plus, receive exclusive lot deals before they hit the market.
               </p>
-              <Link 
+              <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold transition-colors"
               >
@@ -250,7 +162,7 @@ const Blog = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Skip the reading and talk to an expert directly. I'm happy to answer any questions about Palm Bay land.
             </p>
-            <a 
+            <a
               href="tel:3213337230"
               className="inline-flex items-center gap-2 px-10 py-5 bg-amber-500 text-white rounded-lg text-xl font-bold hover:bg-amber-600 transition-colors"
             >
