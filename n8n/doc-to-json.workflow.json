@@ -1,0 +1,120 @@
+{
+  "name": "Doc → JSON Draft (Blog Helper)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "doc-to-json",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-webhook",
+      "name": "Webhook (POST /doc-to-json)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "webhookId": "doc-to-json"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Expect either { docId: '...' } or { docUrl: '...' } plus { slug: '...' }.\nconst body = $input.first().json.body || $input.first().json;\nlet docId = (body.docId || '').trim();\nconst url = (body.docUrl || '').trim();\nif (!docId && url) {\n  const m = url.match(/\\/d\\/([a-zA-Z0-9_-]+)/);\n  if (m) docId = m[1];\n}\nif (!docId) throw new Error('Provide docId or docUrl');\nconst slug = (body.slug || '').trim();\nif (!slug || !/^[a-z0-9-]+$/.test(slug)) {\n  throw new Error('Provide a valid slug (lowercase, numbers, hyphens)');\n}\nreturn [{ json: { docId, slug, filename: `${slug}.json` } }];"
+      },
+      "id": "node-parse-input",
+      "name": "Parse input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.docId }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/html"
+            }
+          }
+        }
+      },
+      "id": "node-drive-download",
+      "name": "Drive: Download Doc as HTML",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [640, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the exported HTML body into title/meta/content/faqs.\n//\n// Expected Google Doc structure (just type these as plain headings/paragraphs):\n//\n//   Heading 1: <Article Title>\n//   META: <meta description, 1 line>\n//   CATEGORY: <category>          (optional)\n//   IMAGE: <hero image URL>       (optional)\n//   READTIME: 7 min read          (optional)\n//   --- CONTENT ---\n//   <main article body — uses doc paragraphs/headings>\n//   --- FAQS ---\n//   Q: question one?\n//   A: answer one.\n//   Q: question two?\n//   A: answer two.\n//\nconst item = $input.first();\nconst binaryKey = Object.keys(item.binary || {})[0];\nif (!binaryKey) throw new Error('No HTML returned from Drive');\nconst buf = await this.helpers.getBinaryDataBuffer(0, binaryKey);\nlet html = buf.toString('utf8');\n\n// Strip Google's wrapper styles + extract body\nhtml = html.replace(/<style[\\s\\S]*?<\\/style>/gi, '');\nconst bodyMatch = html.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);\nif (bodyMatch) html = bodyMatch[1];\n\n// Plain-text helper for extracting markers\nconst stripTags = (s) => s.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '\"').replace(/&#39;/g, \"'\").trim();\nconst text = stripTags(html);\n\n// Find the first H1 / first non-empty line as the title.\nlet title = '';\nconst h1 = html.match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/i);\nif (h1) {\n  title = stripTags(h1[1]);\n} else {\n  title = text.split('\\n').map(s => s.trim()).find(Boolean) || '';\n}\n\nconst takeLine = (re) => {\n  const m = text.match(re);\n  return m ? m[1].trim() : '';\n};\nconst metaDescription = takeLine(/META:\\s*([^\\n]+)/i);\nconst category = takeLine(/CATEGORY:\\s*([^\\n]+)/i) || 'General';\nconst image = takeLine(/IMAGE:\\s*([^\\n]+)/i);\nconst readTime = takeLine(/READTIME:\\s*([^\\n]+)/i) || '5 min read';\n\n// Split content + faqs sections from the original HTML\nconst contentSplit = html.split(/---\\s*CONTENT\\s*---/i);\nlet rest = contentSplit[1] || html; // fall back to whole body if no marker\nconst faqSplit = rest.split(/---\\s*FAQS\\s*---/i);\nlet contentHtml = (faqSplit[0] || '').trim();\nconst faqBlock = (faqSplit[1] || '').trim();\n\n// Drop the meta lines from the content if they ended up there\ncontentHtml = contentHtml.replace(/<p[^>]*>\\s*(META|CATEGORY|IMAGE|READTIME):[^<]*<\\/p>/gi, '');\n\n// Clean Google Doc cruft a bit\ncontentHtml = contentHtml.replace(/\\sclass=\\\"[^\\\"]*\\\"/g, '');\ncontentHtml = contentHtml.replace(/<span[^>]*>/g, '').replace(/<\\/span>/g, '');\n\n// Parse FAQs (Q:/A: alternating in plain text from the FAQ block)\nconst faqText = stripTags(faqBlock);\nconst faqs = [];\nconst lines = faqText.split(/\\n+/).map(l => l.trim()).filter(Boolean);\nlet currentQ = null;\nfor (const line of lines) {\n  if (/^Q[:.]/i.test(line)) {\n    currentQ = line.replace(/^Q[:.]\\s*/i, '').trim();\n  } else if (/^A[:.]/i.test(line) && currentQ) {\n    faqs.push({ q: currentQ, a: line.replace(/^A[:.]\\s*/i, '').trim() });\n    currentQ = null;\n  } else if (faqs.length && !/^Q[:.]/i.test(line)) {\n    // continuation of last answer\n    faqs[faqs.length - 1].a += ' ' + line;\n  }\n}\n\nconst payload = {\n  title,\n  metaTitle: title,\n  metaDescription,\n  subtitle: metaDescription,\n  category,\n  date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),\n  readTime,\n  image,\n  content: contentHtml,\n  faqs,\n};\n\nreturn [{ json: payload, pairedItem: { item: 0 } }];"
+      },
+      "id": "node-parse-doc",
+      "name": "Parse Doc → blog JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [860, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Convert the parsed JSON payload into a binary attachment so the\n// Drive node can upload it as a real file.\nconst payload = $input.first().json;\nconst json = JSON.stringify(payload, null, 2);\nconst filename = $('Parse input').first().json.filename;\nconst binary = await this.helpers.prepareBinaryData(Buffer.from(json, 'utf8'), filename, 'application/json');\nreturn [{ json: payload, binary: { data: binary } }];"
+      },
+      "id": "node-to-binary",
+      "name": "JSON → binary file",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1080, 300]
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "name": "={{ $('Parse input').first().json.filename }}",
+        "parents": [
+          "13CFbBbe4SesEhAXF7xCSy1wq6VMRB0Y9"
+        ],
+        "options": {}
+      },
+      "id": "node-drive-upload",
+      "name": "Drive: Upload {slug}.json",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [1300, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, slug: $('Parse input').first().json.slug, filename: $('Parse input').first().json.filename, fileId: $json.id || null, next: 'Trigger /webhook/publish-blog with this slug to publish.' }) }}",
+        "options": {}
+      },
+      "id": "node-respond",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1520, 300]
+    }
+  ],
+  "connections": {
+    "Webhook (POST /doc-to-json)": {
+      "main": [[{ "node": "Parse input", "type": "main", "index": 0 }]]
+    },
+    "Parse input": {
+      "main": [[{ "node": "Drive: Download Doc as HTML", "type": "main", "index": 0 }]]
+    },
+    "Drive: Download Doc as HTML": {
+      "main": [[{ "node": "Parse Doc → blog JSON", "type": "main", "index": 0 }]]
+    },
+    "Parse Doc → blog JSON": {
+      "main": [[{ "node": "JSON → binary file", "type": "main", "index": 0 }]]
+    },
+    "JSON → binary file": {
+      "main": [[{ "node": "Drive: Upload {slug}.json", "type": "main", "index": 0 }]]
+    },
+    "Drive: Upload {slug}.json": {
+      "main": [[{ "node": "Respond", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": []
+}
