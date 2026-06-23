@@ -8,150 +8,104 @@
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "node-webhook",
-      "name": "Webhook (POST /publish-blog)",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000001",
+      "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
-      "position": [200, 300],
+      "position": [240, 320],
       "webhookId": "916a0729-305d-450a-8611-b38cdd5875a5"
     },
     {
       "parameters": {
-        "jsCode": "// Validate webhook payload — must include slug.\nconst body = $input.first().json.body || $input.first().json;\nconst slug = (body.slug || '').trim();\n\nif (!slug) {\n  throw new Error('Missing required field: slug');\n}\nif (!/^[a-z0-9-]+$/.test(slug)) {\n  throw new Error(`Invalid slug \"${slug}\" — lowercase letters, numbers, and hyphens only`);\n}\n\nreturn [{ json: { slug, filename: `${slug}.json` } }];"
+        "jsCode": "// Validate webhook payload — must include slug.\nconst body = $input.first().json.body || $input.first().json;\nconst slug = (body.slug || '').trim();\nif (!slug) throw new Error('Missing required field: slug');\nif (!/^[a-z0-9-]+$/.test(slug)) {\n  throw new Error('Invalid slug \"' + slug + '\" — lowercase letters, numbers, and hyphens only');\n}\nreturn [{ json: { slug, filename: slug + '.json' } }];"
       },
-      "id": "node-validate",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000002",
       "name": "Validate slug",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [420, 300]
+      "position": [460, 320]
     },
     {
       "parameters": {
-        "resource": "fileFolder",
-        "queryString": "={{ $json.filename }}",
-        "filter": {
-          "folderId": {
-            "__rl": true,
-            "value": "13CFbBbe4SesEhAXF7xCSy1wq6VMRB0Y9",
-            "mode": "id"
-          },
-          "whatToSearch": "files"
+        "method": "GET",
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "q", "value": "=name='{{ $json.filename }}' and '13CFbBbe4SesEhAXF7xCSy1wq6VMRB0Y9' in parents and trashed=false" },
+            { "name": "fields", "value": "files(id,name,mimeType)" },
+            { "name": "pageSize", "value": "10" },
+            { "name": "supportsAllDrives", "value": "true" },
+            { "name": "includeItemsFromAllDrives", "value": "true" }
+          ]
         },
         "options": {}
       },
-      "id": "node-drive-search",
-      "name": "Drive: Search {slug}.json",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [640, 300]
+      "id": "f1a0b001-aa01-4001-aaaa-000000000003",
+      "name": "Drive: Search file",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 320]
     },
     {
       "parameters": {
-        "jsCode": "// Make sure we actually found exactly one matching file.\nconst items = $input.all();\nif (!items.length) {\n  throw new Error('No file found in Drive folder for slug ' + $('Validate slug').first().json.slug);\n}\n// Match by exact filename so slug \"abc\" doesn't grab \"abc-extra.json\".\nconst target = $('Validate slug').first().json.filename;\nconst match = items.find(it => (it.json.name || '') === target);\nif (!match) {\n  throw new Error(`File \"${target}\" not found in folder. Found: ${items.map(i => i.json.name).join(', ')}`);\n}\nreturn [{ json: { fileId: match.json.id, name: match.json.name } }];"
+        "jsCode": "// Pick the exact matching file by name.\nconst data = $input.first().json;\nconst files = (data && data.files) || [];\nconst target = $('Validate slug').first().json.filename;\nconst match = files.find(f => f.name === target);\nif (!match) {\n  const found = files.map(f => f.name).join(', ') || '(none)';\n  throw new Error('File \"' + target + '\" not found in Drive folder. Files matched: ' + found);\n}\nreturn [{ json: { fileId: match.id, name: match.name } }];"
       },
-      "id": "node-pick",
-      "name": "Pick matching file",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000004",
+      "name": "Pick file",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [860, 300]
+      "position": [900, 320]
     },
     {
       "parameters": {
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.fileId }}",
-          "mode": "id"
+        "method": "GET",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.fileId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "alt", "value": "media" },
+            { "name": "supportsAllDrives", "value": "true" }
+          ]
         },
-        "options": {}
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
       },
-      "id": "node-drive-download",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000005",
       "name": "Drive: Download JSON",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [1080, 300]
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 320]
     },
     {
       "parameters": {
-        "jsCode": "// Convert the downloaded binary file into a parsed JSON payload\n// and merge the slug from the webhook in.\nconst item = $input.first();\nconst binaryKey = Object.keys(item.binary || {})[0];\nif (!binaryKey) throw new Error('No binary data returned from Drive download');\n\nconst buf = await this.helpers.getBinaryDataBuffer(0, binaryKey);\nlet payload;\ntry {\n  payload = JSON.parse(buf.toString('utf8'));\n} catch (e) {\n  throw new Error('Drive file is not valid JSON: ' + e.message);\n}\n\nconst slug = $('Validate slug').first().json.slug;\n\n// Always force the slug from the webhook (single source of truth).\nconst body = {\n  slug,\n  title: payload.title || '',\n  metaTitle: payload.metaTitle || payload.title || '',\n  metaDescription: payload.metaDescription || payload.subtitle || '',\n  subtitle: payload.subtitle || '',\n  category: payload.category || 'General',\n  date: payload.date || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),\n  readTime: payload.readTime || '5 min read',\n  image: payload.image || '',\n  content: payload.content || '',\n  faqs: Array.isArray(payload.faqs) ? payload.faqs : [],\n};\n\nif (!body.title || !body.content) {\n  throw new Error('Drive JSON must include title and content');\n}\n\nreturn [{ json: body }];"
+        "jsCode": "// Build the API payload. Drive returned the parsed JSON in $json directly.\nconst payload = $input.first().json;\nconst slug = $('Validate slug').first().json.slug;\nif (!payload || typeof payload !== 'object') {\n  throw new Error('Drive file did not return a JSON object');\n}\nconst body = {\n  slug,\n  title: payload.title || '',\n  metaTitle: payload.metaTitle || payload.title || '',\n  metaDescription: payload.metaDescription || payload.subtitle || '',\n  subtitle: payload.subtitle || '',\n  category: payload.category || 'General',\n  date: payload.date || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),\n  readTime: payload.readTime || '5 min read',\n  image: payload.image || '',\n  content: payload.content || '',\n  faqs: Array.isArray(payload.faqs) ? payload.faqs : []\n};\nif (!body.title || !body.content) {\n  throw new Error('Drive JSON must include title and content');\n}\nreturn [{ json: body }];"
       },
-      "id": "node-build-payload",
-      "name": "Build blog payload",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000006",
+      "name": "Build payload",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1300, 300]
+      "position": [1340, 320]
     },
     {
       "parameters": {
         "method": "POST",
         "url": "https://palmbaylots-land.com/api/blogs",
-        "sendHeaders": true,
-        "headerParameters": {
+        "sendQuery": true,
+        "queryParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer M-quMx2zP7boDfUQ5jahRdSPJYciiAv4a2-Kt5FC60I"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
+            { "name": "upsert", "value": "true" }
           ]
         },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($json) }}",
-        "options": {
-          "response": {
-            "response": {
-              "fullResponse": true,
-              "neverError": true
-            }
-          }
-        }
-      },
-      "id": "node-publish",
-      "name": "POST /api/blogs",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [1520, 300]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Inspect the publish response. If it's a 409 (already exists), fall through\n// to a PATCH update so the workflow is idempotent.\nconst resp = $input.first().json;\nconst status = resp.statusCode || resp.status;\nconst body = resp.body || resp;\n\nif (status >= 200 && status < 300) {\n  return [{ json: { action: 'created', status, slug: body.slug, body } }];\n}\nif (status === 409) {\n  return [{ json: { action: 'needs_update', status, slug: $('Validate slug').first().json.slug, body } }];\n}\nthrow new Error(`Publish failed (HTTP ${status}): ${JSON.stringify(body).slice(0, 400)}`);"
-      },
-      "id": "node-check-publish",
-      "name": "Check publish status",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [1740, 300]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
-          "conditions": [
-            {
-              "id": "is-update",
-              "leftValue": "={{ $json.action }}",
-              "rightValue": "needs_update",
-              "operator": { "type": "string", "operation": "equals" }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "node-if-update",
-      "name": "If existed → PATCH",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [1960, 300]
-    },
-    {
-      "parameters": {
-        "method": "PATCH",
-        "url": "=https://palmbaylots-land.com/api/blogs/{{ $('Validate slug').first().json.slug }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -161,14 +115,14 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify((() => { const p = $('Build blog payload').first().json; const { slug, ...rest } = p; return rest; })()) }}",
+        "jsonBody": "={{ JSON.stringify($json) }}",
         "options": {}
       },
-      "id": "node-patch",
-      "name": "PATCH /api/blogs/{slug}",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000007",
+      "name": "Publish blog (upsert)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2180, 200]
+      "position": [1560, 320]
     },
     {
       "parameters": {
@@ -182,67 +136,49 @@
         },
         "options": {}
       },
-      "id": "node-reindex",
-      "name": "POST /api/blogs/{slug}/reindex",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000008",
+      "name": "Reindex (Google + IndexNow)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2400, 300]
+      "position": [1780, 320]
     },
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ JSON.stringify({ ok: true, slug: $('Validate slug').first().json.slug, action: $('Check publish status').first().json.action, indexing: 'queued', url: 'https://palmbaylots-land.com/blog/' + $('Validate slug').first().json.slug }) }}",
-        "options": {
-          "responseHeaders": {
-            "entries": [
-              { "name": "Content-Type", "value": "application/json" }
-            ]
-          }
-        }
+        "responseBody": "={{ JSON.stringify({ ok: true, slug: $('Validate slug').first().json.slug, action: $('Publish blog (upsert)').first().json.action, url: 'https://palmbaylots-land.com/blog/' + $('Validate slug').first().json.slug, indexing: 'queued' }) }}",
+        "options": {}
       },
-      "id": "node-respond",
-      "name": "Respond to Webhook",
+      "id": "f1a0b001-aa01-4001-aaaa-000000000009",
+      "name": "Respond",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [2620, 300]
+      "position": [2000, 320]
     }
   ],
   "connections": {
-    "Webhook (POST /publish-blog)": {
+    "Webhook": {
       "main": [[{ "node": "Validate slug", "type": "main", "index": 0 }]]
     },
     "Validate slug": {
-      "main": [[{ "node": "Drive: Search {slug}.json", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "Drive: Search file", "type": "main", "index": 0 }]]
     },
-    "Drive: Search {slug}.json": {
-      "main": [[{ "node": "Pick matching file", "type": "main", "index": 0 }]]
+    "Drive: Search file": {
+      "main": [[{ "node": "Pick file", "type": "main", "index": 0 }]]
     },
-    "Pick matching file": {
+    "Pick file": {
       "main": [[{ "node": "Drive: Download JSON", "type": "main", "index": 0 }]]
     },
     "Drive: Download JSON": {
-      "main": [[{ "node": "Build blog payload", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "Build payload", "type": "main", "index": 0 }]]
     },
-    "Build blog payload": {
-      "main": [[{ "node": "POST /api/blogs", "type": "main", "index": 0 }]]
+    "Build payload": {
+      "main": [[{ "node": "Publish blog (upsert)", "type": "main", "index": 0 }]]
     },
-    "POST /api/blogs": {
-      "main": [[{ "node": "Check publish status", "type": "main", "index": 0 }]]
+    "Publish blog (upsert)": {
+      "main": [[{ "node": "Reindex (Google + IndexNow)", "type": "main", "index": 0 }]]
     },
-    "Check publish status": {
-      "main": [[{ "node": "If existed → PATCH", "type": "main", "index": 0 }]]
-    },
-    "If existed → PATCH": {
-      "main": [
-        [{ "node": "PATCH /api/blogs/{slug}", "type": "main", "index": 0 }],
-        [{ "node": "POST /api/blogs/{slug}/reindex", "type": "main", "index": 0 }]
-      ]
-    },
-    "PATCH /api/blogs/{slug}": {
-      "main": [[{ "node": "POST /api/blogs/{slug}/reindex", "type": "main", "index": 0 }]]
-    },
-    "POST /api/blogs/{slug}/reindex": {
-      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    "Reindex (Google + IndexNow)": {
+      "main": [[{ "node": "Respond", "type": "main", "index": 0 }]]
     }
   },
   "settings": { "executionOrder": "v1" },

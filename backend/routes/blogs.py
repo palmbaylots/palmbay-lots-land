@@ -121,25 +121,32 @@ async def get_blog(slug: str):
 # ---------- Authenticated routes ----------
 
 @router.post("/blogs", status_code=201)
-async def create_blog(payload: BlogIn, background: BackgroundTasks, authorization: Optional[str] = Header(None)):
+async def create_blog(payload: BlogIn, background: BackgroundTasks, upsert: bool = False, authorization: Optional[str] = Header(None)):
     _require_auth(authorization)
     _validate_slug(payload.slug)
 
-    if await db.blogs.find_one({"slug": payload.slug}, {"_id": 1}):
-        raise HTTPException(409, f"Blog with slug '{payload.slug}' already exists. Use PATCH to update.")
+    existing = await db.blogs.find_one({"slug": payload.slug}, {"_id": 1, "publishedAt": 1})
 
     now = datetime.now(timezone.utc).isoformat()
     doc = payload.model_dump()
-    doc["publishedAt"] = now
     doc["updatedAt"] = now
 
-    await db.blogs.insert_one(doc)
-    url = f"{SITE_URL}/blog/{payload.slug}"
+    if existing:
+        if not upsert:
+            raise HTTPException(409, f"Blog with slug '{payload.slug}' already exists. Use PATCH to update or POST with ?upsert=true.")
+        # Preserve original publishedAt on upsert
+        doc["publishedAt"] = existing.get("publishedAt", now)
+        await db.blogs.update_one({"slug": payload.slug}, {"$set": doc})
+        action = "updated"
+    else:
+        doc["publishedAt"] = now
+        await db.blogs.insert_one(doc)
+        action = "created"
 
-    # Fire-and-forget indexing pings
+    url = f"{SITE_URL}/blog/{payload.slug}"
     background.add_task(_ping_async, url, 'URL_UPDATED')
 
-    return {**_strip_id(doc), "url": url, "indexingPing": "queued"}
+    return {**_strip_id(doc), "url": url, "indexingPing": "queued", "action": action}
 
 
 @router.patch("/blogs/{slug}")
