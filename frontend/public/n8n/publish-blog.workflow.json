@@ -13,7 +13,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [200, 300],
-      "webhookId": "publish-blog"
+      "webhookId": "916a0729-305d-450a-8611-b38cdd5875a5"
     },
     {
       "parameters": {
