@@ -34,9 +34,9 @@
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
-            { "name": "q", "value": "name='{{ $json.filename }}' and '13CFbBbe4SesEhAXF7xCSy1wq6VMRB0Y9' in parents and trashed=false" },
+            { "name": "q", "value": "'13CFbBbe4SesEhAXF7xCSy1wq6VMRB0Y9' in parents and trashed=false" },
             { "name": "fields", "value": "files(id,name,mimeType)" },
-            { "name": "pageSize", "value": "10" },
+            { "name": "pageSize", "value": "200" },
             { "name": "supportsAllDrives", "value": "true" },
             { "name": "includeItemsFromAllDrives", "value": "true" }
           ]
@@ -44,7 +44,7 @@
         "options": {}
       },
       "id": "f1a0b001-aa01-4001-aaaa-000000000003",
-      "name": "Drive: Search file",
+      "name": "Drive: List folder",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [680, 320],
@@ -52,7 +52,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const data = $input.first().json;\nconst files = (data && data.files) || [];\nconst target = $('Validate slug').first().json.filename;\nconst match = files.find(f => f.name === target);\nif (!match) {\n  const found = files.map(f => f.name).join(', ') || '(none)';\n  throw new Error('File \"' + target + '\" not found in Drive folder. Files matched: ' + found);\n}\nreturn [{ json: { fileId: match.id, name: match.name } }];"
+        "jsCode": "const data = $input.first().json;\nconst files = (data && data.files) || [];\nconst target = $('Validate slug').first().json.filename;\nconst match = files.find(f => f.name === target);\nif (!match) {\n  throw new Error('File \"' + target + '\" not found in Drive folder 13CFbBbe4SesEhAXF7xCSy1wq6VMRB0Y9. Drive returned ' + files.length + ' file(s) in this folder: [' + files.map(f => f.name).join(', ') + ']. Check filename spelling, case, .json extension, and that the file is in this exact folder.');\n}\nreturn [{ json: { fileId: match.id, name: match.name } }];"
       },
       "id": "f1a0b001-aa01-4001-aaaa-000000000004",
       "name": "Pick file",
@@ -154,7 +154,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Collect the upstream error and emit a structured payload for the error responder.\nconst err = $input.first().json;\nconst sourceNode = $input.first().json.node?.name || (err && err.error && err.error.node) || 'unknown';\nconst msg = (err && (err.message || err.error?.message)) || JSON.stringify(err).slice(0, 500);\nreturn [{\n  json: {\n    ok: false,\n    failedNode: sourceNode,\n    error: msg,\n    hint: msg && msg.toLowerCase().includes('credential') ? 'Open the failed node, pick your Google Drive OAuth2 credential in the dropdown, then click SAVE on the workflow before activating. Activating alone does not persist credential bindings.' : 'See message above. Check that the JSON file exists in the Drive folder and is named exactly {slug}.json.',\n    receivedSlug: ($('Validate slug').first()?.json || {}).slug || null\n  }\n}];"
+        "jsCode": "// Collect the upstream error and emit a structured payload for the error responder.\nconst item = $input.first();\nconst json = item.json || {};\nconst errObj = item.error || {};\n// n8n routes errors with various shapes — extract message from any of them.\nconst msg = errObj.message\n  || (errObj.cause && errObj.cause.message)\n  || json.message\n  || (typeof json.error === 'string' ? json.error : (json.error && json.error.message))\n  || JSON.stringify(json).slice(0, 1000);\nconst sourceNode = errObj.node?.name\n  || (item.error && item.error.context && item.error.context.nodeName)\n  || 'unknown';\nreturn [{\n  json: {\n    ok: false,\n    failedNode: sourceNode,\n    error: msg,\n    receivedSlug: ($('Validate slug').first()?.json || {}).slug || null,\n    debug: {\n      jsonKeys: Object.keys(json),\n      errorKeys: Object.keys(errObj),\n      hasMessage: !!errObj.message\n    }\n  }\n}];"
       },
       "id": "f1a0b001-aa01-4001-aaaa-00000000000a",
       "name": "Format error",
@@ -177,8 +177,8 @@
   ],
   "connections": {
     "Webhook": { "main": [[{ "node": "Validate slug", "type": "main", "index": 0 }]] },
-    "Validate slug": { "main": [[{ "node": "Drive: Search file", "type": "main", "index": 0 }]] },
-    "Drive: Search file": {
+    "Validate slug": { "main": [[{ "node": "Drive: List folder", "type": "main", "index": 0 }]] },
+    "Drive: List folder": {
       "main": [
         [{ "node": "Pick file", "type": "main", "index": 0 }],
         [{ "node": "Format error", "type": "main", "index": 0 }]
