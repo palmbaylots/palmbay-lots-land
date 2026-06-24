@@ -389,11 +389,11 @@ const Admin = ({ adminPassword = '' }) => {
 
         {/* Tabs */}
         <section className="bg-white border-b sticky top-0 z-30">
-          <div className="container mx-auto px-4">
-            <div className="flex gap-1">
+          <div className="container mx-auto px-2 sm:px-4">
+            <div className="flex gap-1 overflow-x-auto scrollbar-hide">
               <button
                 onClick={() => setActiveTab('leads')}
-                className={`px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors ${
+                className={`shrink-0 px-3 sm:px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
                   activeTab === 'leads' 
                     ? 'border-amber-500 text-amber-600' 
                     : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -404,18 +404,20 @@ const Admin = ({ adminPassword = '' }) => {
               </button>
               <button
                 onClick={() => setActiveTab('properties')}
-                className={`px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors ${
+                className={`shrink-0 px-3 sm:px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
                   activeTab === 'properties' 
                     ? 'border-amber-500 text-amber-600' 
                     : 'border-transparent text-slate-600 hover:text-slate-900'
                 }`}
               >
                 <Building2 className="w-5 h-5" />
-                Properties ({stats.totalProperties})
+                <span className="hidden sm:inline">Properties </span>
+                <span className="sm:hidden">Props </span>
+                ({stats.totalProperties})
               </button>
               <button
                 onClick={() => setActiveTab('blogs')}
-                className={`px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors ${
+                className={`shrink-0 px-3 sm:px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
                   activeTab === 'blogs'
                     ? 'border-amber-500 text-amber-600'
                     : 'border-transparent text-slate-600 hover:text-slate-900'
