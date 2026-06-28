@@ -267,7 +267,7 @@ const Home = () => {
             data-testid="property-tax-banner"
           >
             <AlertCircle className="w-5 h-5 animate-pulse" />
-            <span>Florida House Votes to Eliminate Homestead Property Taxes — Senate and Voters Still Must Approve. Lock In Your Lot Before Prices Rise.</span>
+            <span>Palm Bay Ranked #13 Most Affordable City in America — The Only Florida City in the Top 20. Lock In Your Lot Before Prices Rise.</span>
             <ArrowRight className="w-4 h-4 flex-shrink-0" />
           </a>
         </div>
@@ -377,7 +377,7 @@ const Home = () => {
                 Own Land in Florida's Fastest-Growing City — <span className="text-amber-400">Residential Lots Starting at $41,000</span> with Owner Financing
               </h1>
               <p className="text-lg text-gray-200 mb-6">
-                Whether you're buying your first residential lot, building a new home, purchasing an existing home, developing a subdivision, investing in commercial or industrial land, or acquiring lots at scale — we have the inventory and the expertise to get the deal done. Thousands of transactions completed with individuals, builders, and investors since 2003.
+                No bank needed. Cash or owner financing — just fill out a simple application and we handle the rest. 500+ lots available across residential, commercial, and industrial. 23 years of local expertise serving individuals, builders, and investors.
               </p>
               <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-6">
                 <Link 
@@ -451,6 +451,7 @@ const Home = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
                   >
                     <option value="">Are you looking to...</option>
+                    <option value="finance">Buy a lot with owner financing</option>
                     <option value="build">Build your own home</option>
                     <option value="invest">Invest in land</option>
                   </select>
@@ -498,6 +499,68 @@ const Home = () => {
               <span className="w-2 h-2 bg-amber-400 rounded-full"></span>
               Owner Financing Available
             </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Owner Financing Terms */}
+      <section className="py-14 bg-slate-900">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h2 className="text-3xl font-bold text-white mb-3">Owner Financing — No Bank Required</h2>
+            <p className="text-slate-400">Easy financing. Clear terms. No prepayment penalty. Banks typically don't lend on vacant land — we do.</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            {[
+              { val: '25%', lbl: 'Down payment' },
+              { val: '10%', lbl: 'APR' },
+              { val: '10 yr', lbl: 'Term' },
+              { val: '35%', lbl: 'Deed transfers' },
+              { val: '$0', lbl: 'Prepay penalty' },
+            ].map((item) => (
+              <div key={item.lbl} className="bg-slate-800 border border-amber-500 rounded-xl px-6 py-4 text-center min-w-[100px]">
+                <p className="text-amber-400 text-2xl font-bold">{item.val}</p>
+                <p className="text-slate-400 text-xs mt-1">{item.lbl}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-slate-500 text-sm mb-6">Deed transfers to you when 35% is paid — no bank ever involved</p>
+          <div className="text-center">
+            <Link to="/owner-financing-land-florida" className="inline-block px-8 py-4 bg-amber-500 text-white rounded-lg font-bold hover:bg-amber-600 transition-colors">
+              See lots with owner financing
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works - 3 Steps */}
+      <section className="py-14 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-10">How it works — 3 simple steps</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                num: '1',
+                title: 'Pick your lot',
+                body: 'Browse 500+ residential, commercial, and industrial lots. Filter by price, location, or zoning.'
+              },
+              {
+                num: '2',
+                title: 'Fill out an application',
+                body: 'Cash or owner financing — no bank loan needed. Banks typically don\'t finance vacant land. We make it simple.'
+              },
+              {
+                num: '3',
+                title: 'Close and own it',
+                body: 'We handle all the paperwork. Close in as little as 2 weeks. Your lot, your land.'
+              }
+            ].map((step) => (
+              <div key={step.num} className="bg-white rounded-xl shadow-md p-6 text-center">
+                <div className="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">{step.num}</div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
+                <p className="text-slate-600 text-sm">{step.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
