@@ -356,8 +356,8 @@ const Home = () => {
         {/* Background Image with lighter overlay so the picture is clearly visible */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=85" 
-            alt="Florida single-family home with palm trees and driveway"
+            src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1920&q=85"
+            alt="Florida home with palm trees and green lawn in Palm Bay"
             className="w-full h-full object-cover"
             loading="eager"
             fetchpriority="high"
