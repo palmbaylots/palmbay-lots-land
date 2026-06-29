@@ -211,7 +211,7 @@ const Inventory = () => {
     const csvHeader = 'Inventory ID,County,Owner,Acres,Unit,Block,Lot,Street Number,Street Name,City,Tax Account,Property Appraiser Link\n';
     const csvContent = filteredInventory.map(item => {
       const link = item.taxAccount 
-        ? `https://www.bcpao.us/PropertySearch/#/account/${item.taxAccount}`
+        ? `https://www.bcpao.us/PropertySearch/#/map/${item.taxAccount}`
         : 'https://www.bcpao.us/PropertySearch/#/nav/Search';
       return `"${item.inventoryId}","${item.county}","${item.owner}","${item.acres}","${item.unit}","${item.block}","${item.lot}","${item.streetNumber}","${item.streetName}","${item.city}","${item.taxAccount}","${link}"`;
     }).join('\n');
@@ -230,7 +230,7 @@ const Inventory = () => {
   // Get property appraiser account link
   const getPropertyAppraiserLink = (item) => {
     if (item.taxAccount) {
-      return `https://www.bcpao.us/PropertySearch/#/account/${item.taxAccount}`;
+      return `https://www.bcpao.us/PropertySearch/#/map/${item.taxAccount}`;
     }
     return `https://www.bcpao.us/PropertySearch/#/nav/Search`;
   };
@@ -528,10 +528,10 @@ const Inventory = () => {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-testid={`account-link-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-600 text-white rounded-lg text-sm font-medium hover:bg-slate-700 transition-colors"
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors"
                                 >
-                                  <ExternalLink className="w-4 h-4" />
-                                  Account
+                                  <MapPin className="w-4 h-4" />
+                                  View Parcel Map
                                 </a>
                                 {(item.streetNumber || item.streetName) && (
                                   <button
@@ -608,10 +608,10 @@ const Inventory = () => {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-testid={`account-link-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-600 text-white rounded-lg text-sm font-medium hover:bg-slate-700 transition-colors"
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors"
                                 >
-                                  <ExternalLink className="w-4 h-4" />
-                                  Account
+                                  <MapPin className="w-4 h-4" />
+                                  View Parcel Map
                                 </a>
                                 {(item.streetNumber || item.streetName) && (
                                   <button
@@ -688,10 +688,10 @@ const Inventory = () => {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-testid={`account-link-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-600 text-white rounded-lg text-sm font-medium hover:bg-slate-700 transition-colors"
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors"
                                 >
-                                  <ExternalLink className="w-4 h-4" />
-                                  Account
+                                  <MapPin className="w-4 h-4" />
+                                  View Parcel Map
                                 </a>
                                 {(item.streetNumber || item.streetName) && (
                                   <button
