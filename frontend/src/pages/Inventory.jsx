@@ -211,7 +211,7 @@ const Inventory = () => {
     const csvHeader = 'Inventory ID,County,Owner,Acres,Unit,Block,Lot,Street Number,Street Name,City,Tax Account,Property Appraiser Link\n';
     const csvContent = filteredInventory.map(item => {
       const link = item.taxAccount 
-        ? `https://www.bcpao.us/PropertySearch/#/map/${item.taxAccount}`
+        ? `https://www.bcpao.us/map/?r=${item.taxAccount}`
         : 'https://www.bcpao.us/PropertySearch/#/nav/Search';
       return `"${item.inventoryId}","${item.county}","${item.owner}","${item.acres}","${item.unit}","${item.block}","${item.lot}","${item.streetNumber}","${item.streetName}","${item.city}","${item.taxAccount}","${link}"`;
     }).join('\n');
@@ -230,7 +230,7 @@ const Inventory = () => {
   // Get property appraiser account link
   const getPropertyAppraiserLink = (item) => {
     if (item.taxAccount) {
-      return `https://www.bcpao.us/PropertySearch/#/map/${item.taxAccount}`;
+      return `https://www.bcpao.us/map/?r=${item.taxAccount}`;
     }
     return `https://www.bcpao.us/PropertySearch/#/nav/Search`;
   };
