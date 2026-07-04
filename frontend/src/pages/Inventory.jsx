@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Search, Filter, Download, ExternalLink, MapPin, Phone, CheckCircle, MessageCircle, Loader2, Droplets, Home } from 'lucide-react';
+import { Search, Filter, Download, ExternalLink, MapPin, Phone, CheckCircle, MessageCircle, Loader2, Droplets, Home, Calculator, X } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -44,6 +44,59 @@ const getUtilityType = (item) => {
   if (info?.water) return 'water_only';
   return 'well_septic';
 };
+
+// ===== Lot price calculator logic =====
+// Base $/sqft for the first 10,000 sqft, by unit.
+const UNIT_RATE = (() => {
+  const map = {};
+  ['49'].forEach(u => (map[u] = 4.10));
+  ['15','17','18','19','20','22','23','24','25','30','32','36','37','10','11','12','16','21','28','31','46'].forEach(u => (map[u] = 4.50));
+  ['13','14','26','39','41','42','44','50','48','5','7','8','9','38'].forEach(u => (map[u] = 5.20));
+  return map;
+})();
+
+const NOT_INDIVIDUAL_UNITS = ['51','52','53']; // package only
+const CALL_UNITS = ['40'];                      // commercial / multifamily — priced individually
+
+const hasLetterBlock = (block) => /[A-Za-z]/.test(String(block || ''));
+const parseAcres = (a) => {
+  const n = parseFloat(String(a || '').replace(/[^0-9.]/g, ''));
+  return isNaN(n) ? 0 : n;
+};
+const monthlyPayment = (financed) => Math.round((financed * 13.22) / 1000);
+
+// Returns pricing info for a lot.
+// status: 'price' (show calculator), 'call' (Call for Pricing), 'package' (not sold individually)
+const getLotPricing = (item, utilityType, canal) => {
+  const unit = String(item.unit || '');
+  if (NOT_INDIVIDUAL_UNITS.includes(unit)) return { status: 'package' };
+  if (CALL_UNITS.includes(unit) || hasLetterBlock(item.block)) return { status: 'call' };
+
+  const rate = UNIT_RATE[unit];
+  const acres = parseAcres(item.acres);
+  if (!rate || !acres) return { status: 'call' };
+
+  const sqft = acres * 43560;
+  let price = Math.min(sqft, 10000) * rate;
+  if (sqft > 10000) price += (sqft - 10000) * 3;
+  if (utilityType === 'water_only') price += 20000;
+  if (utilityType === 'water_sewer') price += 40000;
+  if (canal) price += 5000;
+  price = Math.round(price);
+
+  return {
+    status: 'price',
+    price,
+    down25: Math.round(price * 0.25),
+    fin25: Math.round(price * 0.75),
+    monthly25: monthlyPayment(price * 0.75),
+    down35: Math.round(price * 0.35),
+    fin35: Math.round(price * 0.65),
+    monthly35: monthlyPayment(price * 0.65),
+  };
+};
+
+const usd = (n) => '$' + Math.round(n).toLocaleString('en-US');
 
 // Fallback featured properties (used only if database is empty)
 const fallbackFeatured = [
@@ -96,6 +149,12 @@ const Inventory = () => {
   const [loading, setLoading] = useState(true);
   const [featuredProperties, setFeaturedProperties] = useState([]);
   const [featuredLoading, setFeaturedLoading] = useState(true);
+  const [priceItem, setPriceItem] = useState(null); // lot whose price popup is open
+  const [canal, setCanal] = useState(false);
+  const [downPct, setDownPct] = useState(25); // custom down-payment %
+
+  const openPriceModal = (item) => { setCanal(false); setDownPct(25); setPriceItem(item); };
+  const closePriceModal = () => setPriceItem(null);
 
   // Load featured properties from database
   useEffect(() => {
@@ -324,6 +383,32 @@ const Inventory = () => {
         </div>
       </section>
 
+      {/* ===== Map Search Bar ===== */}
+      <section className="bg-amber-50 border-b border-amber-200 py-6">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2 justify-center sm:justify-start">
+                <MapPin className="w-6 h-6 text-amber-600" />
+                Search Our Lots on the Map
+              </h2>
+              <p className="text-sm text-slate-600 mt-1">
+                See every lot by location. The map opens in a new window — close the map window to come back to this inventory page.
+              </p>
+            </div>
+            <a
+              href="https://www.palmbayland.com/service-search/Search-Map.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold transition-colors shadow-md"
+            >
+              <MapPin className="w-5 h-5" />
+              Search by Map
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ===== SEO Intro / Keyword Content ===== */}
       <section className="py-10 bg-white border-b border-slate-200">
         <div className="container mx-auto px-4">
@@ -336,7 +421,7 @@ const Inventory = () => {
                 Browse our up-to-date list of <strong>residential lots for sale in Palm Bay, FL</strong>. We focus exclusively on <strong>vacant land in Palm Bay</strong> — single-family buildable parcels, quarter-acre lots, oversized lots, corner lots, and assemblage opportunities throughout Brevard County. Whether you are looking to build your first home, hold land as a long-term investment, or assemble a builder package, you will find <strong>Palm Bay residential lots</strong> here at honest, real-market pricing.
               </p>
               <p>
-                Every lot in our inventory is offered with <strong>owner financing</strong> — no banks, no credit committees, no traditional mortgage process. Our standard terms start at <strong>25% down with the deed transferring at 35% paid</strong>, with the balance amortized over a fixed term. This is one of the most flexible <strong>owner financing land Florida</strong> programs available, and we have closed thousands of transactions on these exact terms since 2003.
+                Every lot in our inventory is offered with <strong>owner financing</strong> — no bank required and no long, drawn-out mortgage process. We may check credit, but qualifying is simple: we are not turning people away over a low credit score, a past bankruptcy, or a divorce. There is <strong>no appraisal and no weeks-long wait</strong> — in most cases we can set up your financing the same day, right in our office. As long as you can make the payments, we can usually get you approved. Our standard terms start at <strong>25% down with the deed transferring once 35% is paid</strong>, with the balance amortized over a fixed term. We have closed thousands of transactions on these exact terms since 2003.
               </p>
               <p>
                 Each listing below shows the inventory ID, unit/block/lot, acreage, street address, and a direct link to the Brevard County Property Appraiser so you can verify zoning, utilities, and tax assessment before you call. If you already know what you are looking for — call or text us at <a href="tel:3213337230" className="text-amber-600 font-semibold hover:underline">321-333-7230</a> and we will match you to the right parcel. If you are still figuring out what works for your build, we are happy to walk you through it.
@@ -523,6 +608,14 @@ const Inventory = () => {
                             <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() => openPriceModal(item)}
+                                  data-testid={`see-price-${item.inventoryId}`}
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors cursor-pointer"
+                                >
+                                  <Calculator className="w-4 h-4" />
+                                  See Price
+                                </button>
                                 <a
                                   href={getPropertyAppraiserLink(item)}
                                   target="_blank"
@@ -603,6 +696,14 @@ const Inventory = () => {
                             <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() => openPriceModal(item)}
+                                  data-testid={`see-price-${item.inventoryId}`}
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors cursor-pointer"
+                                >
+                                  <Calculator className="w-4 h-4" />
+                                  See Price
+                                </button>
                                 <a
                                   href={getPropertyAppraiserLink(item)}
                                   target="_blank"
@@ -683,6 +784,14 @@ const Inventory = () => {
                             <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() => openPriceModal(item)}
+                                  data-testid={`see-price-${item.inventoryId}`}
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors cursor-pointer"
+                                >
+                                  <Calculator className="w-4 h-4" />
+                                  See Price
+                                </button>
                                 <a
                                   href={getPropertyAppraiserLink(item)}
                                   target="_blank"
@@ -762,6 +871,136 @@ const Inventory = () => {
           </div>
         </div>
       </section>
+
+      {/* ===== Price Calculator Popup ===== */}
+      {priceItem && (() => {
+        const utilityType = getUtilityType(priceItem);
+        const pricing = getLotPricing(priceItem, utilityType, canal);
+        const lotLabel = [priceItem.streetNumber, priceItem.streetName].filter(Boolean).join(' ').trim()
+          || `Unit ${priceItem.unit} Block ${priceItem.block} Lot ${priceItem.lot}`;
+        return (
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[60] p-4" onClick={closePriceModal}>
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              {/* Header */}
+              <div className="flex items-start justify-between px-6 pt-6 pb-3 border-b border-slate-200">
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">{lotLabel}</h3>
+                  <p className="text-sm text-slate-500">
+                    Unit {priceItem.unit} · Block {priceItem.block} · Lot {priceItem.lot} · {priceItem.acres}
+                  </p>
+                </div>
+                <button onClick={closePriceModal} className="p-1 hover:bg-slate-100 rounded-lg" aria-label="Close">
+                  <X className="w-5 h-5 text-slate-500" />
+                </button>
+              </div>
+
+              <div className="px-6 py-5">
+                {pricing.status === 'package' && (
+                  <div className="text-center py-4">
+                    <p className="text-lg font-bold text-slate-900 mb-2">Not Sold Individually</p>
+                    <p className="text-slate-600 text-sm mb-4">This lot is available only as part of a whole package. Seller financing is available.</p>
+                    <a href="tel:3213337230" className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold text-sm">
+                      <Phone className="w-4 h-4" /> Call 321-333-7230
+                    </a>
+                  </div>
+                )}
+
+                {pricing.status === 'call' && (
+                  <div className="text-center py-4">
+                    <p className="text-lg font-bold text-slate-900 mb-2">Call for Pricing</p>
+                    <p className="text-slate-600 text-sm mb-4">This parcel is priced individually. Seller financing is available.</p>
+                    <a href="tel:3213337230" className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold text-sm">
+                      <Phone className="w-4 h-4" /> Call 321-333-7230
+                    </a>
+                  </div>
+                )}
+
+                {pricing.status === 'price' && (
+                  <>
+                    {/* Price */}
+                    <div className="text-center mb-4">
+                      <p className="text-sm text-slate-500 uppercase tracking-wide">Cash Price</p>
+                      <p className="text-4xl font-extrabold text-green-700">{usd(pricing.price)}</p>
+                    </div>
+
+                    {/* Canal checkbox */}
+                    <label className="flex items-center gap-2 justify-center mb-5 text-sm text-slate-600 cursor-pointer">
+                      <input type="checkbox" checked={canal} onChange={(e) => setCanal(e.target.checked)} className="w-4 h-4 accent-amber-600" />
+                      Canal lot (+$5,000)
+                    </label>
+
+                    {/* Financing options */}
+                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Owner Financing Options</p>
+                    <div className="space-y-3">
+                      <div className="border border-slate-200 rounded-xl p-4">
+                        <div className="flex items-baseline justify-between">
+                          <span className="font-bold text-slate-900">25% Down</span>
+                          <span className="text-slate-900 font-semibold">{usd(pricing.down25)} down</span>
+                        </div>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin25)} — principal only</p>
+                        <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly25)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                        <p className="text-xs text-slate-500 mt-1">Option Contract — deed transfers once your payments reach 35% of the price.</p>
+                      </div>
+                      <div className="border border-slate-200 rounded-xl p-4">
+                        <div className="flex items-baseline justify-between">
+                          <span className="font-bold text-slate-900">35% Down</span>
+                          <span className="text-slate-900 font-semibold">{usd(pricing.down35)} down</span>
+                        </div>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin35)} — principal only</p>
+                        <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly35)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                        <p className="text-xs text-slate-500 mt-1">Deed Transfer at closing.</p>
+                      </div>
+                    </div>
+
+                    {/* Custom down-payment calculator */}
+                    {(() => {
+                      const down = Math.round(pricing.price * (downPct / 100));
+                      const financed = pricing.price - down;
+                      const monthly = monthlyPayment(financed);
+                      return (
+                        <div className="mt-4 bg-slate-900 rounded-xl p-4 text-white">
+                          <div className="flex items-baseline justify-between mb-2">
+                            <span className="text-sm font-semibold text-amber-400">Put more down?</span>
+                            <span className="text-sm font-bold">{downPct}% down</span>
+                          </div>
+                          <input
+                            type="range" min="25" max="100" step="1"
+                            value={downPct}
+                            onChange={(e) => setDownPct(Number(e.target.value))}
+                            className="w-full accent-amber-500"
+                          />
+                          <div className="flex justify-between text-[11px] text-slate-400 mb-3">
+                            <span>25%</span><span>Paid in full</span>
+                          </div>
+                          <div className="grid grid-cols-3 gap-2 text-center">
+                            <div>
+                              <p className="text-[11px] text-slate-400">Down</p>
+                              <p className="text-sm font-bold">{usd(down)}</p>
+                            </div>
+                            <div>
+                              <p className="text-[11px] text-slate-400">Financing (principal only)</p>
+                              <p className="text-sm font-bold">{usd(financed)}</p>
+                            </div>
+                            <div>
+                              <p className="text-[11px] text-slate-400">Payment</p>
+                              <p className="text-sm font-bold text-amber-400">{financed <= 0 ? '$0' : usd(monthly) + '/mo'}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
+
+                    <a href="tel:3213337230" className="mt-5 flex items-center justify-center gap-2 px-5 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold text-sm">
+                      <Phone className="w-4 h-4" /> Lock In This Lot — 321-333-7230
+                    </a>
+                    <p className="text-[11px] text-slate-400 text-center mt-3">Price and terms may change without notice.</p>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ===== STEP 4: Sticky Help CTA ===== */}
       <div className="fixed bottom-6 left-6 z-50">

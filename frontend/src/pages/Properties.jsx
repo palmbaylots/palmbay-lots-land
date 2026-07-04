@@ -136,11 +136,10 @@ const Properties = () => {
               <li>12. Buyer is responsible for property taxes and other ownership obligations as of the day the contract is executed.</li>
             </ol>
             <div className="mt-8 pt-8 border-t border-slate-200">
-              <p className="font-bold mb-2 text-slate-900">Contact: David Moallem</p>
-              <p className="text-slate-700">1663 Georgia Street N.E. Suite 700 Palm Bay, FL 32907</p>
-              <p className="text-slate-700">Phone: 321.724.2424 | Cell: 321.626.3590</p>
-              <p className="text-slate-700">Website: palmbayland.com | email: palmbayland@gmail.com</p>
-              <p className="text-sm text-slate-500 mt-3">Updated 9/3/2025</p>
+              <p className="font-bold mb-2 text-slate-900">Contact: Vahid Rajabian, Broker Associate</p>
+              <p className="text-slate-700">M. David Moallem, Inc. | License #BK3454072</p>
+              <p className="text-slate-700">1663 Georgia St NE, Suite 700, Palm Bay, FL 32907</p>
+              <p className="text-slate-700">Phone: <a href="tel:3213337230" className="text-amber-600 hover:underline">321-333-7230</a> | Email: <a href="mailto:vahid@palmbayland.com" className="text-amber-600 hover:underline">vahid@palmbayland.com</a></p>
             </div>
           </div>
         </div>
@@ -212,67 +211,73 @@ const Properties = () => {
           
           <div className="flex flex-col sm:flex-row gap-3 mb-3">
             <Link to="/inventory" className="flex-1 py-3 px-4 rounded-lg font-medium transition-colors bg-amber-600 text-white hover:bg-amber-700 text-center">
-              Browse All Lots
+              Browse All Lots — See Price on Any Lot
             </Link>
-            <button className="flex-1 py-3 px-4 rounded-lg font-medium transition-colors bg-sky-500 text-white">
-              Price Calculator
+            <button onClick={() => setShowFinancing(true)} className="flex-1 py-3 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
+              <Calculator className="w-5 h-5" />
+              Owner Financing Terms
             </button>
           </div>
-          
-          <button onClick={() => setShowFinancing(true)} className="w-full py-3 px-4 bg-green-600 text-white rounded-lg font-medium mb-3 hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
-            <Calculator className="w-5 h-5" />
-            Owner Financing for Residential Lots - Click for Details
-          </button>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-              <Calculator className="w-7 h-7 text-amber-600" />
-              Price Calculator
-            </h2>
-            <div className="space-y-6">
-              <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
-                <h3 className="text-sm font-semibold mb-3 text-slate-900">Calculate Lot Size</h3>
-                <div className="flex items-center gap-2 mb-2">
-                  <input type="number" step="0.01" placeholder="0.24" value={acreInput} onChange={(e) => { setAcreInput(e.target.value); const acres = parseFloat(e.target.value); if (!isNaN(acres) && acres > 0) setCalcLotSize(Math.round(acres * 43560)); }} className="w-24 p-3 border-2 border-blue-300 rounded-lg text-center font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                  <span className="font-medium text-slate-700">× 43,560 =</span>
-                  <div className="flex-1 p-3 bg-white border-2 border-blue-300 rounded-lg font-bold text-blue-700 text-center">{acreInput && !isNaN(parseFloat(acreInput)) && parseFloat(acreInput) > 0 ? Math.round(parseFloat(acreInput) * 43560).toLocaleString() : '0'} sq ft</div>
-                </div>
-                <p className="text-xs text-slate-600">Example: 0.24 × 43,560 = 10,454 sq ft</p>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2 text-slate-700">Select Unit</label>
-                <select value={calcUnit} onChange={(e) => setCalcUnit(e.target.value)} className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
-                  {units.map(u => <option key={u.unit} value={u.unit}>{u.name}</option>)}
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2 text-slate-700">Lot Size (sq ft): {calcLotSize.toLocaleString()}</label>
-                <input type="range" min="10000" max="50000" step="1" value={calcLotSize} onChange={(e) => setCalcLotSize(Number(e.target.value))} className="w-full" />
-                <div className="flex justify-between text-xs text-slate-500 mt-1"><span>10,000</span><span>50,000</span></div>
-                <div className="mt-3">
-                  <label className="block text-xs mb-1 text-slate-600">Or enter exact size:</label>
-                  <input type="number" min="10000" value={calcLotSize} onChange={(e) => setCalcLotSize(Number(e.target.value) || 10000)} className="w-full p-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" />
-                </div>
-              </div>
-              <label className="flex items-center gap-3 cursor-pointer">
-                <input type="checkbox" checked={calcCanal} onChange={(e) => setCalcCanal(e.target.checked)} className="w-5 h-5 text-amber-600 focus:ring-amber-500" />
-                <span className="text-sm font-medium text-slate-700">Canal Lot (+$5,000)</span>
-              </label>
+        <div className="max-w-3xl mx-auto">
+          {/* Branded header */}
+          <div className="bg-[#1a3a5c] text-white rounded-t-lg px-6 py-5 text-center">
+            <h2 className="text-2xl font-bold text-amber-400">2026 Palm Bay Lots — Prices &amp; Policies</h2>
+            <p className="text-sm text-gray-200 mt-1">Vahid Rajabian, Broker Associate · M. David Moallem, Inc. · License #BK3454072</p>
+          </div>
+
+          {/* Base prices */}
+          <div className="bg-white shadow-lg p-6 sm:p-8">
+            <p className="text-xs text-slate-500 mb-4">Standard lot size is 10,000 sq ft. Price varies by unit — see below.</p>
+            <h3 className="text-lg font-bold text-slate-900 mb-3">Base Prices — First 10,000 sq ft</h3>
+            <div className="divide-y divide-slate-100 text-sm">
+              <div className="flex justify-between py-2"><span className="text-slate-700">Unit 49</span><span className="font-semibold text-slate-900">$4.10 / sq ft</span></div>
+              <div className="flex justify-between py-2"><span className="text-slate-700">Units 15, 17, 18, 19, 20, 22, 23, 24, 25, 30, 32, 36, 37</span><span className="font-semibold text-slate-900">$4.50 / sq ft</span></div>
+              <div className="flex justify-between py-2"><span className="text-slate-700">Units 13, 14, 26, 39, 41, 42, 44, 50</span><span className="font-semibold text-slate-900">$5.20 / sq ft</span></div>
+              <div className="flex justify-between py-2"><span className="text-slate-700">Unit 40 — commercial / multifamily</span><span className="font-semibold text-slate-900">$450,000 / acre</span></div>
             </div>
+            <p className="text-xs text-slate-500 mt-2">Additional acreage beyond 10,000 sq ft priced at $3.00 / sq ft.</p>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-3">Utility &amp; Lot Premiums</h3>
+            <div className="divide-y divide-slate-100 text-sm">
+              <div className="flex justify-between py-2"><span className="text-slate-700">City water lots</span><span className="font-semibold text-slate-900">+$20,000</span></div>
+              <div className="flex justify-between py-2"><span className="text-slate-700">City water &amp; sewer lots</span><span className="font-semibold text-slate-900">+$40,000</span></div>
+              <div className="flex justify-between py-2"><span className="text-slate-700">Exceptional canal lots (more privacy)</span><span className="font-semibold text-slate-900">+$5,000</span></div>
+            </div>
+            <div className="mt-3 text-xs text-slate-600 space-y-1">
+              <p><span className="font-semibold">City Water &amp; Sewer Units:</span> 5, 7, 8, 9, 13, 38, 40</p>
+              <p><span className="font-semibold">City Water Units:</span> 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, 50</p>
+              <p><span className="font-semibold">Units 51, 52 &amp; 53:</span> Not buildable — available only as part of a whole package.</p>
+            </div>
+
+            <div className="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <p className="text-sm font-semibold text-slate-900">Our prices are firm and reflect fair, honest market value — the same price for everyone.</p>
+              <p className="text-sm text-slate-700 mt-2">Use the <span className="font-semibold text-amber-700">See Price</span> button on any lot in the <Link to="/inventory" className="text-amber-700 underline font-semibold">inventory</Link> to calculate the exact price and monthly payment instantly.</p>
+            </div>
+
+            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Owner Financing</h3>
+            <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at 10% interest, minimum 25% down. No pre-payment penalty, no balloon.</p>
+            <button onClick={() => setShowFinancing(true)} className="mt-3 inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
+              <Calculator className="w-4 h-4" /> See Full Financing Terms
+            </button>
+
+            <ul className="mt-6 text-sm text-slate-700 space-y-2 list-disc pl-5">
+              <li>Exceptional and oversized lots are priced individually.</li>
+              <li>All lots are guaranteed buildable, unless otherwise noted in the contract.</li>
+              <li>Buildable lots may be exchanged within our inventory — minimum $7,500 exchange fee (includes title insurance).</li>
+            </ul>
           </div>
-          <div className="bg-gradient-to-br from-amber-600 to-amber-700 text-white rounded-lg shadow-lg p-8 mb-6">
-            <p className="text-sm opacity-90 mb-2">Estimated Total Price</p>
-            <p className="text-5xl font-bold">${calculatedPrice.toLocaleString()}</p>
-            <p className="text-sm opacity-75 mt-4">Prices subject to change without notice.</p>
-          </div>
-          <div className="p-4 bg-yellow-50 border-2 border-yellow-300 rounded-lg">
-            <p className="text-sm text-yellow-900 font-semibold text-center">All prices subject to change without notice</p>
-            <p className="text-xs text-yellow-800 text-center mt-1">Properties with letter-designated blocks (B, F, K, etc.) require direct pricing — call 321-333-7230</p>
-          </div>
+
+          {/* Contact + disclaimer */}
+          <div className="bg-white border-t border-slate-200 shadow-lg rounded-b-lg p-6 sm:p-8">
+            <p className="font-bold text-slate-900">Contact: Vahid Rajabian, Broker Associate</p>
+            <p className="text-slate-700 text-sm">M. David Moallem, Inc. | License #BK3454072</p>
+            <p className="text-slate-700 text-sm">1663 Georgia St NE, Suite 700, Palm Bay, FL 32907</p>
+            <p className="text-slate-700 text-sm">Phone: <a href="tel:3213337230" className="text-amber-600 hover:underline">321-333-7230</a> | Email: <a href="mailto:vahid@palmbayland.com" className="text-amber-600 hover:underline">vahid@palmbayland.com</a></p>
+            <p className="text-xs text-slate-500 mt-4 italic">All prices and terms are subject to change without notice. This information is for reference only and does not constitute an offer to sell.</p>
           </div>
         </div>
       </div>
