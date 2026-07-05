@@ -185,9 +185,22 @@ const Home = () => {
     name: '',
     phone: '',
     email: '',
-    interest: ''
+    interest: '',
+    payment: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const INTEREST_LABELS = {
+    lot: 'Looking for a lot',
+    'acre-build': 'Looking for a 1+ acre lot to build a home',
+    'buy-home': 'Looking to buy a home',
+    'build-home': 'Looking to build a home',
+    commercial: 'Looking for commercial, industrial, or multifamily',
+  };
+  const PAYMENT_LABELS = {
+    finance: 'Owner financing',
+    cash: 'Paying cash',
+  };
 
   const handleHeroFormChange = (e) => {
     setHeroForm({ ...heroForm, [e.target.name]: e.target.value });
@@ -195,30 +208,30 @@ const Home = () => {
 
   const handleHeroFormSubmit = async (e) => {
     e.preventDefault();
-    if (!heroForm.name || !heroForm.phone || !heroForm.email || !heroForm.interest) {
+    if (!heroForm.name || !heroForm.phone || !heroForm.email || !heroForm.interest || !heroForm.payment) {
       toast({
         title: "Please fill all fields",
         variant: "destructive"
       });
       return;
     }
-    
+
     setIsSubmitting(true);
     try {
       await axios.post(`${API}/contact`, {
         name: heroForm.name,
         email: heroForm.email,
         phone: heroForm.phone,
-        inquiryType: heroForm.interest === 'build' ? 'buy' : 'buy',
-        message: `Interest: ${heroForm.interest === 'build' ? 'Looking to build own home' : 'Looking to invest'}\n\nSubmitted from homepage hero form.`,
+        inquiryType: 'buy',
+        message: `Interest: ${INTEREST_LABELS[heroForm.interest] || heroForm.interest} | Payment: ${PAYMENT_LABELS[heroForm.payment] || heroForm.payment}\n\nSubmitted from homepage hero form.`,
         smsConsent: true
       });
-      
+
       toast({
         title: "Request Received!",
         description: "We'll contact you within 24 hours."
       });
-      setHeroForm({ name: '', phone: '', email: '', interest: '' });
+      setHeroForm({ name: '', phone: '', email: '', interest: '', payment: '' });
     } catch (error) {
       toast({
         title: "Error",
@@ -450,10 +463,25 @@ const Home = () => {
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
                   >
-                    <option value="">Are you looking to...</option>
-                    <option value="finance">Buy a lot with owner financing</option>
-                    <option value="build">Build your own home</option>
-                    <option value="invest">Invest in land</option>
+                    <option value="">What are you looking for?</option>
+                    <option value="lot">Looking for a lot</option>
+                    <option value="acre-build">Looking for a 1+ acre lot to build a home</option>
+                    <option value="buy-home">Looking to buy a home</option>
+                    <option value="build-home">Looking to build a home</option>
+                    <option value="commercial">Commercial, industrial, or multifamily</option>
+                  </select>
+                </div>
+                <div>
+                  <select
+                    name="payment"
+                    value={heroForm.payment}
+                    onChange={handleHeroFormChange}
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  >
+                    <option value="">Financing or cash?</option>
+                    <option value="finance">Owner financing</option>
+                    <option value="cash">Paying cash</option>
                   </select>
                 </div>
                 <Button 
