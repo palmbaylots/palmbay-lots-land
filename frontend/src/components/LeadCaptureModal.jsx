@@ -36,23 +36,20 @@ const LeadCaptureModal = () => {
   const recaptchaRef = useRef(null);
   const triggeredRef = useRef(false);
 
-  // Track page navigations within the SPA — popup opens on 2nd unique page view
+  // Popup opens after the visitor has been on the site for 40 seconds
   useEffect(() => {
     if (isMobileDevice()) return;
     if (localStorage.getItem('leadCaptureInteracted')) return;
-    if (triggeredRef.current) return;
 
-    const visitedPaths = JSON.parse(sessionStorage.getItem('visitedPaths') || '[]');
-    if (!visitedPaths.includes(location.pathname)) {
-      visitedPaths.push(location.pathname);
-      sessionStorage.setItem('visitedPaths', JSON.stringify(visitedPaths));
-    }
+    const timer = setTimeout(() => {
+      if (!triggeredRef.current) {
+        triggeredRef.current = true;
+        setIsOpen(true);
+      }
+    }, 40000);
 
-    if (visitedPaths.length >= 2) {
-      triggeredRef.current = true;
-      setIsOpen(true);
-    }
-  }, [location.pathname]);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Exit-intent detection — popup opens when mouse moves toward top of viewport (closing the tab)
   useEffect(() => {

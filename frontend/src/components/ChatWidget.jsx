@@ -10,7 +10,7 @@ const ChatWidget = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! I'm Rachel, your Palm Bay land assistant. I can help you with questions about available lots, pricing, financing options, and more. What would you like to know?"
+      content: "Hi! I'm Derrick, your Palm Bay land assistant. I can help you with questions about available lots, pricing, financing options, and more. What would you like to know?"
     }
   ]);
   const [input, setInput] = useState('');
@@ -24,7 +24,7 @@ const ChatWidget = () => {
     setSessionId(`session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
     setMessages([{
       role: 'assistant',
-      content: "Hi! I'm Rachel, your Palm Bay land assistant. I can help you with questions about available lots, pricing, financing options, and more. What would you like to know?"
+      content: "Hi! I'm Derrick, your Palm Bay land assistant. I can help you with questions about available lots, pricing, financing options, and more. What would you like to know?"
     }]);
   };
 
@@ -99,7 +99,7 @@ const ChatWidget = () => {
                 <Bot className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-bold">Palm Bay Land Assistant</h3>
+                <h3 className="font-bold">Chat with Derrick</h3>
                 <p className="text-xs text-slate-300">Ask about lots, pricing & more</p>
               </div>
             </div>

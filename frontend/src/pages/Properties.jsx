@@ -224,60 +224,91 @@ const Properties = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
           {/* Branded header */}
-          <div className="bg-[#1a3a5c] text-white rounded-t-lg px-6 py-5 text-center">
-            <h2 className="text-2xl font-bold text-amber-400">2026 Palm Bay Lots — Prices &amp; Policies</h2>
-            <p className="text-sm text-gray-200 mt-1">Vahid Rajabian, Broker Associate · M. David Moallem, Inc. · License #BK3454072</p>
+          <div className="bg-[#1a3a5c] text-white rounded-t-lg px-6 py-5 flex items-center gap-4 justify-center text-center sm:text-left">
+            <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-16 w-16 shrink-0" />
+            <div>
+              <h2 className="text-2xl font-bold text-amber-400">2026 Palm Bay Lots — Prices &amp; Policies</h2>
+              <p className="text-sm text-gray-200 mt-1">Vahid Rajabian, Broker Associate · M. David Moallem, Inc. · License #BK3454072</p>
+            </div>
           </div>
 
-          {/* Base prices */}
+          {/* Top: pricing left, photo journey right */}
           <div className="bg-white shadow-lg p-6 sm:p-8">
-            <p className="text-xs text-slate-500 mb-4">Standard lot size is 10,000 sq ft. Price varies by unit — see below.</p>
-            <h3 className="text-lg font-bold text-slate-900 mb-3">Base Prices — First 10,000 sq ft</h3>
-            <div className="divide-y divide-slate-100 text-sm">
-              <div className="flex justify-between py-2"><span className="text-slate-700">Unit 49</span><span className="font-semibold text-slate-900">$4.10 / sq ft</span></div>
-              <div className="flex justify-between py-2"><span className="text-slate-700">Units 15, 17, 18, 19, 20, 22, 23, 24, 25, 30, 32, 36, 37</span><span className="font-semibold text-slate-900">$4.50 / sq ft</span></div>
-              <div className="flex justify-between py-2"><span className="text-slate-700">Units 13, 14, 26, 39, 41, 42, 44, 50</span><span className="font-semibold text-slate-900">$5.20 / sq ft</span></div>
-              <div className="flex justify-between py-2"><span className="text-slate-700">Unit 40 — commercial / multifamily</span><span className="font-semibold text-slate-900">$450,000 / acre</span></div>
-            </div>
-            <p className="text-xs text-slate-500 mt-2">Additional acreage beyond 10,000 sq ft priced at $3.00 / sq ft.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              {/* Left — unit pricing */}
+              <div className="leading-relaxed">
+                <p className="text-xs text-slate-500 mb-4">Standard lot size is 10,000 sq ft. Price varies by unit — see below.</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">Base Prices — First 10,000 sq ft</h3>
+                <div className="divide-y divide-slate-100 text-sm">
+                  <div className="flex justify-between gap-4 py-2.5"><span className="text-slate-700">Unit 49</span><span className="font-semibold text-slate-900 whitespace-nowrap">$4.10 / sq ft</span></div>
+                  <div className="flex justify-between gap-4 py-2.5"><span className="text-slate-700">Units 15, 17, 18, 19, 20, 22, 23, 24, 25, 30, 32, 36, 37</span><span className="font-semibold text-slate-900 whitespace-nowrap">$4.50 / sq ft</span></div>
+                  <div className="flex justify-between gap-4 py-2.5"><span className="text-slate-700">Units 13, 14, 26, 39, 41, 42, 44, 50</span><span className="font-semibold text-slate-900 whitespace-nowrap">$5.20 / sq ft</span></div>
+                  <div className="flex justify-between gap-4 py-2.5"><span className="text-slate-700">Unit 40 — commercial / multifamily</span><span className="font-semibold text-slate-900 whitespace-nowrap">$450,000 / acre</span></div>
+                </div>
 
-            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-3">Utility &amp; Lot Premiums</h3>
-            <div className="divide-y divide-slate-100 text-sm">
-              <div className="flex justify-between py-2"><span className="text-slate-700">City water lots</span><span className="font-semibold text-slate-900">+$20,000</span></div>
-              <div className="flex justify-between py-2"><span className="text-slate-700">City water &amp; sewer lots</span><span className="font-semibold text-slate-900">+$40,000</span></div>
-              <div className="flex justify-between py-2"><span className="text-slate-700">Exceptional canal lots (more privacy)</span><span className="font-semibold text-slate-900">+$5,000</span></div>
-            </div>
-            <div className="mt-3 text-xs text-slate-600 space-y-1">
-              <p><span className="font-semibold">City Water &amp; Sewer Units:</span> 5, 7, 8, 9, 13, 38, 40</p>
-              <p><span className="font-semibold">City Water Units:</span> 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, 50</p>
-              <p><span className="font-semibold">Units 51, 52 &amp; 53:</span> Not buildable — available only as part of a whole package.</p>
+                <h3 className="text-lg font-bold text-slate-900 mt-6 mb-3">Utility &amp; Lot Premiums</h3>
+                <div className="divide-y divide-slate-100 text-sm">
+                  <div className="flex justify-between gap-4 py-2.5"><span className="text-slate-700">City water lots</span><span className="font-semibold text-slate-900 whitespace-nowrap">+$20,000</span></div>
+                  <div className="flex justify-between gap-4 py-2.5"><span className="text-slate-700">City water &amp; sewer lots</span><span className="font-semibold text-slate-900 whitespace-nowrap">+$40,000</span></div>
+                  <div className="flex justify-between gap-4 py-2.5"><span className="text-slate-700">Exceptional canal lots (more privacy)</span><span className="font-semibold text-slate-900 whitespace-nowrap">+$5,000</span></div>
+                </div>
+                <div className="mt-4 text-xs text-slate-600 leading-relaxed space-y-1.5">
+                  <p><span className="font-semibold">City Water &amp; Sewer Units:</span> 5, 7, 8, 9, 13, 38, 40</p>
+                  <p><span className="font-semibold">City Water Units:</span> 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, 50</p>
+                  <p><span className="font-semibold">Units 51, 52 &amp; 53:</span> Not buildable — available only as part of a whole package.</p>
+                </div>
+              </div>
+
+              {/* Right — photo journey stacked */}
+              <div className="space-y-6">
+                <figure>
+                  <img src="https://images.pexels.com/photos/1362509/pexels-photo-1362509.jpeg?auto=compress&w=600" alt="Vacant residential lot in Palm Bay" className="w-full h-44 object-cover rounded-lg" loading="lazy" />
+                  <figcaption className="text-center text-sm font-semibold text-slate-700 mt-2">1 · Pick Your Lot</figcaption>
+                </figure>
+                <figure>
+                  <img src="https://images.pexels.com/photos/7937750/pexels-photo-7937750.jpeg?auto=compress&w=600" alt="Home under construction in Palm Bay" className="w-full h-44 object-cover rounded-lg" loading="lazy" />
+                  <figcaption className="text-center text-sm font-semibold text-slate-700 mt-2">2 · Build Your Home</figcaption>
+                </figure>
+                <figure>
+                  <img src="https://images.pexels.com/photos/32270941/pexels-photo-32270941.jpeg?auto=compress&w=600" alt="Finished new-construction home in Palm Bay" className="w-full h-44 object-cover rounded-lg" loading="lazy" />
+                  <figcaption className="text-center text-sm font-semibold text-slate-700 mt-2">3 · Move In</figcaption>
+                </figure>
+              </div>
             </div>
 
-            <div className="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
-              <p className="text-sm font-semibold text-slate-900">Our prices are firm and reflect fair, honest market value — the same price for everyone.</p>
-              <p className="text-sm text-slate-700 mt-2">Use the <span className="font-semibold text-amber-700">See Price</span> button on any lot in the <Link to="/inventory" className="text-amber-700 underline font-semibold">inventory</Link> to calculate the exact price and monthly payment instantly.</p>
+            {/* Full-width centered: benefit, financing, terms */}
+            <div className="mt-10 max-w-2xl mx-auto text-center leading-relaxed">
+              <p className="text-base font-bold text-green-700">In any unit, every square foot beyond the first 10,000 drops to just $3.00 / sq ft — so larger and oversized lots cost less per foot.</p>
+
+              <p className="text-sm text-slate-600 mt-6">Our prices reflect fair, honest market value — the same price for everyone. Prices and terms are firm.</p>
+              <p className="text-sm text-slate-700 mt-3">Use the <span className="font-semibold">See Price</span> button on any lot in the <Link to="/inventory" className="text-amber-700 underline font-semibold">inventory</Link> to calculate the exact price and monthly payment instantly.</p>
+
+              <h3 className="text-lg font-bold text-slate-900 mt-8 mb-2">Owner Financing</h3>
+              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at 10% interest, minimum 25% down. No pre-payment penalty, no balloon.</p>
+              <button onClick={() => setShowFinancing(true)} className="mt-4 inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
+                <Calculator className="w-4 h-4" /> See Full Financing Terms
+              </button>
+
+              <div className="mt-8 text-sm text-slate-700 leading-relaxed space-y-2">
+                <p>Exceptional and oversized lots are priced individually.</p>
+                <p>All lots are guaranteed buildable, unless otherwise noted in the contract.</p>
+                <p>Buildable lots may be exchanged within our inventory — minimum $7,500 exchange fee (includes title insurance).</p>
+              </div>
             </div>
-
-            <h3 className="text-lg font-bold text-slate-900 mt-6 mb-2">Owner Financing</h3>
-            <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at 10% interest, minimum 25% down. No pre-payment penalty, no balloon.</p>
-            <button onClick={() => setShowFinancing(true)} className="mt-3 inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
-              <Calculator className="w-4 h-4" /> See Full Financing Terms
-            </button>
-
-            <ul className="mt-6 text-sm text-slate-700 space-y-2 list-disc pl-5">
-              <li>Exceptional and oversized lots are priced individually.</li>
-              <li>All lots are guaranteed buildable, unless otherwise noted in the contract.</li>
-              <li>Buildable lots may be exchanged within our inventory — minimum $7,500 exchange fee (includes title insurance).</li>
-            </ul>
           </div>
 
-          {/* Contact + disclaimer */}
+          {/* Contact + logo grouped, disclaimer */}
           <div className="bg-white border-t border-slate-200 shadow-lg rounded-b-lg p-6 sm:p-8">
-            <p className="font-bold text-slate-900">Contact: Vahid Rajabian, Broker Associate</p>
-            <p className="text-slate-700 text-sm">M. David Moallem, Inc. | License #BK3454072</p>
-            <p className="text-slate-700 text-sm">1663 Georgia St NE, Suite 700, Palm Bay, FL 32907</p>
-            <p className="text-slate-700 text-sm">Phone: <a href="tel:3213337230" className="text-amber-600 hover:underline">321-333-7230</a> | Email: <a href="mailto:vahid@palmbayland.com" className="text-amber-600 hover:underline">vahid@palmbayland.com</a></p>
-            <p className="text-xs text-slate-500 mt-4 italic">All prices and terms are subject to change without notice. This information is for reference only and does not constitute an offer to sell.</p>
+            <div className="flex items-center justify-center gap-3 flex-col sm:flex-row text-center sm:text-left">
+              <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-24 w-24 shrink-0" />
+              <div className="leading-relaxed">
+                <p className="font-bold text-slate-900">Contact: Vahid Rajabian, Broker Associate</p>
+                <p className="text-slate-700 text-sm">M. David Moallem, Inc. | License #BK3454072</p>
+                <p className="text-slate-700 text-sm">1663 Georgia St NE, Suite 700, Palm Bay, FL 32907</p>
+                <p className="text-slate-700 text-sm">Phone: <a href="tel:3213337230" className="text-amber-600 hover:underline">321-333-7230</a> | Email: <a href="mailto:vahid@palmbayland.com" className="text-amber-600 hover:underline">vahid@palmbayland.com</a></p>
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 mt-6 italic text-center">All prices and terms are subject to change without notice. This information is for reference only and does not constitute an offer to sell.</p>
           </div>
         </div>
       </div>

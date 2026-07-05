@@ -119,6 +119,32 @@ async def create_lead(input: LeadCreate):
     doc = lead_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     await db.leads.insert_one(doc)
+
+    # Notify Vahid of the new lead — never let a notification failure block saving the lead.
+    try:
+        notify_email = os.environ.get('CONTACT_EMAIL', 'palmbaylotsland@gmail.com')
+        notify_phone = os.environ.get('TWILIO_TO_PHONE')
+
+        email_body = f"""
+        <html><body>
+            <h2>New Lead from Website Popup</h2>
+            <p><strong>Name:</strong> {lead_obj.name}</p>
+            <p><strong>Email:</strong> {lead_obj.email}</p>
+            <p><strong>Phone:</strong> {lead_obj.phone}</p>
+            <hr>
+            <p style="color:#666;font-size:12px;">Sent from Palm Bay Real Estate Website · {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+        </body></html>
+        """
+        await send_email(to_email=notify_email, subject=f"New Lead: {lead_obj.name}", body=email_body)
+
+        if notify_phone:
+            send_sms(
+                to_phone=notify_phone,
+                message=f"New lead from your website:\nName: {lead_obj.name}\nPhone: {lead_obj.phone}\nEmail: {lead_obj.email}",
+            )
+    except Exception as e:
+        logger.error(f"Lead saved but notification failed: {str(e)}")
+
     return lead_obj
 
 
@@ -144,7 +170,7 @@ async def delete_lead(lead_id: str):
 async def submit_contact_form(contact: ContactMessage):
     """Handle contact form submissions and send email + SMS"""
     try:
-        contact_email = os.environ.get('CONTACT_EMAIL', 'vahid@palmbayland.com')
+        contact_email = os.environ.get('CONTACT_EMAIL', 'palmbaylotsland@gmail.com')
         contact_phone = os.environ.get('TWILIO_TO_PHONE')
 
         # Prepare email
