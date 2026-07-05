@@ -137,6 +137,15 @@ async def create_lead(input: LeadCreate):
         """
         await send_email(to_email=notify_email, subject=f"New Lead: {lead_obj.name}", body=email_body)
 
+        # Free text alert via carrier email-to-SMS gateway (no Twilio needed).
+        sms_gateway = os.environ.get('SMS_GATEWAY_EMAIL', '3213337230@tmomail.net')
+        if sms_gateway:
+            await send_email(
+                to_email=sms_gateway,
+                subject=f"New lead: {lead_obj.name} {lead_obj.phone}",
+                body=f"New website lead — {lead_obj.name}, {lead_obj.phone}, {lead_obj.email}",
+            )
+
         if notify_phone:
             send_sms(
                 to_phone=notify_phone,
@@ -199,6 +208,15 @@ async def submit_contact_form(contact: ContactMessage):
             subject=f"New Contact: {contact.name}",
             body=email_body
         )
+
+        # Free text alert via carrier email-to-SMS gateway (no Twilio needed).
+        sms_gateway = os.environ.get('SMS_GATEWAY_EMAIL', '3213337230@tmomail.net')
+        if sms_gateway:
+            await send_email(
+                to_email=sms_gateway,
+                subject=f"New contact: {contact.name} {contact.phone}",
+                body=f"New website contact — {contact.name}, {contact.phone}, {contact.email}",
+            )
 
         sms_sent = False
         if contact_phone:
