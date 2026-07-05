@@ -312,6 +312,7 @@ const Properties = () => {
           </div>
         </div>
       </div>
+      </div>
 
       {selectedLot && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-end sm:items-center justify-center z-50 p-4">
