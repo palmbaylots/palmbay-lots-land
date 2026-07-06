@@ -81,11 +81,12 @@ const ChatWidget = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 left-6 z-40 bg-amber-600 hover:bg-amber-700 text-white p-4 rounded-full shadow-lg transition-all hover:scale-110"
-          aria-label="Open chat"
+          className="fixed bottom-6 left-6 z-40 bg-amber-600 hover:bg-amber-700 text-white pl-4 pr-5 py-3 rounded-full shadow-lg transition-all hover:scale-105 flex items-center gap-2 font-semibold"
+          aria-label="Ask Derrick — chat with our land assistant"
           data-testid="chat-open-btn"
         >
           <MessageCircle className="w-6 h-6" />
+          <span>Ask Derrick</span>
         </button>
       )}
 

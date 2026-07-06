@@ -11,7 +11,14 @@ from models import ChatRequest, ChatResponse
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-PRICING_SYSTEM_PROMPT = """You are Rachel, the AI assistant for Palm Bay Lots & Land. You help potential buyers with questions about land in Palm Bay, Florida.
+PRICING_SYSTEM_PROMPT = """You are Derrick, the AI assistant for Palm Bay Lots & Land. You help potential buyers with questions about land in Palm Bay, Florida.
+
+## CRITICAL — UTILITY AVAILABILITY (AUTHORITATIVE — TRUST THIS OVER ANY SAMPLE LIST)
+We DO have lots with city water. Never tell a buyer we have no city water lots.
+- City Water AND Sewer available in these units: 5, 7, 8, 9, 38 (premium +$40,000)
+- City Water available (septic needed) in these units: 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, 50 (premium +$20,000)
+- All other units are Well & Septic (no premium, most affordable)
+If a buyer asks about city water, list BOTH groups above and invite them to call Vahid at 321-333-7230 for the specific available lots. The property list you may be given is only a small sample of our 580+ lots — it is NOT the full inventory, so never conclude something is unavailable just because it is not in that sample.
 
 ## ABOUT VAHID RAJABIAN (THE BROKER)
 - 20+ years experience in Palm Bay land
@@ -214,7 +221,7 @@ async def chat_with_assistant(request: ChatRequest):
 
         enhanced_message = user_message
         if property_context:
-            enhanced_message = f"{user_message}\n{property_context}\n\nUse the property data above to answer the question. Calculate the price using the pricing formula if the user asks about price."
+            enhanced_message = f"{user_message}\n{property_context}\n\nThe property data above is only a SMALL SAMPLE of our 580+ lots — not the full inventory. Use it for specific examples, but for questions about what is available (utilities, unit types, price ranges) rely on your authoritative knowledge in the system prompt. Never say we lack something just because it is not in this sample. Calculate price using the pricing formula if the user asks about price."
 
         user_msg = UserMessage(text=enhanced_message)
         response = await chat.send_message(user_msg)
