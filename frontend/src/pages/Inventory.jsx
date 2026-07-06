@@ -570,18 +570,18 @@ const Inventory = () => {
                   <p className="text-blue-100 text-sm">{groupedInventory.waterSewer.length} lots — Premium utility access, no well or septic needed</p>
                 </div>
               </div>
-              <div className="bg-white rounded-b-lg shadow-lg overflow-hidden">
+              <div className="bg-white rounded-b-lg shadow-lg">
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-slate-800 text-white sticky top-16 z-20">
+                    <thead className="bg-slate-800 text-white">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold">Action</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Inventory ID</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Unit</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Block</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Lot</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Address</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Size</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -658,18 +658,18 @@ const Inventory = () => {
                   <p className="text-cyan-100 text-sm">{groupedInventory.waterOnly.length} lots — City water available, septic required</p>
                 </div>
               </div>
-              <div className="bg-white rounded-b-lg shadow-lg overflow-hidden">
+              <div className="bg-white rounded-b-lg shadow-lg">
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-slate-800 text-white sticky top-16 z-20">
+                    <thead className="bg-slate-800 text-white">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold">Action</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Inventory ID</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Unit</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Block</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Lot</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Address</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Size</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -746,18 +746,18 @@ const Inventory = () => {
                   <p className="text-amber-100 text-sm">{groupedInventory.wellSeptic.length} lots — Well and septic required, most affordable options</p>
                 </div>
               </div>
-              <div className="bg-white rounded-b-lg shadow-lg overflow-hidden">
+              <div className="bg-white rounded-b-lg shadow-lg">
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-slate-800 text-white sticky top-16 z-20">
+                    <thead className="bg-slate-800 text-white">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold">Action</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Inventory ID</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Unit</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Block</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Lot</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Address</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Size</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
