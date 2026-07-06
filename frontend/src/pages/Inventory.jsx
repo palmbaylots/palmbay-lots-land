@@ -571,9 +571,9 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg overflow-hidden">
-                <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
+                <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-slate-800 text-white sticky top-0 z-10">
+                    <thead className="bg-slate-800 text-white sticky top-16 z-20">
                       <tr>
                         <th className="px-4 py-3 text-left font-semibold">Inventory ID</th>
                         <th className="px-4 py-3 text-left font-semibold">Unit</th>
@@ -659,9 +659,9 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg overflow-hidden">
-                <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
+                <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-slate-800 text-white sticky top-0 z-10">
+                    <thead className="bg-slate-800 text-white sticky top-16 z-20">
                       <tr>
                         <th className="px-4 py-3 text-left font-semibold">Inventory ID</th>
                         <th className="px-4 py-3 text-left font-semibold">Unit</th>
@@ -747,9 +747,9 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg overflow-hidden">
-                <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
+                <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-slate-800 text-white sticky top-0 z-10">
+                    <thead className="bg-slate-800 text-white sticky top-16 z-20">
                       <tr>
                         <th className="px-4 py-3 text-left font-semibold">Inventory ID</th>
                         <th className="px-4 py-3 text-left font-semibold">Unit</th>
