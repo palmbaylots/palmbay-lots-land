@@ -217,7 +217,7 @@ const LeadCaptureModal = () => {
                   className="mt-0.5"
                 />
                 <label htmlFor="lead-consent" className="text-[10px] text-slate-500 leading-tight">
-                  I agree to receive calls, emails, and texts about properties. I can opt-out anytime. <span className="text-red-600">*</span>
+                  I agree to receive calls, emails, and text messages about properties. Message and data rates may apply. I can opt-out anytime. <span className="text-red-600">*</span>
                 </label>
               </div>
 

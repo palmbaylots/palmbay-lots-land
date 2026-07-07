@@ -86,7 +86,7 @@ const ChatWidget = () => {
           data-testid="chat-open-btn"
         >
           <MessageCircle className="w-6 h-6" />
-          <span>Ask Derrick</span>
+          <span>Questions? Ask Derrick</span>
         </button>
       )}
 

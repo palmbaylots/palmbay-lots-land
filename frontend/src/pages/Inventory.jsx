@@ -1002,17 +1002,6 @@ const Inventory = () => {
         );
       })()}
 
-      {/* ===== STEP 4: Sticky Help CTA ===== */}
-      <div className="fixed bottom-6 left-6 z-50">
-        <Link
-          to="/contact"
-          className="flex items-center gap-2 px-5 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-full font-semibold shadow-lg transition-all hover:scale-105"
-        >
-          <MessageCircle className="w-5 h-5" />
-          <span className="hidden sm:inline">Not sure what to pick? Ask Vahid</span>
-          <span className="sm:hidden">Ask Vahid</span>
-        </Link>
-      </div>
     </div>
   );
 };
