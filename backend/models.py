@@ -61,6 +61,7 @@ class PropertyCreate(BaseModel):
     streetName: str = ""
     taxAccount: str = ""
     sold: bool = False
+    cashOnly: bool = False
 
 
 class Property(BaseModel):
@@ -87,6 +88,7 @@ class Property(BaseModel):
     streetName: str = ""
     taxAccount: str = ""
     sold: bool = False
+    cashOnly: bool = False
     createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updatedAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 

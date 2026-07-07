@@ -206,7 +206,8 @@ const Admin = ({ adminPassword = '' }) => {
       streetNumber: '',
       streetName: '',
       taxAccount: '',
-      sold: false
+      sold: false,
+      cashOnly: false
     });
     setTagInput('');
     setShowPropertyModal(true);
@@ -234,7 +235,8 @@ const Admin = ({ adminPassword = '' }) => {
       streetNumber: property.streetNumber || '',
       streetName: property.streetName || '',
       taxAccount: property.taxAccount || '',
-      sold: property.sold || false
+      sold: property.sold || false,
+      cashOnly: property.cashOnly || false
     });
     setTagInput('');
     setShowPropertyModal(true);
@@ -939,6 +941,17 @@ const Admin = ({ adminPassword = '' }) => {
                   />
                   <label htmlFor="featured" className="text-sm font-medium text-slate-700 cursor-pointer">
                     Mark as Featured (shows on Inventory page)
+                  </label>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="cashOnly"
+                    checked={propertyForm.cashOnly}
+                    onCheckedChange={(checked) => setPropertyForm(prev => ({ ...prev, cashOnly: checked }))}
+                  />
+                  <label htmlFor="cashOnly" className="text-sm font-medium text-slate-700 cursor-pointer">
+                    Cash only — no owner financing (for listings we don't own)
                   </label>
                 </div>
               </div>

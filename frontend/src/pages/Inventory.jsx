@@ -86,11 +86,12 @@ const financingFor = (price) => ({
 // status: 'price' (show calculator), 'call' (Call for Pricing), 'package' (not sold individually)
 const getLotPricing = (item, utilityType, canal) => {
   const unit = String(item.unit || '');
+  const cashOnly = !!item.cashOnly; // listings we market but don't own — no owner financing
 
   // A hand-set price in admin (Price field) overrides the calculator entirely.
   const explicit = parsePrice(item.price);
   if (explicit > 0) {
-    return { ...financingFor(explicit), fixed: true };
+    return { ...financingFor(explicit), fixed: true, cashOnly };
   }
 
   if (NOT_INDIVIDUAL_UNITS.includes(unit)) return { status: 'package' };
@@ -108,7 +109,7 @@ const getLotPricing = (item, utilityType, canal) => {
   if (canal) price += 5000;
   price = Math.round(price);
 
-  return financingFor(price);
+  return { ...financingFor(price), cashOnly };
 };
 
 const usd = (n) => '$' + Math.round(n).toLocaleString('en-US');
@@ -946,6 +947,14 @@ const Inventory = () => {
                       </label>
                     )}
 
+                    {pricing.cashOnly && (
+                      <div className="text-center mb-2 bg-slate-100 rounded-lg p-3">
+                        <p className="text-sm font-bold text-slate-900">Cash Only</p>
+                        <p className="text-xs text-slate-500">Owner financing is not available on this listing.</p>
+                      </div>
+                    )}
+
+                    {!pricing.cashOnly && (<>
                     {/* Financing options */}
                     <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Owner Financing Options</p>
                     <div className="space-y-3">
@@ -1006,6 +1015,7 @@ const Inventory = () => {
                         </div>
                       );
                     })()}
+                    </>)}
 
                     <a href="tel:3213337230" className="mt-5 flex items-center justify-center gap-2 px-5 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold text-sm">
                       <Phone className="w-4 h-4" /> Lock In This Lot — 321-333-7230
