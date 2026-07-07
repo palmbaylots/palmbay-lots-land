@@ -759,11 +759,21 @@ const Admin = ({ adminPassword = '' }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Price *</label>
+                    <label className="flex items-center gap-2 text-xs text-slate-600 mb-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={/\d/.test(propertyForm.price) && !/contact/i.test(propertyForm.price)}
+                        onChange={(e) => setPropertyForm(prev => ({ ...prev, price: e.target.checked ? '' : 'Contact for Price' }))}
+                        className="w-4 h-4 accent-amber-600"
+                      />
+                      Set price manually (override calculator)
+                    </label>
                     <Input
                       name="price"
                       value={propertyForm.price}
                       onChange={handlePropertyFormChange}
-                      placeholder="$500,000"
+                      placeholder={(/\d/.test(propertyForm.price) && !/contact/i.test(propertyForm.price)) ? '$75,000' : 'Calculator sets the price'}
+                      disabled={!(/\d/.test(propertyForm.price) && !/contact/i.test(propertyForm.price))}
                       required
                     />
                   </div>
