@@ -223,6 +223,19 @@ const Inventory = () => {
     fetchInventory();
   }, []);
 
+  // Pin the table column headers exactly below the sticky site header,
+  // measuring its real height so they never hide behind the logo bar.
+  useEffect(() => {
+    const setOffset = () => {
+      const header = document.querySelector('[data-testid="site-header"]');
+      const h = header ? header.offsetHeight : 150;
+      document.documentElement.style.setProperty('--inv-header-top', `${h}px`);
+    };
+    setOffset();
+    window.addEventListener('resize', setOffset);
+    return () => window.removeEventListener('resize', setOffset);
+  }, []);
+
   // Get unique units for filter
   const uniqueUnits = useMemo(() => {
     const units = [...new Set(inventory.map(item => item.unit))].filter(u => u);
@@ -591,13 +604,13 @@ const Inventory = () => {
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Action</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Lot</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Address</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Size</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -679,13 +692,13 @@ const Inventory = () => {
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Action</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Lot</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Address</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Size</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -767,13 +780,13 @@ const Inventory = () => {
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-16 z-20 bg-slate-800">Action</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Lot</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Address</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Size</th>
+                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
