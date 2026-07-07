@@ -247,6 +247,18 @@ const SellLand = () => {
                   </div>
                 </div>
               </div>
+              <div className="mt-10 max-w-3xl mx-auto">
+                <img
+                  src="https://images.pexels.com/photos/8441871/pexels-photo-8441871.jpeg?auto=compress&w=900"
+                  alt="Vahid guiding a land owner through the selling process"
+                  className="w-full h-auto rounded-2xl shadow-lg"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <p className="text-sm text-slate-500 mt-3 text-center italic">
+                  I walk you through every step — honest guidance from someone local, not an out-of-town wholesaler.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -290,8 +302,8 @@ const SellLand = () => {
                 </div>
                 <div>
                   <img
-                    src={WHOLESALER_IMAGE}
-                    alt="Older couple reviewing a suspicious real estate contract at a kitchen table, looking worried and confused"
+                    src="https://images.pexels.com/photos/8441871/pexels-photo-8441871.jpeg?auto=compress&w=800"
+                    alt="Homeowner reviewing paperwork with a trusted local real estate advisor"
                     className="w-full h-auto rounded-2xl shadow-xl border-4 border-red-100"
                     loading="lazy"
                     decoding="async"
