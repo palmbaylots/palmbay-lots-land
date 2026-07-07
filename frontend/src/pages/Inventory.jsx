@@ -63,12 +63,36 @@ const parseAcres = (a) => {
   const n = parseFloat(String(a || '').replace(/[^0-9.]/g, ''));
   return isNaN(n) ? 0 : n;
 };
+// Parse a hand-set dollar price like "$75,000". Returns 0 if not a real number
+// (e.g. "Contact for Price"), so the calculator is used instead.
+const parsePrice = (p) => {
+  const n = parseFloat(String(p || '').replace(/[^0-9.]/g, ''));
+  return isNaN(n) ? 0 : n;
+};
 const monthlyPayment = (financed) => Math.round((financed * 13.22) / 1000);
+
+const financingFor = (price) => ({
+  status: 'price',
+  price,
+  down25: Math.round(price * 0.25),
+  fin25: Math.round(price * 0.75),
+  monthly25: monthlyPayment(price * 0.75),
+  down35: Math.round(price * 0.35),
+  fin35: Math.round(price * 0.65),
+  monthly35: monthlyPayment(price * 0.65),
+});
 
 // Returns pricing info for a lot.
 // status: 'price' (show calculator), 'call' (Call for Pricing), 'package' (not sold individually)
 const getLotPricing = (item, utilityType, canal) => {
   const unit = String(item.unit || '');
+
+  // A hand-set price in admin (Price field) overrides the calculator entirely.
+  const explicit = parsePrice(item.price);
+  if (explicit > 0) {
+    return { ...financingFor(explicit), fixed: true };
+  }
+
   if (NOT_INDIVIDUAL_UNITS.includes(unit)) return { status: 'package' };
   if (CALL_UNITS.includes(unit) || hasLetterBlock(item.block)) return { status: 'call' };
 
@@ -84,16 +108,7 @@ const getLotPricing = (item, utilityType, canal) => {
   if (canal) price += 5000;
   price = Math.round(price);
 
-  return {
-    status: 'price',
-    price,
-    down25: Math.round(price * 0.25),
-    fin25: Math.round(price * 0.75),
-    monthly25: monthlyPayment(price * 0.75),
-    down35: Math.round(price * 0.35),
-    fin35: Math.round(price * 0.65),
-    monthly35: monthlyPayment(price * 0.65),
-  };
+  return financingFor(price);
 };
 
 const usd = (n) => '$' + Math.round(n).toLocaleString('en-US');
@@ -923,11 +938,13 @@ const Inventory = () => {
                       <p className="text-4xl font-extrabold text-green-700">{usd(pricing.price)}</p>
                     </div>
 
-                    {/* Canal checkbox */}
-                    <label className="flex items-center gap-2 justify-center mb-5 text-sm text-slate-600 cursor-pointer">
-                      <input type="checkbox" checked={canal} onChange={(e) => setCanal(e.target.checked)} className="w-4 h-4 accent-amber-600" />
-                      Canal lot (+$5,000)
-                    </label>
+                    {/* Canal checkbox — only for calculator-priced lots, not hand-set prices */}
+                    {!pricing.fixed && (
+                      <label className="flex items-center gap-2 justify-center mb-5 text-sm text-slate-600 cursor-pointer">
+                        <input type="checkbox" checked={canal} onChange={(e) => setCanal(e.target.checked)} className="w-4 h-4 accent-amber-600" />
+                        Canal lot (+$5,000)
+                      </label>
+                    )}
 
                     {/* Financing options */}
                     <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Owner Financing Options</p>
