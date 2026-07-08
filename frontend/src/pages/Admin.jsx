@@ -728,10 +728,14 @@ const Admin = ({ adminPassword = '' }) => {
                       onChange={handlePropertyFormChange}
                       className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
                     >
-                      <option value="Commercial">Commercial</option>
-                      <option value="Multi-Family">Multi-Family</option>
-                      <option value="Assemblage">Assemblage</option>
                       <option value="Residential">Residential</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Industrial">Industrial</option>
+                      <option value="Multi-Family">Multi-Family</option>
+                      <option value="Institutional">Institutional</option>
+                      <option value="Park">Park</option>
+                      <option value="Utilities">Utilities</option>
+                      <option value="Assemblage">Assemblage</option>
                     </select>
                   </div>
                 </div>
