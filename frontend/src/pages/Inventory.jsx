@@ -600,7 +600,7 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg">
-                <div className="overflow-x-auto">
+                <div>
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
@@ -688,7 +688,7 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg">
-                <div className="overflow-x-auto">
+                <div>
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
@@ -776,7 +776,7 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg">
-                <div className="overflow-x-auto">
+                <div>
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
