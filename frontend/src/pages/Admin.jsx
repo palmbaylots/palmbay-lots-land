@@ -45,6 +45,7 @@ const Admin = ({ adminPassword = '' }) => {
     sold: false
   });
   const [tagInput, setTagInput] = useState('');
+  const [manualPrice, setManualPrice] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const fileInputRef = useRef(null);
@@ -210,6 +211,7 @@ const Admin = ({ adminPassword = '' }) => {
       cashOnly: false
     });
     setTagInput('');
+    setManualPrice(false);
     setShowPropertyModal(true);
   };
 
@@ -239,6 +241,7 @@ const Admin = ({ adminPassword = '' }) => {
       cashOnly: property.cashOnly || false
     });
     setTagInput('');
+    setManualPrice(/\d/.test(property.price || '') && !/contact/i.test(property.price || ''));
     setShowPropertyModal(true);
   };
 
@@ -768,8 +771,11 @@ const Admin = ({ adminPassword = '' }) => {
                     <label className="flex items-center gap-2 text-xs text-slate-600 mb-2 cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={/\d/.test(propertyForm.price) && !/contact/i.test(propertyForm.price)}
-                        onChange={(e) => setPropertyForm(prev => ({ ...prev, price: e.target.checked ? '' : 'Contact for Price' }))}
+                        checked={manualPrice}
+                        onChange={(e) => {
+                          setManualPrice(e.target.checked);
+                          setPropertyForm(prev => ({ ...prev, price: e.target.checked ? '' : 'Contact for Price' }));
+                        }}
                         className="w-4 h-4 accent-amber-600"
                       />
                       Set price manually (override calculator)
@@ -778,9 +784,8 @@ const Admin = ({ adminPassword = '' }) => {
                       name="price"
                       value={propertyForm.price}
                       onChange={handlePropertyFormChange}
-                      placeholder={(/\d/.test(propertyForm.price) && !/contact/i.test(propertyForm.price)) ? '$75,000' : 'Calculator sets the price'}
-                      disabled={!(/\d/.test(propertyForm.price) && !/contact/i.test(propertyForm.price))}
-                      required
+                      placeholder={manualPrice ? '$75,000' : 'Calculator sets the price'}
+                      disabled={!manualPrice}
                     />
                   </div>
                   <div>
@@ -967,7 +972,7 @@ const Admin = ({ adminPassword = '' }) => {
                 <Button 
                   onClick={handleSaveProperty}
                   className="bg-amber-600 hover:bg-amber-700"
-                  disabled={!propertyForm.title || !propertyForm.address || !propertyForm.price || !propertyForm.acres}
+                  disabled={!propertyForm.title || !propertyForm.address || (manualPrice && !propertyForm.price)}
                 >
                   {editingProperty ? 'Save Changes' : 'Add Property'}
                 </Button>
