@@ -4,6 +4,7 @@ import { Search, Filter, Download, ExternalLink, MapPin, Phone, CheckCircle, Mes
 import { Button } from '../components/ui/button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import ParcelMapModal from '../components/ParcelMapModal';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -168,6 +169,7 @@ const Inventory = () => {
   const [priceItem, setPriceItem] = useState(null); // lot whose price popup is open
   const [canal, setCanal] = useState(false);
   const [downPct, setDownPct] = useState(25); // custom down-payment %
+  const [mapItem, setMapItem] = useState(null); // lot whose satellite map is open
 
   const openPriceModal = (item) => { setCanal(false); setDownPct(25); setPriceItem(item); };
   const closePriceModal = () => setPriceItem(null);
@@ -645,6 +647,14 @@ const Inventory = () => {
                                   <Calculator className="w-4 h-4" />
                                   See Price
                                 </button>
+                                <button
+                                  onClick={() => setMapItem(item)}
+                                  data-testid={`map-${item.inventoryId}`}
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-700 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
+                                >
+                                  <MapPin className="w-4 h-4" />
+                                  Map
+                                </button>
                                 <a
                                   href={getPropertyAppraiserLink(item)}
                                   target="_blank"
@@ -733,6 +743,14 @@ const Inventory = () => {
                                   <Calculator className="w-4 h-4" />
                                   See Price
                                 </button>
+                                <button
+                                  onClick={() => setMapItem(item)}
+                                  data-testid={`map-${item.inventoryId}`}
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-700 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
+                                >
+                                  <MapPin className="w-4 h-4" />
+                                  Map
+                                </button>
                                 <a
                                   href={getPropertyAppraiserLink(item)}
                                   target="_blank"
@@ -820,6 +838,14 @@ const Inventory = () => {
                                 >
                                   <Calculator className="w-4 h-4" />
                                   See Price
+                                </button>
+                                <button
+                                  onClick={() => setMapItem(item)}
+                                  data-testid={`map-${item.inventoryId}`}
+                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-700 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
+                                >
+                                  <MapPin className="w-4 h-4" />
+                                  Map
                                 </button>
                                 <a
                                   href={getPropertyAppraiserLink(item)}
@@ -1041,6 +1067,9 @@ const Inventory = () => {
           </div>
         );
       })()}
+
+      {/* ===== Satellite Parcel Map Popup ===== */}
+      {mapItem && <ParcelMapModal item={mapItem} onClose={() => setMapItem(null)} />}
 
     </div>
   );
