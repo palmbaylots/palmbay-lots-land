@@ -171,6 +171,7 @@ const Inventory = () => {
   const [canal, setCanal] = useState(false);
   const [downPct, setDownPct] = useState(25); // custom down-payment %
   const [mapItem, setMapItem] = useState(null); // lot whose satellite map is open
+  const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
 
   const openPriceModal = (item) => { setCanal(false); setDownPct(25); setPriceItem(item); };
   const closePriceModal = () => setPriceItem(null);
@@ -521,16 +522,14 @@ const Inventory = () => {
         <div className="container mx-auto px-4">
           {/* Context above table */}
           <div className="max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-center gap-5">
-            <a
-              href="https://gis.palmbayflorida.org/portal/apps/webappviewer/index.html?id=c263a4dbd1834bc2a73b97f1bb88e2d5"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Open the City of Palm Bay unit & zoning map"
-              className="shrink-0 w-24 h-24 rounded-lg bg-[#1a3a5c] text-white flex flex-col items-center justify-center gap-1 hover:ring-2 hover:ring-amber-500 transition-shadow shadow-md"
+            <button
+              onClick={() => setShowUnitMap(true)}
+              title="View the Palm Bay unit map"
+              className="shrink-0 rounded-lg overflow-hidden border-2 border-[#1a3a5c] hover:ring-2 hover:ring-amber-500 transition shadow-md cursor-pointer bg-white"
             >
-              <MapPin className="w-7 h-7 text-amber-400" />
-              <span className="text-[10px] font-semibold leading-tight text-center px-1">Palm Bay Unit / Zoning Map</span>
-            </a>
+              <img src="/images/palm-bay-unit-map.jpg" alt="Palm Bay unit map" className="w-32 h-32 object-cover" loading="lazy" />
+              <span className="block bg-[#1a3a5c] text-white text-[10px] font-semibold py-1 px-1 text-center">Palm Bay Unit Map — click to enlarge</span>
+            </button>
             <div className="text-center">
               <h2 className="text-2xl font-bold text-slate-900 mb-2">Full Palm Bay Inventory</h2>
               <p className="text-slate-600">
@@ -1029,6 +1028,21 @@ const Inventory = () => {
 
       {/* ===== Satellite Parcel Map Popup ===== */}
       {mapItem && <ParcelMapModal item={mapItem} onClose={() => setMapItem(null)} />}
+
+      {/* ===== Palm Bay Unit Map Lightbox ===== */}
+      {showUnitMap && (
+        <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4" onClick={() => setShowUnitMap(false)}>
+          <div className="relative max-w-5xl w-full max-h-[92vh] overflow-auto bg-white rounded-lg" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setShowUnitMap(false)} aria-label="Close" className="absolute top-2 right-2 bg-white/90 hover:bg-white rounded-full p-1 shadow">
+              <X className="w-6 h-6 text-slate-700" />
+            </button>
+            <img src="/images/palm-bay-unit-map.jpg" alt="City of Palm Bay unit map showing all Port Malabar units" className="w-full h-auto" />
+            <div className="p-3 text-center border-t border-slate-200">
+              <a href="/images/palm-bay-unit-map.jpg" target="_blank" rel="noopener noreferrer" className="text-sm text-amber-700 underline font-semibold">Open full size in a new tab</a>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
