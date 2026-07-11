@@ -10,6 +10,31 @@ import axios from 'axios';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Utility grouping — mirrors the public Inventory page so admin matches the site.
+const unitUtilities = {
+  '5': { water: true, sewer: true }, '7': { water: true, sewer: true },
+  '8': { water: true, sewer: true }, '9': { water: true, sewer: true },
+  '38': { water: true, sewer: true },
+  '10': { water: true, sewer: false }, '11': { water: true, sewer: false },
+  '12': { water: true, sewer: false }, '16': { water: true, sewer: false },
+  '21': { water: true, sewer: false }, '28': { water: true, sewer: false },
+  '31': { water: true, sewer: false }, '42': { water: true, sewer: false },
+  '44': { water: true, sewer: false }, '46': { water: true, sewer: false },
+  '48': { water: true, sewer: false }, '50': { water: true, sewer: false },
+};
+const getUtilityType = (item) => {
+  const tags = (item.tags || []).map(t => String(t).toLowerCase());
+  if (tags.includes('city-water-sewer') || tags.includes('water-sewer')) return 'water_sewer';
+  if (tags.includes('city-water-only') || tags.includes('water-only')) return 'water_only';
+  if (tags.includes('well-septic')) return 'well_septic';
+  const info = unitUtilities[item.unit];
+  if (info?.water && info?.sewer) return 'water_sewer';
+  if (info?.water) return 'water_only';
+  return 'well_septic';
+};
+const UTIL_RANK = { water_sewer: 0, water_only: 1, well_septic: 2 };
+const UTIL_LABEL = { water_sewer: 'City Water & Sewer', water_only: 'City Water Only', well_septic: 'Well & Septic' };
+
 const Admin = ({ adminPassword = '' }) => {
   const [activeTab, setActiveTab] = useState('leads');
   const [leads, setLeads] = useState([]);
@@ -107,7 +132,7 @@ const Admin = ({ adminPassword = '' }) => {
 
   // Filter properties
   const filteredProperties = useMemo(() => {
-    return properties.filter(prop => {
+    const list = properties.filter(prop => {
       // Filter by curated vs inventory
       const isCurated = !prop.inventoryId;
       if (propertyFilter === 'curated' && !isCurated) return false;
@@ -118,6 +143,17 @@ const Admin = ({ adminPassword = '' }) => {
              prop.propertyType?.toLowerCase().includes(searchTerm.toLowerCase()) ||
              (prop.inventoryId || '').toLowerCase().includes(searchTerm.toLowerCase());
     });
+
+    // Inventory: sort by utility group, then unit number — matches the public site.
+    if (propertyFilter === 'inventory') {
+      list.sort((a, b) => {
+        const ra = UTIL_RANK[getUtilityType(a)] ?? 3;
+        const rb = UTIL_RANK[getUtilityType(b)] ?? 3;
+        if (ra !== rb) return ra - rb;
+        return (parseInt(a.unit) || 999) - (parseInt(b.unit) || 999);
+      });
+    }
+    return list;
   }, [properties, searchTerm, propertyFilter]);
 
   // Statistics
@@ -602,8 +638,15 @@ const Admin = ({ adminPassword = '' }) => {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200">
-                        {filteredProperties.map((prop) => (
-                          <tr key={prop.id} className="hover:bg-amber-50 transition-colors">
+                        {filteredProperties.map((prop, idx) => {
+                          const showHeader = propertyFilter === 'inventory' &&
+                            (idx === 0 || getUtilityType(prop) !== getUtilityType(filteredProperties[idx - 1]));
+                          return (
+                          <React.Fragment key={prop.id}>
+                          {showHeader && (
+                            <tr><td colSpan={7} className="bg-slate-200 px-4 py-2 font-bold text-slate-800 text-sm">{UTIL_LABEL[getUtilityType(prop)]}</td></tr>
+                          )}
+                          <tr className="hover:bg-amber-50 transition-colors">
                             {propertyFilter === 'inventory' && (
                               <td className="px-4 py-3 font-mono text-sm text-slate-700">{prop.inventoryId}</td>
                             )}
@@ -676,7 +719,9 @@ const Admin = ({ adminPassword = '' }) => {
                               </div>
                             </td>
                           </tr>
-                        ))}
+                          </React.Fragment>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>

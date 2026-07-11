@@ -520,11 +520,23 @@ const Inventory = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           {/* Context above table */}
-          <div className="max-w-4xl mx-auto text-center mb-8">
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">Full Palm Bay Inventory</h2>
-            <p className="text-slate-600">
-              {inventory.length}+ lots available below. If you want help narrowing this down, don't guess — <Link to="/contact" className="text-amber-600 font-semibold hover:underline">ask</Link>.
-            </p>
+          <div className="max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-center gap-5">
+            <a
+              href="https://gis.palmbayflorida.org/portal/apps/webappviewer/index.html?id=c263a4dbd1834bc2a73b97f1bb88e2d5"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open the City of Palm Bay unit & zoning map"
+              className="shrink-0 w-24 h-24 rounded-lg bg-[#1a3a5c] text-white flex flex-col items-center justify-center gap-1 hover:ring-2 hover:ring-amber-500 transition-shadow shadow-md"
+            >
+              <MapPin className="w-7 h-7 text-amber-400" />
+              <span className="text-[10px] font-semibold leading-tight text-center px-1">Palm Bay Unit / Zoning Map</span>
+            </a>
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">Full Palm Bay Inventory</h2>
+              <p className="text-slate-600">
+                {inventory.length}+ lots available below. If you want help narrowing this down, don't guess — <Link to="/contact" className="text-amber-600 font-semibold hover:underline">ask</Link>.
+              </p>
+            </div>
           </div>
 
           {/* Search and Filters */}
