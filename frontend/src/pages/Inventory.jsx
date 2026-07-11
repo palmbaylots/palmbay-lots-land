@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ParcelMapModal from '../components/ParcelMapModal';
+import ParcelThumbnail from '../components/ParcelThumbnail';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -639,6 +640,7 @@ const Inventory = () => {
                             <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
+                                <ParcelThumbnail item={item} onOpen={setMapItem} />
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
@@ -655,26 +657,6 @@ const Inventory = () => {
                                   <MapPin className="w-4 h-4" />
                                   Map
                                 </button>
-                                <a
-                                  href={getPropertyAppraiserLink(item)}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  data-testid={`account-link-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors"
-                                >
-                                  <MapPin className="w-4 h-4" />
-                                  View Parcel Map
-                                </a>
-                                {(item.streetNumber || item.streetName) && (
-                                  <button
-                                    onClick={() => window.open(getGoogleMapsLink(item), '_blank', 'noopener,noreferrer')}
-                                    data-testid={`view-map-link-${item.inventoryId}`}
-                                    className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer"
-                                  >
-                                    <MapPin className="w-4 h-4" />
-                                    View Map
-                                  </button>
-                                )}
                               </div>
                             </td>
                           </tr>
@@ -735,6 +717,7 @@ const Inventory = () => {
                             <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
+                                <ParcelThumbnail item={item} onOpen={setMapItem} />
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
@@ -751,26 +734,6 @@ const Inventory = () => {
                                   <MapPin className="w-4 h-4" />
                                   Map
                                 </button>
-                                <a
-                                  href={getPropertyAppraiserLink(item)}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  data-testid={`account-link-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors"
-                                >
-                                  <MapPin className="w-4 h-4" />
-                                  View Parcel Map
-                                </a>
-                                {(item.streetNumber || item.streetName) && (
-                                  <button
-                                    onClick={() => window.open(getGoogleMapsLink(item), '_blank', 'noopener,noreferrer')}
-                                    data-testid={`view-map-link-${item.inventoryId}`}
-                                    className="inline-flex items-center gap-1 px-3 py-1 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-700 transition-colors cursor-pointer"
-                                  >
-                                    <MapPin className="w-4 h-4" />
-                                    View Map
-                                  </button>
-                                )}
                               </div>
                             </td>
                           </tr>
@@ -831,6 +794,7 @@ const Inventory = () => {
                             <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
+                                <ParcelThumbnail item={item} onOpen={setMapItem} />
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
@@ -847,26 +811,6 @@ const Inventory = () => {
                                   <MapPin className="w-4 h-4" />
                                   Map
                                 </button>
-                                <a
-                                  href={getPropertyAppraiserLink(item)}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  data-testid={`account-link-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors"
-                                >
-                                  <MapPin className="w-4 h-4" />
-                                  View Parcel Map
-                                </a>
-                                {(item.streetNumber || item.streetName) && (
-                                  <button
-                                    onClick={() => window.open(getGoogleMapsLink(item), '_blank', 'noopener,noreferrer')}
-                                    data-testid={`view-map-link-${item.inventoryId}`}
-                                    className="inline-flex items-center gap-1 px-3 py-1 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors cursor-pointer"
-                                  >
-                                    <MapPin className="w-4 h-4" />
-                                    View Map
-                                  </button>
-                                )}
                               </div>
                             </td>
                           </tr>

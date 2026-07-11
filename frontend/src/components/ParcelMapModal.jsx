@@ -38,6 +38,7 @@ const ParcelMapModal = ({ item, onClose }) => {
 
   const label = [item.streetNumber, item.streetName].filter(Boolean).join(' ').trim()
     || `Unit ${item.unit} Block ${item.block} Lot ${item.lot}`;
+  const acct = String(item.taxAccount || '').replace(/\D/g, '');
 
   useEffect(() => {
     let cancelled = false;
@@ -53,7 +54,6 @@ const ParcelMapModal = ({ item, onClose }) => {
           { maxZoom: 21, attribution: 'Imagery &copy; Esri' }
         ).addTo(map);
 
-        const acct = String(item.taxAccount || '').replace(/\D/g, '');
         if (!acct) { setStatus('none'); return; }
 
         const { data } = await axios.get(`${API}/parcel/${acct}`);
@@ -99,7 +99,26 @@ const ParcelMapModal = ({ item, onClose }) => {
             </div>
           )}
         </div>
-        <p className="px-5 py-2.5 text-[11px] text-slate-500 border-t border-slate-200">
+        <div className="px-5 py-3 border-t border-slate-200 flex flex-wrap gap-2">
+          {acct && (
+            <a href={`https://www.bcpao.us/map/?r=${acct}`} target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-medium">
+              BCPAO Map
+            </a>
+          )}
+          {acct && (
+            <a href={`https://www.bcpao.us/PropertySearch/#/account/${acct}`} target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-700 hover:bg-slate-800 text-white rounded-lg text-xs font-medium">
+              Account Detail
+            </a>
+          )}
+          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([item.streetNumber, item.streetName, item.city, 'FL'].filter(Boolean).join(', '))}`}
+             target="_blank" rel="noopener noreferrer"
+             className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium">
+            Google Map
+          </a>
+        </div>
+        <p className="px-5 pb-3 text-[11px] text-slate-500">
           Boundary from Brevard County GIS · imagery &copy; Esri. Approximate — verify independently before purchase.
         </p>
       </div>
