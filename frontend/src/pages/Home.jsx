@@ -407,6 +407,12 @@ const Home = () => {
                   Browse Our Palm Bay Lot Inventory
                 </Link>
               </div>
+              <button
+                onClick={() => document.getElementById('government-links')?.scrollIntoView({ behavior: 'smooth' })}
+                className="mb-6 inline-flex items-center gap-2 px-5 py-2.5 text-sm bg-white/10 border border-white/30 hover:border-amber-400 hover:bg-white/20 text-white rounded-lg font-semibold transition-all"
+              >
+                🏛 Government &amp; Map Links
+              </button>
               <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 text-gray-200">
                 <a href="tel:3213337230" className="flex items-center gap-2 hover:text-amber-400 transition-colors">
                   <Phone className="w-5 h-5" />
@@ -998,6 +1004,39 @@ const Home = () => {
             </a>
           </div>
           <p className="text-gray-400 mt-4">Or call directly: 321-333-7230</p>
+        </div>
+      </section>
+
+      {/* Government & Map Links */}
+      <section id="government-links" className="py-14 bg-slate-100 border-t border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2 text-center">Government &amp; Official Map Links</h2>
+            <p className="text-slate-600 text-center mb-8">Verify zoning, utilities, flood, and wetlands straight from the official sources — do your due diligence with confidence.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                { label: 'City of Palm Bay — Official Site', url: 'http://www.palmbayflorida.org/' },
+                { label: 'Palm Bay GIS — Utility Map', url: 'https://gis.palmbayflorida.org/portal/apps/webappviewer/index.html?id=71ec29150c0b469ea3e70abeb332944c' },
+                { label: 'Palm Bay GIS — Zoning Map', url: 'https://gis.palmbayflorida.org/portal/apps/webappviewer/index.html?id=c263a4dbd1834bc2a73b97f1bb88e2d5' },
+                { label: 'Brevard County — Land Use Map', url: 'https://gis.palmbayflorida.org/portal/apps/webappviewer/index.html?id=c263a4dbd1834bc2a73b97f1bb88e2d5' },
+                { label: 'Brevard County — Flood Map', url: 'https://www.arcgis.com/apps/webappviewer/index.html?id=6d38e10a626848b4b066e4134b8cd9ff' },
+                { label: 'Brevard County — Wetlands Map', url: 'https://brevardbocc.maps.arcgis.com/apps/webappviewer/index.html?id=5af51471c684483b8d71b9c320a36495' },
+                { label: 'Road Construction Plan (Year 1)', url: 'https://www.palmbayland.com/img/flyer/RoadBondPavingYear1.pdf' },
+                { label: 'Emerald Lakes District Info', url: 'http://www.emeraldlakescdd.com/index.php' },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between gap-3 bg-white border border-slate-200 rounded-lg px-4 py-3 hover:border-amber-400 hover:shadow-sm transition-all"
+                >
+                  <span className="text-sm font-medium text-slate-800">{link.label}</span>
+                  <ExternalLink className="w-4 h-4 text-amber-600 shrink-0" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
