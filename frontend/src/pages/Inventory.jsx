@@ -1010,6 +1010,9 @@ const Inventory = () => {
                         </div>
                       );
                     })()}
+                    <Link to="/price-guide" onClick={closePriceModal} className="block text-center text-xs text-amber-700 underline mt-3">
+                      See full owner-financing terms &amp; disclosures
+                    </Link>
                     </>)}
 
                     <a href="tel:3213337230" className="mt-5 flex items-center justify-center gap-2 px-5 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold text-sm">
