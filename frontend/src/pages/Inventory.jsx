@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Search, Filter, Download, ExternalLink, MapPin, Phone, CheckCircle, MessageCircle, Loader2, Droplets, Home, Calculator, X } from 'lucide-react';
+import { Search, Filter, Download, ExternalLink, MapPin, Phone, CheckCircle, MessageCircle, Loader2, Droplets, Home, Calculator, X, Heart } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -159,6 +159,14 @@ const tagColorMap = {
   'Assemblage': 'bg-red-600',
 };
 
+// Buyer favorites — saved in the visitor's own browser (no login).
+const FAV_KEY = 'pbll_favorites';
+const favId = (item) => item.id || item.inventoryId || `${item.unit}-${item.block}-${item.lot}`;
+const readFavorites = () => {
+  try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); }
+  catch (e) { return new Set(); }
+};
+
 const Inventory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterUnit, setFilterUnit] = useState('all');
@@ -172,6 +180,35 @@ const Inventory = () => {
   const [downPct, setDownPct] = useState(25); // custom down-payment %
   const [mapItem, setMapItem] = useState(null); // lot whose satellite map is open
   const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
+  const [favorites, setFavorites] = useState(() => readFavorites()); // saved lot ids
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
+
+  const toggleFavorite = (item) => {
+    setFavorites(prev => {
+      const next = new Set(prev);
+      const id = favId(item);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      try { localStorage.setItem(FAV_KEY, JSON.stringify([...next])); } catch (e) {}
+      return next;
+    });
+  };
+
+  // Heart button, shared by all three inventory tables. A plain render helper
+  // (not a nested component) so it never remounts and won't trip lint.
+  const renderHeart = (item) => {
+    const active = favorites.has(favId(item));
+    return (
+      <button
+        onClick={(e) => { e.stopPropagation(); toggleFavorite(item); }}
+        aria-label={active ? 'Remove from favorites' : 'Save to favorites'}
+        title={active ? 'Saved to favorites' : 'Save to favorites'}
+        data-testid={`fav-${item.inventoryId}`}
+        className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-300 hover:bg-red-50 transition-colors cursor-pointer shrink-0"
+      >
+        <Heart className={`w-4 h-4 ${active ? 'fill-red-600 text-red-600' : 'text-slate-400'}`} />
+      </button>
+    );
+  };
 
   const openPriceModal = (item) => { setCanal(false); setDownPct(25); setPriceItem(item); };
   const closePriceModal = () => setPriceItem(null);
@@ -262,10 +299,11 @@ const Inventory = () => {
         `${item.streetNumber} ${item.streetName}`.toLowerCase().includes(searchTerm.toLowerCase());
       
       const matchesUnit = filterUnit === 'all' || item.unit === filterUnit;
-      
-      return matchesSearch && matchesUnit;
+      const matchesFav = !favoritesOnly || favorites.has(favId(item));
+
+      return matchesSearch && matchesUnit && matchesFav;
     });
-  }, [inventory, searchTerm, filterUnit]);
+  }, [inventory, searchTerm, filterUnit, favoritesOnly, favorites]);
 
   // Group inventory by utility type and sort by unit number
   const groupedInventory = useMemo(() => {
@@ -558,8 +596,17 @@ const Inventory = () => {
                 <Download className="w-5 h-5" />
                 Download Excel
               </Button>
-              <button 
-                onClick={() => setShowFilters(!showFilters)} 
+              <button
+                onClick={() => setFavoritesOnly(v => !v)}
+                data-testid="favorites-toggle"
+                title="Show only lots you've saved"
+                className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow border ${favoritesOnly ? 'bg-red-600 text-white border-red-700' : 'bg-white'}`}
+              >
+                <Heart className={`w-5 h-5 ${favoritesOnly ? 'fill-current' : ''}`} />
+                Favorites ({favorites.size})
+              </button>
+              <button
+                onClick={() => setShowFilters(!showFilters)}
                 className="flex items-center justify-center gap-2 px-6 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border"
               >
                 <Filter className="w-5 h-5" />
@@ -652,6 +699,7 @@ const Inventory = () => {
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
                                 <ParcelThumbnail item={item} onOpen={setMapItem} />
+                                {renderHeart(item)}
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
@@ -729,6 +777,7 @@ const Inventory = () => {
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
                                 <ParcelThumbnail item={item} onOpen={setMapItem} />
+                                {renderHeart(item)}
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
@@ -806,6 +855,7 @@ const Inventory = () => {
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
                                 <ParcelThumbnail item={item} onOpen={setMapItem} />
+                                {renderHeart(item)}
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
