@@ -60,6 +60,13 @@ class PropertyCreate(BaseModel):
     streetNumber: str = ""
     streetName: str = ""
     taxAccount: str = ""
+    width: str = ""
+    depth: str = ""
+    water: str = ""
+    sewer: str = ""
+    zoning: str = ""
+    together: str = ""
+    status: str = "available"
     sold: bool = False
     cashOnly: bool = False
 
@@ -87,6 +94,13 @@ class Property(BaseModel):
     streetNumber: str = ""
     streetName: str = ""
     taxAccount: str = ""
+    width: str = ""
+    depth: str = ""
+    water: str = ""
+    sewer: str = ""
+    zoning: str = ""
+    together: str = ""
+    status: str = "available"
     sold: bool = False
     cashOnly: bool = False
     createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

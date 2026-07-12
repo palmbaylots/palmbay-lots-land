@@ -111,10 +111,40 @@ async def toggle_property_sold(property_id: str, sold: bool):
 
     await db.properties.update_one(
         {"id": property_id},
-        {"$set": {"sold": sold, "updatedAt": datetime.now(timezone.utc).isoformat()}}
+        {"$set": {
+            "sold": sold,
+            "status": "sold" if sold else "available",
+            "updatedAt": datetime.now(timezone.utc).isoformat(),
+        }}
     )
 
     return {"success": True, "id": property_id, "sold": sold}
+
+
+ALLOWED_STATUSES = {"available", "under_contract", "sold"}
+
+
+@router.patch("/properties/{property_id}/status")
+async def set_property_status(property_id: str, status: str):
+    """Set listing status: available, under_contract, or sold. Keeps the public
+    `sold` flag in sync so the site's Sold badge keeps working."""
+    if status not in ALLOWED_STATUSES:
+        raise HTTPException(status_code=400, detail=f"Invalid status. Use one of: {', '.join(sorted(ALLOWED_STATUSES))}")
+
+    existing = await db.properties.find_one({"id": property_id})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Property not found")
+
+    await db.properties.update_one(
+        {"id": property_id},
+        {"$set": {
+            "status": status,
+            "sold": status == "sold",
+            "updatedAt": datetime.now(timezone.utc).isoformat(),
+        }}
+    )
+
+    return {"success": True, "id": property_id, "status": status}
 
 
 @router.delete("/properties/{property_id}")

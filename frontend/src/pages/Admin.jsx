@@ -35,6 +35,50 @@ const getUtilityType = (item) => {
 const UTIL_RANK = { water_sewer: 0, water_only: 1, well_septic: 2 };
 const UTIL_LABEL = { water_sewer: 'City Water & Sewer', water_only: 'City Water Only', well_septic: 'Well & Septic' };
 
+// --- Auto-fill helpers for the Add/Edit Property form (all values stay editable) ---
+
+// Water/Sewer from the unit number, using the same unit→utility map as the site.
+const deriveUtilities = (unit) => {
+  const info = unitUtilities[String(unit || '').trim()];
+  if (info?.water && info?.sewer) return { water: 'City Water', sewer: 'City Sewer' };
+  if (info?.water) return { water: 'City Water', sewer: 'Septic' };
+  return { water: 'Well', sewer: 'Septic' };
+};
+
+// Standard platted-lot dimensions by acreage. Extend as more sizes are confirmed.
+const ACRE_DIMS = { '0.23': { width: '80', depth: '125' } };
+const deriveDims = (acres) => {
+  const key = String(acres || '').replace(/ac.*/i, '').trim();
+  return ACRE_DIMS[key] || null;
+};
+
+// Numbered block = standard buildable lot; lettered block = acreage tract.
+const deriveTitle = (block) =>
+  /[a-zA-Z]/.test(String(block || '').trim()) ? 'Large Tract' : 'Buildable Residential Lot';
+
+// Length of the run of sequential lots in the same unit+block (i.e. lots owned together).
+const computeTogether = (form, allProps) => {
+  const unit = String(form.unit || '').trim();
+  const block = String(form.block || '').trim();
+  const lot = parseInt(form.lot, 10);
+  if (!unit || !block || isNaN(lot)) return '';
+  const set = new Set(
+    (allProps || [])
+      .filter((p) => String(p.unit).trim() === unit && String(p.block).trim() === block)
+      .map((p) => parseInt(p.lot, 10))
+      .filter((n) => !isNaN(n))
+  );
+  set.add(lot);
+  let count = 1;
+  for (let n = lot - 1; set.has(n); n--) count++;
+  for (let n = lot + 1; set.has(n); n++) count++;
+  return count > 1 ? String(count) : '';
+};
+
+// Listing status. Falls back to the legacy `sold` boolean for older records.
+const propStatus = (p) => p.status || (p.sold ? 'sold' : 'available');
+const STATUS_LABEL = { available: 'Available', under_contract: 'Under Contract', sold: 'Sold' };
+
 const Admin = ({ adminPassword = '' }) => {
   const [activeTab, setActiveTab] = useState('leads');
   const [leads, setLeads] = useState([]);
@@ -67,13 +111,24 @@ const Admin = ({ adminPassword = '' }) => {
     streetNumber: '',
     streetName: '',
     taxAccount: '',
-    sold: false
+    width: '',
+    depth: '',
+    water: '',
+    sewer: '',
+    zoning: '',
+    together: '',
+    status: 'available',
+    sold: false,
+    cashOnly: false
   });
   const [tagInput, setTagInput] = useState('');
   const [manualPrice, setManualPrice] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const fileInputRef = useRef(null);
+  // Tracks which derived fields currently hold an auto-filled value (so we re-fill
+  // them when a driver field changes, but never clobber a value the user typed).
+  const autoFilled = useRef({ water: false, sewer: false, width: false, depth: false, title: false, together: false });
 
   // Fetch data
   useEffect(() => {
@@ -243,11 +298,20 @@ const Admin = ({ adminPassword = '' }) => {
       streetNumber: '',
       streetName: '',
       taxAccount: '',
+      width: '',
+      depth: '',
+      water: '',
+      sewer: '',
+      zoning: '',
+      together: '',
+      status: 'available',
       sold: false,
       cashOnly: false
     });
     setTagInput('');
     setManualPrice(false);
+    // Fresh form: every derived field is "empty/auto", so let the drivers fill them.
+    autoFilled.current = { water: true, sewer: true, width: true, depth: true, title: true, together: true };
     setShowPropertyModal(true);
   };
 
@@ -273,17 +337,60 @@ const Admin = ({ adminPassword = '' }) => {
       streetNumber: property.streetNumber || '',
       streetName: property.streetName || '',
       taxAccount: property.taxAccount || '',
+      width: property.width || '',
+      depth: property.depth || '',
+      water: property.water || '',
+      sewer: property.sewer || '',
+      zoning: property.zoning || '',
+      together: property.together || '',
+      status: property.status || (property.sold ? 'sold' : 'available'),
       sold: property.sold || false,
       cashOnly: property.cashOnly || false
     });
     setTagInput('');
     setManualPrice(/\d/.test(property.price || '') && !/contact/i.test(property.price || ''));
+    // Editing existing data: treat saved values as user-owned; don't auto-overwrite.
+    autoFilled.current = { water: false, sewer: false, width: false, depth: false, title: false, together: false };
     setShowPropertyModal(true);
   };
 
   const handlePropertyFormChange = (e) => {
     const { name, value } = e.target;
-    setPropertyForm(prev => ({ ...prev, [name]: value }));
+    setPropertyForm(prev => {
+      const next = { ...prev, [name]: value };
+      const af = autoFilled.current;
+
+      // If the user edits a derived field directly, stop auto-managing it.
+      if (name in af) af[name] = false;
+
+      // Unit → Water / Sewer
+      if (name === 'unit') {
+        const u = deriveUtilities(value);
+        if (!prev.water || af.water) { next.water = u.water; af.water = true; }
+        if (!prev.sewer || af.sewer) { next.sewer = u.sewer; af.sewer = true; }
+      }
+
+      // Acres → Width / Depth
+      if (name === 'acres') {
+        const d = deriveDims(value);
+        if (d) {
+          if (!prev.width || af.width) { next.width = d.width; af.width = true; }
+          if (!prev.depth || af.depth) { next.depth = d.depth; af.depth = true; }
+        }
+      }
+
+      // Block / Unit → Title (only if the title is empty or still auto-filled)
+      if (name === 'block' || name === 'unit') {
+        if (!prev.title || af.title) { next.title = deriveTitle(next.block); af.title = true; }
+      }
+
+      // Unit / Block / Lot → Together count
+      if (name === 'unit' || name === 'block' || name === 'lot') {
+        if (!prev.together || af.together) { next.together = computeTogether(next, properties); af.together = true; }
+      }
+
+      return next;
+    });
   };
 
   const handleAddTag = () => {
@@ -362,16 +469,14 @@ const Admin = ({ adminPassword = '' }) => {
     }
   };
 
-  const handleToggleSold = async (property) => {
-    const newSold = !property.sold;
-    const action = newSold ? 'mark as SOLD' : 'mark as available';
-    if (!window.confirm(`${action.charAt(0).toUpperCase() + action.slice(1)}?\n\n${property.title || property.address}`)) return;
+  const handleSetStatus = async (property, status) => {
+    if (status === propStatus(property)) return;
     try {
-      await axios.patch(`${API}/properties/${property.id}/sold?sold=${newSold}`);
+      await axios.patch(`${API}/properties/${property.id}/status?status=${status}`);
       fetchProperties();
     } catch (error) {
-      console.error('Error toggling sold status:', error);
-      alert('Error updating sold status. Please try again.');
+      console.error('Error updating status:', error);
+      alert('Error updating status. Please try again.');
     }
   };
 
@@ -654,8 +759,11 @@ const Admin = ({ adminPassword = '' }) => {
                               <div>
                                 <p className="font-medium text-slate-900 flex items-center gap-2">
                                   {prop.title}
-                                  {prop.sold && (
+                                  {propStatus(prop) === 'sold' && (
                                     <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-bold rounded uppercase">Sold</span>
+                                  )}
+                                  {propStatus(prop) === 'under_contract' && (
+                                    <span className="px-2 py-0.5 bg-amber-500 text-white text-xs font-bold rounded uppercase">Under Contract</span>
                                   )}
                                 </p>
                                 <p className="text-sm text-slate-500">{prop.city}</p>
@@ -690,18 +798,23 @@ const Admin = ({ adminPassword = '' }) => {
                             <td className="px-4 py-3 text-slate-600">{prop.acres}</td>
                             <td className="px-4 py-3">
                               <div className="flex gap-2">
-                                <button 
-                                  onClick={() => handleToggleSold(prop)}
-                                  className={`px-2 py-1 rounded text-xs font-bold transition-colors ${
-                                    prop.sold 
-                                      ? 'bg-red-600 text-white hover:bg-red-700' 
-                                      : 'bg-slate-100 text-slate-600 hover:bg-red-100 hover:text-red-700 border border-slate-300'
+                                <select
+                                  value={propStatus(prop)}
+                                  onChange={(e) => handleSetStatus(prop, e.target.value)}
+                                  className={`px-2 py-1 rounded text-xs font-bold border cursor-pointer focus:outline-none ${
+                                    propStatus(prop) === 'sold'
+                                      ? 'bg-red-600 text-white border-red-700'
+                                      : propStatus(prop) === 'under_contract'
+                                      ? 'bg-amber-500 text-white border-amber-600'
+                                      : 'bg-green-100 text-green-700 border-green-300'
                                   }`}
-                                  data-testid={`toggle-sold-${prop.id}`}
-                                  title={prop.sold ? 'Mark as Available' : 'Mark as Sold'}
+                                  data-testid={`status-${prop.id}`}
+                                  title="Change status"
                                 >
-                                  {prop.sold ? 'SOLD' : 'Mark Sold'}
-                                </button>
+                                  <option value="available">Available</option>
+                                  <option value="under_contract">Under Contract</option>
+                                  <option value="sold">Sold</option>
+                                </select>
                                 <button 
                                   onClick={() => openEditPropertyModal(prop)}
                                   className="p-2 bg-blue-100 text-blue-600 rounded hover:bg-blue-200"
@@ -767,6 +880,9 @@ const Admin = ({ adminPassword = '' }) => {
                       placeholder="e.g., 328 Malabar Rd"
                       required
                     />
+                    <p className="text-xs text-slate-500 mt-1">
+                      Auto-fills from Block: numbered block → “Buildable Residential Lot”, lettered block → “Large Tract”. Editable.
+                    </p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Property Type *</label>
@@ -910,7 +1026,10 @@ const Admin = ({ adminPassword = '' }) => {
                 {(propertyForm.inventoryId || propertyFilter === 'inventory') && (
                   <>
                     <div className="border-t pt-4">
-                      <p className="text-sm font-semibold text-slate-700 mb-3">Inventory Details</p>
+                      <p className="text-sm font-semibold text-slate-700">Inventory Details</p>
+                      <p className="text-xs text-slate-500 mb-3">
+                        Water &amp; Sewer auto-fill from Unit · Width/Depth from Acres · Together from sequential lots in the same block — all editable.
+                      </p>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                       <div>
@@ -948,6 +1067,48 @@ const Admin = ({ adminPassword = '' }) => {
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-1">Tax Account</label>
                         <Input name="taxAccount" value={propertyForm.taxAccount} onChange={handlePropertyFormChange} />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Water</label>
+                        <select
+                          name="water"
+                          value={propertyForm.water}
+                          onChange={handlePropertyFormChange}
+                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        >
+                          <option value="">—</option>
+                          <option value="Well">Well</option>
+                          <option value="City Water">City Water</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Sewer</label>
+                        <select
+                          name="sewer"
+                          value={propertyForm.sewer}
+                          onChange={handlePropertyFormChange}
+                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        >
+                          <option value="">—</option>
+                          <option value="Septic">Septic</option>
+                          <option value="City Sewer">City Sewer</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Width (ft)</label>
+                        <Input name="width" value={propertyForm.width} onChange={handlePropertyFormChange} placeholder="80" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Depth (ft)</label>
+                        <Input name="depth" value={propertyForm.depth} onChange={handlePropertyFormChange} placeholder="125" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Zoning</label>
+                        <Input name="zoning" value={propertyForm.zoning} onChange={handlePropertyFormChange} placeholder="e.g., RS-2" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Together</label>
+                        <Input name="together" value={propertyForm.together} onChange={handlePropertyFormChange} placeholder="auto" />
                       </div>
                     </div>
                   </>
