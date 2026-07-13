@@ -117,6 +117,7 @@ const Admin = ({ adminPassword = '' }) => {
     sewer: '',
     zoning: '',
     together: '',
+    pieShape: false,
     status: 'available',
     sold: false,
     cashOnly: false
@@ -304,6 +305,7 @@ const Admin = ({ adminPassword = '' }) => {
       sewer: '',
       zoning: '',
       together: '',
+      pieShape: false,
       status: 'available',
       sold: false,
       cashOnly: false
@@ -343,6 +345,7 @@ const Admin = ({ adminPassword = '' }) => {
       sewer: property.sewer || '',
       zoning: property.zoning || '',
       together: property.together || '',
+      pieShape: property.pieShape || false,
       status: property.status || (property.sold ? 'sold' : 'available'),
       sold: property.sold || false,
       cashOnly: property.cashOnly || false
@@ -370,8 +373,8 @@ const Admin = ({ adminPassword = '' }) => {
         if (!prev.sewer || af.sewer) { next.sewer = u.sewer; af.sewer = true; }
       }
 
-      // Acres → Width / Depth
-      if (name === 'acres') {
+      // Acres → Width / Depth (skip for pie-shaped/irregular lots)
+      if (name === 'acres' && !prev.pieShape) {
         const d = deriveDims(value);
         if (d) {
           if (!prev.width || af.width) { next.width = d.width; af.width = true; }
@@ -1110,6 +1113,24 @@ const Admin = ({ adminPassword = '' }) => {
                         <label className="block text-sm font-medium text-slate-700 mb-1">Together</label>
                         <Input name="together" value={propertyForm.together} onChange={handlePropertyFormChange} placeholder="auto" />
                       </div>
+                    </div>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Checkbox
+                        id="pieShape"
+                        checked={propertyForm.pieShape}
+                        onCheckedChange={(checked) => {
+                          autoFilled.current.width = false;
+                          autoFilled.current.depth = false;
+                          setPropertyForm(prev => {
+                            if (checked) return { ...prev, pieShape: true, width: '', depth: '' };
+                            const d = deriveDims(prev.acres);
+                            return { ...prev, pieShape: false, width: d ? d.width : prev.width, depth: d ? d.depth : prev.depth };
+                          });
+                        }}
+                      />
+                      <label htmlFor="pieShape" className="text-sm font-medium text-slate-700 cursor-pointer">
+                        Pie-shaped / irregular lot (no fixed width × depth)
+                      </label>
                     </div>
                   </>
                 )}

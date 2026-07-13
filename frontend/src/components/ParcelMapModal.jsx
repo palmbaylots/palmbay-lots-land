@@ -47,6 +47,7 @@ const utilityText = (item) => {
 // Standard platted-lot dimensions by acreage (matches the admin form defaults).
 const ACRE_DIMS = { '0.23': '80 × 125 ft' };
 const dimsText = (item) => {
+  if (item.pieShape) return item.width && item.depth ? `Pie-shaped · approx ${item.width} × ${item.depth} ft` : 'Pie-shaped (irregular)';
   if (item.width && item.depth) return `${item.width} × ${item.depth} ft`;
   return ACRE_DIMS[String(item.acres || '').replace(/ac.*/i, '').trim()] || null;
 };

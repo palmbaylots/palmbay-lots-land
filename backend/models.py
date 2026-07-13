@@ -66,6 +66,7 @@ class PropertyCreate(BaseModel):
     sewer: str = ""
     zoning: str = ""
     together: str = ""
+    pieShape: bool = False
     status: str = "available"
     sold: bool = False
     cashOnly: bool = False
@@ -100,6 +101,7 @@ class Property(BaseModel):
     sewer: str = ""
     zoning: str = ""
     together: str = ""
+    pieShape: bool = False
     status: str = "available"
     sold: bool = False
     cashOnly: bool = False

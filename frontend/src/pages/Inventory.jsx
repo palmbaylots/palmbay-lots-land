@@ -659,7 +659,7 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg p-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {groupedInventory.waterSewer.map((item) => renderLotCard(item, 'blue', 'City Water & Sewer'))}
                 </div>
               </div>
@@ -677,7 +677,7 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg p-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {groupedInventory.waterOnly.map((item) => renderLotCard(item, 'cyan', 'City Water Only'))}
                 </div>
               </div>
@@ -695,7 +695,7 @@ const Inventory = () => {
                 </div>
               </div>
               <div className="bg-white rounded-b-lg shadow-lg p-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {groupedInventory.wellSeptic.map((item) => renderLotCard(item, 'amber', 'Well & Septic'))}
                 </div>
               </div>
