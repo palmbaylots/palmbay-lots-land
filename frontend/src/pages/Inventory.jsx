@@ -5,7 +5,7 @@ import { Button } from '../components/ui/button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ParcelMapModal from '../components/ParcelMapModal';
-import ParcelThumbnail from '../components/ParcelThumbnail';
+import LotCard from '../components/LotCard';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -193,22 +193,20 @@ const Inventory = () => {
     });
   };
 
-  // Heart button, shared by all three inventory tables. A plain render helper
-  // (not a nested component) so it never remounts and won't trip lint.
-  const renderHeart = (item) => {
-    const active = favorites.has(favId(item));
-    return (
-      <button
-        onClick={(e) => { e.stopPropagation(); toggleFavorite(item); }}
-        aria-label={active ? 'Remove from favorites' : 'Save to favorites'}
-        title={active ? 'Saved to favorites' : 'Save to favorites'}
-        data-testid={`fav-${item.inventoryId}`}
-        className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-300 hover:bg-red-50 transition-colors cursor-pointer shrink-0"
-      >
-        <Heart className={`w-4 h-4 ${active ? 'fill-red-600 text-red-600' : 'text-slate-400'}`} />
-      </button>
-    );
-  };
+  // One lot as a photo card. Favorites + handlers come from this page so the
+  // saved (red-heart) state stays in sync across cards, filter, and reloads.
+  const renderLotCard = (item, accent, utilityLabel) => (
+    <LotCard
+      key={item.id || item.inventoryId}
+      item={item}
+      favorited={favorites.has(favId(item))}
+      onToggleFav={toggleFavorite}
+      onSeePrice={openPriceModal}
+      onOpenMap={setMapItem}
+      utilityLabel={utilityLabel}
+      accent={accent}
+    />
+  );
 
   const openPriceModal = (item) => { setCanal(false); setDownPct(25); setPriceItem(item); };
   const closePriceModal = () => setPriceItem(null);
@@ -660,70 +658,9 @@ const Inventory = () => {
                   <p className="text-blue-100 text-sm">{groupedInventory.waterSewer.length} lots — Premium utility access, no well or septic needed</p>
                 </div>
               </div>
-              <div className="bg-white rounded-b-lg shadow-lg">
-                <div>
-                  <table className="w-full">
-                    <thead className="bg-slate-800 text-white">
-                      <tr>
-                        <th className="px-4 py-3 text-center font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800" aria-label="Saved"><Heart className="w-4 h-4 inline" /></th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {groupedInventory.waterSewer.map((item, index) => {
-                        const address = `${item.streetNumber} ${item.streetName}, ${item.city}`.trim();
-                        return (
-                          <tr key={index} className={`hover:bg-blue-50 transition-colors ${item.sold ? 'opacity-50 bg-red-50/40' : ''}`}>
-                            <td className="px-4 py-3 text-center">{renderHeart(item)}</td>
-                            <td className="px-4 py-3 font-bold text-slate-900">{item.inventoryId}</td>
-                            <td className="px-4 py-3 text-slate-700">
-                              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                                Unit {item.unit}
-                              </span>
-                            </td>
-                            <td className="px-4 py-3 text-slate-700">{item.block}</td>
-                            <td className="px-4 py-3 text-slate-700">{item.lot}</td>
-                            <td className="px-4 py-3 text-slate-700">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span>{address}</span>
-                                {item.sold && (
-                                  <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-bold rounded uppercase tracking-wider" data-testid={`sold-badge-${item.inventoryId}`}>SOLD</span>
-                                )}
-                              </div>
-                            </td>
-                            <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
-                            <td className="px-4 py-3">
-                              <div className="flex items-center gap-2">
-                                <ParcelThumbnail item={item} onOpen={setMapItem} />
-                                <button
-                                  onClick={() => openPriceModal(item)}
-                                  data-testid={`see-price-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors cursor-pointer"
-                                >
-                                  <Calculator className="w-4 h-4" />
-                                  See Price
-                                </button>
-                                <button
-                                  onClick={() => setMapItem(item)}
-                                  data-testid={`map-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-700 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
-                                >
-                                  <MapPin className="w-4 h-4" />
-                                  Map
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+              <div className="bg-white rounded-b-lg shadow-lg p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {groupedInventory.waterSewer.map((item) => renderLotCard(item, 'blue', 'City Water & Sewer'))}
                 </div>
               </div>
             </div>
@@ -739,70 +676,9 @@ const Inventory = () => {
                   <p className="text-cyan-100 text-sm">{groupedInventory.waterOnly.length} lots — City water available, septic required</p>
                 </div>
               </div>
-              <div className="bg-white rounded-b-lg shadow-lg">
-                <div>
-                  <table className="w-full">
-                    <thead className="bg-slate-800 text-white">
-                      <tr>
-                        <th className="px-4 py-3 text-center font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800" aria-label="Saved"><Heart className="w-4 h-4 inline" /></th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {groupedInventory.waterOnly.map((item, index) => {
-                        const address = `${item.streetNumber} ${item.streetName}, ${item.city}`.trim();
-                        return (
-                          <tr key={index} className={`hover:bg-cyan-50 transition-colors ${item.sold ? 'opacity-50 bg-red-50/40' : ''}`}>
-                            <td className="px-4 py-3 text-center">{renderHeart(item)}</td>
-                            <td className="px-4 py-3 font-bold text-slate-900">{item.inventoryId}</td>
-                            <td className="px-4 py-3 text-slate-700">
-                              <span className="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium">
-                                Unit {item.unit}
-                              </span>
-                            </td>
-                            <td className="px-4 py-3 text-slate-700">{item.block}</td>
-                            <td className="px-4 py-3 text-slate-700">{item.lot}</td>
-                            <td className="px-4 py-3 text-slate-700">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span>{address}</span>
-                                {item.sold && (
-                                  <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-bold rounded uppercase tracking-wider" data-testid={`sold-badge-${item.inventoryId}`}>SOLD</span>
-                                )}
-                              </div>
-                            </td>
-                            <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
-                            <td className="px-4 py-3">
-                              <div className="flex items-center gap-2">
-                                <ParcelThumbnail item={item} onOpen={setMapItem} />
-                                <button
-                                  onClick={() => openPriceModal(item)}
-                                  data-testid={`see-price-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors cursor-pointer"
-                                >
-                                  <Calculator className="w-4 h-4" />
-                                  See Price
-                                </button>
-                                <button
-                                  onClick={() => setMapItem(item)}
-                                  data-testid={`map-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-700 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
-                                >
-                                  <MapPin className="w-4 h-4" />
-                                  Map
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+              <div className="bg-white rounded-b-lg shadow-lg p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {groupedInventory.waterOnly.map((item) => renderLotCard(item, 'cyan', 'City Water Only'))}
                 </div>
               </div>
             </div>
@@ -818,70 +694,9 @@ const Inventory = () => {
                   <p className="text-amber-100 text-sm">{groupedInventory.wellSeptic.length} lots — Well and septic required, most affordable options</p>
                 </div>
               </div>
-              <div className="bg-white rounded-b-lg shadow-lg">
-                <div>
-                  <table className="w-full">
-                    <thead className="bg-slate-800 text-white">
-                      <tr>
-                        <th className="px-4 py-3 text-center font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800" aria-label="Saved"><Heart className="w-4 h-4 inline" /></th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Lot</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Address</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Size</th>
-                        <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {groupedInventory.wellSeptic.map((item, index) => {
-                        const address = `${item.streetNumber} ${item.streetName}, ${item.city}`.trim();
-                        return (
-                          <tr key={index} className={`hover:bg-amber-50 transition-colors ${item.sold ? 'opacity-50 bg-red-50/40' : ''}`}>
-                            <td className="px-4 py-3 text-center">{renderHeart(item)}</td>
-                            <td className="px-4 py-3 font-bold text-slate-900">{item.inventoryId}</td>
-                            <td className="px-4 py-3 text-slate-700">
-                              <span className="inline-block px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
-                                Unit {item.unit}
-                              </span>
-                            </td>
-                            <td className="px-4 py-3 text-slate-700">{item.block}</td>
-                            <td className="px-4 py-3 text-slate-700">{item.lot}</td>
-                            <td className="px-4 py-3 text-slate-700">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span>{address}</span>
-                                {item.sold && (
-                                  <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-bold rounded uppercase tracking-wider" data-testid={`sold-badge-${item.inventoryId}`}>SOLD</span>
-                                )}
-                              </div>
-                            </td>
-                            <td className="px-4 py-3 text-slate-700 font-medium">{item.acres}</td>
-                            <td className="px-4 py-3">
-                              <div className="flex items-center gap-2">
-                                <ParcelThumbnail item={item} onOpen={setMapItem} />
-                                <button
-                                  onClick={() => openPriceModal(item)}
-                                  data-testid={`see-price-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors cursor-pointer"
-                                >
-                                  <Calculator className="w-4 h-4" />
-                                  See Price
-                                </button>
-                                <button
-                                  onClick={() => setMapItem(item)}
-                                  data-testid={`map-${item.inventoryId}`}
-                                  className="inline-flex items-center gap-1 px-3 py-1 bg-slate-700 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
-                                >
-                                  <MapPin className="w-4 h-4" />
-                                  Map
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+              <div className="bg-white rounded-b-lg shadow-lg p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {groupedInventory.wellSeptic.map((item) => renderLotCard(item, 'amber', 'Well & Septic'))}
                 </div>
               </div>
             </div>
