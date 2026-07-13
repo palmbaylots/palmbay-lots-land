@@ -895,7 +895,14 @@ const Inventory = () => {
       })()}
 
       {/* ===== Satellite Parcel Map Popup ===== */}
-      {mapItem && <ParcelMapModal item={mapItem} onClose={() => setMapItem(null)} />}
+      {mapItem && (
+        <ParcelMapModal
+          item={mapItem}
+          onClose={() => setMapItem(null)}
+          favorited={favorites.has(favId(mapItem))}
+          onToggleFav={toggleFavorite}
+        />
+      )}
 
       {/* ===== Palm Bay Unit Map Lightbox ===== */}
       {showUnitMap && (
