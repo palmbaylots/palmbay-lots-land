@@ -665,6 +665,7 @@ const Inventory = () => {
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
+                        <th className="px-4 py-3 text-center font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800" aria-label="Saved"><Heart className="w-4 h-4 inline" /></th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
@@ -679,6 +680,7 @@ const Inventory = () => {
                         const address = `${item.streetNumber} ${item.streetName}, ${item.city}`.trim();
                         return (
                           <tr key={index} className={`hover:bg-blue-50 transition-colors ${item.sold ? 'opacity-50 bg-red-50/40' : ''}`}>
+                            <td className="px-4 py-3 text-center">{renderHeart(item)}</td>
                             <td className="px-4 py-3 font-bold text-slate-900">{item.inventoryId}</td>
                             <td className="px-4 py-3 text-slate-700">
                               <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
@@ -699,7 +701,6 @@ const Inventory = () => {
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
                                 <ParcelThumbnail item={item} onOpen={setMapItem} />
-                                {renderHeart(item)}
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
@@ -743,6 +744,7 @@ const Inventory = () => {
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
+                        <th className="px-4 py-3 text-center font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800" aria-label="Saved"><Heart className="w-4 h-4 inline" /></th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
@@ -757,6 +759,7 @@ const Inventory = () => {
                         const address = `${item.streetNumber} ${item.streetName}, ${item.city}`.trim();
                         return (
                           <tr key={index} className={`hover:bg-cyan-50 transition-colors ${item.sold ? 'opacity-50 bg-red-50/40' : ''}`}>
+                            <td className="px-4 py-3 text-center">{renderHeart(item)}</td>
                             <td className="px-4 py-3 font-bold text-slate-900">{item.inventoryId}</td>
                             <td className="px-4 py-3 text-slate-700">
                               <span className="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium">
@@ -777,7 +780,6 @@ const Inventory = () => {
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
                                 <ParcelThumbnail item={item} onOpen={setMapItem} />
-                                {renderHeart(item)}
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
@@ -821,6 +823,7 @@ const Inventory = () => {
                   <table className="w-full">
                     <thead className="bg-slate-800 text-white">
                       <tr>
+                        <th className="px-4 py-3 text-center font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800" aria-label="Saved"><Heart className="w-4 h-4 inline" /></th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Inventory ID</th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Unit</th>
                         <th className="px-4 py-3 text-left font-semibold sticky top-[var(--inv-header-top,150px)] z-20 bg-slate-800">Block</th>
@@ -835,6 +838,7 @@ const Inventory = () => {
                         const address = `${item.streetNumber} ${item.streetName}, ${item.city}`.trim();
                         return (
                           <tr key={index} className={`hover:bg-amber-50 transition-colors ${item.sold ? 'opacity-50 bg-red-50/40' : ''}`}>
+                            <td className="px-4 py-3 text-center">{renderHeart(item)}</td>
                             <td className="px-4 py-3 font-bold text-slate-900">{item.inventoryId}</td>
                             <td className="px-4 py-3 text-slate-700">
                               <span className="inline-block px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
@@ -855,7 +859,6 @@ const Inventory = () => {
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
                                 <ParcelThumbnail item={item} onOpen={setMapItem} />
-                                {renderHeart(item)}
                                 <button
                                   onClick={() => openPriceModal(item)}
                                   data-testid={`see-price-${item.inventoryId}`}
