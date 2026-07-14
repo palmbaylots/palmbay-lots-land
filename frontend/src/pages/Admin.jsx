@@ -23,6 +23,12 @@ const unitUtilities = {
   '48': { water: true, sewer: false }, '50': { water: true, sewer: false },
 };
 const getUtilityType = (item) => {
+  const w = String(item.water || '').toLowerCase();
+  const s = String(item.sewer || '').toLowerCase();
+  if (w.includes('city') && s.includes('sewer')) return 'water_sewer';
+  if (w.includes('city')) return 'water_only';
+  if (w.includes('well') || s.includes('septic')) return 'well_septic';
+
   const tags = (item.tags || []).map(t => String(t).toLowerCase());
   if (tags.includes('city-water-sewer') || tags.includes('water-sewer')) return 'water_sewer';
   if (tags.includes('city-water-only') || tags.includes('water-only')) return 'water_only';
