@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { X, Heart, Phone } from 'lucide-react';
+import { lotHeading } from './LotCard';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -111,7 +112,7 @@ const ParcelMapModal = ({ item, onClose, favorited, onToggleFav }) => {
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[92vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-start justify-between px-5 py-3 border-b border-slate-200">
           <div>
-            <h3 className="font-bold text-slate-900 text-lg">{label}</h3>
+            <h3 className="font-bold text-slate-900 text-lg">{lotHeading(item)}</h3>
             <p className="text-xs text-slate-500">{item.city || 'Palm Bay, FL'} · satellite view with parcel boundary</p>
           </div>
           <div className="flex items-center gap-1">
@@ -148,7 +149,8 @@ const ParcelMapModal = ({ item, onClose, favorited, onToggleFav }) => {
           <Row label="Acreage" value={item.acres || '—'} />
           {dims && <Row label="Dimensions" value={dims} />}
           <Row label="Water · Sewer" value={utilityText(item)} />
-          {item.zoning && <Row label="Zoning" value={item.zoning} />}
+          <Row label="Zoning" value={item.zoning || 'Residential'} />
+          <Row label="Future Land Use (FLU)" value={item.flu || 'Residential'} />
           {item.inventoryId && <Row label="Inventory ID" value={item.inventoryId} />}
           {acct && <Row label="Tax Account" value={acct} />}
         </div>

@@ -121,7 +121,8 @@ const Admin = ({ adminPassword = '' }) => {
     depth: '',
     water: '',
     sewer: '',
-    zoning: '',
+    zoning: 'Residential',
+    flu: 'Residential',
     together: '',
     pieShape: false,
     status: 'available',
@@ -309,7 +310,8 @@ const Admin = ({ adminPassword = '' }) => {
       depth: '',
       water: '',
       sewer: '',
-      zoning: '',
+      zoning: 'Residential',
+      flu: 'Residential',
       together: '',
       pieShape: false,
       status: 'available',
@@ -349,7 +351,8 @@ const Admin = ({ adminPassword = '' }) => {
       depth: property.depth || '',
       water: property.water || '',
       sewer: property.sewer || '',
-      zoning: property.zoning || '',
+      zoning: property.zoning || 'Residential',
+      flu: property.flu || 'Residential',
       together: property.together || '',
       pieShape: property.pieShape || false,
       status: property.status || (property.sold ? 'sold' : 'available'),
@@ -1113,7 +1116,39 @@ const Admin = ({ adminPassword = '' }) => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-1">Zoning</label>
-                        <Input name="zoning" value={propertyForm.zoning} onChange={handlePropertyFormChange} placeholder="e.g., RS-2" />
+                        <select
+                          name="zoning"
+                          value={propertyForm.zoning}
+                          onChange={handlePropertyFormChange}
+                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        >
+                          <option>Residential</option>
+                          <option>Commercial</option>
+                          <option>Industrial</option>
+                          <option>Multi-Family</option>
+                          <option>Agricultural</option>
+                          <option>Institutional</option>
+                          <option>Recreation</option>
+                          <option>Utilities</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Future Land Use (FLU)</label>
+                        <select
+                          name="flu"
+                          value={propertyForm.flu}
+                          onChange={handlePropertyFormChange}
+                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        >
+                          <option>Residential</option>
+                          <option>Commercial</option>
+                          <option>Industrial</option>
+                          <option>Neighborhood Commercial</option>
+                          <option>Public/Semi-Public</option>
+                          <option>Recreation &amp; Open Space</option>
+                          <option>Rural Single Family</option>
+                          <option>Utilities</option>
+                        </select>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-1">Together</label>

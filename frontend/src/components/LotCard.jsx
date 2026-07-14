@@ -2,12 +2,32 @@ import React from 'react';
 import { Heart, Calculator, MapPin, Droplets } from 'lucide-react';
 import LotImage from './LotImage';
 
+// Heading: the editable descriptive label (e.g. "Buildable Residential Lot —
+// cleared, surveyed"). Falls back to a sensible default when the lot's title is
+// still just its street address (as the bulk-imported lots are).
+export const lotHeading = (item) => {
+  const addr = [item.streetNumber, item.streetName].filter(Boolean).join(' ').trim();
+  const t = String(item.title || '').trim();
+  if (t && t.toLowerCase() !== addr.toLowerCase()) return t;
+  return /[a-zA-Z]/.test(String(item.block || '').trim()) ? 'Large Tract' : 'Buildable Residential Lot';
+};
+
+export const dimsText = (item) => {
+  if (item.pieShape) return 'Pie-shaped';
+  if (item.width && item.depth) return `${item.width} × ${item.depth} ft`;
+  if (String(item.acres || '').replace(/ac.*/i, '').trim() === '0.23') return '80 × 125 ft';
+  return null;
+};
+
 // One inventory lot as a photo card. Presentational — all state/handlers come
 // from the Inventory page via props so favorites stay in sync everywhere.
 const LotCard = ({ item, favorited, onToggleFav, onSeePrice, onOpenMap, utilityLabel, accent = 'slate' }) => {
-  const address = [item.streetNumber, item.streetName].filter(Boolean).join(' ').trim()
-    || `Unit ${item.unit} Block ${item.block} Lot ${item.lot}`;
+  const address = [item.streetNumber, item.streetName].filter(Boolean).join(' ').trim();
   const status = item.status || (item.sold ? 'sold' : 'available');
+  const heading = lotHeading(item);
+  const zoning = item.zoning || 'Residential';
+  const flu = item.flu || 'Residential';
+  const dims = dimsText(item);
 
   const badge = {
     slate: 'bg-slate-100 text-slate-700',
@@ -39,15 +59,23 @@ const LotCard = ({ item, favorited, onToggleFav, onSeePrice, onOpenMap, utilityL
         )}
       </div>
 
-      <div className="p-4 flex flex-col gap-2 flex-1">
-        <h3 className="font-bold text-slate-900 leading-snug">{address}</h3>
-        <p className="text-sm text-slate-500">{item.city || 'Palm Bay, FL'}</p>
+      <div className="p-4 flex flex-col gap-1.5 flex-1">
+        <h3 className="font-bold text-slate-900 leading-snug">{heading}</h3>
+
+        <div className="flex flex-wrap gap-1.5">
+          <span className="px-2 py-0.5 rounded bg-slate-800 text-white text-[11px] font-semibold">{zoning}</span>
+          <span className="px-2 py-0.5 rounded bg-slate-200 text-slate-700 text-[11px] font-semibold">FLU: {flu}</span>
+        </div>
+
+        {address && <p className="text-sm text-slate-700">{address}</p>}
+        <p className="text-xs text-slate-500">{item.city || 'Palm Bay, FL'}</p>
 
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full font-medium ${badge}`}>
             <Droplets className="w-3 h-3" /> {utilityLabel}
           </span>
           {item.acres && <span className="px-2 py-1 rounded-full bg-slate-100 text-slate-700 font-medium">{item.acres}</span>}
+          {dims && <span className="px-2 py-1 rounded-full bg-slate-100 text-slate-700 font-medium">{dims}</span>}
         </div>
 
         <p className="text-xs text-slate-500">

@@ -80,22 +80,11 @@ async def startup_seed_inventory():
         
         inventory_ok = inv_count > 0 and inv_count <= 600 and total_count <= 700
         
-        if total_count > 700:
-            # Duplicates detected — clean everything and re-seed
-            logger.warning(f"Duplicate records detected: {total_count} total. Cleaning and re-seeding...")
-            # Keep only curated listings (have tags, no inventoryId)
-            await db.properties.delete_many({
-                "$or": [
-                    {"inventoryId": {"$exists": True, "$ne": ""}},
-                    {"tags": {"$size": 0}},
-                    {"tags": {"$exists": False}},
-                ]
-            })
-            inv_count = 0  # Force re-seed
-            inventory_ok = False
-
-        if inventory_ok:
-            logger.info(f"Inventory already seeded: {inv_count} lots, {total_count} total")
+        # Non-destructive: seed from CSV ONLY when inventory is completely empty.
+        # Never delete existing lots, so manual edits (prices, utilities) and any
+        # lots added through the admin always survive a restart or deploy.
+        if inv_count > 0:
+            logger.info(f"Inventory present ({inv_count} lots, {total_count} total) — skipping seed (non-destructive).")
         else:
             csv_path = Path(__file__).parent.parent / "frontend" / "public" / "inventory.csv"
             tax_path = Path(__file__).parent.parent / "frontend" / "public" / "taxMapping.json"
@@ -151,18 +140,8 @@ async def startup_seed_inventory():
                     })
 
                 if records:
-                    # Clean ALL residential properties that look like inventory
-                    await db.properties.delete_many({
-                        "propertyType": "Residential",
-                        "$or": [
-                            {"inventoryId": {"$exists": True, "$ne": ""}},
-                            {"tags": {"$size": 0}},
-                            {"tags": {"$exists": False}},
-                        ]
-                    })
-
                     await db.properties.insert_many(records)
-                    logger.info(f"Auto-seeded {len(records)} inventory lots from CSV")
+                    logger.info(f"Auto-seeded {len(records)} inventory lots from CSV (first run only).")
 
         # Seed curated Crexi listings (21 real listings) — always ensure exact count
         curated_count = await db.properties.count_documents({
@@ -173,16 +152,7 @@ async def startup_seed_inventory():
                 {"inventoryId": None},
             ],
         })
-        if curated_count != len(CREXI_LISTINGS):
-            # Clear existing curated so we don't accumulate duplicates or stale data
-            await db.properties.delete_many({
-                "tags": {"$exists": True, "$ne": []},
-                "$or": [
-                    {"inventoryId": {"$exists": False}},
-                    {"inventoryId": ""},
-                    {"inventoryId": None},
-                ],
-            })
+        if curated_count == 0:
             curated_records = []
             for listing in CREXI_LISTINGS:
                 curated_records.append({

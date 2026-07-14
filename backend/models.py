@@ -65,6 +65,7 @@ class PropertyCreate(BaseModel):
     water: str = ""
     sewer: str = ""
     zoning: str = ""
+    flu: str = ""
     together: str = ""
     pieShape: bool = False
     status: str = "available"
@@ -100,6 +101,7 @@ class Property(BaseModel):
     water: str = ""
     sewer: str = ""
     zoning: str = ""
+    flu: str = ""
     together: str = ""
     pieShape: bool = False
     status: str = "available"
