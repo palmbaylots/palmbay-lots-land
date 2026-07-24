@@ -248,12 +248,16 @@ const OwnerFinancingLand = () => {
                 <h3 className="font-bold text-slate-900 mb-4 text-center">Typical Owner Financing Terms</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                   <div>
-                    <p className="text-3xl font-bold text-amber-600">10-20%</p>
-                    <p className="text-sm text-slate-600">Down Payment</p>
+                    <p className="text-3xl font-bold text-amber-600">25%</p>
+                    <p className="text-sm text-slate-600">Min. Option Money</p>
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-amber-600">10%</p>
-                    <p className="text-sm text-slate-600">Interest Rate (APR)</p>
+                    <p className="text-sm text-slate-600">Interest Rate</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold text-amber-600">12.33%</p>
+                    <p className="text-sm text-slate-600">APR</p>
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-amber-600">10 Years</p>
@@ -285,15 +289,15 @@ const OwnerFinancingLand = () => {
                 <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-xl">
                   <Shield className="w-8 h-8 text-green-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-bold text-slate-900 mb-2">No Credit Check Required</h3>
-                    <p className="text-slate-600">Your credit score doesn't determine your eligibility. Whether you have excellent credit, recovering credit, or limited credit history, we evaluate your ability to make payments — not your FICO score.</p>
+                    <h3 className="font-bold text-slate-900 mb-2">No Bank Qualification</h3>
+                    <p className="text-slate-600">We look at you as a person, not just a FICO score. A low score, past bankruptcy, or divorce won't automatically disqualify you. We may check credit, but qualifying is simple and based on your ability to make the payments.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-xl">
                   <Banknote className="w-8 h-8 text-green-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-bold text-slate-900 mb-2">Low Down Payment</h3>
-                    <p className="text-slate-600">Start with just 10-20% down — far less than the 25-50% banks require for raw land. This makes <strong>Florida land ownership</strong> accessible to more buyers.</p>
+                    <h3 className="font-bold text-slate-900 mb-2">Manageable Option Money</h3>
+                    <p className="text-slate-600">Start with 25% option money and predictable monthly payments — no bank qualification and no long approval process. This makes <strong>Florida land ownership</strong> accessible to more buyers.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-xl">

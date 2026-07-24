@@ -546,8 +546,9 @@ const Home = () => {
           </div>
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             {[
-              { val: '25%', lbl: 'Down payment' },
-              { val: '10%', lbl: 'APR' },
+              { val: '25%', lbl: 'Option money' },
+              { val: '10%', lbl: 'Interest rate' },
+              { val: '12.33%', lbl: 'APR' },
               { val: '10 yr', lbl: 'Term' },
               { val: '35%', lbl: 'Deed transfers' },
               { val: '$0', lbl: 'Prepay penalty' },
@@ -595,25 +596,6 @@ const Home = () => {
                 <p className="text-slate-600 text-sm">{step.body}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Second CTA - Request Parcel & Zoning Report */}
-      <section className="py-12 bg-slate-900">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">Need Zoning & Parcel Details?</h2>
-            <p className="text-gray-300 mb-6">
-              Get a detailed report with zoning classification, permitted uses, setbacks, flood zone status, and comparable sales data for any Palm Bay parcel.
-            </p>
-            <Link 
-              to="/contact" 
-              className="inline-block px-8 py-4 bg-white text-slate-900 rounded-lg font-bold hover:bg-gray-100 transition-colors"
-            >
-              Request Full Parcel & Zoning Report
-            </Link>
-            <p className="text-amber-400 text-sm mt-3">Delivered within 24 hours</p>
           </div>
         </div>
       </section>

@@ -143,8 +143,7 @@ const Properties = () => {
               <li>8. Minimum option money is $5,000 or 25% of the purchase price, whichever is greater.</li>
               <li>9. You receive an option contract with the minimum option money.</li>
               <li>10. We close the transaction and transfer title once 35% of the purchase price has been received.</li>
-              <li>11. If you fail to make timely payments, your contract may be canceled and all your payments will be forfeited.</li>
-              <li>12. Buyer is responsible for property taxes and other ownership obligations as of the day the contract is executed.</li>
+              <li>11. Buyer is responsible for property taxes and other ownership obligations as of the day the contract is executed.</li>
             </ol>
 
             <div id="option-contract" className="mt-8 pt-8 border-t border-slate-200 scroll-mt-24">
@@ -164,9 +163,14 @@ const Properties = () => {
                   charge is financed (12.58% APR if the points are paid at closing) · amortized up to 120 months · no
                   prepayment penalty · no balloon. Subject to credit approval.
                 </p>
+                <p>
+                  <strong>Making your monthly payments on time is essential.</strong> Missed or irregular payments may
+                  cancel the option contract, and the entire remaining balance may become due within 30 days of written
+                  notice.
+                </p>
                 <p className="text-sm text-slate-600">
-                  For complete details — including what happens if payments are not made as agreed — see the full
-                  owner-financing terms above. This information is for reference only and is not an offer of credit.
+                  Full terms are set out in the contract you sign. This information is for reference only and is not an
+                  offer of credit.
                 </p>
               </div>
             </div>

@@ -408,7 +408,7 @@ const BuildableLotsPage = () => {
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     Do you offer owner financing on buildable lots?
                   </h3>
-                  <p className="text-slate-600">Yes! We offer <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">owner financing</Link> with no bank qualification required. Typical terms include 10-20% down payment and up to 10-year amortization. Monthly payments start as low as $200-500 depending on lot price.</p>
+                  <p className="text-slate-600">Yes! We offer <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">owner financing</Link> with no bank qualification required. Typical terms include a minimum 25% option money and up to 10-year amortization at a 10% interest rate (12.33% APR when the 10-point charge is financed). No bank qualification required.</p>
                 </div>
                 
                 <div className="bg-slate-50 p-6 rounded-xl">
