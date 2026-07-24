@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Search, Phone, Mail, MapPin, Filter, X, Calculator, ArrowLeft, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,17 @@ const Properties = () => {
   const [calcUnit, setCalcUnit] = useState('49');
   const [calcCanal, setCalcCanal] = useState(false);
   const [acreInput, setAcreInput] = useState('');
+
+  // Allow deep-linking straight to the financing terms / option-contract explanation
+  useEffect(() => {
+    const wantsFinancing =
+      typeof window !== 'undefined' &&
+      (window.location.search.includes('financing=1') || window.location.hash === '#option-contract');
+    if (wantsFinancing) {
+      setShowFinancing(true);
+      setTimeout(() => document.getElementById('option-contract')?.scrollIntoView({ behavior: 'smooth' }), 150);
+    }
+  }, []);
 
   const units = [
     { unit: '49', price: 4.10, water: false, sewer: false, name: 'Unit 49' },
@@ -122,19 +133,44 @@ const Properties = () => {
             <p className="font-bold mb-4 text-slate-900">ALL OWNER FINANCING IS FUNDED BY DAVID MOALLEM TRUST.</p>
             <p className="text-sm text-slate-600 mb-6 italic bg-amber-50 p-4 rounded-lg">Owner financing subject to credit approval and execution of appropriate legal documents. Terms and conditions subject to change.</p>
             <ol className="space-y-3 ml-4 text-slate-700">
-              <li>1. The interest rate is 10% APR.</li>
-              <li>2. Amortizations up to 10 years.</li>
+              <li>1. The interest rate is 10%. The <strong>Annual Percentage Rate (APR) is 12.33%</strong> when the 10-point charge is financed, or <strong>12.58% APR</strong> if the points are paid at closing. The APR includes the 10-point charge and is higher than the interest rate.</li>
+              <li>2. Amortizations up to 10 years (120 months).</li>
               <li>3. There is no pre-payment penalty and no balloon.</li>
-              <li>4. Calculate monthly payments as $13.22 per $1,000 financed at 10%. Monthly payments can be paid by Zelle, check, or money order to David Moallem.</li>
+              <li>4. Calculate monthly payments as $13.22 per $1,000 financed at a 10% interest rate. Monthly payments can be paid by Zelle, check, or money order to David Moallem.</li>
               <li>5. Buyer needs to fill out a simple application and we need a copy of the buyer ID.</li>
               <li>6. There is a $50 application fee per person. We may pull credit most of the time.</li>
               <li>7. There is a 10 point charge added to financed amount at the time of closing that may be added to the loan amount. For example, if you are owner-financing $20,000, the loan amount will be $22,000.</li>
-              <li>8. Minimum down payment is $5,000 or 25%, whichever is greater.</li>
-              <li>9. You get an option contract with minimum down payment.</li>
+              <li>8. Minimum option money is $5,000 or 25% of the purchase price, whichever is greater.</li>
+              <li>9. You receive an option contract with the minimum option money.</li>
               <li>10. We close the transaction and transfer title once 35% of the purchase price has been received.</li>
               <li>11. If you fail to make timely payments, your contract may be canceled and all your payments will be forfeited.</li>
               <li>12. Buyer is responsible for property taxes and other ownership obligations as of the day the contract is executed.</li>
             </ol>
+
+            <div id="option-contract" className="mt-8 pt-8 border-t border-slate-200 scroll-mt-24">
+              <h3 className="text-xl font-bold mb-3 text-slate-900">What is an option contract?</h3>
+              <div className="space-y-3 text-slate-700">
+                <p>
+                  An option contract is the agreement we use for owner-financed lots. It is a <strong>unilateral
+                  contract</strong> — only the buyer can cancel it. The seller is obligated to sell the agreed property,
+                  at the agreed price, for the term of the contract.
+                </p>
+                <p>
+                  You begin with <strong>25% option money</strong> and make monthly payments toward the purchase. When
+                  your total payments reach <strong>35% of the purchase price, the deed transfers into your name</strong>.
+                </p>
+                <p>
+                  Financing: 10% interest rate · <strong>12.33% Annual Percentage Rate (APR)</strong> when the 10-point
+                  charge is financed (12.58% APR if the points are paid at closing) · amortized up to 120 months · no
+                  prepayment penalty · no balloon. Subject to credit approval.
+                </p>
+                <p className="text-sm text-slate-600">
+                  For complete details — including what happens if payments are not made as agreed — see the full
+                  owner-financing terms above. This information is for reference only and is not an offer of credit.
+                </p>
+              </div>
+            </div>
+
             <div className="mt-8 pt-8 border-t border-slate-200">
               <p className="font-bold mb-2 text-slate-900">Contact: Vahid Rajabian, Broker Associate</p>
               <p className="text-slate-700">M. David Moallem, Inc. | License #BK3454072</p>
@@ -151,10 +187,10 @@ const Properties = () => {
     <>
       <Helmet>
         <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
-        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 25% down, 10% APR, up to 10 years. No bank required. See current pricing by unit and area." />
+        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 25% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required. See current pricing by unit and area." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
         <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />
-        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 25% down, 10% APR, up to 10 years. No bank required." />
+        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 25% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required." />
         <meta property="og:url" content="https://palmbaylots-land.com/price-guide" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
@@ -177,7 +213,7 @@ const Properties = () => {
               name: 'What are the owner financing terms?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Standard owner financing terms are 25% down, 10% APR, amortized over up to 10 years. The deed transfers when 35% of the purchase price has been paid. No banks, no credit checks, no traditional mortgage process.'
+                text: 'Standard owner financing terms are 25% option money and a 10% interest rate (12.33% APR when the 10-point charge is financed, 12.58% APR if points are paid at closing), amortized over up to 10 years. The deed transfers when 35% of the purchase price has been paid. No banks, no credit checks, no traditional mortgage process.'
               }
             },
             {
@@ -284,10 +320,18 @@ const Properties = () => {
               <p className="text-sm text-slate-700 mt-3">Use the <span className="font-semibold">See Price</span> button on any lot in the <Link to="/inventory" className="text-amber-700 underline font-semibold">inventory</Link> to calculate the exact price and monthly payment instantly.</p>
 
               <h3 className="text-lg font-bold text-slate-900 mt-8 mb-2">Owner Financing</h3>
-              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at 10% interest, minimum 25% down. No pre-payment penalty, no balloon.</p>
-              <button onClick={() => setShowFinancing(true)} className="mt-4 inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
-                <Calculator className="w-4 h-4" /> See Full Financing Terms
-              </button>
+              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% interest rate — 12.33% Annual Percentage Rate (APR) when the 10-point charge is financed, or 12.58% APR if points are paid at closing — minimum 25% option money. No pre-payment penalty, no balloon.</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <button onClick={() => setShowFinancing(true)} className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
+                  <Calculator className="w-4 h-4" /> See Full Financing Terms
+                </button>
+                <button
+                  onClick={() => { setShowFinancing(true); setTimeout(() => document.getElementById('option-contract')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-sm"
+                >
+                  What is an option contract?
+                </button>
+              </div>
 
               <div className="mt-8 text-sm text-slate-700 leading-relaxed space-y-2">
                 <p>Exceptional and oversized lots are priced individually.</p>

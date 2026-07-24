@@ -341,7 +341,7 @@ const OwnerFinancingLand = () => {
                 <div className="text-center mb-8">
                   <p className="text-slate-600 mb-2">For a $45,000 lot with 15% down ($6,750)</p>
                   <p className="text-5xl font-bold text-amber-600">~$350/month</p>
-                  <p className="text-slate-500 mt-2">for 120 months (10 years) at 10% APR</p>
+                  <p className="text-slate-500 mt-2">for 120 months (10 years) at a 10% interest rate — 12.33% Annual Percentage Rate (APR)</p>
                 </div>
                 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">

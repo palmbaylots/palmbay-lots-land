@@ -829,11 +829,12 @@ const Inventory = () => {
                     <div className="space-y-3">
                       <div className="border border-slate-200 rounded-xl p-4">
                         <div className="flex items-baseline justify-between">
-                          <span className="font-bold text-slate-900">25% Down</span>
-                          <span className="text-slate-900 font-semibold">{usd(pricing.down25)} down</span>
+                          <span className="font-bold text-slate-900">25% Option Money</span>
+                          <span className="text-slate-900 font-semibold">{usd(pricing.down25)} option money</span>
                         </div>
                         <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin25)} — principal only</p>
                         <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly25)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                        <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
                         <p className="text-xs text-slate-500 mt-1">Option Contract — deed transfers once your payments reach 35% of the price.</p>
                       </div>
                       <div className="border border-slate-200 rounded-xl p-4">
@@ -843,6 +844,7 @@ const Inventory = () => {
                         </div>
                         <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin35)} — principal only</p>
                         <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly35)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                        <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
                         <p className="text-xs text-slate-500 mt-1">Deed Transfer at closing.</p>
                       </div>
                     </div>
@@ -869,7 +871,7 @@ const Inventory = () => {
                           </div>
                           <div className="grid grid-cols-3 gap-2 text-center">
                             <div>
-                              <p className="text-[11px] text-slate-400">Down</p>
+                              <p className="text-[11px] text-slate-400">Option Money</p>
                               <p className="text-sm font-bold">{usd(down)}</p>
                             </div>
                             <div>
@@ -881,11 +883,28 @@ const Inventory = () => {
                               <p className="text-sm font-bold text-amber-400">{financed <= 0 ? '$0' : usd(monthly) + '/mo'}</p>
                             </div>
                           </div>
+                          <p className="text-xs font-bold text-white mt-3 text-center">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
                         </div>
                       );
                     })()}
-                    <Link to="/price-guide" onClick={closePriceModal} className="block text-center text-xs text-amber-700 underline mt-3">
-                      See full owner-financing terms &amp; disclosures
+
+                    {/* Required financing disclosure */}
+                    <p className="text-[11px] leading-snug text-slate-500 mt-3">
+                      Financing example assumes the 10-point charge is financed (12.33% APR). If the points are paid at
+                      closing, the APR is 12.58%. Amortized up to 120 months at a 10% interest rate. No prepayment
+                      penalty, no balloon. Subject to credit approval and execution of appropriate legal documents.
+                      This is an example only and is not an offer of credit. Terms subject to change.
+                    </p>
+
+                    <Link
+                      to="/price-guide?financing=1#option-contract"
+                      onClick={closePriceModal}
+                      className="mt-3 block text-center px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-sm"
+                    >
+                      What is an option contract?
+                    </Link>
+                    <Link to="/price-guide?financing=1" onClick={closePriceModal} className="block text-center text-xs text-amber-700 underline mt-2">
+                      See Financing Terms
                     </Link>
                     </>)}
 

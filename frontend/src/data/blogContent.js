@@ -337,7 +337,7 @@ export const blogContent = {
       { q: 'How long should I hold before selling?', a: 'It depends on your strategy. Builders typically hold 6-12 months. Long-term investors typically hold 3-5+ years.' },
       { q: 'Can out-of-state investors buy land in Palm Bay?', a: 'Absolutely. Many of my clients live outside Florida. We handle everything remotely — contracts, closings, and guidance throughout the process.' },
       { q: 'Do you work with large investors or hedge funds?', a: 'Yes. We have experience structuring bulk lot acquisitions — packages of 10 to 300+ lots — for institutional buyers and hedge funds. Contact us directly to discuss your acquisition criteria.' },
-      { q: 'Is owner financing available?', a: 'Yes, on most of our residential lots. 10% APR, up to 10 years, no prepayment penalty, no balloon payment. Simple application process.' }
+      { q: 'Is owner financing available?', a: 'Yes, on most of our residential lots. 10% interest rate (12.33% APR when the 10-point charge is financed), up to 10 years, no prepayment penalty, no balloon payment. Simple application process.' }
     ]
   },
   
@@ -390,7 +390,7 @@ export const blogContent = {
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Purchase Price</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$41,000</td></tr>
         <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Down Payment (25% min)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$10,250</td></tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Amount Financed</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$30,750</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Interest Rate</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">10% APR</td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Interest Rate</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">10% interest rate (12.33% APR)</td></tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Term</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">120 months (10 years)</td></tr>
         <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Monthly Payment</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$406.52</td></tr>
         <tr style="background: #fef3c7;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Deed Transfer Point</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">After 35% paid ($14,350)</td></tr>

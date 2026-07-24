@@ -500,7 +500,7 @@ const QuarterAcreLots = () => {
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     Do you offer owner financing on quarter acre lots?
                   </h3>
-                  <p className="text-slate-600">Yes! All our <strong>quarter acre lots</strong> qualify for <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">owner financing</Link>. Typical terms include 10-20% down payment, 10% APR, and up to 10-year amortization. No bank qualification required.</p>
+                  <p className="text-slate-600">Yes! All our <strong>quarter acre lots</strong> qualify for <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">owner financing</Link>. Typical terms include a minimum 25% option money, a 10% interest rate (12.33% APR when the 10-point charge is financed), and up to 10-year amortization. No bank qualification required.</p>
                 </div>
                 
                 <div className="bg-white p-6 rounded-xl shadow-sm">
