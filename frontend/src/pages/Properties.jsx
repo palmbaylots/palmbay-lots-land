@@ -116,32 +116,50 @@ const Properties = () => {
   if (showFinancing) {
     return (
       <div className="min-h-screen bg-slate-50">
-        <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 shadow-lg">
+        <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 shadow-lg sticky top-0 z-20">
           <div className="container mx-auto">
             <button onClick={() => setShowFinancing(false)} className="flex items-center gap-2 text-amber-400 hover:text-amber-300 mb-3 transition-colors">
-              <ArrowLeft className="w-5 h-5" />Back to Properties
+              <ArrowLeft className="w-5 h-5" />Back to Price Guide
             </button>
-            <h1 className="text-3xl font-bold text-amber-400">Owner Financing Terms - Residential Lots</h1>
-            <p className="text-sm text-gray-300 mt-2">Financing available for residential lots only (unless home is specified with owner financing)</p>
+            <div className="mb-4">
+              <h1 className="text-3xl font-bold text-amber-400">Owner Financing Terms</h1>
+              <p className="text-sm text-gray-300">Financing available for residential lots only (unless a home is specified with owner financing)</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/inventory" className="flex-1 py-3 px-4 rounded-lg font-medium bg-amber-600 text-white hover:bg-amber-700 text-center">
+                Browse All Lots — See Price on Any Lot
+              </Link>
+              <button onClick={() => setShowFinancing(false)} className="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors text-center">
+                Price Guide
+              </button>
+            </div>
           </div>
         </div>
         <div className="container mx-auto px-4 py-8">
-          <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-[#1a3a5c] text-white rounded-t-lg px-6 py-5 flex items-center gap-4 justify-center text-center sm:text-left">
+              <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-16 w-16 shrink-0" />
+              <div>
+                <h2 className="text-2xl font-bold text-amber-400">Owner Financing — Terms &amp; Policies</h2>
+                <p className="text-sm text-gray-200 mt-1">Vahid Rajabian, Broker Associate · M. David Moallem, Inc. · License #BK3454072</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-b-lg shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-4 text-slate-900">OWNER-FINANCING INFORMATION & GUIDELINES</h2>
             <h3 className="text-xl font-semibold mb-2 text-slate-800">Moallem Properties</h3>
             <h3 className="text-xl font-semibold mb-4 text-slate-800">PALM BAY LAND & LOTS</h3>
             <p className="font-bold mb-4 text-slate-900">ALL OWNER FINANCING IS FUNDED BY DAVID MOALLEM TRUST.</p>
             <p className="text-sm text-slate-600 mb-6 italic bg-amber-50 p-4 rounded-lg">Owner financing subject to credit approval and execution of appropriate legal documents. Terms and conditions subject to change.</p>
             <ol className="space-y-3 ml-4 text-slate-700">
-              <li>1. The interest rate is 10%. The <strong>Annual Percentage Rate (APR) is 12.33%</strong> when the 10-point charge is financed, or <strong>12.58% APR</strong> if the points are paid at closing. The APR includes the 10-point charge and is higher than the interest rate.</li>
-              <li>2. Amortizations up to 10 years (120 months).</li>
-              <li>3. There is no pre-payment penalty and no balloon.</li>
-              <li>4. Calculate monthly payments as $13.22 per $1,000 financed at a 10% interest rate. Monthly payments can be paid by Zelle, check, or money order to David Moallem.</li>
+              <li>1. Amortizations up to 10 years (120 months).</li>
+              <li>2. There is no pre-payment penalty and no balloon.</li>
+              <li>3. Calculate monthly payments as $13.22 per $1,000 financed at a 10% interest rate. Monthly payments can be paid by Zelle, check, or money order to David Moallem.</li>
+              <li>4. The interest rate is 10%, 12.58% APR, or 12.33% APR if the points are financed.</li>
               <li>5. Buyer needs to fill out a simple application and we need a copy of the buyer ID.</li>
               <li>6. There is a $50 application fee per person. We may pull credit most of the time.</li>
               <li>7. There is a 10 point charge added to financed amount at the time of closing that may be added to the loan amount. For example, if you are owner-financing $20,000, the loan amount will be $22,000.</li>
               <li>8. Minimum option money is $5,000 or 25% of the purchase price, whichever is greater.</li>
-              <li>9. You receive an option contract with the minimum option money.</li>
+              <li>9. With 25% down, you receive an option contract.</li>
               <li>10. We close the transaction and transfer title once 35% of the purchase price has been received.</li>
               <li>11. Buyer is responsible for property taxes and other ownership obligations as of the day the contract is executed.</li>
             </ol>
@@ -150,18 +168,14 @@ const Properties = () => {
               <h3 className="text-xl font-bold mb-3 text-slate-900">What is an option contract?</h3>
               <div className="space-y-3 text-slate-700">
                 <p>
-                  An option contract is the agreement we use for owner-financed lots. It is a <strong>unilateral
-                  contract</strong> — only the buyer can cancel it. The seller is obligated to sell the agreed property,
-                  at the agreed price, for the term of the contract.
+                  An option contract is the agreement we use for owner-financed lots when a purchaser would like to use a
+                  lower amount up front as their down payment. It is a <strong>unilateral contract</strong> — only the
+                  buyer can cancel it. The seller is obligated to sell the agreed property, at the agreed price, for the
+                  term of the contract.
                 </p>
                 <p>
                   You begin with <strong>25% option money</strong> and make monthly payments toward the purchase. When
                   your total payments reach <strong>35% of the purchase price, the deed transfers into your name</strong>.
-                </p>
-                <p>
-                  Financing: 10% interest rate · <strong>12.33% Annual Percentage Rate (APR)</strong> when the 10-point
-                  charge is financed (12.58% APR if the points are paid at closing) · amortized up to 120 months · no
-                  prepayment penalty · no balloon. Subject to credit approval.
                 </p>
                 <p>
                   <strong>Making your monthly payments on time is essential.</strong> Missed or irregular payments may
@@ -180,6 +194,7 @@ const Properties = () => {
               <p className="text-slate-700">M. David Moallem, Inc. | License #BK3454072</p>
               <p className="text-slate-700">1663 Georgia St NE, Suite 700, Palm Bay, FL 32907</p>
               <p className="text-slate-700">Phone: <a href="tel:3213337230" className="text-amber-600 hover:underline">321-333-7230</a> | Email: <a href="mailto:vahid@palmbayland.com" className="text-amber-600 hover:underline">vahid@palmbayland.com</a></p>
+            </div>
             </div>
           </div>
         </div>
