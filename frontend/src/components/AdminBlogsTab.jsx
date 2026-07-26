@@ -361,7 +361,7 @@ const AdminBlogsTab = ({ adminPassword }) => {
                     {uploadingImage ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Uploading…</> : <><Upload className="w-4 h-4 mr-2" /> Upload</>}
                   </Button>
                 </div>
-                {form.image && <img src={form.image} alt="" className="mt-2 w-40 h-28 object-cover rounded border" />}
+                {form.image && <img src={form.image} alt="" className="mt-2 w-40 h-28 object-cover rounded border" loading="lazy" />}
               </div>
 
               <div>

@@ -10,6 +10,7 @@ import Inventory from "./pages/Inventory";
 import Properties from "./pages/Properties";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Privacy from "./pages/Privacy";
 import PropertyAdminDemo from "./pages/PropertyAdminDemo";
 import CrexiListings from "./pages/CrexiListings";
 import FlagshipListing from "./pages/FlagshipListing";
@@ -79,6 +80,7 @@ function App() {
                   <Route path="/price-guide" element={<Properties />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/privacy" element={<Privacy />} />
                   <Route path="/listings" element={<CrexiListings />} />
                   <Route path="/listing/328-malabar-rd" element={<FlagshipListing />} />
                   <Route path="/listing/scattered-lots" element={<FlagshipScatteredLots />} />

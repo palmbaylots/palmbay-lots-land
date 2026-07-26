@@ -10,7 +10,7 @@ import axios from 'axios';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const LOT_IMAGE = `${BACKEND_URL}/api/images/e5db63c2-54e4-4bfe-90ee-dd27d5096d23`;
+const LOT_IMAGE = `/images/sell-land-hero.jpg`;
 const WHOLESALER_IMAGE = `${BACKEND_URL}/api/images/e36f5fb6-4ec2-453b-96f1-d82aaff171b6`;
 
 const SellLand = () => {
@@ -158,7 +158,7 @@ const SellLand = () => {
               <div className="order-1 lg:order-2">
                 <img
                   src={LOT_IMAGE}
-                  alt="Vacant residential lot for sale in a Palm Bay, FL neighborhood with new-construction homes on both sides"
+                  alt="Real estate advisor meeting with an older couple to discuss selling their Palm Bay, FL land"
                   className="w-full h-auto rounded-2xl shadow-xl border border-slate-200"
                   loading="lazy"
                   decoding="async"
@@ -246,18 +246,6 @@ const SellLand = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-              <div className="mt-10 max-w-3xl mx-auto">
-                <img
-                  src="https://images.pexels.com/photos/8441871/pexels-photo-8441871.jpeg?auto=compress&w=900"
-                  alt="Vahid guiding a land owner through the selling process"
-                  className="w-full h-auto rounded-2xl shadow-lg"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <p className="text-sm text-slate-500 mt-3 text-center italic">
-                  I walk you through every step — honest guidance from someone local, not an out-of-town wholesaler.
-                </p>
               </div>
             </div>
           </div>
