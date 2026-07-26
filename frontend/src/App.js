@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import Header from "./components/Header";
@@ -10,7 +10,6 @@ import Inventory from "./pages/Inventory";
 import Properties from "./pages/Properties";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Privacy from "./pages/Privacy";
 import PropertyAdminDemo from "./pages/PropertyAdminDemo";
 import CrexiListings from "./pages/CrexiListings";
 import FlagshipListing from "./pages/FlagshipListing";
@@ -80,7 +79,7 @@ function App() {
                   <Route path="/price-guide" element={<Properties />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
                   <Route path="/listings" element={<CrexiListings />} />
                   <Route path="/listing/328-malabar-rd" element={<FlagshipListing />} />
                   <Route path="/listing/scattered-lots" element={<FlagshipScatteredLots />} />

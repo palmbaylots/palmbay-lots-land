@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold text-amber-400 mb-2">Privacy Policy</h1>
-          <p className="text-gray-300">Last Updated: December 2024</p>
+          <p className="text-gray-300">Last Updated: July 16, 2026</p>
         </div>
       </section>
 
@@ -78,9 +78,10 @@ const PrivacyPolicy = () => {
                 <li>Opt out of SMS messages by replying STOP</li>
               </ul>
 
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Cookies</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Cookies &amp; Analytics</h2>
               <p className="text-slate-700 mb-6">
-                Our website may use cookies and similar tracking technologies to enhance your browsing experience. You can set your browser to refuse cookies, but some features of the website may not function properly.
+                Our website uses cookies and similar tracking technologies, including <strong>Google Analytics</strong>, to understand how visitors use our site and to improve your experience. Google Analytics collects anonymous usage data such as pages visited, browser type, and approximate location. You can set your browser to refuse cookies, or opt out of Google Analytics at{' '}
+                <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">https://tools.google.com/dlpage/gaoptout</a>. Some features of the website may not function properly without cookies.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Third-Party Links</h2>
