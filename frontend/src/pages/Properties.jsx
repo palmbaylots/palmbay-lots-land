@@ -15,15 +15,42 @@ const Properties = () => {
   const [calcCanal, setCalcCanal] = useState(false);
   const [acreInput, setAcreInput] = useState('');
 
-  // Allow deep-linking straight to the financing terms / option-contract explanation
-  useEffect(() => {
-    const wantsFinancing =
-      typeof window !== 'undefined' &&
-      (window.location.search.includes('financing=1') || window.location.hash === '#option-contract');
-    if (wantsFinancing) {
-      setShowFinancing(true);
-      setTimeout(() => document.getElementById('option-contract')?.scrollIntoView({ behavior: 'smooth' }), 150);
+  // Open the financing terms view. toOptionContract=true jumps to the middle
+  // "What is an option contract?" section; otherwise it opens at the top.
+  const openFinancing = (toOptionContract = false) => {
+    setShowFinancing(true);
+    const url = toOptionContract ? '/price-guide?financing=1#option-contract' : '/price-guide?financing=1';
+    if (typeof window !== 'undefined') window.history.pushState({ financing: true }, '', url);
+    setTimeout(() => {
+      if (toOptionContract) {
+        document.getElementById('option-contract')?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0 });
+      }
+    }, 60);
+  };
+
+  // Close the financing view and return to the Price Guide (not the home page).
+  const closeFinancing = () => {
+    setShowFinancing(false);
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', '/price-guide');
+      window.scrollTo({ top: 0 });
     }
+  };
+
+  // Deep-link arrival + browser back/forward handling for the financing view.
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const onFinancing = window.location.search.includes('financing=1');
+      setShowFinancing(onFinancing);
+      if (onFinancing && window.location.hash === '#option-contract') {
+        setTimeout(() => document.getElementById('option-contract')?.scrollIntoView({ behavior: 'smooth' }), 150);
+      }
+    };
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
+    return () => window.removeEventListener('popstate', syncFromUrl);
   }, []);
 
   const units = [
@@ -118,7 +145,7 @@ const Properties = () => {
       <div className="min-h-screen bg-slate-50">
         <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 shadow-lg sticky top-0 z-20">
           <div className="container mx-auto">
-            <button onClick={() => setShowFinancing(false)} className="flex items-center gap-2 text-amber-400 hover:text-amber-300 mb-3 transition-colors">
+            <button onClick={closeFinancing} className="flex items-center gap-2 text-amber-400 hover:text-amber-300 mb-3 transition-colors">
               <ArrowLeft className="w-5 h-5" />Back to Price Guide
             </button>
             <div className="mb-4">
@@ -129,7 +156,7 @@ const Properties = () => {
               <Link to="/inventory" className="flex-1 py-3 px-4 rounded-lg font-medium bg-amber-600 text-white hover:bg-amber-700 text-center">
                 Browse All Lots — See Price on Any Lot
               </Link>
-              <button onClick={() => setShowFinancing(false)} className="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors text-center">
+              <button onClick={closeFinancing} className="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors text-center">
                 Price Guide
               </button>
             </div>
@@ -160,7 +187,7 @@ const Properties = () => {
               <li>7. There is a 10 point charge added to financed amount at the time of closing that may be added to the loan amount. For example, if you are owner-financing $20,000, the loan amount will be $22,000.</li>
               <li>8. Minimum option money is $5,000 or 25% of the purchase price, whichever is greater.</li>
               <li>9. With 25% down, you receive an option contract.</li>
-              <li>10. We close the transaction and transfer title once 35% of the purchase price has been received.</li>
+              <li>10. With 35% down, you receive the deed at closing. Otherwise, we transfer title to you once your total payments reach 35% of the purchase price.</li>
               <li>11. Buyer is responsible for property taxes and other ownership obligations as of the day the contract is executed.</li>
             </ol>
 
@@ -176,6 +203,7 @@ const Properties = () => {
                 <p>
                   You begin with <strong>25% option money</strong> and make monthly payments toward the purchase. When
                   your total payments reach <strong>35% of the purchase price, the deed transfers into your name</strong>.
+                  If you prefer, you can put <strong>35% down</strong> and receive the deed at closing.
                 </p>
                 <p>
                   <strong>Making your monthly payments on time is essential.</strong> Missed or irregular payments may
@@ -268,7 +296,7 @@ const Properties = () => {
             <Link to="/inventory" className="flex-1 py-3 px-4 rounded-lg font-medium transition-colors bg-amber-600 text-white hover:bg-amber-700 text-center">
               Browse All Lots — See Price on Any Lot
             </Link>
-            <button onClick={() => setShowFinancing(true)} className="flex-1 py-3 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
+            <button onClick={() => openFinancing(false)} className="flex-1 py-3 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
               <Calculator className="w-5 h-5" />
               Owner Financing Terms
             </button>
@@ -341,11 +369,11 @@ const Properties = () => {
               <h3 className="text-lg font-bold text-slate-900 mt-8 mb-2">Owner Financing</h3>
               <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% interest rate — 12.33% Annual Percentage Rate (APR) when the 10-point charge is financed, or 12.58% APR if points are paid at closing — minimum 25% option money. No pre-payment penalty, no balloon.</p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <button onClick={() => setShowFinancing(true)} className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
+                <button onClick={() => openFinancing(false)} className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
                   <Calculator className="w-4 h-4" /> See Full Financing Terms
                 </button>
                 <button
-                  onClick={() => { setShowFinancing(true); setTimeout(() => document.getElementById('option-contract')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => openFinancing(true)}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-sm"
                 >
                   What is an option contract?

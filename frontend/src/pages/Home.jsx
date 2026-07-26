@@ -191,6 +191,7 @@ const Home = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const INTEREST_LABELS = {
+    sell: 'I want to sell my lot, land, or home',
     lot: 'Looking for a lot',
     'acre-build': 'Looking for a 1+ acre lot to build a home',
     'buy-home': 'Looking to buy a home',
@@ -470,6 +471,7 @@ const Home = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
                   >
                     <option value="">What are you looking for?</option>
+                    <option value="sell">I want to sell my lot, land, or home</option>
                     <option value="lot">Looking for a lot</option>
                     <option value="acre-build">Looking for a 1+ acre lot to build a home</option>
                     <option value="buy-home">Looking to buy a home</option>
