@@ -21,6 +21,15 @@ Each folder teaches Claude one job. Invoke by asking naturally, or `/`-name:
 | `palmbay-social-content` | "Give me 5 social posts about this month's market" |
 | `palmbay-lead-followup` | "Draft a follow-up for this lead who asked about financing" |
 
+### Video skills (official Remotion bundle)
+Installed from `remotion-dev/skills` (11 skills: `remotion-create`, `remotion-markup`,
+`remotion-best-practices`, `remotion-render`, `remotion-captions`, `remotion-maps`,
+`remotion-saas`, `mediabunny`, etc.). These let Claude generate **videos in code** —
+listing walk-throughs, "owner financing in 30s" explainers, market-update reels, animated
+Palm Bay maps — then render them to MP4. Pair with `palmbay-social-content` for captions.
+Update anytime with `npx skills update` (or the `remotion-upgrade` skill). `skills-lock.json`
+pins versions so a fresh clone restores them via `npx skills experimental_install`.
+
 ## 3. Subagents (a team, not one assistant) — `.claude/agents/`
 - `opportunity-scout` — runs web research end-to-end and writes a dated, sourced brief to
   `content/market-briefs/`. Spawn several in parallel for fan-out research.
