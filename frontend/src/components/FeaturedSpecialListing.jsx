@@ -1,193 +1,175 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Phone, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import LotImage from './LotImage';
-import ParcelMapModal from './ParcelMapModal';
-import { lotHeading, dimsText } from './LotCard';
+import { Phone, X } from 'lucide-react';
 
 /**
- * Featured "Cash Special" — data-driven.
- * Reads the lot marked `featured` (and ideally `cashOnly`) in the admin, and
- * renders it with the same red-outline satellite (LotImage / ParcelMapModal)
- * and county map links used across the inventory. CASH ONLY — no financing.
- * Edit it in /admin exactly like any inventory lot (size, price, address).
+ * Featured Special Listing — 1039 Hooper Ave NE Palm Bay FL 32905
+ * Static, curated card. "See Price" opens a property-card popup with the
+ * cash price + owner-financing chart (25% option / 35% down) + detail links
+ * + the two maps. Brand: navy #1a3a5c · orange #d97706 · light #7eb8e8.
  */
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const PRICE = 79900;
+const usd = (n) => `$${n.toLocaleString('en-US')}`;
+const monthlyPayment = (financed) => Math.round((financed * 13.22) / 1000); // $13.22 / $1,000 · 10% · 120 mo
 
-// Shown only if nothing is marked featured yet, so the homepage never goes blank.
-const FALLBACK = {
-  inventoryId: '1039-hooper',
-  streetNumber: '1039',
-  streetName: 'Hooper Ave NE',
-  city: 'Palm Bay, FL 32905',
-  unit: '8',
-  block: '',
-  lot: '',
-  acres: '0.23 ac',
-  width: 80,
-  depth: 125,
-  water: 'City Water',
-  sewer: 'City Sewer',
-  zoning: 'RS-1',
-  flu: 'Residential',
-  price: 79900,
-  cashOnly: true,
-  featured: true,
-  taxAccount: '2836768',
-  title: 'Build-Ready Lot in Established NE Palm Bay',
-};
+const down25 = Math.round(PRICE * 0.25), fin25 = PRICE - down25, mo25 = monthlyPayment(fin25);
+const down35 = Math.round(PRICE * 0.35), fin35 = PRICE - down35, mo35 = monthlyPayment(fin35);
 
-const usd = (n) => (typeof n === 'number' && n > 0 ? `$${n.toLocaleString('en-US')}` : 'Contact for Price');
+const AERIAL = '/images/1039-hooper-aerial.jpg';
+const PARCEL = '/images/1039-hooper-parcel.jpg';
+const BCPAO_MAP = 'https://www.bcpao.us/map/?r=2836768';
+const BCPAO_DETAIL = 'https://www.bcpao.us/PropertySearch/#/account/2836768';
+const GMAPS = 'https://www.google.com/maps/search/?api=1&query=1039+Hooper+Ave+NE,+Palm+Bay,+FL+32905';
 
-const utilityText = (item) => {
-  if (item.water || item.sewer) return [item.water, item.sewer].filter(Boolean).join(' · ');
-  return 'See details';
+const FEATURES = [
+  '💧 City Water', '🚿 City Sewer', '✅ Cleared & Filled', '📐 Surveyed',
+  '🏠 House Plans', '⚡ Underground Utilities', '🚶 Sidewalks', '📍 Near Melbourne',
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateListing',
+  name: 'Build-Ready Residential Lot — 1039 Hooper Ave NE Palm Bay FL 32905',
+  url: 'https://palmbaylots-land.com',
+  telephone: '321-333-7230',
+  address: { '@type': 'PostalAddress', streetAddress: '1039 Hooper Ave NE', addressLocality: 'Palm Bay', addressRegion: 'FL', postalCode: '32905', addressCountry: 'US' },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', price: PRICE },
 };
 
 const FeaturedSpecialListing = () => {
-  const [item, setItem] = useState(FALLBACK);
-  const [showMap, setShowMap] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const { data } = await axios.get(`${API}/properties/featured`);
-        if (cancelled || !Array.isArray(data) || !data.length) return;
-        const pick = data.find((p) => p.cashOnly) || data[0];
-        if (pick) setItem(pick);
-      } catch (e) {
-        // keep the fallback lot
-      }
-    })();
-    return () => { cancelled = true; };
-  }, []);
-
-  const heading = lotHeading(item);
-  const address = [item.streetNumber, item.streetName].filter(Boolean).join(' ').trim();
-  const dims = dimsText(item);
-  const acres = item.acres && String(item.acres).trim();
-  const hasWS = Boolean(item.water && item.sewer);
-
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'RealEstateListing',
-    name: `${heading} — ${address || 'Palm Bay, FL'}`,
-    url: 'https://palmbaylots-land.com',
-    telephone: '321-333-7230',
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'USD',
-      ...(typeof item.price === 'number' && item.price > 0 ? { price: item.price } : {}),
-    },
-  };
+  const [open, setOpen] = useState(false);
 
   return (
-    <section className="py-16 px-4" style={{ backgroundColor: '#0f1e2e' }} data-testid="featured-special-listing" aria-labelledby="featured-special-heading">
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
+    <section className="py-12 px-4" style={{ backgroundColor: '#0f1e2e' }} data-testid="featured-special-listing" aria-labelledby="featured-special-heading">
+      <Helmet><script type="application/ld+json">{JSON.stringify(schema)}</script></Helmet>
 
-      <div className="container mx-auto max-w-5xl">
-        <div className="flex items-center justify-center gap-4 mb-8" id="featured-special-heading">
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex items-center justify-center gap-4 mb-6" id="featured-special-heading">
           <span className="hidden sm:block h-px w-16 md:w-24" style={{ backgroundColor: '#d97706' }} />
-          <p className="text-sm md:text-base font-bold tracking-[0.2em]" style={{ color: '#d97706' }}>
-            ★ FEATURED CASH SPECIAL
-          </p>
+          <p className="text-sm font-bold tracking-[0.2em]" style={{ color: '#d97706' }}>★ FEATURED SPECIAL LISTING</p>
           <span className="hidden sm:block h-px w-16 md:w-24" style={{ backgroundColor: '#d97706' }} />
         </div>
 
-        <article className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ backgroundColor: '#1a3a5c', border: '1px solid rgba(217,119,6,0.3)' }}>
-          <div className="absolute top-0 left-0 z-10 px-5 py-2 text-sm font-bold tracking-wider" style={{ backgroundColor: '#d97706', color: '#1a3a5c', clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0 100%)' }}>
-            ★ Cash Special
+        {/* Wide, short card: content left, photos right */}
+        <article className="relative rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-2" style={{ backgroundColor: '#1a3a5c', border: '1px solid rgba(217,119,6,0.3)' }}>
+          <div className="absolute top-0 left-0 z-10 px-4 py-1.5 text-xs font-bold tracking-wider" style={{ backgroundColor: '#d97706', color: '#1a3a5c', clipPath: 'polygon(0 0, 100% 0, 90% 100%, 0 100%)' }}>★ Special Buy</div>
+          <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold" style={{ backgroundColor: 'rgba(15,30,46,0.9)', border: '1px solid #22c55e', color: '#fff' }}>
+            <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" /><span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" /></span>
+            RARE · Water &amp; Sewer
           </div>
 
-          {hasWS && (
-            <div className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold" style={{ backgroundColor: 'rgba(15, 30, 46, 0.9)', border: '1px solid #22c55e', color: '#fff' }}>
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-              </span>
-              RARE · City Water &amp; Sewer
-            </div>
-          )}
-
-          {/* Content */}
-          <div className="px-6 sm:px-10 pt-16 md:pt-14 pb-6 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-3">{heading}</h2>
-
-            {address && (
-              <p className="text-xl md:text-2xl font-semibold mb-4 flex items-center justify-center gap-2" style={{ color: '#7eb8e8' }}>
-                <MapPin className="w-5 h-5" />
-                <span>{address} · {item.city || 'Palm Bay, FL'}</span>
-              </p>
-            )}
-
-            {/* Tags */}
-            <ul className="flex flex-wrap justify-center gap-2 mb-5">
-              <li className="px-3 py-1.5 rounded-full text-sm font-medium text-slate-200" style={{ backgroundColor: 'rgba(126, 184, 232, 0.08)', border: '1px solid rgba(126, 184, 232, 0.15)' }}>💧 {utilityText(item)}</li>
-              {acres && <li className="px-3 py-1.5 rounded-full text-sm font-medium text-slate-200" style={{ backgroundColor: 'rgba(126, 184, 232, 0.08)', border: '1px solid rgba(126, 184, 232, 0.15)' }}>📐 {acres}{dims ? ` · ${dims}` : ''}</li>}
-              <li className="px-3 py-1.5 rounded-full text-sm font-medium text-slate-200" style={{ backgroundColor: 'rgba(126, 184, 232, 0.08)', border: '1px solid rgba(126, 184, 232, 0.15)' }}>🏗️ Zoned {item.zoning || 'Residential'}</li>
+          {/* LEFT — content */}
+          <div className="p-6 md:p-8 pt-12 flex flex-col justify-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-1">Build-Ready Lot in <span style={{ color: '#d97706' }}>NE Palm Bay</span></h2>
+            <p className="text-2xl md:text-3xl font-extrabold mb-3" style={{ color: '#7eb8e8' }}>1039 Hooper Ave NE</p>
+            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+              One of Palm Bay&apos;s rarest finds — a <strong className="text-white">cleared, filled, surveyed</strong> lot with
+              <strong className="text-white"> city water AND sewer</strong> already in. Underground utilities, sidewalks, house
+              plans included. Build now, not later.
+            </p>
+            <ul className="flex flex-wrap gap-1.5 mb-5">
+              {FEATURES.map((f) => (
+                <li key={f} className="px-2.5 py-1 rounded-full text-[12px] text-slate-200 font-medium" style={{ backgroundColor: 'rgba(126,184,232,0.08)', border: '1px solid rgba(126,184,232,0.15)' }}>{f}</li>
+              ))}
             </ul>
-
-            {/* Cash price */}
-            <div className="flex flex-col items-center gap-1 mb-5">
-              <span className="text-4xl font-bold text-white">{usd(item.price)}</span>
-              <span className="px-3 py-1 text-xs font-bold tracking-wider rounded-full" style={{ border: '1px solid #d97706', color: '#d97706' }}>CASH — NO FINANCING</span>
+            <div>
+              <button type="button" onClick={() => setOpen(true)} className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-bold text-white transition-all hover:opacity-90" style={{ backgroundColor: '#d97706' }} data-testid="featured-cta-see-price">
+                See Price &amp; Details
+              </button>
             </div>
-
-            <button
-              type="button"
-              onClick={() => setShowMap(true)}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-bold text-white transition-all hover:opacity-90"
-              style={{ backgroundColor: '#d97706' }}
-              data-testid="featured-cta-see-details"
-            >
-              See Map &amp; Property Details
-            </button>
           </div>
 
-          {/* Red-outline satellite preview — click opens the full parcel map */}
-          <button
-            type="button"
-            onClick={() => setShowMap(true)}
-            className="block w-full px-4 sm:px-6 pb-6 group"
-            aria-label="Open satellite parcel map"
-          >
-            <div className="relative rounded-xl overflow-hidden border" style={{ borderColor: 'rgba(126, 184, 232, 0.2)' }}>
-              <LotImage item={item} className="w-full h-56 md:h-64" px={[900, 400]} />
-              <span className="absolute bottom-3 right-3 px-3 py-1.5 text-[11px] font-bold rounded-full opacity-90 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: 'rgba(15,30,46,0.9)', color: '#fff' }}>
-                View parcel map ⤢
-              </span>
-            </div>
-          </button>
+          {/* RIGHT — two maps side by side, short band */}
+          <div className="grid grid-cols-2 gap-2 p-3 lg:p-4 content-center">
+            <a href={AERIAL} target="_blank" rel="noopener noreferrer" className="group relative rounded-lg overflow-hidden block aspect-[4/3]" style={{ backgroundColor: '#21456a' }} aria-label="Open aerial satellite view">
+              <img src={AERIAL} alt="Aerial satellite view of 1039 Hooper Ave NE Palm Bay FL 32905, vacant residential lot outlined in red" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <span className="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold tracking-wider rounded uppercase" style={{ backgroundColor: '#d97706', color: '#1a3a5c' }}>Aerial</span>
+            </a>
+            <a href={PARCEL} target="_blank" rel="noopener noreferrer" className="group relative rounded-lg overflow-hidden block aspect-[4/3] bg-white" aria-label="Open parcel survey map">
+              <img src={PARCEL} alt="Parcel survey map for 1039 Hooper Ave NE, Port Malabar Country Club Unit 8" className="w-full h-full object-contain bg-white" loading="lazy" decoding="async" />
+              <span className="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold tracking-wider rounded uppercase" style={{ backgroundColor: '#d97706', color: '#1a3a5c' }}>Parcel</span>
+            </a>
+          </div>
         </article>
 
         {/* Footer strip */}
-        <div className="mt-3 rounded-xl px-6 py-4 grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-0 text-sm md:divide-x md:divide-white/15" style={{ backgroundColor: '#0f1e2e', border: '1px solid rgba(126,184,232,0.15)' }}>
-          <div className="text-center md:px-4 flex items-center justify-center gap-2 text-slate-200">
-            <span aria-hidden>📍</span>
-            <span><span className="font-bold text-white">{item.city || 'Palm Bay, FL'}</span></span>
-          </div>
-          <div className="text-center md:px-4 flex items-center justify-center gap-2 text-slate-200">
-            <span aria-hidden>🏗️</span>
-            <span>Zoned <span className="font-bold text-white">{item.zoning || 'Residential'}</span></span>
-          </div>
-          <div className="text-center md:px-4 flex items-center justify-center gap-2 text-slate-200">
-            <span aria-hidden>💧</span>
-            <span className="font-bold text-white">{utilityText(item)}</span>
-          </div>
-          <a href="tel:3213337230" className="text-center md:px-4 flex items-center justify-center gap-2 text-slate-200 hover:text-amber-400 transition-colors">
-            <Phone className="w-4 h-4" />
-            <span className="font-bold">321-333-7230</span>
-          </a>
+        <div className="mt-3 rounded-xl px-5 py-3 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-0 text-[13px] md:divide-x md:divide-white/15" style={{ backgroundColor: '#0f1e2e', border: '1px solid rgba(126,184,232,0.15)' }}>
+          <div className="text-center md:px-3 flex items-center justify-center gap-1.5 text-slate-200"><span aria-hidden>📍</span><span><b className="text-white">NE Palm Bay</b> · 32905</span></div>
+          <div className="text-center md:px-3 flex items-center justify-center gap-1.5 text-slate-200"><span aria-hidden>🏗️</span><span>Zoned <b className="text-white">RS-1</b></span></div>
+          <div className="text-center md:px-3 flex items-center justify-center gap-1.5 text-slate-200"><span aria-hidden>💧</span><span><b className="text-white">Water &amp; Sewer</b></span></div>
+          <a href="tel:3213337230" className="text-center md:px-3 flex items-center justify-center gap-1.5 text-slate-200 hover:text-amber-400"><Phone className="w-4 h-4" /><b className="text-white">321-333-7230</b></a>
         </div>
+
+        <p className="sr-only">city water and sewer lot Palm Bay Florida · build ready lot Palm Bay FL · 1039 Hooper Ave NE Palm Bay · owner financing lot Palm Bay · residential lot NE Palm Bay 32905</p>
       </div>
 
-      {showMap && <ParcelMapModal item={item} onClose={() => setShowMap(false)} />}
+      {/* See Price & Details popup */}
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(15,30,46,0.85)' }} onClick={() => setOpen(false)} role="dialog" aria-modal="true" aria-label="1039 Hooper Ave NE price and details">
+          <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="px-6 py-4 text-white relative" style={{ backgroundColor: '#1a3a5c' }}>
+              <button type="button" onClick={() => setOpen(false)} className="absolute top-4 right-4 text-white/80 hover:text-white" aria-label="Close"><X className="w-6 h-6" /></button>
+              <p className="text-xs" style={{ color: '#7eb8e8' }}>Featured Lot · RS-1 · City Water &amp; Sewer</p>
+              <h3 className="text-2xl font-bold mt-0.5">1039 Hooper Ave NE</h3>
+              <p className="text-sm text-slate-300">Palm Bay, FL 32905 · Unit CC8 · Block 81 · Lot 1 · 0.23 ac</p>
+            </div>
+
+            <div className="p-6">
+              {/* Two maps */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <a href={AERIAL} target="_blank" rel="noopener noreferrer" className="rounded-lg overflow-hidden aspect-[4/3] block"><img src={AERIAL} alt="Aerial view of 1039 Hooper Ave NE" className="w-full h-full object-cover" /></a>
+                <a href={PARCEL} target="_blank" rel="noopener noreferrer" className="rounded-lg overflow-hidden aspect-[4/3] block bg-white border border-slate-200"><img src={PARCEL} alt="Parcel survey map of 1039 Hooper Ave NE" className="w-full h-full object-contain" /></a>
+              </div>
+
+              {/* Cash price */}
+              <div className="flex items-baseline justify-between border-b border-slate-200 pb-3 mb-3">
+                <span className="text-slate-600 font-medium">Cash Price</span>
+                <span className="text-3xl font-bold" style={{ color: '#1a3a5c' }}>{usd(PRICE)}</span>
+              </div>
+
+              {/* Owner financing chart */}
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Owner Financing Options</p>
+              <div className="space-y-2.5">
+                <div className="border border-slate-200 rounded-xl p-3.5">
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-bold text-slate-900">25% Option Money</span>
+                    <span className="text-slate-900 font-semibold text-sm">{usd(down25)} · finance {usd(fin25)}</span>
+                  </div>
+                  <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo25)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                  <p className="text-sm font-bold text-slate-900">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
+                  <p className="text-xs text-slate-500">Option Contract — deed transfers once payments reach 35% of the price.</p>
+                </div>
+                <div className="border border-slate-200 rounded-xl p-3.5">
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-bold text-slate-900">35% Down</span>
+                    <span className="text-slate-900 font-semibold text-sm">{usd(down35)} · finance {usd(fin35)}</span>
+                  </div>
+                  <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo35)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                  <p className="text-sm font-bold text-slate-900">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
+                  <p className="text-xs text-slate-500">Deed Transfer at closing.</p>
+                </div>
+              </div>
+
+              <p className="text-[11px] leading-snug text-slate-500 mt-2.5">
+                Financing example assumes the 10-point charge is financed (12.33% APR); if the points are paid at closing, the
+                APR is 12.58%. Amortized up to 120 months at a 10% interest rate. No prepayment penalty, no balloon. Subject to
+                credit approval. Example only, not an offer of credit. Terms subject to change.
+              </p>
+
+              {/* 3 detail links */}
+              <div className="grid grid-cols-3 gap-2 mt-4">
+                <a href={BCPAO_MAP} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-center px-2 py-2.5 rounded-lg text-xs font-bold text-white hover:opacity-90" style={{ backgroundColor: '#21456a' }}>🏛️ Appraiser Map</a>
+                <a href={BCPAO_DETAIL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-center px-2 py-2.5 rounded-lg text-xs font-bold text-white hover:opacity-90" style={{ backgroundColor: '#21456a' }}>📄 Property Detail</a>
+                <a href={GMAPS} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-center px-2 py-2.5 rounded-lg text-xs font-bold text-white hover:opacity-90" style={{ backgroundColor: '#21456a' }}>🌍 Google Maps</a>
+              </div>
+
+              <a href="tel:3213337230" className="mt-4 flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg font-bold text-white hover:opacity-90" style={{ backgroundColor: '#d97706' }}><Phone className="w-4 h-4" /> Call Vahid — 321-333-7230</a>
+              <p className="text-[11px] text-slate-500 mt-3 text-center">Vahid Rajabian, Broker Associate | M. David Moallem, Inc. | License #BK3454072</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
