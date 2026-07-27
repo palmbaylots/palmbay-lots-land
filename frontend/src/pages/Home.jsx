@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, MapPin, Calculator, FileText, Phone, AlertCircle, DollarSign, X, ExternalLink } from 'lucide-react';
 import { mockTestimonials, mockFeaturedProperties } from '../data/mockData';
@@ -10,31 +10,7 @@ import { useToast } from '../hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
 import { homepageSchemaGraph, todayISO } from '../data/businessSchema';
 import FeaturedSpecialListing from '../components/FeaturedSpecialListing';
-
-// Cash Deal Properties
-const cashDealProperties = [
-  {
-    id: 1,
-    address: "1980 Goodreau Avenue SW, Palm Bay, FL 32908",
-    url: "https://www.flexmls.com/share/Dq4fB/1980-Goodreau-Avenue-SW-Palm-Bay-FL-32908"
-  },
-  {
-    id: 2,
-    address: "181 Dailey Street SE, Palm Bay, FL 32909",
-    url: "https://www.flexmls.com/share/Dlbjz/181-Dailey-Street-SE-Palm-Bay-FL-32909",
-    underContract: true
-  },
-  {
-    id: 3,
-    address: "2938 Wilkinson Avenue SE, Palm Bay, FL 32909",
-    url: "https://www.flexmls.com/share/DlblI/2938-Wilkinson-Avenue-SE-Palm-Bay-FL-32909"
-  },
-  {
-    id: 4,
-    address: "2946 Wilkinson Avenue SE, Palm Bay, FL 32909",
-    url: "https://www.flexmls.com/share/DlbzY/2946-Wilkinson-Avenue-SE-Palm-Bay-FL-32909"
-  }
-];
+import ParcelMapModal from '../components/ParcelMapModal';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -181,6 +157,27 @@ const homeFaqSchema = {
 const Home = () => {
   const { toast } = useToast();
   const [showCashDeals, setShowCashDeals] = useState(false);
+  // Cash-only "special" lots, managed in the inventory admin (cashOnly + status).
+  const [cashLots, setCashLots] = useState([]);
+  const [selectedCashLot, setSelectedCashLot] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const { data } = await axios.get(`${API}/properties/inventory`);
+        if (cancelled || !Array.isArray(data)) return;
+        const order = { available: 0, under_contract: 1, sold: 2 };
+        const lots = data
+          .filter((p) => p.cashOnly)
+          .sort((a, b) => (order[a.status || (a.sold ? 'sold' : 'available')] ?? 0) - (order[b.status || (b.sold ? 'sold' : 'available')] ?? 0));
+        setCashLots(lots);
+      } catch (e) {
+        // leave cashLots empty — the modal shows a fallback message
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
   const [heroForm, setHeroForm] = useState({
     name: '',
     phone: '',
@@ -325,30 +322,39 @@ const Home = () => {
               <p className="text-slate-600 mt-2">These lots are priced to sell fast. Cash buyers only — no financing on these deals.</p>
             </div>
             
-            <div className="space-y-3">
-              {cashDealProperties.map((property) => (
-                <a
-                  key={property.id}
-                  href={property.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center justify-between p-4 rounded-lg border transition-all group ${
-                    property.underContract 
-                      ? 'bg-red-50 border-red-200 opacity-75' 
+            <div className="space-y-3 max-h-[50vh] overflow-y-auto">
+              {cashLots.length === 0 && (
+                <p className="text-center text-slate-500 text-sm py-4">Cash specials are updated regularly — call for current cash pricing.</p>
+              )}
+              {cashLots.map((lot) => {
+                const st = lot.status || (lot.sold ? 'sold' : 'available');
+                const addr = [lot.streetNumber, lot.streetName].filter(Boolean).join(' ').trim() || `Unit ${lot.unit} · Block ${lot.block} · Lot ${lot.lot}`;
+                const price = (typeof lot.price === 'number' && lot.price > 0) ? `$${lot.price.toLocaleString('en-US')}` : 'Call for price';
+                return (
+                  <button
+                    key={lot.id}
+                    type="button"
+                    onClick={() => setSelectedCashLot(lot)}
+                    className={`w-full flex items-center justify-between gap-3 p-4 rounded-lg border transition-all group text-left ${
+                      st === 'sold' ? 'bg-slate-100 border-slate-200 opacity-70'
+                      : st === 'under_contract' ? 'bg-amber-50 border-amber-200'
                       : 'bg-slate-50 hover:bg-green-50 border-slate-200 hover:border-green-300'
-                  }`}
-                  data-testid={`cash-deal-${property.id}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <MapPin className={`w-5 h-5 flex-shrink-0 ${property.underContract ? 'text-red-500' : 'text-green-600'}`} />
-                    <span className="text-slate-800 font-medium text-sm">{property.address}</span>
-                    {property.underContract && (
-                      <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-bold rounded uppercase">Under Contract</span>
-                    )}
-                  </div>
-                  <ExternalLink className={`w-4 h-4 flex-shrink-0 ${property.underContract ? 'text-red-400' : 'text-slate-400 group-hover:text-green-600'}`} />
-                </a>
-              ))}
+                    }`}
+                    data-testid={`cash-deal-${lot.id}`}
+                  >
+                    <span className="flex items-center gap-3 min-w-0">
+                      <MapPin className={`w-5 h-5 flex-shrink-0 ${st === 'sold' ? 'text-slate-400' : st === 'under_contract' ? 'text-amber-500' : 'text-green-600'}`} />
+                      <span className="text-slate-800 font-medium text-sm truncate">{addr}</span>
+                      {st === 'under_contract' && <span className="px-2 py-0.5 bg-amber-500 text-white text-[11px] font-bold rounded uppercase flex-shrink-0">Pending</span>}
+                      {st === 'sold' && <span className="px-2 py-0.5 bg-red-600 text-white text-[11px] font-bold rounded uppercase flex-shrink-0">Sold</span>}
+                    </span>
+                    <span className="flex items-center gap-2 flex-shrink-0">
+                      <span className="text-green-700 font-bold text-sm">{price}</span>
+                      <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-green-600" />
+                    </span>
+                  </button>
+                );
+              })}
             </div>
             
             <div className="mt-6 pt-4 border-t border-slate-200 text-center">
@@ -363,6 +369,11 @@ const Home = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Property card popup for a clicked cash lot: red-outline satellite + 3 links */}
+      {selectedCashLot && (
+        <ParcelMapModal item={selectedCashLot} onClose={() => setSelectedCashLot(null)} />
       )}
       
       {/* Hero Section */}
