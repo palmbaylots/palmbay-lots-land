@@ -7,8 +7,10 @@ const ProtectedAdmin = () => {
   const [authedPassword, setAuthedPassword] = useState('');
   const [error, setError] = useState('');
 
-  // You should change this password!
-  const ADMIN_PASSWORD = 'PalmBay2024!';
+  // Password comes from the REACT_APP_ADMIN_PASSWORD environment variable
+  // (set it in Emergent / hosting env, NOT in code — that way pulls never
+  // revert it and it stays out of source control). Falls back only if unset.
+  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD || 'PalmBay2024!';
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -61,10 +63,6 @@ const ProtectedAdmin = () => {
             Login
           </button>
         </form>
-        
-        <p className="text-xs text-slate-500 mt-6 text-center">
-          Default password: PalmBay2024! (Change this in ProtectedAdmin.jsx)
-        </p>
       </div>
     </div>
   );
