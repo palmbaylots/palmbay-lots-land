@@ -200,6 +200,7 @@ const Admin = ({ adminPassword = '' }) => {
       const isCurated = !prop.inventoryId;
       if (propertyFilter === 'curated' && !isCurated) return false;
       if (propertyFilter === 'inventory' && isCurated) return false;
+      if (propertyFilter === 'cash' && !prop.cashOnly) return false;
 
       return prop.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
              prop.address?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -237,6 +238,7 @@ const Admin = ({ adminPassword = '' }) => {
       totalProperties: properties.length,
       curatedProperties: properties.filter(p => !p.inventoryId).length,
       inventoryLots: properties.filter(p => p.inventoryId).length,
+      cashLots: properties.filter(p => p.cashOnly).length,
       featuredProperties: properties.filter(p => p.featured).length
     };
   }, [leads, properties]);
@@ -316,7 +318,7 @@ const Admin = ({ adminPassword = '' }) => {
       pieShape: false,
       status: 'available',
       sold: false,
-      cashOnly: false
+      cashOnly: propertyFilter === 'cash'
     });
     setTagInput('');
     setManualPrice(false);
@@ -639,6 +641,7 @@ const Admin = ({ adminPassword = '' }) => {
                   >
                     <option value="curated">Curated Listings ({stats.curatedProperties})</option>
                     <option value="inventory">Inventory Lots ({stats.inventoryLots})</option>
+                    <option value="cash">Cash Special Lots ({stats.cashLots})</option>
                   </select>
                   <Button 
                     onClick={openAddPropertyModal}
