@@ -105,7 +105,7 @@ const ParcelMapModal = ({ item, onClose, favorited, onToggleFav }) => {
       cancelled = true;
       if (mapObj.current) { mapObj.current.remove(); mapObj.current = null; }
     };
-  }, [item]);
+  }, [item, acct]);
 
   return (
     <div className="fixed inset-0 bg-black/70 z-[70] flex items-center justify-center p-4" onClick={onClose}>
