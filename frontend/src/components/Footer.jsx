@@ -42,9 +42,15 @@ const Footer = () => {
             <p className="text-gray-300 text-sm mb-4">
               Broker Associate specializing in residential lots, new builds, and existing home sales in Palm Bay, Florida.
             </p>
-            <p className="text-gray-400 text-xs">
+            <p className="text-gray-400 text-xs mb-4">
               Florida License #BK3454072
             </p>
+            <img
+              src="/images/brag-seven-star-2026.png"
+              alt="Broker Agent Advisor (BRAG) 2026 Seven Star Certified badge — Vahid Rajabian"
+              className="h-24 w-auto bg-white rounded-lg p-1.5"
+              loading="lazy"
+            />
           </div>
 
           {/* Quick Links */}

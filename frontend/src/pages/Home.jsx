@@ -733,8 +733,18 @@ const Home = () => {
                 />
               </div>
               <div className="md:w-2/3">
-                <h2 className="text-3xl font-bold text-slate-900 mb-2">20+ Years in the Palm Bay Land Market</h2>
-                <h3 className="text-xl text-slate-600 mb-4">Vahid Rajabian — Broker Associate at M. David Moallem, Inc.</h3>
+                <div className="flex items-start gap-4 mb-2">
+                  <div>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-2">20+ Years in the Palm Bay Land Market</h2>
+                    <h3 className="text-xl text-slate-600">Vahid Rajabian — Broker Associate at M. David Moallem, Inc.</h3>
+                  </div>
+                  <img
+                    src="/images/brag-seven-star-2026.png"
+                    alt="Broker Agent Advisor (BRAG) 2026 Seven Star Certified badge — Vahid Rajabian"
+                    className="h-24 w-auto shrink-0 hidden sm:block"
+                    loading="lazy"
+                  />
+                </div>
                 <p className="text-amber-600 font-semibold mb-4">Thousands of transactions since 2003 — from single lots to bulk packages for national builders and institutional investors</p>
                 <p className="text-slate-700 mb-3">
                   Vahid Rajabian is a licensed Florida Real Estate Broker Associate with over two decades of experience in Palm Bay lots and land. Since 2003, he has facilitated thousands of transactions — from single lots sold to first-time buyers to bulk packages acquired by national builders and institutional investors.
