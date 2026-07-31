@@ -461,10 +461,23 @@ const Admin = ({ adminPassword = '' }) => {
 
   const handleSaveProperty = async () => {
     try {
+      const payload = { ...propertyForm };
+      // A "Cash Special" is a real inventory lot: give it an inventoryId if it
+      // has none and a "Cash Special" tag, so it shows in inventory + the
+      // homepage Cash Buyer Discounts list.
+      if (payload.cashSpecial) {
+        if (!String(payload.inventoryId || '').trim()) {
+          payload.inventoryId = `CS-${Date.now().toString(36).toUpperCase()}`;
+        }
+        const tags = Array.isArray(payload.tags) ? payload.tags : [];
+        if (!tags.some((t) => String(t).toLowerCase() === 'cash special')) {
+          payload.tags = [...tags, 'Cash Special'];
+        }
+      }
       if (editingProperty) {
-        await axios.put(`${API}/properties/${editingProperty.id}`, propertyForm);
+        await axios.put(`${API}/properties/${editingProperty.id}`, payload);
       } else {
-        await axios.post(`${API}/properties`, propertyForm);
+        await axios.post(`${API}/properties`, payload);
       }
       fetchProperties();
       setShowPropertyModal(false);
@@ -1040,8 +1053,8 @@ const Admin = ({ adminPassword = '' }) => {
                   </p>
                 </div>
 
-                {/* Inventory-specific fields */}
-                {(propertyForm.inventoryId || propertyFilter === 'inventory') && (
+                {/* Inventory-specific fields (also shown for cash specials so you can add address + tax account) */}
+                {(propertyForm.inventoryId || propertyFilter === 'inventory' || propertyFilter === 'cash' || propertyForm.cashSpecial) && (
                   <>
                     <div className="border-t pt-4">
                       <p className="text-sm font-semibold text-slate-700">Inventory Details</p>
