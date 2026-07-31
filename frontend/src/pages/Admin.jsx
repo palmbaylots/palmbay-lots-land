@@ -127,7 +127,8 @@ const Admin = ({ adminPassword = '' }) => {
     pieShape: false,
     status: 'available',
     sold: false,
-    cashOnly: false
+    cashOnly: false,
+    cashSpecial: false
   });
   const [tagInput, setTagInput] = useState('');
   const [manualPrice, setManualPrice] = useState(false);
@@ -200,7 +201,7 @@ const Admin = ({ adminPassword = '' }) => {
       const isCurated = !prop.inventoryId;
       if (propertyFilter === 'curated' && !isCurated) return false;
       if (propertyFilter === 'inventory' && isCurated) return false;
-      if (propertyFilter === 'cash' && !prop.cashOnly) return false;
+      if (propertyFilter === 'cash' && !prop.cashSpecial) return false;
 
       return prop.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
              prop.address?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -238,7 +239,7 @@ const Admin = ({ adminPassword = '' }) => {
       totalProperties: properties.length,
       curatedProperties: properties.filter(p => !p.inventoryId).length,
       inventoryLots: properties.filter(p => p.inventoryId).length,
-      cashLots: properties.filter(p => p.cashOnly).length,
+      cashLots: properties.filter(p => p.cashSpecial).length,
       featuredProperties: properties.filter(p => p.featured).length
     };
   }, [leads, properties]);
@@ -318,7 +319,8 @@ const Admin = ({ adminPassword = '' }) => {
       pieShape: false,
       status: 'available',
       sold: false,
-      cashOnly: propertyFilter === 'cash'
+      cashOnly: propertyFilter === 'cash',
+      cashSpecial: propertyFilter === 'cash'
     });
     setTagInput('');
     setManualPrice(false);
@@ -359,7 +361,8 @@ const Admin = ({ adminPassword = '' }) => {
       pieShape: property.pieShape || false,
       status: property.status || (property.sold ? 'sold' : 'available'),
       sold: property.sold || false,
-      cashOnly: property.cashOnly || false
+      cashOnly: property.cashOnly || false,
+      cashSpecial: property.cashSpecial || false
     });
     setTagInput('');
     setManualPrice(/\d/.test(property.price || '') && !/contact/i.test(property.price || ''));
@@ -1232,6 +1235,17 @@ const Admin = ({ adminPassword = '' }) => {
                   />
                   <label htmlFor="cashOnly" className="text-sm font-medium text-slate-700 cursor-pointer">
                     Cash only — no owner financing (for listings we don't own)
+                  </label>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="cashSpecial"
+                    checked={propertyForm.cashSpecial}
+                    onCheckedChange={(checked) => setPropertyForm(prev => ({ ...prev, cashSpecial: checked }))}
+                  />
+                  <label htmlFor="cashSpecial" className="text-sm font-medium text-slate-700 cursor-pointer">
+                    Cash Special — show on homepage "Cash Buyer Discounts" list
                   </label>
                 </div>
               </div>

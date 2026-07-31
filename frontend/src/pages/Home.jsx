@@ -169,7 +169,7 @@ const Home = () => {
         if (cancelled || !Array.isArray(data)) return;
         const order = { available: 0, under_contract: 1, sold: 2 };
         const lots = data
-          .filter((p) => p.cashOnly)
+          .filter((p) => p.cashSpecial)
           .sort((a, b) => (order[a.status || (a.sold ? 'sold' : 'available')] ?? 0) - (order[b.status || (b.sold ? 'sold' : 'available')] ?? 0));
         setCashLots(lots);
       } catch (e) {
@@ -267,35 +267,36 @@ const Home = () => {
       <main id="main-content">
       <div className="min-h-screen">
       
-      {/* URGENCY BANNER */}
-      <section className="bg-gradient-to-r from-amber-500 to-orange-500 py-3">
+      {/* TWO BANNERS — side by side */}
+      <section className="py-4 bg-slate-50">
         <div className="container mx-auto px-4">
-          <a
-            href="https://www.facebook.com/share/v/1Gi2aTJqkS/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-center text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 flex-wrap hover:opacity-90 transition-opacity cursor-pointer"
-            data-testid="property-tax-banner"
-          >
-            <AlertCircle className="w-5 h-5 animate-pulse" />
-            <span>Palm Bay Ranked #13 Most Affordable City in America — The Only Florida City in the Top 20. Lock In Your Lot Before Prices Rise.</span>
-            <ArrowRight className="w-4 h-4 flex-shrink-0" />
-          </a>
-        </div>
-      </section>
-      
-      {/* CASH DEALS BANNER */}
-      <section className="bg-gradient-to-r from-green-600 to-emerald-600 py-2.5">
-        <div className="container mx-auto px-4">
-          <button
-            onClick={() => setShowCashDeals(true)}
-            className="w-full text-center text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
-            data-testid="cash-deals-banner"
-          >
-            <DollarSign className="w-5 h-5" />
-            <span>💰 CASH BUYER DISCOUNTS — Click to See Special Pricing on Select Lots</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Orange — affordability (sourced, no price prediction) */}
+            <a
+              href="https://www.facebook.com/share/v/1Gi2aTJqkS/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl px-6 py-7 text-white text-center flex flex-col items-center justify-center gap-2 hover:opacity-95 transition-opacity min-h-[150px]"
+              data-testid="property-tax-banner"
+            >
+              <AlertCircle className="w-8 h-8" />
+              <span className="font-bold text-xl md:text-2xl leading-tight">Palm Bay Ranked #13 Most Affordable City in America</span>
+              <span className="text-base font-medium text-white/90">The only Florida city in the top 20 (Source: The Palm Bayer)</span>
+              <span className="inline-flex items-center gap-1 font-bold underline mt-1">See the news <ArrowRight className="w-5 h-5" /></span>
+            </a>
+
+            {/* Green — cash deals */}
+            <button
+              onClick={() => setShowCashDeals(true)}
+              className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl px-6 py-7 text-white text-center flex flex-col items-center justify-center gap-2 hover:opacity-95 transition-opacity min-h-[150px]"
+              data-testid="cash-deals-banner"
+            >
+              <DollarSign className="w-8 h-8" />
+              <span className="font-bold text-xl md:text-2xl leading-tight">💰 Cash Buyer Discounts</span>
+              <span className="text-base font-medium text-white/90">Special pricing on select cash-only lots</span>
+              <span className="inline-flex items-center gap-1 font-bold underline mt-1">See cash deals <ArrowRight className="w-5 h-5" /></span>
+            </button>
+          </div>
         </div>
       </section>
 

@@ -71,6 +71,7 @@ class PropertyCreate(BaseModel):
     status: str = "available"
     sold: bool = False
     cashOnly: bool = False
+    cashSpecial: bool = False
 
 
 class Property(BaseModel):
@@ -107,6 +108,7 @@ class Property(BaseModel):
     status: str = "available"
     sold: bool = False
     cashOnly: bool = False
+    cashSpecial: bool = False
     createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updatedAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
