@@ -734,18 +734,8 @@ const Home = () => {
                 />
               </div>
               <div className="md:w-2/3">
-                <div className="flex items-start gap-4 mb-2">
-                  <div>
-                    <h2 className="text-3xl font-bold text-slate-900 mb-2">20+ Years in the Palm Bay Land Market</h2>
-                    <h3 className="text-xl text-slate-600">Vahid Rajabian — Broker Associate at M. David Moallem, Inc.</h3>
-                  </div>
-                  <img
-                    src="/images/brag-seven-star-2026.png"
-                    alt="Broker Agent Advisor (BRAG) 2026 Seven Star Certified badge — Vahid Rajabian"
-                    className="h-24 w-auto shrink-0 hidden sm:block"
-                    loading="lazy"
-                  />
-                </div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-2">20+ Years in the Palm Bay Land Market</h2>
+                <h3 className="text-xl text-slate-600 mb-4">Vahid Rajabian — Broker Associate at M. David Moallem, Inc.</h3>
                 <p className="text-amber-600 font-semibold mb-4">Thousands of transactions since 2003 — from single lots to bulk packages for national builders and institutional investors</p>
                 <p className="text-slate-700 mb-3">
                   Vahid Rajabian is a licensed Florida Real Estate Broker Associate with over two decades of experience in Palm Bay lots and land. Since 2003, he has facilitated thousands of transactions — from single lots sold to first-time buyers to bulk packages acquired by national builders and institutional investors.
@@ -761,16 +751,23 @@ const Home = () => {
                     <span className="flex items-center gap-1"><CheckCircle className="w-3 h-3 text-green-600" /> M. David Moallem, Inc. — 35+ years</span>
                   </div>
                 </div>
-                <Link 
-                  to="/about" 
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 transition-colors"
-                >
-                  Learn More About Me
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-
-                {/* "Add as a preferred source on Google" badge */}
-                <div className="flex justify-center mt-6">
+                <div className="flex flex-wrap items-center gap-6 mt-2">
+                  <img
+                    src="/images/brag-seven-star-2026.png"
+                    alt="Broker Agent Advisor (BRAG) 2026 Seven Star Certified badge — Vahid Rajabian"
+                    className="h-28 w-auto shrink-0"
+                    loading="lazy"
+                  />
+                  <div className="flex flex-col items-start gap-3">
+                    <Link
+                      to="/about"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 transition-colors"
+                    >
+                      Learn More About Me
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                    {/* "Add as a preferred source on Google" badge */}
+                    <div className="inline-block">
                   <a
                     href="https://www.google.com/preferences/source?q=https://palmbaylots-land.com"
                     target="_blank"
@@ -803,6 +800,8 @@ const Home = () => {
                       </g>
                     </svg>
                   </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
