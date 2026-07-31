@@ -329,8 +329,11 @@ const Home = () => {
               )}
               {cashLots.map((lot) => {
                 const st = lot.status || (lot.sold ? 'sold' : 'available');
-                const addr = [lot.streetNumber, lot.streetName].filter(Boolean).join(' ').trim() || `Unit ${lot.unit} · Block ${lot.block} · Lot ${lot.lot}`;
-                const price = (typeof lot.price === 'number' && lot.price > 0) ? `$${lot.price.toLocaleString('en-US')}` : 'Call for price';
+                const addr = [lot.streetNumber, lot.streetName].filter(Boolean).join(' ').trim()
+                  || (lot.address || '').trim()
+                  || `Unit ${lot.unit || '—'} · Block ${lot.block || '—'} · Lot ${lot.lot || '—'}`;
+                const rawPrice = String(lot.price ?? '').trim();
+                const price = rawPrice ? (rawPrice.startsWith('$') ? rawPrice : `$${rawPrice}`) : 'Call for price';
                 return (
                   <button
                     key={lot.id}
