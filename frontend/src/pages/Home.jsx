@@ -165,7 +165,7 @@ const Home = () => {
     let cancelled = false;
     (async () => {
       try {
-        const { data } = await axios.get(`${API}/properties/inventory`);
+        const { data } = await axios.get(`${API}/properties`);
         if (cancelled || !Array.isArray(data)) return;
         const order = { available: 0, under_contract: 1, sold: 2 };
         const lots = data
