@@ -1,6 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Heart, Calculator, MapPin, Droplets } from 'lucide-react';
 import LotImage from './LotImage';
+
+// Slug for the lot's own SEO detail page (/property/:slug). Matches the slug
+// PropertyDetail and the sitemap resolve on (lowercased title, non-alphanumerics
+// to hyphens); falls back to inventoryId/id so the link always resolves.
+export const lotDetailSlug = (item) => {
+  const t = String(item.title || '').trim();
+  if (t) {
+    const s = t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    if (s) return s;
+  }
+  return item.inventoryId || item.id;
+};
 
 // Heading: the editable descriptive label (e.g. "Buildable Residential Lot —
 // cleared, surveyed"). Falls back to a sensible default when the lot's title is
@@ -98,6 +111,14 @@ const LotCard = ({ item, favorited, onToggleFav, onSeePrice, onOpenMap, utilityL
             <MapPin className="w-4 h-4" /> Map
           </button>
         </div>
+
+        <Link
+          to={`/property/${lotDetailSlug(item)}`}
+          className="block text-center text-xs text-amber-700 underline mt-2 hover:text-amber-900"
+          data-testid={`details-${item.inventoryId}`}
+        >
+          View full lot details &amp; area info →
+        </Link>
       </div>
     </div>
   );
