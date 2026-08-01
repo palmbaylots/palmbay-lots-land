@@ -64,9 +64,9 @@ const getAreaDetails = (quadrant) => {
 };
 
 // Generate unique use case based on lot characteristics
-const getUseCases = (property, utility, acresNum, sqft) => {
+const getUseCases = (property, utility, acresNum, sqft, isCashSpecial) => {
   const cases = [];
-  
+
   if (utility.color === 'blue') {
     cases.push({ title: 'Build Your Home', desc: 'City water and sewer means the lowest development costs. No well or septic to install — just connect to municipal lines and build.' });
   } else if (utility.color === 'cyan') {
@@ -74,11 +74,14 @@ const getUseCases = (property, utility, acresNum, sqft) => {
   } else {
     cases.push({ title: 'Build Affordably', desc: 'Most affordable lots in Palm Bay. Well and septic installation adds $13K-$25K but lot prices are significantly lower.' });
   }
-  
+
   cases.push({ title: 'Invest & Hold', desc: `No HOA. Taxes ~$300-500/year. Palm Bay land has been appreciating as the Space Coast grows. Low holding cost while values increase.` });
-  
-  cases.push({ title: 'Owner Finance & Resell', desc: 'Buy with our financing (25% down), then resell with your own seller financing at a markup. Create monthly income while building equity.' });
-  
+
+  // Cash-special lots are sold for cash only — no owner financing, so omit the finance-and-resell angle.
+  if (!isCashSpecial) {
+    cases.push({ title: 'Owner Finance & Resell', desc: 'Buy with our financing (25% down), then resell with your own seller financing at a markup. Create monthly income while building equity.' });
+  }
+
   if (acresNum >= 0.3) {
     cases.push({ title: 'Spec Home Build', desc: `At ${sqft.toLocaleString()} sq ft, this lot fits a generous floor plan. Build a spec home at $125-150/sqft and sell in a growing market.` });
   }
@@ -87,7 +90,7 @@ const getUseCases = (property, utility, acresNum, sqft) => {
 };
 
 // Generate FAQ specific to this property
-const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area) => {
+const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area, isCashSpecial) => {
   const faqs = [];
   
   faqs.push({
@@ -102,10 +105,17 @@ const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area) 
     });
   }
   
-  faqs.push({
-    q: `Is owner financing available for this lot?`,
-    a: `Yes. 25% minimum down for an option contract ($${Math.round(parseFloat(property.price.replace(/[^0-9.]/g, '') || 41000) * 0.25).toLocaleString()} on this lot). Deed transfers at 35% paid. No bank qualification required. No prepayment penalty.`
-  });
+  if (isCashSpecial) {
+    faqs.push({
+      q: `Is owner financing available for this lot?`,
+      a: `No. This is a special cash-priced lot, offered for cash purchase only — owner financing is not available on this listing. The discounted price reflects the cash terms. Call Vahid at 321-333-7230 for details.`
+    });
+  } else {
+    faqs.push({
+      q: `Is owner financing available for this lot?`,
+      a: `Yes. 25% minimum down for an option contract ($${Math.round(parseFloat(property.price.replace(/[^0-9.]/g, '') || 41000) * 0.25).toLocaleString()} on this lot). Deed transfers at 35% paid. No bank qualification required. No prepayment penalty.`
+    });
+  }
   
   faqs.push({
     q: `Are there HOA fees on this Palm Bay lot?`,
@@ -205,18 +215,21 @@ const PropertyDetail = () => {
   }
 
   const unit = property.unit || '';
+  const isCashSpecial = !!property.cashSpecial;
   const utility = getUtilityInfo(unit);
   const quadrant = getQuadrant(property.address || property.title);
   const area = getAreaDetails(quadrant);
   const acresNum = parseFloat((property.acres || '0.25').match(/[\d.]+/)?.[0] || 0.25);
   const sqft = Math.round(acresNum * 43560);
-  const useCases = getUseCases(property, utility, acresNum, sqft);
-  const faqs = generatePropertyFaq(property, utility, acresNum, sqft, quadrant, area);
+  const useCases = getUseCases(property, utility, acresNum, sqft, isCashSpecial);
+  const faqs = generatePropertyFaq(property, utility, acresNum, sqft, quadrant, area, isCashSpecial);
   const relatedGuides = getRelatedGuides(utility);
   const unitBlockInfo = unit ? `Unit ${unit}${property.block ? `, Block ${property.block}` : ''}${property.lot ? `, Lot ${property.lot}` : ''}` : '';
 
   const pageTitle = `${property.title}, ${property.city} | ${property.acres} Lot${unit ? ` | ${utility.label}` : ''}`;
-  const pageDescription = `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing: 25% down, no bank needed. Call Vahid 321-333-7230.`;
+  const pageDescription = isCashSpecial
+    ? `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Special cash-priced lot — cash purchase only, no owner financing. Call Vahid 321-333-7230.`
+    : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing: 25% down, no bank needed. Call Vahid 321-333-7230.`;
   const canonicalUrl = `https://palmbaylots-land.com/property/${slug}`;
 
   const schemaData = {
@@ -365,7 +378,9 @@ const PropertyDetail = () => {
                 <div className="bg-white rounded-xl p-6 shadow-md">
                   <h2 className="text-2xl font-bold text-slate-900 mb-4">Property Overview</h2>
                   <p className="text-slate-700 leading-relaxed">
-                    This {acresNum.toFixed(2)}-acre buildable lot at {property.title} is located in {area.name}{unitBlockInfo ? ` (${unitBlockInfo})` : ''}. The lot offers {sqft.toLocaleString()} square feet of usable land with {utility.type}. Owner financing available — 25% minimum down, no bank qualification required.
+                    This {acresNum.toFixed(2)}-acre buildable lot at {property.title} is located in {area.name}{unitBlockInfo ? ` (${unitBlockInfo})` : ''}. The lot offers {sqft.toLocaleString()} square feet of usable land with {utility.type}. {isCashSpecial
+                      ? 'This is a special cash-priced lot — offered for cash purchase only. Owner financing is not available on this listing.'
+                      : 'Owner financing available — 25% minimum down, no bank qualification required.'}
                   </p>
                 </div>
 
@@ -437,37 +452,52 @@ const PropertyDetail = () => {
                   </Link>
                 </div>
 
-                {/* Owner Financing */}
-                <div className="bg-amber-50 rounded-xl p-6 border-2 border-amber-200">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-amber-600" />
-                    Owner Financing Available
-                  </h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center mb-4">
-                    <div className="bg-white p-3 rounded-lg">
-                      <p className="text-xl font-bold text-amber-600">25%</p>
-                      <p className="text-xs text-slate-600">Min Down</p>
-                    </div>
-                    <div className="bg-white p-3 rounded-lg">
-                      <p className="text-xl font-bold text-amber-600">35%</p>
-                      <p className="text-xs text-slate-600">Deed Transfers</p>
-                    </div>
-                    <div className="bg-white p-3 rounded-lg">
-                      <p className="text-xl font-bold text-amber-600">$0</p>
-                      <p className="text-xs text-slate-600">Prepay Penalty</p>
-                    </div>
-                    <div className="bg-white p-3 rounded-lg">
-                      <p className="text-xl font-bold text-amber-600">10%</p>
-                      <p className="text-xs text-slate-600">Interest</p>
-                    </div>
+                {/* Financing / Cash terms */}
+                {isCashSpecial ? (
+                  <div className="bg-green-50 rounded-xl p-6 border-2 border-green-200">
+                    <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                      <TrendingUp className="w-6 h-6 text-green-600" />
+                      Special Cash Price — Cash Purchase Only
+                    </h2>
+                    <p className="text-slate-700 text-sm mb-3">
+                      This lot is offered at a special discounted price for a <strong>cash purchase only</strong>. Owner financing is <strong>not available</strong> on this listing — the reduced price reflects the cash terms.
+                    </p>
+                    <p className="text-slate-700 text-sm">
+                      No HOA. No bank needed. Clean title, warranty deed at closing. Call Vahid at 321-333-7230 for the exact price and to confirm availability — special-priced lots move fast.
+                    </p>
                   </div>
-                  <p className="text-slate-700 text-sm">
-                    No bank qualification. We do personal approval — we look at you as an individual, not just a credit score. No hidden fees. Lot exchange guarantee if there's an issue.
-                  </p>
-                  <Link to="/guide/owner-financing-what-to-watch" className="inline-block mt-3 text-amber-600 hover:text-amber-700 text-sm font-medium">
-                    Read: Owner Financing — What to Watch Out For →
-                  </Link>
-                </div>
+                ) : (
+                  <div className="bg-amber-50 rounded-xl p-6 border-2 border-amber-200">
+                    <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                      <TrendingUp className="w-6 h-6 text-amber-600" />
+                      Owner Financing Available
+                    </h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center mb-4">
+                      <div className="bg-white p-3 rounded-lg">
+                        <p className="text-xl font-bold text-amber-600">25%</p>
+                        <p className="text-xs text-slate-600">Min Down</p>
+                      </div>
+                      <div className="bg-white p-3 rounded-lg">
+                        <p className="text-xl font-bold text-amber-600">35%</p>
+                        <p className="text-xs text-slate-600">Deed Transfers</p>
+                      </div>
+                      <div className="bg-white p-3 rounded-lg">
+                        <p className="text-xl font-bold text-amber-600">$0</p>
+                        <p className="text-xs text-slate-600">Prepay Penalty</p>
+                      </div>
+                      <div className="bg-white p-3 rounded-lg">
+                        <p className="text-xl font-bold text-amber-600">10%</p>
+                        <p className="text-xs text-slate-600">Interest</p>
+                      </div>
+                    </div>
+                    <p className="text-slate-700 text-sm">
+                      No bank qualification. We do personal approval — we look at you as an individual, not just a credit score. No hidden fees. Lot exchange guarantee if there's an issue.
+                    </p>
+                    <Link to="/guide/owner-financing-what-to-watch" className="inline-block mt-3 text-amber-600 hover:text-amber-700 text-sm font-medium">
+                      Read: Owner Financing — What to Watch Out For →
+                    </Link>
+                  </div>
+                )}
 
                 {/* Property Details Grid */}
                 <div className="bg-white rounded-xl p-6 shadow-md">
@@ -551,7 +581,7 @@ const PropertyDetail = () => {
               <div className="space-y-6">
                 <div className="bg-white rounded-xl p-6 shadow-md sticky top-4">
                   <h3 className="text-xl font-bold text-slate-900 mb-4">Interested in this lot?</h3>
-                  <p className="text-slate-600 mb-6 text-sm">Contact Vahid for zoning details, utility verification, and financing terms.</p>
+                  <p className="text-slate-600 mb-6 text-sm">Contact Vahid for zoning details, utility verification, and {isCashSpecial ? 'cash pricing.' : 'financing terms.'}</p>
                   <div className="space-y-3">
                     <a href="tel:3213337230" className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold transition-colors">
                       <Phone className="w-5 h-5" />
