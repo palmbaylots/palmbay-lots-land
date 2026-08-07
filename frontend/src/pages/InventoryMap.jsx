@@ -89,6 +89,13 @@ const InventoryMap = () => {
   const [pending, setPending] = useState(null);
   const [err, setErr] = useState(false);
   const [priceLot, setPriceLot] = useState(null); // lot whose price/financing modal is open
+  const [fullscreen, setFullscreen] = useState(false); // expand map to fill the screen
+  const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
+
+  // When toggling full screen, tell Leaflet to re-measure so tiles fill the new size.
+  useEffect(() => {
+    if (mapObj.current) setTimeout(() => mapObj.current.invalidateSize(), 80);
+  }, [fullscreen]);
 
   useEffect(() => {
     let cancelled = false;
@@ -205,7 +212,39 @@ const InventoryMap = () => {
           </div>
         </div>
 
-        <div ref={mapDiv} style={{ height: '70vh', minHeight: 420, width: '100%' }} className="rounded-xl overflow-hidden border border-slate-200 shadow-sm" />
+        <div className={fullscreen ? 'fixed inset-0 z-[60] bg-black' : 'relative'}>
+          <div
+            ref={mapDiv}
+            style={fullscreen ? { height: '100vh', width: '100%' } : { height: '70vh', minHeight: 420, width: '100%' }}
+            className={fullscreen ? '' : 'rounded-xl overflow-hidden border border-slate-200 shadow-sm'}
+          />
+          <button
+            onClick={() => setFullscreen((f) => !f)}
+            className="absolute top-3 right-3 z-[1000] px-3 py-2 bg-white/95 hover:bg-white text-slate-800 rounded-lg shadow-md font-semibold text-sm border border-slate-200"
+          >
+            {fullscreen ? '✕ Exit full screen' : '⤢ Full screen'}
+          </button>
+        </div>
+
+        {/* Palm Bay unit map — helps place a lot within the city */}
+        <div className="mt-4 flex items-center gap-4 bg-amber-50 border border-amber-200 rounded-xl p-3">
+          <button onClick={() => setShowUnitMap(true)} className="shrink-0" aria-label="Open the Palm Bay unit map">
+            <img
+              src="/images/palm-bay-unit-map.jpg"
+              alt="Palm Bay unit map thumbnail"
+              className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg border border-amber-300 hover:opacity-90 transition"
+            />
+          </button>
+          <div>
+            <p className="font-bold text-slate-900">View the Palm Bay Unit Map</p>
+            <p className="text-sm text-slate-600 mt-0.5">
+              See which unit each lot is in — for a better understanding of where a lot sits in the city.
+            </p>
+            <button onClick={() => setShowUnitMap(true)} className="mt-1.5 inline-block text-amber-700 font-semibold underline text-sm">
+              Open the full unit map →
+            </button>
+          </div>
+        </div>
 
         <div className="mt-4 flex flex-col sm:flex-row gap-3">
           <Link to="/inventory" className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-slate-800 hover:bg-slate-900 text-white rounded-lg font-semibold">
@@ -223,6 +262,19 @@ const InventoryMap = () => {
       </div>
 
       {priceLot && <LotPriceModal item={priceLot} onClose={() => setPriceLot(null)} />}
+
+      {showUnitMap && (
+        <div className="fixed inset-0 bg-black/85 z-[85] flex items-center justify-center p-4" onClick={() => setShowUnitMap(false)}>
+          <img
+            src="/images/palm-bay-unit-map.jpg"
+            alt="Palm Bay unit map — full size"
+            className="max-w-full max-h-full rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button onClick={() => setShowUnitMap(false)} aria-label="Close unit map"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-800 text-2xl leading-none flex items-center justify-center shadow">×</button>
+        </div>
+      )}
     </>
   );
 };

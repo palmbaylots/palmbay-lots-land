@@ -270,6 +270,17 @@ async def update_property(property_id: str, input: PropertyCreate):
     update_dict = input.model_dump()
     update_dict['updatedAt'] = datetime.now(timezone.utc).isoformat()
 
+    # If the lot's location (address or tax account) changed, drop the cached
+    # map coordinates so the /map endpoint re-resolves the pin to the new spot.
+    loc_changed = (
+        str(existing.get('streetNumber', '')) != str(input.streetNumber or '')
+        or str(existing.get('streetName', '')) != str(input.streetName or '')
+        or str(existing.get('taxAccount', '')) != str(input.taxAccount or '')
+    )
+    if loc_changed:
+        update_dict['lat'] = None
+        update_dict['lon'] = None
+
     await db.properties.update_one(
         {"id": property_id},
         {"$set": update_dict}
