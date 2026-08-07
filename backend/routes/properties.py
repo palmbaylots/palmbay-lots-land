@@ -174,6 +174,8 @@ async def get_properties_map(limit_resolve: int = 120):
             "block": p.get("block", ""),
             "lot": p.get("lot", ""),
             "acres": p.get("acres", ""),
+            "zoning": p.get("zoning", "") or "Residential",
+            "flu": p.get("flu", "") or "Residential",
             "taxAccount": ''.join(c for c in str(p.get("taxAccount", "")) if c.isdigit()),
             "cashSpecial": bool(p.get("cashSpecial", False)),
             "status": p.get("status", "available"),

@@ -61,6 +61,10 @@ function popupHtml(lot) {
       ${lot.cashSpecial ? '<div style="display:inline-block;background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-bottom:4px;">CASH SPECIAL</div>' : ''}
       <div style="font-weight:700;color:#0f172a;font-size:14px;line-height:1.2;">${esc(heading)}</div>
       <div style="color:#64748b;font-size:11px;margin-top:1px;">${esc(lot.city || 'Palm Bay, FL')}${lot.acres ? ' · ' + esc(lot.acres) : ''}</div>
+      <div style="margin-top:5px;">
+        <span style="display:inline-block;background:#1e293b;color:#fff;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;margin-right:4px;">Zoning: ${esc(lot.zoning || 'Residential')}</span>
+        <span style="display:inline-block;background:#e2e8f0;color:#334155;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;">FLU: ${esc(lot.flu || 'Residential')}</span>
+      </div>
       <div style="font-weight:800;color:#d97706;font-size:17px;margin-top:5px;">${esc(price)}</div>
       <div style="margin-top:6px;">
         ${btn(g, 'Google Map', '#2563eb')}
