@@ -183,7 +183,8 @@ const Home = () => {
     phone: '',
     email: '',
     interest: '',
-    payment: ''
+    payment: '',
+    details: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -221,7 +222,7 @@ const Home = () => {
         email: heroForm.email,
         phone: heroForm.phone,
         inquiryType: 'buy',
-        message: `Interest: ${INTEREST_LABELS[heroForm.interest] || heroForm.interest} | Payment: ${PAYMENT_LABELS[heroForm.payment] || heroForm.payment}\n\nSubmitted from homepage hero form.`,
+        message: `${heroForm.details ? `Their question / lot: ${heroForm.details}\n\n` : ''}Interest: ${INTEREST_LABELS[heroForm.interest] || heroForm.interest} | Payment: ${PAYMENT_LABELS[heroForm.payment] || heroForm.payment}\n\nSubmitted from homepage hero form.`,
         smsConsent: true
       });
 
@@ -229,7 +230,7 @@ const Home = () => {
         title: "Request Received!",
         description: "We'll contact you within 24 hours."
       });
-      setHeroForm({ name: '', phone: '', email: '', interest: '', payment: '' });
+      setHeroForm({ name: '', phone: '', email: '', interest: '', payment: '', details: '' });
     } catch (error) {
       toast({
         title: "Error",
@@ -507,7 +508,17 @@ const Home = () => {
                     <option value="cash">Paying cash</option>
                   </select>
                 </div>
-                <Button 
+                <div>
+                  <textarea
+                    name="details"
+                    value={heroForm.details}
+                    onChange={handleHeroFormChange}
+                    placeholder="Which lot or question? (address, unit/block/lot, or what you need)"
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 resize-y"
+                  />
+                </div>
+                <Button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 text-lg font-bold"

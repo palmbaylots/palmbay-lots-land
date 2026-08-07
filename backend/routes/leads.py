@@ -210,12 +210,13 @@ async def submit_contact_form(contact: ContactMessage):
         )
 
         # Free text alert via carrier email-to-SMS gateway (no Twilio needed).
+        # Include the visitor's message so Vahid sees what they need in the text.
         sms_gateway = os.environ.get('SMS_GATEWAY_EMAIL', '3213337230@tmomail.net')
         if sms_gateway:
             await send_email(
                 to_email=sms_gateway,
                 subject=f"New contact: {contact.name} {contact.phone}",
-                body=f"New website contact — {contact.name}, {contact.phone}, {contact.email}",
+                body=f"{contact.name} {contact.phone} {contact.email}\n{contact.message[:400]}",
             )
 
         sms_sent = False
