@@ -43,13 +43,14 @@ async function loadMapLibs() {
 
 const slugify = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
-// Marker colors by land-use category.
+// Marker colors by land-use category — chosen far apart on the color wheel so
+// no two read alike on satellite imagery.
 const CAT_COLORS = {
-  residential: '#d97706',   // amber
+  residential: '#facc15',   // bright yellow
   commercial: '#dc2626',    // red
-  industrial: '#7c3aed',    // purple
-  multifamily: '#ea580c',   // orange
-  openspace: '#65d46e',     // light green — parks / open space
+  industrial: '#9333ea',    // purple
+  multifamily: '#f97316',   // bright orange
+  openspace: '#22c55e',     // green — parks / open space
   institutional: '#2563eb', // blue
 };
 const CAT_LABELS = {
@@ -145,21 +146,29 @@ const InventoryMap = () => {
       clusterRef.current = cluster;
       map.addLayer(cluster);
 
-      // Circle for platted lots, star for acreage tracts (letter block); colored by land use.
-      const STAR = 'M12 .8l3.09 6.26 6.91 1-5 4.87 1.18 6.89L12 16.6l-6.18 3.25 1.18-6.89-5-4.87 6.91-1z';
+      // Circle for platted lots, star for acreage tracts (letter block); colored by
+      // land use. className:'leaflet-clean' + injected CSS kills Leaflet's default
+      // white icon box so only our shape shows.
+      const STAR = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+      if (!document.getElementById('map-icon-css')) {
+        const st = document.createElement('style');
+        st.id = 'map-icon-css';
+        st.textContent = '.leaflet-clean{background:transparent;border:0;}';
+        document.head.appendChild(st);
+      }
       const makeIcon = (lot) => {
         const color = CAT_COLORS[categoryOf(lot)] || CAT_COLORS.residential;
         if (isTract(lot)) {
           return L.divIcon({
-            className: '',
-            html: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="${STAR}" fill="${color}" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
-            iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -12],
+            className: 'leaflet-clean',
+            html: `<svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))"><path d="${STAR}" fill="${color}" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>`,
+            iconSize: [28, 28], iconAnchor: [14, 14], popupAnchor: [0, -14],
           });
         }
         return L.divIcon({
-          className: '',
-          html: `<div style="width:15px;height:15px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)"></div>`,
-          iconSize: [15, 15], iconAnchor: [8, 8], popupAnchor: [0, -8],
+          className: 'leaflet-clean',
+          html: `<div style="width:16px;height:16px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.4)"></div>`,
+          iconSize: [16, 16], iconAnchor: [8, 8], popupAnchor: [0, -8],
         });
       };
 
