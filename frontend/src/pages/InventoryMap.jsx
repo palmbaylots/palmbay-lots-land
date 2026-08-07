@@ -42,6 +42,43 @@ async function loadMapLibs() {
 }
 
 const slugify = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+// Marker colors by land-use category.
+const CAT_COLORS = {
+  residential: '#d97706',   // amber
+  commercial: '#dc2626',    // red
+  industrial: '#7c3aed',    // purple
+  multifamily: '#ea580c',   // orange
+  openspace: '#65d46e',     // light green — parks / open space
+  institutional: '#2563eb', // blue
+};
+const CAT_LABELS = {
+  residential: 'Residential', commercial: 'Commercial', industrial: 'Industrial',
+  multifamily: 'Multi-family', openspace: 'Open space / Park', institutional: 'Institutional',
+};
+
+// Decide the land-use category. FLU (future land use) is the authority — many
+// letter-block tracts are single-family ZONED but their FLU is the real use
+// (park, open space, institutional, etc.). Fall back to zoning only for uses
+// that show up there but not in FLU.
+function categoryOf(lot) {
+  const f = String(lot.flu || '').toUpperCase();
+  const z = String(lot.zoning || '').toUpperCase();
+  if (/INDUSTRIAL/.test(f)) return 'industrial';
+  if (/COMMERC|RETAIL|OFFICE|MIXED\s*USE/.test(f)) return 'commercial';
+  if (/MULTI|HIGH\s*DENSITY|\bRM\b/.test(f)) return 'multifamily';
+  if (/PARK|OPEN\s*SPACE|CONSERV|RECREAT|GREEN\s*SPACE/.test(f)) return 'openspace';
+  if (/INSTITUTION|PUBLIC|GOVERNMENT|SCHOOL|CHURCH|CIVIC/.test(f)) return 'institutional';
+  // FLU is residential/blank — check zoning only for the non-residential uses.
+  if (/\bIU\b|\bHI\b|INDUSTRIAL/.test(z)) return 'industrial';
+  if (/\bNC\b|\bCC\b|\bHC\b|\bGC\b|COMMERC/.test(z)) return 'commercial';
+  if (/\bRM-?\d|MULTI/.test(z)) return 'multifamily';
+  if (/INSTITUTION|PUBLIC/.test(z)) return 'institutional';
+  return 'residential';
+}
+
+// Letter block => acreage / large tract => star; numbered block => platted lot => circle.
+const isTract = (lot) => /[a-zA-Z]/.test(String(lot.block || '').trim());
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 // Build the clickable property card shown inside a marker popup.
@@ -108,11 +145,23 @@ const InventoryMap = () => {
       clusterRef.current = cluster;
       map.addLayer(cluster);
 
-      const dot = (color) => L.divIcon({
-        className: '',
-        html: `<div style="width:15px;height:15px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)"></div>`,
-        iconSize: [15, 15], iconAnchor: [8, 8], popupAnchor: [0, -8],
-      });
+      // Circle for platted lots, star for acreage tracts (letter block); colored by land use.
+      const STAR = 'M12 .8l3.09 6.26 6.91 1-5 4.87 1.18 6.89L12 16.6l-6.18 3.25 1.18-6.89-5-4.87 6.91-1z';
+      const makeIcon = (lot) => {
+        const color = CAT_COLORS[categoryOf(lot)] || CAT_COLORS.residential;
+        if (isTract(lot)) {
+          return L.divIcon({
+            className: '',
+            html: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="${STAR}" fill="${color}" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
+            iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -12],
+          });
+        }
+        return L.divIcon({
+          className: '',
+          html: `<div style="width:15px;height:15px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)"></div>`,
+          iconSize: [15, 15], iconAnchor: [8, 8], popupAnchor: [0, -8],
+        });
+      };
 
       const fetchBatch = async () => {
         if (cancelled) return;
@@ -123,7 +172,7 @@ const InventoryMap = () => {
           (data.lots || []).forEach((lot) => {
             if (plottedIds.current.has(lot.id)) return;
             plottedIds.current.add(lot.id);
-            const m = L.marker([lot.lat, lot.lon], { icon: dot(lot.cashSpecial ? '#16a34a' : '#d97706') });
+            const m = L.marker([lot.lat, lot.lon], { icon: makeIcon(lot) });
             m.bindPopup(popupHtml(lot), { maxWidth: 280 });
             fresh.push(m);
           });
@@ -163,14 +212,23 @@ const InventoryMap = () => {
       </div>
 
       <div className="container mx-auto px-4 py-4">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-3 text-sm">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 text-sm">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="text-slate-700 font-medium">{count} lot{count === 1 ? '' : 's'} on map</span>
-            <span className="inline-flex items-center gap-1 text-slate-500"><span className="inline-block w-3 h-3 rounded-full" style={{ background: '#d97706' }} /> Available</span>
-            <span className="inline-flex items-center gap-1 text-slate-500"><span className="inline-block w-3 h-3 rounded-full" style={{ background: '#16a34a' }} /> Cash Special</span>
+            {pending > 0 && <span className="text-slate-400">Loading more… ({pending} left)</span>}
+            {err && <span className="text-red-600">Map data temporarily unavailable — please refresh.</span>}
           </div>
-          {pending > 0 && <span className="text-slate-400">Loading more lots… ({pending} left)</span>}
-          {err && <span className="text-red-600">Map data temporarily unavailable — please refresh.</span>}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-slate-600">
+            <span className="inline-flex items-center gap-1.5"><span className="inline-block w-3.5 h-3.5 rounded-full border-2 border-white ring-1 ring-slate-300" style={{ background: '#94a3b8' }} /> Circle = platted lot</span>
+            <span className="inline-flex items-center gap-1.5"><span style={{ color: '#94a3b8', fontSize: 16, lineHeight: 1 }}>★</span> Star = acreage tract (letter block)</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5 text-slate-600">
+            {Object.keys(CAT_LABELS).map((k) => (
+              <span key={k} className="inline-flex items-center gap-1.5">
+                <span className="inline-block w-3 h-3 rounded-full" style={{ background: CAT_COLORS[k] }} /> {CAT_LABELS[k]}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div ref={mapDiv} style={{ height: '70vh', minHeight: 420, width: '100%' }} className="rounded-xl overflow-hidden border border-slate-200 shadow-sm" />

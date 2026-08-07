@@ -138,7 +138,15 @@ async def get_properties_map(limit_resolve: int = 120):
     DB, so the first few loads warm the whole inventory, then it's instant.
     `pending` tells the frontend how many still need resolving (poll again).
     """
-    query = {"inventoryId": {"$exists": True, "$ne": ""}, "sold": {"$ne": True}}
+    # Everything for sale: inventory lots (have inventoryId) AND curated listings
+    # (commercial / industrial / multifamily flagships that carry tags instead).
+    query = {
+        "sold": {"$ne": True},
+        "$or": [
+            {"inventoryId": {"$exists": True, "$ne": ""}},
+            {"tags": {"$exists": True, "$ne": []}},
+        ],
+    }
     props = await db.properties.find(query, {"_id": 0}).to_list(3000)
 
     need = [p for p in props if p.get("lat") is None or p.get("lon") is None]
