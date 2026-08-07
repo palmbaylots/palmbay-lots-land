@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone } from 'lucide-react';
+import LotPriceModal from '../components/LotPriceModal';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -41,8 +42,6 @@ async function loadMapLibs() {
   return window.L;
 }
 
-const slugify = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-
 // Marker colors by land-use category — chosen far apart on the color wheel so
 // no two read alike on satellite imagery.
 const CAT_COLORS = {
@@ -80,41 +79,6 @@ function categoryOf(lot) {
 
 // Letter block => acreage / large tract => star; numbered block => platted lot => circle.
 const isTract = (lot) => /[a-zA-Z]/.test(String(lot.block || '').trim());
-const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-
-// Build the clickable property card shown inside a marker popup.
-function popupHtml(lot) {
-  const heading = lot.address || `Unit ${lot.unit || '—'} · Block ${lot.block || '—'} · Lot ${lot.lot || '—'}`;
-  const priceRaw = String(lot.price || '').trim();
-  const price = priceRaw ? (priceRaw.startsWith('$') ? priceRaw : `$${priceRaw}`) : 'Call for price';
-  const acct = lot.taxAccount;
-  const g = `https://www.google.com/maps/search/?api=1&query=${lot.lat},${lot.lon}`;
-  const slug = slugify(lot.title) || acct || lot.id;
-
-  const btn = (href, label, bg) =>
-    `<a href="${href}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:6px 10px;margin:3px 4px 0 0;background:${bg};color:#fff;border-radius:7px;font-size:12px;font-weight:600;text-decoration:none;">${label}</a>`;
-
-  return `
-    <div style="min-width:210px;max-width:260px;font-family:inherit;">
-      ${lot.cashSpecial ? '<div style="display:inline-block;background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-bottom:4px;">CASH SPECIAL</div>' : ''}
-      <div style="font-weight:700;color:#0f172a;font-size:14px;line-height:1.2;">${esc(heading)}</div>
-      <div style="color:#64748b;font-size:11px;margin-top:1px;">${esc(lot.city || 'Palm Bay, FL')}${lot.acres ? ' · ' + esc(lot.acres) : ''}</div>
-      <div style="margin-top:5px;">
-        <span style="display:inline-block;background:#1e293b;color:#fff;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;margin-right:4px;">Zoning: ${esc(lot.zoning || 'Residential')}</span>
-        <span style="display:inline-block;background:#e2e8f0;color:#334155;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;">FLU: ${esc(lot.flu || 'Residential')}</span>
-      </div>
-      <div style="font-weight:800;color:#d97706;font-size:17px;margin-top:5px;">${esc(price)}</div>
-      <div style="margin-top:6px;">
-        ${btn(g, 'Google Map', '#2563eb')}
-        ${acct ? btn(`https://www.bcpao.us/map/?r=${acct}`, 'BCPAO Map', '#d97706') : ''}
-        ${acct ? btn(`https://www.bcpao.us/PropertySearch/#/account/${acct}`, 'BCPAO Detail', '#334155') : ''}
-      </div>
-      <div style="margin-top:7px;border-top:1px solid #e2e8f0;padding-top:7px;">
-        <a href="/property/${slug}" style="display:inline-block;font-size:12px;font-weight:600;color:#b45309;text-decoration:underline;">View full lot details →</a>
-        <a href="tel:3213337230" style="display:block;margin-top:6px;text-align:center;padding:7px;background:#16a34a;color:#fff;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;">Call 321-333-7230</a>
-      </div>
-    </div>`;
-}
 
 const InventoryMap = () => {
   const mapDiv = useRef(null);
@@ -124,6 +88,7 @@ const InventoryMap = () => {
   const [count, setCount] = useState(0);
   const [pending, setPending] = useState(null);
   const [err, setErr] = useState(false);
+  const [priceLot, setPriceLot] = useState(null); // lot whose price/financing modal is open
 
   useEffect(() => {
     let cancelled = false;
@@ -182,7 +147,7 @@ const InventoryMap = () => {
             if (plottedIds.current.has(lot.id)) return;
             plottedIds.current.add(lot.id);
             const m = L.marker([lot.lat, lot.lon], { icon: makeIcon(lot) });
-            m.bindPopup(popupHtml(lot), { maxWidth: 280 });
+            m.on('click', () => setPriceLot(lot)); // open the full price + financing modal
             fresh.push(m);
           });
           if (fresh.length) cluster.addLayers(fresh);
@@ -215,7 +180,7 @@ const InventoryMap = () => {
             <MapPin className="w-7 h-7 text-amber-500" /> Palm Bay Inventory Map
           </h1>
           <p className="text-slate-300 text-sm mt-1">
-            Click any lot for its price and links to Google Maps, the BCPAO parcel map, and the county property record.
+            Click any lot for its price, owner-financing options (25% / 35% down, monthly payment), and links to Google Maps and the BCPAO parcel map &amp; record.
           </p>
         </div>
       </div>
@@ -256,6 +221,8 @@ const InventoryMap = () => {
           Vahid Rajabian, Broker Associate | M. David Moallem, Inc. | License #BK3454072.
         </p>
       </div>
+
+      {priceLot && <LotPriceModal item={priceLot} onClose={() => setPriceLot(null)} />}
     </>
   );
 };

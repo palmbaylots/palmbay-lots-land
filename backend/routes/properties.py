@@ -52,12 +52,18 @@ def _center_from_parcel(tax_account) -> "list | None":
         return None
 
 
-def _center_from_address(prop) -> "list | None":
+def _oneline(prop):
     addr = f"{prop.get('streetNumber','')} {prop.get('streetName','')}".strip()
     if not addr:
         return None
     city = (prop.get('city') or 'Palm Bay').replace(', FL', '').strip()
-    oneline = f"{addr}, {city}, FL"
+    return f"{addr}, {city}, FL"
+
+
+def _center_from_address_census(prop) -> "list | None":
+    oneline = _oneline(prop)
+    if not oneline:
+        return None
     params = urllib.parse.urlencode({
         "address": oneline, "benchmark": "Public_AR_Current", "format": "json",
     })
@@ -75,8 +81,32 @@ def _center_from_address(prop) -> "list | None":
         return None
 
 
+_ESRI = "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates"
+
+
+def _center_from_address_esri(prop) -> "list | None":
+    oneline = _oneline(prop)
+    if not oneline:
+        return None
+    params = urllib.parse.urlencode({"SingleLine": oneline, "outFields": "", "maxLocations": "1", "f": "json"})
+    try:
+        req = urllib.request.Request(f"{_ESRI}?{params}",
+                                     headers={"User-Agent": "palmbaylots-land"})
+        with urllib.request.urlopen(req, timeout=7) as resp:
+            data = _json.loads(resp.read().decode())
+        cands = data.get("candidates", [])
+        if not cands or cands[0].get("score", 0) < 80:
+            return None
+        loc = cands[0]["location"]
+        return [loc["y"], loc["x"]]  # [lat, lon]
+    except Exception:
+        return None
+
+
 def _resolve_center(prop):
-    return _center_from_parcel(prop.get("taxAccount")) or _center_from_address(prop)
+    return (_center_from_parcel(prop.get("taxAccount"))
+            or _center_from_address_census(prop)
+            or _center_from_address_esri(prop))
 
 
 def _fix_datetimes(prop):
@@ -130,13 +160,15 @@ async def get_inventory_properties():
 
 
 @router.get("/properties/map")
-async def get_properties_map(limit_resolve: int = 120):
+async def get_properties_map(limit_resolve: int = 120, refresh: bool = False):
     """Inventory lots with map coordinates for the /map page.
 
     Returns lots that already have (or can be resolved to) a lat/lon. Missing
     coordinates are resolved a batch at a time (concurrently) and cached to the
     DB, so the first few loads warm the whole inventory, then it's instant.
     `pending` tells the frontend how many still need resolving (poll again).
+    Pass ?refresh=true to also re-try lots previously marked un-geocodable
+    (0/0) — used once after a geocoder improvement to backfill coverage.
     """
     # Everything for sale: inventory lots (have inventoryId) AND curated listings
     # (commercial / industrial / multifamily flagships that carry tags instead).
@@ -149,7 +181,15 @@ async def get_properties_map(limit_resolve: int = 120):
     }
     props = await db.properties.find(query, {"_id": 0}).to_list(3000)
 
-    need = [p for p in props if p.get("lat") is None or p.get("lon") is None]
+    def needs(p):
+        lat, lon = p.get("lat"), p.get("lon")
+        if lat is None or lon is None:
+            return True
+        if refresh and lat == 0 and lon == 0:  # retry previously-failed lots
+            return True
+        return False
+
+    need = [p for p in props if needs(p)]
     to_do = need[:max(0, limit_resolve)]
     pending = len(need) - len(to_do)
 
@@ -186,7 +226,14 @@ async def get_properties_map(limit_resolve: int = 120):
             "flu": p.get("flu", "") or "Residential",
             "taxAccount": ''.join(c for c in str(p.get("taxAccount", "")) if c.isdigit()),
             "cashSpecial": bool(p.get("cashSpecial", False)),
+            "cashOnly": bool(p.get("cashOnly", False)),
             "status": p.get("status", "available"),
+            # Fields the price calculator needs to compute price + financing:
+            "streetNumber": p.get("streetNumber", ""),
+            "streetName": p.get("streetName", ""),
+            "water": p.get("water", ""),
+            "sewer": p.get("sewer", ""),
+            "tags": p.get("tags", []),
             "lat": lat,
             "lon": lon,
         })
