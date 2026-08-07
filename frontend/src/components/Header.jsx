@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { to: '/about', label: 'About' },
   { to: '/listings', label: ['Commercial &', 'Investment Listings'] },
   { to: '/inventory', label: ['Residential Lot', 'Inventory'] },
+  { to: '/map', label: ['Map', 'View'] },
   { to: '/price-guide', label: ['Price Guide &', 'Financing Terms'] },
   { to: '/sell-land', label: ['Sell Your', 'Land'] },
   { to: '/blog', label: 'Blog' },

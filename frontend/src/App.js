@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Inventory from "./pages/Inventory";
+import InventoryMap from "./pages/InventoryMap";
 import Properties from "./pages/Properties";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -76,6 +77,7 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/inventory" element={<Inventory />} />
+                  <Route path="/map" element={<InventoryMap />} />
                   <Route path="/price-guide" element={<Properties />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />

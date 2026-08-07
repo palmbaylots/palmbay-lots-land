@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -109,6 +109,10 @@ class Property(BaseModel):
     sold: bool = False
     cashOnly: bool = False
     cashSpecial: bool = False
+    # Cached map coordinates (resolved from parcel/geocode by the /properties/map
+    # endpoint). None = not resolved yet; 0/0 = tried and un-geocodable.
+    lat: Optional[float] = None
+    lon: Optional[float] = None
     createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updatedAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 

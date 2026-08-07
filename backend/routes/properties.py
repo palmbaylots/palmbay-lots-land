@@ -5,12 +5,78 @@ from datetime import datetime, timezone
 from pathlib import Path
 import uuid
 import logging
+import asyncio
+import json as _json
+import urllib.request
+import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
 
 from database import db
 from models import Property, PropertyCreate
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+
+# --- Map coordinate resolution --------------------------------------------
+# Locations aren't stored per lot, so we derive a point for each: first the
+# Brevard County parcel centroid (by tax account), then a Census geocode of the
+# street address. Results are cached onto the property doc (lat/lon) so this is
+# a one-time cost per lot.
+_GIS_PARCEL = ("https://gis.brevardfl.gov/gissrv/rest/services/Base_Map/"
+               "Parcel_New_WKID2881/MapServer/4/query")
+_CENSUS = "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress"
+
+
+def _center_from_parcel(tax_account) -> "list | None":
+    acct = ''.join(c for c in str(tax_account or '') if c.isdigit())
+    if not acct:
+        return None
+    params = urllib.parse.urlencode({
+        "where": f"TaxAcct={acct}", "outFields": "TaxAcct",
+        "returnGeometry": "true", "outSR": "4326", "f": "json",
+    })
+    try:
+        req = urllib.request.Request(f"{_GIS_PARCEL}?{params}",
+                                     headers={"User-Agent": "palmbaylots-land"})
+        with urllib.request.urlopen(req, timeout=7) as resp:
+            data = _json.loads(resp.read().decode())
+        feats = data.get("features", [])
+        rings = (feats[0].get("geometry", {}).get("rings") if feats else None)
+        if not rings:
+            return None
+        ring = rings[0]
+        xs = [p[0] for p in ring]
+        ys = [p[1] for p in ring]
+        return [sum(ys) / len(ys), sum(xs) / len(xs)]  # [lat, lon]
+    except Exception:
+        return None
+
+
+def _center_from_address(prop) -> "list | None":
+    addr = f"{prop.get('streetNumber','')} {prop.get('streetName','')}".strip()
+    if not addr:
+        return None
+    city = (prop.get('city') or 'Palm Bay').replace(', FL', '').strip()
+    oneline = f"{addr}, {city}, FL"
+    params = urllib.parse.urlencode({
+        "address": oneline, "benchmark": "Public_AR_Current", "format": "json",
+    })
+    try:
+        req = urllib.request.Request(f"{_CENSUS}?{params}",
+                                     headers={"User-Agent": "palmbaylots-land"})
+        with urllib.request.urlopen(req, timeout=7) as resp:
+            data = _json.loads(resp.read().decode())
+        matches = data.get("result", {}).get("addressMatches", [])
+        if not matches:
+            return None
+        c = matches[0]["coordinates"]
+        return [c["y"], c["x"]]  # [lat, lon]
+    except Exception:
+        return None
+
+
+def _resolve_center(prop):
+    return _center_from_parcel(prop.get("taxAccount")) or _center_from_address(prop)
 
 
 def _fix_datetimes(prop):
@@ -61,6 +127,61 @@ async def get_inventory_properties():
     for prop in properties:
         _fix_datetimes(prop)
     return properties
+
+
+@router.get("/properties/map")
+async def get_properties_map(limit_resolve: int = 120):
+    """Inventory lots with map coordinates for the /map page.
+
+    Returns lots that already have (or can be resolved to) a lat/lon. Missing
+    coordinates are resolved a batch at a time (concurrently) and cached to the
+    DB, so the first few loads warm the whole inventory, then it's instant.
+    `pending` tells the frontend how many still need resolving (poll again).
+    """
+    query = {"inventoryId": {"$exists": True, "$ne": ""}, "sold": {"$ne": True}}
+    props = await db.properties.find(query, {"_id": 0}).to_list(3000)
+
+    need = [p for p in props if p.get("lat") is None or p.get("lon") is None]
+    to_do = need[:max(0, limit_resolve)]
+    pending = len(need) - len(to_do)
+
+    if to_do:
+        loop = asyncio.get_running_loop()
+        with ThreadPoolExecutor(max_workers=20) as ex:
+            centers = await asyncio.gather(*[
+                loop.run_in_executor(ex, _resolve_center, p) for p in to_do
+            ])
+        for p, center in zip(to_do, centers):
+            lat, lon = (center[0], center[1]) if center else (0.0, 0.0)
+            p["lat"], p["lon"] = lat, lon
+            await db.properties.update_one({"id": p["id"]}, {"$set": {"lat": lat, "lon": lon}})
+
+    out = []
+    for p in props:
+        lat, lon = p.get("lat"), p.get("lon")
+        if lat is None or lon is None:
+            continue                      # still pending this pass
+        if lat == 0 and lon == 0:
+            continue                      # tried, un-geocodable
+        addr = f"{p.get('streetNumber','')} {p.get('streetName','')}".strip() or p.get("address", "")
+        out.append({
+            "id": p["id"],
+            "title": p.get("title", ""),
+            "price": p.get("price", ""),
+            "address": addr,
+            "city": p.get("city", "Palm Bay, FL"),
+            "unit": p.get("unit", ""),
+            "block": p.get("block", ""),
+            "lot": p.get("lot", ""),
+            "acres": p.get("acres", ""),
+            "taxAccount": ''.join(c for c in str(p.get("taxAccount", "")) if c.isdigit()),
+            "cashSpecial": bool(p.get("cashSpecial", False)),
+            "status": p.get("status", "available"),
+            "lat": lat,
+            "lon": lon,
+        })
+
+    return {"lots": out, "pending": pending, "total": len(props)}
 
 
 @router.get("/properties/{property_id}", response_model=Property)
@@ -249,6 +370,7 @@ async def get_sitemap():
         ("/about", "0.8", "monthly"),
         ("/listings", "0.9", "daily"),
         ("/inventory", "0.9", "daily"),
+        ("/map", "0.8", "weekly"),
         ("/price-guide", "0.8", "weekly"),
         ("/contact", "0.7", "monthly"),
         ("/sell-land", "0.8", "weekly"),
