@@ -20,6 +20,7 @@ class LeadCreate(BaseModel):
     email: EmailStr
     phone: str
     agreedToContact: bool
+    message: str = ""
 
 
 class Lead(BaseModel):
@@ -29,6 +30,7 @@ class Lead(BaseModel):
     email: EmailStr
     phone: str
     agreedToContact: bool
+    message: str = ""
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 

@@ -28,6 +28,7 @@ const LeadCaptureModal = () => {
     name: '',
     email: '',
     phone: '',
+    message: '',
     agreedToContact: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -205,6 +206,21 @@ const LeadCaptureModal = () => {
                   onChange={handleChange}
                   placeholder="(321) 555-0123"
                   aria-required="true"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="lead-message" className="block text-sm font-medium text-slate-700 mb-1">
+                  Which lot or question?
+                </label>
+                <textarea
+                  id="lead-message"
+                  name="message"
+                  rows={3}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="e.g. Is 123 Dana Rd SE available? or: I need info on a double lot in SE Palm Bay"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 resize-y text-sm"
                 />
               </div>
 

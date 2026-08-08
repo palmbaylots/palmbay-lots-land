@@ -125,12 +125,14 @@ async def create_lead(input: LeadCreate):
         notify_email = os.environ.get('CONTACT_EMAIL', 'palmbaylotsland@gmail.com')
         notify_phone = os.environ.get('TWILIO_TO_PHONE')
 
+        msg = (lead_obj.message or '').strip()
         email_body = f"""
         <html><body>
             <h2>New Lead from Website Popup</h2>
             <p><strong>Name:</strong> {lead_obj.name}</p>
             <p><strong>Email:</strong> {lead_obj.email}</p>
             <p><strong>Phone:</strong> {lead_obj.phone}</p>
+            {f'<p><strong>Their question / lot:</strong> {msg}</p>' if msg else ''}
             <hr>
             <p style="color:#666;font-size:12px;">Sent from Palm Bay Real Estate Website · {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
         </body></html>
@@ -138,18 +140,19 @@ async def create_lead(input: LeadCreate):
         await send_email(to_email=notify_email, subject=f"New Lead: {lead_obj.name}", body=email_body)
 
         # Free text alert via carrier email-to-SMS gateway (no Twilio needed).
+        # Include their message so Vahid sees what they want in the text.
         sms_gateway = os.environ.get('SMS_GATEWAY_EMAIL', '3213337230@tmomail.net')
         if sms_gateway:
             await send_email(
                 to_email=sms_gateway,
                 subject=f"New lead: {lead_obj.name} {lead_obj.phone}",
-                body=f"New website lead — {lead_obj.name}, {lead_obj.phone}, {lead_obj.email}",
+                body=f"{lead_obj.name} {lead_obj.phone} {lead_obj.email}" + (f"\n{msg[:400]}" if msg else ""),
             )
 
         if notify_phone:
             send_sms(
                 to_phone=notify_phone,
-                message=f"New lead from your website:\nName: {lead_obj.name}\nPhone: {lead_obj.phone}\nEmail: {lead_obj.email}",
+                message=f"New lead from your website:\nName: {lead_obj.name}\nPhone: {lead_obj.phone}\nEmail: {lead_obj.email}" + (f"\n{msg[:300]}" if msg else ""),
             )
     except Exception as e:
         logger.error(f"Lead saved but notification failed: {str(e)}")
