@@ -83,6 +83,7 @@ const isTract = (lot) => /[a-zA-Z]/.test(String(lot.block || '').trim());
 const InventoryMap = () => {
   const mapDiv = useRef(null);
   const mapObj = useRef(null);
+  const tileRef = useRef(null);
   const clusterRef = useRef(null);
   const plottedIds = useRef(new Set());
   const [count, setCount] = useState(0);
@@ -92,9 +93,19 @@ const InventoryMap = () => {
   const [fullscreen, setFullscreen] = useState(false); // expand map to fill the screen
   const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
 
-  // When toggling full screen, tell Leaflet to re-measure so tiles fill the new size.
+  // When toggling full screen, tell Leaflet to re-measure AND force the satellite
+  // tiles to re-fetch for the new size — one early call isn't enough (the layout
+  // hasn't settled yet), which left the expanded map on a black background.
   useEffect(() => {
-    if (mapObj.current) setTimeout(() => mapObj.current.invalidateSize(), 80);
+    const m = mapObj.current;
+    if (!m) return;
+    const refresh = () => {
+      m.invalidateSize(true);
+      if (tileRef.current) tileRef.current.redraw();
+    };
+    const t1 = setTimeout(refresh, 120);
+    const t2 = setTimeout(refresh, 450);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [fullscreen]);
 
   useEffect(() => {
@@ -110,7 +121,7 @@ const InventoryMap = () => {
 
       const map = L.map(mapDiv.current, { scrollWheelZoom: true }).setView(PALM_BAY_CENTER, 12);
       mapObj.current = map;
-      L.tileLayer(
+      tileRef.current = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         { maxZoom: 21, attribution: 'Imagery &copy; Esri' }
       ).addTo(map);
@@ -212,7 +223,7 @@ const InventoryMap = () => {
           </div>
         </div>
 
-        <div className={fullscreen ? 'fixed inset-0 z-[60] bg-black' : 'relative'}>
+        <div className={fullscreen ? 'fixed inset-0 z-[60] bg-slate-800' : 'relative'}>
           <div
             ref={mapDiv}
             style={fullscreen ? { height: '100vh', width: '100%' } : { height: '70vh', minHeight: 420, width: '100%' }}
