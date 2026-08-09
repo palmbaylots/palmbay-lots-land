@@ -85,6 +85,7 @@ const InventoryMap = () => {
   const mapObj = useRef(null);
   const tileRef = useRef(null);
   const clusterRef = useRef(null);
+  const roRef = useRef(null);
   const plottedIds = useRef(new Set());
   const [count, setCount] = useState(0);
   const [pending, setPending] = useState(null);
@@ -93,23 +94,23 @@ const InventoryMap = () => {
   const [fullscreen, setFullscreen] = useState(false); // expand map to fill the screen
   const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
 
-  // When toggling full screen, tell Leaflet to re-measure AND force the satellite
-  // tiles to re-fetch for the new size — one early call isn't enough (the layout
-  // hasn't settled yet), which left the expanded map on a black background.
+  // When toggling full screen, re-measure AFTER the browser has painted the new
+  // layout. Timeouts fired too early (Leaflet still measured the old size → tiles
+  // rendered at width 0). A double requestAnimationFrame runs post-paint; the
+  // ResizeObserver set up on the map container (below) is the primary safeguard.
   useEffect(() => {
     const m = mapObj.current;
     if (!m) return;
-    const refresh = () => {
-      m.invalidateSize(false);
-      // Force a hard view reset so the tile layer re-fetches for the new size —
-      // invalidateSize alone repositioned markers but left tiles unloaded (black).
-      m.setView(m.getCenter(), m.getZoom(), { animate: false });
-      if (tileRef.current) tileRef.current.redraw();
-    };
-    const t1 = setTimeout(refresh, 150);
-    const t2 = setTimeout(refresh, 500);
-    const t3 = setTimeout(refresh, 900);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+    let raf1 = 0;
+    let raf2 = 0;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        m.invalidateSize(false);
+        m.setView(m.getCenter(), m.getZoom(), { animate: false });
+        if (tileRef.current) tileRef.current.redraw();
+      });
+    });
+    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
   }, [fullscreen]);
 
   useEffect(() => {
@@ -134,6 +135,19 @@ const InventoryMap = () => {
       const cluster = L.markerClusterGroup({ maxClusterRadius: 45, chunkedLoading: true });
       clusterRef.current = cluster;
       map.addLayer(cluster);
+
+      // Primary fix for the full-screen black background: re-measure the map
+      // whenever its container ACTUALLY changes size (entering/exiting full
+      // screen). This catches the real layout change that timeout-based
+      // invalidateSize() missed, so the tiles fill the new canvas.
+      if (typeof ResizeObserver !== 'undefined' && mapDiv.current) {
+        const ro = new ResizeObserver(() => {
+          map.invalidateSize(false);
+          if (tileRef.current) tileRef.current.redraw();
+        });
+        ro.observe(mapDiv.current);
+        roRef.current = ro;
+      }
 
       // Circle for platted lots, star for acreage tracts (letter block); colored by
       // land use. className:'leaflet-clean' + injected CSS kills Leaflet's default
@@ -186,6 +200,7 @@ const InventoryMap = () => {
     return () => {
       cancelled = true;
       if (timer) clearTimeout(timer);
+      if (roRef.current) { roRef.current.disconnect(); roRef.current = null; }
       if (mapObj.current) { mapObj.current.remove(); mapObj.current = null; }
     };
   }, []);
