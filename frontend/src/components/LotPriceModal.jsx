@@ -245,7 +245,7 @@ const LotPriceModal = ({ item, onClose }) => {
             </>
           )}
 
-          <Link to={`/property/${slug}`} onClick={onClose} className="block text-center text-xs text-amber-700 underline mt-4">
+          <Link to={`/property/${slug}`} state={{ from: 'map', lotId: item.id }} onClick={onClose} className="block text-center text-xs text-amber-700 underline mt-4">
             View full lot details &amp; area info →
           </Link>
         </div>

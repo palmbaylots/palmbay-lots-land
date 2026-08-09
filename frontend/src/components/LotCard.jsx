@@ -50,7 +50,7 @@ const LotCard = ({ item, favorited, onToggleFav, onSeePrice, onOpenMap, utilityL
   }[accent] || 'bg-slate-100 text-slate-700';
 
   return (
-    <div className={`bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition-shadow overflow-hidden flex flex-col ${status === 'sold' ? 'opacity-70' : ''}`}>
+    <div id={`lot-${item.id}`} className={`bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition-shadow overflow-hidden flex flex-col scroll-mt-24 ${status === 'sold' ? 'opacity-70' : ''}`}>
       <div className="relative">
         <LotImage item={item} onClick={() => onOpenMap(item)} className="w-full h-40" px={[480, 320]} />
 
@@ -114,6 +114,7 @@ const LotCard = ({ item, favorited, onToggleFav, onSeePrice, onOpenMap, utilityL
 
         <Link
           to={`/property/${lotDetailSlug(item)}`}
+          state={{ from: 'inventory', lotId: item.id }}
           className="block text-center text-xs text-amber-700 underline mt-2 hover:text-amber-900"
           data-testid={`details-${item.inventoryId}`}
         >

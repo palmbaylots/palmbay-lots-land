@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Search, Filter, Download, ExternalLink, MapPin, Phone, CheckCircle, MessageCircle, Loader2, Droplets, Home, Calculator, X, Heart } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ParcelMapModal from '../components/ParcelMapModal';
 import LotCard from '../components/LotCard';
@@ -189,6 +189,20 @@ const Inventory = () => {
   const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
   const [favorites, setFavorites] = useState(() => readFavorites()); // saved lot ids
   const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  // Returning from a lot's detail page with ?lot=<id> → scroll to that card and
+  // briefly highlight it, so the visitor lands back on the exact lot they viewed.
+  useEffect(() => {
+    const want = searchParams.get('lot');
+    if (!want || loading) return;
+    const el = document.getElementById(`lot-${want}`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('ring-2', 'ring-amber-500');
+    const t = setTimeout(() => el.classList.remove('ring-2', 'ring-amber-500'), 2500);
+    return () => clearTimeout(t);
+  }, [loading, inventory, searchParams]);
 
   const toggleFavorite = (item) => {
     setFavorites(prev => {

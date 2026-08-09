@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { MapPin, Phone } from 'lucide-react';
 import LotPriceModal from '../components/LotPriceModal';
 
@@ -87,12 +87,30 @@ const InventoryMap = () => {
   const clusterRef = useRef(null);
   const roRef = useRef(null);
   const plottedIds = useRef(new Set());
+  const lotsById = useRef({});       // id -> lot data, for reopening a lot's card
+  const openLotRef = useRef(null);   // latest openLot fn (called from Leaflet marker clicks)
+  const wantLotRef = useRef(null);   // ?lot= id to auto-open once lots load
+  const openedWantRef = useRef(false); // guard so we auto-open the ?lot only once
   const [count, setCount] = useState(0);
   const [pending, setPending] = useState(null);
   const [err, setErr] = useState(false);
   const [priceLot, setPriceLot] = useState(null); // lot whose price/financing modal is open
   const [fullscreen, setFullscreen] = useState(false); // expand map to fill the screen
   const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Open a lot's card AND put ?lot=<id> in the URL, so the browser Back button
+  // (from the lot's detail page) reopens the same card. Close clears the param.
+  const openLot = (lot) => {
+    setPriceLot(lot);
+    setSearchParams({ lot: lot.id }, { replace: true });
+  };
+  const closeLot = () => {
+    setPriceLot(null);
+    setSearchParams({}, { replace: true });
+  };
+  openLotRef.current = openLot;
+  wantLotRef.current = searchParams.get('lot');
 
   // When toggling full screen, re-measure AFTER the browser has painted the new
   // layout. Timeouts fired too early (Leaflet still measured the old size → tiles
@@ -188,15 +206,27 @@ const InventoryMap = () => {
           if (cancelled) return;
           const fresh = [];
           (data.lots || []).forEach((lot) => {
+            lotsById.current[lot.id] = lot;
             if (plottedIds.current.has(lot.id)) return;
             plottedIds.current.add(lot.id);
             const m = L.marker([lot.lat, lot.lon], { icon: makeIcon(lot) });
-            m.on('click', () => setPriceLot(lot)); // open the full price + financing modal
+            m.on('click', () => openLotRef.current && openLotRef.current(lot)); // open price + financing card
             fresh.push(m);
           });
           if (fresh.length) cluster.addLayers(fresh);
           setCount(plottedIds.current.size);
           setPending(data.pending || 0);
+
+          // If we arrived with ?lot=<id> (e.g. Back from that lot's detail page),
+          // reopen its card and pan to it once its data has loaded.
+          const want = wantLotRef.current;
+          if (want && !openedWantRef.current && lotsById.current[want]) {
+            openedWantRef.current = true;
+            const lot = lotsById.current[want];
+            map.setView([lot.lat, lot.lon], 15, { animate: false });
+            if (openLotRef.current) openLotRef.current(lot);
+          }
+
           if (data.pending > 0) timer = setTimeout(fetchBatch, 1800);
         } catch (e) { setErr(true); }
       };
@@ -299,7 +329,7 @@ const InventoryMap = () => {
         </p>
       </div>
 
-      {priceLot && <LotPriceModal item={priceLot} onClose={() => setPriceLot(null)} />}
+      {priceLot && <LotPriceModal item={priceLot} onClose={closeLot} />}
 
       {showUnitMap && (
         <div className="fixed inset-0 bg-black/85 z-[85] flex items-center justify-center p-4" onClick={() => setShowUnitMap(false)}>

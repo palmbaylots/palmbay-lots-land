@@ -1,9 +1,10 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { MapPin, Phone, Ruler, Home, FileText, CheckCircle, ArrowLeft, Droplets, Building2, TrendingUp, HelpCircle, BookOpen } from 'lucide-react';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
+import { MapPin, Phone, Ruler, Home, FileText, CheckCircle, ArrowLeft, Droplets, Building2, TrendingUp, HelpCircle, BookOpen, ExternalLink } from 'lucide-react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import { useState, useEffect } from 'react';
+import LotImage from '../components/LotImage';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -155,9 +156,23 @@ const getRelatedGuides = (utility) => {
 
 const PropertyDetail = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Where "Back" should return: the page the visitor came from (map or the
+  // inventory list), focused on this same lot, so they don't lose their place.
+  // Falls back to the inventory list when opened directly (e.g. from search).
+  const goBack = () => {
+    const st = location.state || {};
+    const lotId = st.lotId || (property && property.id) || '';
+    if (st.from === 'map') navigate(`/map?lot=${encodeURIComponent(lotId)}`);
+    else if (st.from === 'inventory') navigate(`/inventory?lot=${encodeURIComponent(lotId)}`);
+    else navigate(`/inventory?lot=${encodeURIComponent(lotId)}`);
+  };
+  const backLabel = (location.state && location.state.from === 'map') ? 'Back to Map' : 'Back to Inventory';
 
   useEffect(() => {
     const fetchProperty = async () => {
@@ -216,6 +231,10 @@ const PropertyDetail = () => {
 
   const unit = property.unit || '';
   const isCashSpecial = !!property.cashSpecial;
+  const acctDigits = String(property.taxAccount || '').replace(/\D/g, '');
+  const googleQuery = (property.lat && property.lon)
+    ? `${property.lat},${property.lon}`
+    : encodeURIComponent([property.address || property.title, property.city, 'FL'].filter(Boolean).join(', '));
   const utility = getUtilityInfo(unit);
   const quadrant = getQuadrant(property.address || property.title);
   const area = getAreaDetails(quadrant);
@@ -304,21 +323,27 @@ const PropertyDetail = () => {
         <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <Link to="/inventory" className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 mb-4">
+              <button onClick={goBack} className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 mb-4">
                 <ArrowLeft className="w-4 h-4" />
-                Back to Inventory
-              </Link>
-              
+                {backLabel}
+              </button>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 <div className="relative rounded-xl overflow-hidden">
-                  <img 
-                    src={property.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop&auto=format,compress&q=75'} 
-                    alt={`${property.title} - ${property.acres} buildable lot in ${property.city}`}
-                    className="w-full h-80 object-cover"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                  />
+                  {property.image ? (
+                    <img
+                      src={property.image}
+                      alt={`${property.title} - ${property.acres} buildable lot in ${property.city}`}
+                      className="w-full h-80 object-cover"
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                    />
+                  ) : (
+                    // No uploaded photo → show the lot's actual satellite view
+                    // (county parcel / geocoded address) instead of a stock image.
+                    <LotImage item={property} className="w-full h-80" px={[800, 640]} />
+                  )}
                   {unit && (
                     <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-bold text-white ${
                       utility.color === 'blue' ? 'bg-blue-600' : utility.color === 'cyan' ? 'bg-cyan-600' : 'bg-amber-600'
@@ -591,6 +616,30 @@ const PropertyDetail = () => {
                       Request Parcel Report
                     </Link>
                   </div>
+
+                  {/* Map & county appraiser links (open in a new tab) */}
+                  <div className="mt-4 pt-4 border-t">
+                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">See this lot on the map</p>
+                    <div className="flex flex-wrap gap-2">
+                      <a href={`https://www.google.com/maps/search/?api=1&query=${googleQuery}`} target="_blank" rel="noopener noreferrer"
+                         className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium">
+                        <ExternalLink className="w-3 h-3" /> Google Map
+                      </a>
+                      {acctDigits && (
+                        <a href={`https://www.bcpao.us/map/?r=${acctDigits}`} target="_blank" rel="noopener noreferrer"
+                           className="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-medium">
+                          <ExternalLink className="w-3 h-3" /> BCPAO Map
+                        </a>
+                      )}
+                      {acctDigits && (
+                        <a href={`https://www.bcpao.us/PropertySearch/#/account/${acctDigits}`} target="_blank" rel="noopener noreferrer"
+                           className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-700 hover:bg-slate-800 text-white rounded-lg text-xs font-medium">
+                          <ExternalLink className="w-3 h-3" /> BCPAO Detail
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
                   <div className="mt-6 pt-6 border-t">
                     <p className="text-sm text-slate-500 mb-1">Broker Associate</p>
                     <p className="font-bold text-slate-900">Vahid Reza Rajabian</p>
