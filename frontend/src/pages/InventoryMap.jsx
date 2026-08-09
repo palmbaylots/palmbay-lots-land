@@ -100,12 +100,16 @@ const InventoryMap = () => {
     const m = mapObj.current;
     if (!m) return;
     const refresh = () => {
-      m.invalidateSize(true);
+      m.invalidateSize(false);
+      // Force a hard view reset so the tile layer re-fetches for the new size —
+      // invalidateSize alone repositioned markers but left tiles unloaded (black).
+      m.setView(m.getCenter(), m.getZoom(), { animate: false });
       if (tileRef.current) tileRef.current.redraw();
     };
-    const t1 = setTimeout(refresh, 120);
-    const t2 = setTimeout(refresh, 450);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const t1 = setTimeout(refresh, 150);
+    const t2 = setTimeout(refresh, 500);
+    const t3 = setTimeout(refresh, 900);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [fullscreen]);
 
   useEffect(() => {
@@ -119,7 +123,9 @@ const InventoryMap = () => {
       } catch (e) { setErr(true); return; }
       if (cancelled || !mapDiv.current || mapObj.current) return;
 
-      const map = L.map(mapDiv.current, { scrollWheelZoom: true }).setView(PALM_BAY_CENTER, 12);
+      // fadeAnimation:false keeps tiles visible immediately — the tile fade can
+      // leave tiles stuck invisible (black) after a resize if a load event is missed.
+      const map = L.map(mapDiv.current, { scrollWheelZoom: true, fadeAnimation: false }).setView(PALM_BAY_CENTER, 12);
       mapObj.current = map;
       tileRef.current = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
