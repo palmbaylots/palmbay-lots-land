@@ -156,7 +156,13 @@ const InventoryMap = () => {
       if (!document.getElementById('map-icon-css')) {
         const st = document.createElement('style');
         st.id = 'map-icon-css';
-        st.textContent = '.leaflet-clean{background:transparent;border:0;}';
+        // .leaflet-clean removes the default white icon box.
+        // The max-width:none rule defeats Tailwind Preflight's `img{max-width:100%}`,
+        // which otherwise collapses Leaflet tiles to width 0 in the full-screen
+        // container (tall black slivers). This — not invalidateSize timing — was
+        // the real cause of the black full-screen map.
+        st.textContent = '.leaflet-clean{background:transparent;border:0;}'
+          + '.leaflet-tile,.leaflet-container img{max-width:none !important;max-height:none !important;}';
         document.head.appendChild(st);
       }
       const makeIcon = (lot) => {
