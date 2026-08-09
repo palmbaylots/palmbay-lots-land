@@ -564,20 +564,37 @@ const Inventory = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           {/* Context above table */}
-          <div className="max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-center gap-5">
-            <button
-              onClick={() => setShowUnitMap(true)}
-              title="View the Palm Bay unit map"
-              className="shrink-0 rounded-lg overflow-hidden border-2 border-[#1a3a5c] hover:ring-2 hover:ring-amber-500 transition shadow-md cursor-pointer bg-white"
-            >
-              <img src="/images/palm-bay-unit-map.jpg" alt="Palm Bay unit map" className="w-32 h-32 object-cover" loading="lazy" />
-              <span className="block bg-[#1a3a5c] text-white text-[10px] font-semibold py-1 px-1 text-center">Palm Bay Unit Map — click to enlarge</span>
-            </button>
-            <div className="text-center">
+          <div className="max-w-4xl mx-auto mb-8">
+            <div className="text-center mb-5">
               <h2 className="text-2xl font-bold text-slate-900 mb-2">Full Palm Bay Inventory</h2>
               <p className="text-slate-600">
                 {inventory.length}+ lots available below. If you want help narrowing this down, don't guess — <Link to="/contact" className="text-amber-600 font-semibold hover:underline">ask</Link>.
               </p>
+            </div>
+
+            {/* Palm Bay Unit Map + explanation */}
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 md:p-5 flex flex-col sm:flex-row items-center gap-5">
+              <button
+                onClick={() => setShowUnitMap(true)}
+                title="Click to enlarge the Palm Bay unit map"
+                className="shrink-0 rounded-lg overflow-hidden border-2 border-[#1a3a5c] hover:ring-2 hover:ring-amber-500 transition shadow-md cursor-pointer bg-white"
+              >
+                <img src="/images/palm-bay-unit-map.jpg" alt="Palm Bay unit map showing all Port Malabar units" className="w-60 h-60 md:w-72 md:h-72 object-contain bg-white" loading="lazy" />
+                <span className="block bg-[#1a3a5c] text-white text-xs font-semibold py-1.5 px-2 text-center">Palm Bay Unit Map — click to enlarge</span>
+              </button>
+              <div className="text-sm text-slate-700 leading-relaxed">
+                <p className="font-bold text-slate-900 mb-1">Click to enlarge and see where each unit is located.</p>
+                <p>
+                  Palm Bay's <strong>unit numbers work like Florida's counties.</strong> Just as saying
+                  "Brevard County" tells you you're on Florida's east-central coast, a Palm Bay
+                  <strong> unit number</strong> tells you where a lot sits within the city. For example, find
+                  <strong> Unit 49</strong> on this map and you'll see it's in the <strong>southwest of Palm Bay</strong>.
+                  So when a lot lists a unit number, this map shows you its part of town at a glance.
+                </p>
+                <button onClick={() => setShowUnitMap(true)} className="mt-2 inline-block text-amber-700 font-semibold underline">
+                  Open the full unit map →
+                </button>
+              </div>
             </div>
           </div>
 
