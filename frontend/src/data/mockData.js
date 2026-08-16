@@ -3,6 +3,12 @@
 export const mockTestimonials = [
   {
     name: 'Verified Client',
+    title: 'Land Seller (Washington State)',
+    text: 'Very informative and consistent updates. Vahid connected me with the right people to complete the sale of my property, and he was the foundation that directed the best outcome. My realtor here in Washington State researched and found Vahid Rajabian to be the best — he was right!',
+    source: 'RateMyAgent'
+  },
+  {
+    name: 'Verified Client',
     title: 'Land Seller',
     text: 'When I first decided that I wanted to sell my land, other realtors were encouraging me to list for less than half the price of what my lot was worth. After I met Vahid he told me he would be able to sell my land at the real market value. He was patient, thorough and helpful, and even when I was willing to compromise in pricing he encouraged me that my land will sell. He gave me the confidence I needed. I highly recommend Vahid because he is honest and reliable.',
     source: 'RateMyAgent'
