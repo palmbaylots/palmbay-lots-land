@@ -166,6 +166,11 @@ const Home = () => {
   // Cash-only "special" lots, managed in the inventory admin (cashOnly + status).
   const [cashLots, setCashLots] = useState([]);
   const [selectedCashLot, setSelectedCashLot] = useState(null);
+  // Client reviews come live from the admin-managed database; fall back to the
+  // built-in list only if the database has none yet.
+  const [dbReviews, setDbReviews] = useState([]);
+  const testimonials = dbReviews.length ? dbReviews : mockTestimonials;
+  const reviewCount = testimonials.length;
 
   useEffect(() => {
     let cancelled = false;
@@ -181,6 +186,17 @@ const Home = () => {
       } catch (e) {
         // leave cashLots empty — the modal shows a fallback message
       }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const { data } = await axios.get(`${API}/reviews`);
+        if (!cancelled && Array.isArray(data)) setDbReviews(data);
+      } catch (e) { /* fall back to the built-in reviews */ }
     })();
     return () => { cancelled = true; };
   }, []);
@@ -266,8 +282,13 @@ const Home = () => {
           ...homepageSchemaGraph(),
           dateModified: todayISO()
         })}</script>
-        {/* Keep legacy RealEstateAgent + FAQ schemas */}
-        <script type="application/ld+json">{JSON.stringify({...realEstateAgentSchema, dateModified: todayISO()})}</script>
+        {/* Keep legacy RealEstateAgent + FAQ schemas — review count stays in sync
+            with the live reviews so the Google star rating matches the page. */}
+        <script type="application/ld+json">{JSON.stringify({
+          ...realEstateAgentSchema,
+          aggregateRating: { ...realEstateAgentSchema.aggregateRating, reviewCount: String(reviewCount) },
+          dateModified: todayISO()
+        })}</script>
         <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
       </Helmet>
       
@@ -943,7 +964,7 @@ const Home = () => {
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
-              <span className="text-slate-600 font-medium ml-1">5.0 — 7 Verified Reviews</span>
+              <span className="text-slate-600 font-medium ml-1">5.0 — {reviewCount} Verified Reviews</span>
             </div>
             <a 
               href="https://www.ratemyagent.com/real-estate-agent/vahid-rajabian-b14sqj/sales/overview"
@@ -955,8 +976,8 @@ const Home = () => {
             </a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockTestimonials.map((testimonial, index) => (
-              <div key={index} className="bg-slate-50 p-6 rounded-lg shadow-md">
+            {testimonials.map((testimonial, index) => (
+              <div key={testimonial.id || index} className="bg-slate-50 p-6 rounded-lg shadow-md">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (

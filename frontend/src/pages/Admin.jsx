@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Search, Download, Phone, Mail, Calendar, TrendingUp, Plus, Edit, Trash2, X, Building2, Home, Users, Upload, Loader2, BookOpen } from 'lucide-react';
+import { Search, Download, Phone, Mail, Calendar, TrendingUp, Plus, Edit, Trash2, X, Building2, Home, Users, Upload, Loader2, BookOpen, Star } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Checkbox } from '../components/ui/checkbox';
 import AdminBlogsTab from '../components/AdminBlogsTab';
+import AdminReviewsTab from '../components/AdminReviewsTab';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -603,6 +604,18 @@ const Admin = ({ adminPassword = '' }) => {
                 <BookOpen className="w-5 h-5" />
                 Blogs
               </button>
+              <button
+                onClick={() => setActiveTab('reviews')}
+                className={`shrink-0 px-3 sm:px-6 py-4 font-medium flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+                  activeTab === 'reviews'
+                    ? 'border-amber-500 text-amber-600'
+                    : 'border-transparent text-slate-600 hover:text-slate-900'
+                }`}
+                data-testid="admin-tab-reviews"
+              >
+                <Star className="w-5 h-5" />
+                Reviews
+              </button>
             </div>
           </div>
         </section>
@@ -611,7 +624,7 @@ const Admin = ({ adminPassword = '' }) => {
         <section className="py-8">
           <div className="container mx-auto px-4">
             {/* Search Bar */}
-            {activeTab !== 'blogs' && (
+            {activeTab !== 'blogs' && activeTab !== 'reviews' && (
             <div className="mb-6 flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
@@ -675,6 +688,10 @@ const Admin = ({ adminPassword = '' }) => {
             {/* BLOGS TAB */}
             {activeTab === 'blogs' && (
               <AdminBlogsTab adminPassword={adminPassword} />
+            )}
+
+            {activeTab === 'reviews' && (
+              <AdminReviewsTab adminPassword={adminPassword} />
             )}
 
             {/* LEADS TAB */}
