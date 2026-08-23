@@ -9,7 +9,7 @@ const schemaData = {
   "@context": "https://schema.org",
   "@type": "RealEstateListing",
   "name": "2418 Fleming Avenue SW, Palm Bay, FL",
-  "description": "Buildable residential lot at 2418 Fleming Avenue SW, Palm Bay, FL. 10,019 sq ft with city water available. $65,000. Owner financing with 25% minimum down.",
+  "description": "Buildable residential lot at 2418 Fleming Avenue SW, Palm Bay, FL. 10,019 sq ft with city water available. $65,000. Owner financing with 30% minimum down.",
   "url": "https://palmbaylots-land.com/listing/2418-fleming-ave",
   "address": { "@type": "PostalAddress", "streetAddress": "2418 Fleming Avenue SW", "addressLocality": "Palm Bay", "addressRegion": "FL", "postalCode": "32908", "addressCountry": "US" },
   "offers": { "@type": "Offer", "price": "65000", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
@@ -26,7 +26,7 @@ const FlagshipFlemingAve = () => {
     <>
       <Helmet>
         <title>2418 Fleming Avenue SW, Palm Bay FL | $65,000 | City Water | Owner Financing</title>
-        <meta name="description" content="Buildable residential lot at 2418 Fleming Avenue SW, Palm Bay, FL. 10,019 sq ft with city water. $65,000 with owner financing — 25% min down, no bank needed. Contact Vahid Rajabian." />
+        <meta name="description" content="Buildable residential lot at 2418 Fleming Avenue SW, Palm Bay, FL. 10,019 sq ft with city water. $65,000 with owner financing — 30% min down, no bank needed. Contact Vahid Rajabian." />
         <link rel="canonical" href="https://palmbaylots-land.com/listing/2418-fleming-ave" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
@@ -186,7 +186,7 @@ const FlagshipFlemingAve = () => {
                   </div>
                 </div>
                 <p className="text-gray-300 text-sm">
-                  No bank qualification required. We do personal approval — we look at you as an individual. Deed transfers at 35% paid (~$22,750). No prepayment penalty.
+                  No bank qualification required. We do personal approval — we look at you as an individual. Deed transfers at 40% paid (~$26,000). No prepayment penalty.
                 </p>
                 <Link to="/guide/owner-financing-what-to-watch" className="inline-block mt-4 text-amber-400 hover:text-amber-300 text-sm font-medium">
                   Learn about our financing terms →

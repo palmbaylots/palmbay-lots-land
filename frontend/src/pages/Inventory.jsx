@@ -83,12 +83,12 @@ const monthlyPayment = (financed) => Math.round((financed * 13.22) / 1000);
 const financingFor = (price) => ({
   status: 'price',
   price,
-  down25: Math.round(price * 0.25),
-  fin25: Math.round(price * 0.75),
-  monthly25: monthlyPayment(price * 0.75),
-  down35: Math.round(price * 0.35),
-  fin35: Math.round(price * 0.65),
-  monthly35: monthlyPayment(price * 0.65),
+  down30: Math.round(price * 0.30),
+  fin30: Math.round(price * 0.70),
+  monthly30: monthlyPayment(price * 0.70),
+  down40: Math.round(price * 0.40),
+  fin40: Math.round(price * 0.60),
+  monthly40: monthlyPayment(price * 0.60),
 });
 
 // Returns pricing info for a lot.
@@ -184,7 +184,7 @@ const Inventory = () => {
   const [featuredLoading, setFeaturedLoading] = useState(true);
   const [priceItem, setPriceItem] = useState(null); // lot whose price popup is open
   const [canal, setCanal] = useState(false);
-  const [downPct, setDownPct] = useState(25); // custom down-payment %
+  const [downPct, setDownPct] = useState(30); // custom down-payment %
   const [mapItem, setMapItem] = useState(null); // lot whose satellite map is open
   const [showUnitMap, setShowUnitMap] = useState(false); // Palm Bay unit map lightbox
   const [favorites, setFavorites] = useState(() => readFavorites()); // saved lot ids
@@ -229,7 +229,7 @@ const Inventory = () => {
     />
   );
 
-  const openPriceModal = (item) => { setCanal(false); setDownPct(25); setPriceItem(item); };
+  const openPriceModal = (item) => { setCanal(false); setDownPct(30); setPriceItem(item); };
   const closePriceModal = () => setPriceItem(null);
 
   // Load featured properties from database
@@ -511,7 +511,7 @@ const Inventory = () => {
                 Browse our up-to-date list of <strong>residential lots for sale in Palm Bay, FL</strong>. We focus exclusively on <strong>vacant land in Palm Bay</strong> — single-family buildable parcels, quarter-acre lots, oversized lots, corner lots, and assemblage opportunities throughout Brevard County. Whether you are looking to build your first home, hold land as a long-term investment, or assemble a builder package, you will find <strong>Palm Bay residential lots</strong> here at honest, real-market pricing.
               </p>
               <p>
-                Every lot in our inventory is offered with <strong>owner financing</strong> — no bank required and no long, drawn-out mortgage process. We may check credit, but qualifying is simple: we are not turning people away over a low credit score, a past bankruptcy, or a divorce. There is <strong>no appraisal and no weeks-long wait</strong> — in most cases we can set up your financing the same day, right in our office. As long as you can make the payments, we can usually get you approved. Our standard terms start at <strong>25% down with the deed transferring once 35% is paid</strong>, with the balance amortized over a fixed term. We have closed thousands of transactions on these exact terms since 2003.
+                Every lot in our inventory is offered with <strong>owner financing</strong> — no bank required and no long, drawn-out mortgage process. We may check credit, but qualifying is simple: we are not turning people away over a low credit score, a past bankruptcy, or a divorce. There is <strong>no appraisal and no weeks-long wait</strong> — in most cases we can set up your financing the same day, right in our office. As long as you can make the payments, we can usually get you approved. Our standard terms start at <strong>30% down with the deed transferring once 40% is paid</strong>, with the balance amortized over a fixed term. We have closed thousands of transactions on these exact terms since 2003.
               </p>
               <p>
                 Each listing below shows the inventory ID, unit/block/lot, acreage, street address, and a direct link to the Brevard County Property Appraiser so you can verify zoning, utilities, and tax assessment before you call. If you already know what you are looking for — call or text us at <a href="tel:3213337230" className="text-amber-600 font-semibold hover:underline">321-333-7230</a> and we will match you to the right parcel. If you are still figuring out what works for your build, we are happy to walk you through it.
@@ -860,21 +860,21 @@ const Inventory = () => {
                     <div className="space-y-3">
                       <div className="border border-slate-200 rounded-xl p-4">
                         <div className="flex items-baseline justify-between">
-                          <span className="font-bold text-slate-900">25% Option Money</span>
-                          <span className="text-slate-900 font-semibold">{usd(pricing.down25)} option money</span>
+                          <span className="font-bold text-slate-900">30% Option Money</span>
+                          <span className="text-slate-900 font-semibold">{usd(pricing.down30)} option money</span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin25)} — principal only</p>
-                        <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly25)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin30)} — principal only</p>
+                        <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly30)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                         <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
-                        <p className="text-xs text-slate-500 mt-1">Option Contract — deed transfers once your payments reach 35% of the price.</p>
+                        <p className="text-xs text-slate-500 mt-1">Option Contract — deed transfers once your payments reach 40% of the price.</p>
                       </div>
                       <div className="border border-slate-200 rounded-xl p-4">
                         <div className="flex items-baseline justify-between">
-                          <span className="font-bold text-slate-900">35% Down</span>
-                          <span className="text-slate-900 font-semibold">{usd(pricing.down35)} down</span>
+                          <span className="font-bold text-slate-900">40% Down</span>
+                          <span className="text-slate-900 font-semibold">{usd(pricing.down40)} down</span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin35)} — principal only</p>
-                        <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly35)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin40)} — principal only</p>
+                        <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly40)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                         <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
                         <p className="text-xs text-slate-500 mt-1">Deed Transfer at closing.</p>
                       </div>
@@ -892,13 +892,13 @@ const Inventory = () => {
                             <span className="text-sm font-bold">{downPct}% down</span>
                           </div>
                           <input
-                            type="range" min="25" max="100" step="1"
+                            type="range" min="30" max="100" step="1"
                             value={downPct}
                             onChange={(e) => setDownPct(Number(e.target.value))}
                             className="w-full accent-amber-500"
                           />
                           <div className="flex justify-between text-[11px] text-slate-400 mb-3">
-                            <span>25%</span><span>Paid in full</span>
+                            <span>30%</span><span>Paid in full</span>
                           </div>
                           <div className="grid grid-cols-3 gap-2 text-center">
                             <div>

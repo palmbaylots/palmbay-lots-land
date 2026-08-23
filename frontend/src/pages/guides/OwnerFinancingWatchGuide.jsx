@@ -20,7 +20,7 @@ const faqSchema = {
       "name": "What should I watch out for with owner financing?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Watch for: (1) When the deed transfers — some sellers keep it for the entire loan term, we transfer at 35% paid. (2) Hidden fees — all our fees are disclosed upfront. (3) Prepayment penalties — we have none. (4) What happens if there's a lot problem — we offer a lot exchange guarantee. (5) The approval process — we do personal approval, not just credit scores."
+        "text": "Watch for: (1) When the deed transfers — some sellers keep it for the entire loan term, we transfer at 40% paid. (2) Hidden fees — all our fees are disclosed upfront. (3) Prepayment penalties — we have none. (4) What happens if there's a lot problem — we offer a lot exchange guarantee. (5) The approval process — we do personal approval, not just credit scores."
       }
     },
     {
@@ -28,7 +28,7 @@ const faqSchema = {
       "name": "When do I get the deed with owner financing?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "With us, the deed transfers at 35% paid. Many other sellers keep the deed for the entire loan term — meaning you could make payments for years without ever owning the property. We do it differently. With 25% minimum down and continued payments, you typically get the deed within about a year."
+        "text": "With us, the deed transfers at 40% paid. Many other sellers keep the deed for the entire loan term — meaning you could make payments for years without ever owning the property. We do it differently. With 30% minimum down and continued payments, you typically get the deed within about a year."
       }
     },
     {
@@ -36,7 +36,7 @@ const faqSchema = {
       "name": "What is the minimum down payment for owner financed land?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our minimum is 25% down for an option contract. If you put 35% down, you receive the deed immediately. For a $41,000 lot, that's $10,250 minimum down. No bank qualification required."
+        "text": "Our minimum is 30% down for an option contract. If you put 40% down, you receive the deed immediately. For a $41,000 lot, that's $12,300 minimum down. No bank qualification required."
       }
     },
     {
@@ -111,7 +111,7 @@ const OwnerFinancingWatchGuide = () => {
                     </p>
                     <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded-r-lg">
                       <p className="text-green-800">
-                        <strong>How we do it:</strong> We transfer the deed at 35% paid. With minimum payments, that's typically about a year. Most of our buyers own the property well before they finish paying.
+                        <strong>How we do it:</strong> We transfer the deed at 40% paid. With minimum payments, that's typically about a year. Most of our buyers own the property well before they finish paying.
                       </p>
                     </div>
                   </div>

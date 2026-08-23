@@ -5,16 +5,16 @@ import { Phone, X } from 'lucide-react';
 /**
  * Featured Special Listing — 1039 Hooper Ave NE Palm Bay FL 32905
  * Static, curated card. "See Price" opens a property-card popup with the
- * cash price + owner-financing chart (25% option / 35% down) + detail links
+ * cash price + owner-financing chart (30% option / 40% down) + detail links
  * + the two maps. Brand: navy #1a3a5c · orange #d97706 · light #7eb8e8.
  */
 
-const PRICE = 79900;
+const PRICE = 89900;
 const usd = (n) => `$${n.toLocaleString('en-US')}`;
 const monthlyPayment = (financed) => Math.round((financed * 13.22) / 1000); // $13.22 / $1,000 · 10% · 120 mo
 
-const down25 = Math.round(PRICE * 0.25), fin25 = PRICE - down25, mo25 = monthlyPayment(fin25);
-const down35 = Math.round(PRICE * 0.35), fin35 = PRICE - down35, mo35 = monthlyPayment(fin35);
+const down30 = Math.round(PRICE * 0.30), fin30 = PRICE - down30, mo30 = monthlyPayment(fin30);
+const down40 = Math.round(PRICE * 0.40), fin40 = PRICE - down40, mo40 = monthlyPayment(fin40);
 
 const AERIAL = '/images/1039-hooper-aerial.jpg';
 const PARCEL = '/images/1039-hooper-parcel.jpg';
@@ -133,19 +133,19 @@ const FeaturedSpecialListing = () => {
               <div className="space-y-2.5">
                 <div className="border border-slate-200 rounded-xl p-3.5">
                   <div className="flex items-baseline justify-between">
-                    <span className="font-bold text-slate-900">25% Option Money</span>
-                    <span className="text-slate-900 font-semibold text-sm">{usd(down25)} · finance {usd(fin25)}</span>
+                    <span className="font-bold text-slate-900">30% Option Money</span>
+                    <span className="text-slate-900 font-semibold text-sm">{usd(down30)} · finance {usd(fin30)}</span>
                   </div>
-                  <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo25)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                  <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo30)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                   <p className="text-sm font-bold text-slate-900">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
-                  <p className="text-xs text-slate-500">Option Contract — deed transfers once payments reach 35% of the price.</p>
+                  <p className="text-xs text-slate-500">Option Contract — deed transfers once payments reach 40% of the price.</p>
                 </div>
                 <div className="border border-slate-200 rounded-xl p-3.5">
                   <div className="flex items-baseline justify-between">
-                    <span className="font-bold text-slate-900">35% Down</span>
-                    <span className="text-slate-900 font-semibold text-sm">{usd(down35)} · finance {usd(fin35)}</span>
+                    <span className="font-bold text-slate-900">40% Down</span>
+                    <span className="text-slate-900 font-semibold text-sm">{usd(down40)} · finance {usd(fin40)}</span>
                   </div>
-                  <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo35)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                  <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo40)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                   <p className="text-sm font-bold text-slate-900">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
                   <p className="text-xs text-slate-500">Deed Transfer at closing.</p>
                 </div>

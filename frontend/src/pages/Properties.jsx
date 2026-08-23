@@ -185,9 +185,9 @@ const Properties = () => {
               <li>5. Buyer needs to fill out a simple application and we need a copy of the buyer ID.</li>
               <li>6. There is a $50 application fee per person. We may pull credit most of the time.</li>
               <li>7. There is a 10 point charge added to financed amount at the time of closing that may be added to the loan amount. For example, if you are owner-financing $20,000, the loan amount will be $22,000.</li>
-              <li>8. Minimum option money is $5,000 or 25% of the purchase price, whichever is greater.</li>
-              <li>9. With 25% down, you receive an option contract.</li>
-              <li>10. With 35% down, you receive the deed at closing. Otherwise, we transfer title to you once your total payments reach 35% of the purchase price.</li>
+              <li>8. Minimum option money is $5,000 or 30% of the purchase price, whichever is greater.</li>
+              <li>9. With 30% down, you receive an option contract.</li>
+              <li>10. With 40% down, you receive the deed at closing. Otherwise, we transfer title to you once your total payments reach 40% of the purchase price.</li>
               <li>11. Buyer is responsible for property taxes and other ownership obligations as of the day the contract is executed.</li>
             </ol>
 
@@ -201,9 +201,9 @@ const Properties = () => {
                   term of the contract.
                 </p>
                 <p>
-                  You begin with <strong>25% option money</strong> and make monthly payments toward the purchase. When
-                  your total payments reach <strong>35% of the purchase price, the deed transfers into your name</strong>.
-                  If you prefer, you can put <strong>35% down</strong> and receive the deed at closing.
+                  You begin with <strong>30% option money</strong> and make monthly payments toward the purchase. When
+                  your total payments reach <strong>40% of the purchase price, the deed transfers into your name</strong>.
+                  If you prefer, you can put <strong>40% down</strong> and receive the deed at closing.
                 </p>
                 <p>
                   <strong>Making your monthly payments on time is essential.</strong> Missed or irregular payments may
@@ -234,10 +234,10 @@ const Properties = () => {
     <>
       <Helmet>
         <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
-        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 25% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required. See current pricing by unit and area." />
+        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 30% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required. See current pricing by unit and area." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
         <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />
-        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 25% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required." />
+        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 30% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required." />
         <meta property="og:url" content="https://palmbaylots-land.com/price-guide" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
@@ -260,7 +260,7 @@ const Properties = () => {
               name: 'What are the owner financing terms?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Standard owner financing terms are 25% option money and a 10% interest rate (12.33% APR when the 10-point charge is financed, 12.58% APR if points are paid at closing), amortized over up to 10 years. The deed transfers when 35% of the purchase price has been paid. No banks, no credit checks, no traditional mortgage process.'
+                text: 'Standard owner financing terms are 30% option money and a 10% interest rate (12.33% APR when the 10-point charge is financed, 12.58% APR if points are paid at closing), amortized over up to 10 years. The deed transfers when 40% of the purchase price has been paid. No banks, no credit checks, no traditional mortgage process.'
               }
             },
             {
@@ -367,7 +367,7 @@ const Properties = () => {
               <p className="text-sm text-slate-700 mt-3">Use the <span className="font-semibold">See Price</span> button on any lot in the <Link to="/inventory" className="text-amber-700 underline font-semibold">inventory</Link> to calculate the exact price and monthly payment instantly.</p>
 
               <h3 className="text-lg font-bold text-slate-900 mt-8 mb-2">Owner Financing</h3>
-              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% interest rate — 12.33% Annual Percentage Rate (APR) when the 10-point charge is financed, or 12.58% APR if points are paid at closing — minimum 25% option money. No pre-payment penalty, no balloon.</p>
+              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% interest rate — 12.33% Annual Percentage Rate (APR) when the 10-point charge is financed, or 12.58% APR if points are paid at closing — minimum 30% option money. No pre-payment penalty, no balloon.</p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <button onClick={() => openFinancing(false)} className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
                   <Calculator className="w-4 h-4" /> See Full Financing Terms

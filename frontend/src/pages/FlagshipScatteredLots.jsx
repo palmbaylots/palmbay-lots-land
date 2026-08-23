@@ -90,7 +90,7 @@ const FlagshipScatteredLots = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 mb-2">Individual Buyers</h4>
-                    <p className="text-slate-600 text-sm">Pick the perfect lot for your future home. Owner financing available — 25% minimum down, no bank qualification. Deed transfers at 35% paid.</p>
+                    <p className="text-slate-600 text-sm">Pick the perfect lot for your future home. Owner financing available — 30% minimum down, no bank qualification. Deed transfers at 40% paid.</p>
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 mb-2">Out-of-State Investors</h4>
@@ -131,7 +131,7 @@ const FlagshipScatteredLots = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                    <span>Owner financing: 25% minimum down, deed at 35% paid</span>
+                    <span>Owner financing: 30% minimum down, deed at 40% paid</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />

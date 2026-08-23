@@ -80,7 +80,7 @@ const getUseCases = (property, utility, acresNum, sqft, isCashSpecial) => {
 
   // Cash-special lots are sold for cash only — no owner financing, so omit the finance-and-resell angle.
   if (!isCashSpecial) {
-    cases.push({ title: 'Owner Finance & Resell', desc: 'Buy with our financing (25% down), then resell with your own seller financing at a markup. Create monthly income while building equity.' });
+    cases.push({ title: 'Owner Finance & Resell', desc: 'Buy with our financing (30% down), then resell with your own seller financing at a markup. Create monthly income while building equity.' });
   }
 
   if (acresNum >= 0.3) {
@@ -114,7 +114,7 @@ const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area, 
   } else {
     faqs.push({
       q: `Is owner financing available for this lot?`,
-      a: `Yes. 25% minimum down for an option contract ($${Math.round(parseFloat(property.price.replace(/[^0-9.]/g, '') || 41000) * 0.25).toLocaleString()} on this lot). Deed transfers at 35% paid. No bank qualification required. No prepayment penalty.`
+      a: `Yes. 30% minimum down for an option contract ($${Math.round(parseFloat(property.price.replace(/[^0-9.]/g, '') || 41000) * 0.30).toLocaleString()} on this lot). Deed transfers at 40% paid. No bank qualification required. No prepayment penalty.`
     });
   }
   
@@ -142,7 +142,7 @@ const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area, 
 const getRelatedGuides = (utility) => {
   const guides = [
     { path: '/guide/build-on-land-palm-bay', title: 'Can You Build on Land in Palm Bay?', desc: 'Zoning, permits & building costs' },
-    { path: '/guide/owner-financing-what-to-watch', title: 'Owner Financing: What to Watch', desc: '25% down, deed at 35%, no hidden fees' },
+    { path: '/guide/owner-financing-what-to-watch', title: 'Owner Financing: What to Watch', desc: '30% down, deed at 40%, no hidden fees' },
   ];
   
   if (utility.color !== 'blue') {
@@ -248,7 +248,7 @@ const PropertyDetail = () => {
   const pageTitle = `${property.title}, ${property.city} | ${property.acres} Lot${unit ? ` | ${utility.label}` : ''}`;
   const pageDescription = isCashSpecial
     ? `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Special cash-priced lot — cash purchase only, no owner financing. Call Vahid 321-333-7230.`
-    : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing: 25% down, no bank needed. Call Vahid 321-333-7230.`;
+    : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing: 30% down, no bank needed. Call Vahid 321-333-7230.`;
   const canonicalUrl = `https://palmbaylots-land.com/property/${slug}`;
 
   const schemaData = {
@@ -405,7 +405,7 @@ const PropertyDetail = () => {
                   <p className="text-slate-700 leading-relaxed">
                     This {acresNum.toFixed(2)}-acre buildable lot at {property.title} is located in {area.name}{unitBlockInfo ? ` (${unitBlockInfo})` : ''}. The lot offers {sqft.toLocaleString()} square feet of usable land with {utility.type}. {isCashSpecial
                       ? 'This is a special cash-priced lot — offered for cash purchase only. Owner financing is not available on this listing.'
-                      : 'Owner financing available — 25% minimum down, no bank qualification required.'}
+                      : 'Owner financing available — 30% minimum down, no bank qualification required.'}
                   </p>
                 </div>
 
@@ -499,11 +499,11 @@ const PropertyDetail = () => {
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center mb-4">
                       <div className="bg-white p-3 rounded-lg">
-                        <p className="text-xl font-bold text-amber-600">25%</p>
+                        <p className="text-xl font-bold text-amber-600">30%</p>
                         <p className="text-xs text-slate-600">Min Down</p>
                       </div>
                       <div className="bg-white p-3 rounded-lg">
-                        <p className="text-xl font-bold text-amber-600">35%</p>
+                        <p className="text-xl font-bold text-amber-600">40%</p>
                         <p className="text-xs text-slate-600">Deed Transfers</p>
                       </div>
                       <div className="bg-white p-3 rounded-lg">

@@ -53,8 +53,8 @@ const parsePrice = (p) => { const n = parseFloat(String(p || '').replace(/[^0-9.
 const monthlyPayment = (financed) => Math.round((financed * 13.22) / 1000);
 const financingFor = (price) => ({
   status: 'price', price,
-  down25: Math.round(price * 0.25), fin25: Math.round(price * 0.75), monthly25: monthlyPayment(price * 0.75),
-  down35: Math.round(price * 0.35), fin35: Math.round(price * 0.65), monthly35: monthlyPayment(price * 0.65),
+  down30: Math.round(price * 0.30), fin30: Math.round(price * 0.70), monthly30: monthlyPayment(price * 0.70),
+  down40: Math.round(price * 0.40), fin40: Math.round(price * 0.60), monthly40: monthlyPayment(price * 0.60),
 });
 const getLotPricing = (item, utilityType, canal) => {
   const unit = String(item.unit || '');
@@ -80,7 +80,7 @@ const slugify = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
 const LotPriceModal = ({ item, onClose }) => {
   const [canal, setCanal] = useState(false);
-  const [downPct, setDownPct] = useState(25);
+  const [downPct, setDownPct] = useState(30);
   if (!item) return null;
 
   const utilityType = getUtilityType(item);
@@ -168,21 +168,21 @@ const LotPriceModal = ({ item, onClose }) => {
                 <div className="space-y-3">
                   <div className="border border-slate-200 rounded-xl p-4">
                     <div className="flex items-baseline justify-between">
-                      <span className="font-bold text-slate-900">25% Option Money</span>
-                      <span className="text-slate-900 font-semibold">{usd(pricing.down25)} option money</span>
+                      <span className="font-bold text-slate-900">30% Option Money</span>
+                      <span className="text-slate-900 font-semibold">{usd(pricing.down30)} option money</span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin25)} — principal only</p>
-                    <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly25)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                    <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin30)} — principal only</p>
+                    <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly30)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                     <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
-                    <p className="text-xs text-slate-500 mt-1">Option Contract — deed transfers once your payments reach 35% of the price.</p>
+                    <p className="text-xs text-slate-500 mt-1">Option Contract — deed transfers once your payments reach 40% of the price.</p>
                   </div>
                   <div className="border border-slate-200 rounded-xl p-4">
                     <div className="flex items-baseline justify-between">
-                      <span className="font-bold text-slate-900">35% Down</span>
-                      <span className="text-slate-900 font-semibold">{usd(pricing.down35)} down</span>
+                      <span className="font-bold text-slate-900">40% Down</span>
+                      <span className="text-slate-900 font-semibold">{usd(pricing.down40)} down</span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin35)} — principal only</p>
-                    <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly35)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
+                    <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin40)} — principal only</p>
+                    <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly40)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                     <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
                     <p className="text-xs text-slate-500 mt-1">Deed Transfer at closing.</p>
                   </div>
@@ -198,10 +198,10 @@ const LotPriceModal = ({ item, onClose }) => {
                         <span className="text-sm font-semibold text-amber-400">Put more down?</span>
                         <span className="text-sm font-bold">{downPct}% down</span>
                       </div>
-                      <input type="range" min="25" max="100" step="1" value={downPct}
+                      <input type="range" min="30" max="100" step="1" value={downPct}
                         onChange={(e) => setDownPct(Number(e.target.value))} className="w-full accent-amber-500" />
                       <div className="flex justify-between text-[11px] text-slate-400 mb-3">
-                        <span>25%</span><span>Paid in full</span>
+                        <span>30%</span><span>Paid in full</span>
                       </div>
                       <div className="grid grid-cols-3 gap-2 text-center">
                         <div>

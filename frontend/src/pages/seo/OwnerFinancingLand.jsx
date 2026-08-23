@@ -31,7 +31,7 @@ const OwnerFinancingLand = () => {
     "@type": "Service",
     "serviceType": "Owner Financing for Land Purchase",
     "name": "Owner Financing Land in Florida",
-    "description": "Buy land in Palm Bay, Florida with owner financing. No bank qualification required. 25% minimum down payment, flexible monthly terms, and fast closing. 500+ lots available.",
+    "description": "Buy land in Palm Bay, Florida with owner financing. No bank qualification required. 30% minimum down payment, flexible monthly terms, and fast closing. 500+ lots available.",
     "url": "https://palmbaylots-land.com/owner-financing-land-florida",
     "areaServed": {
       "@type": "City",
@@ -58,7 +58,7 @@ const OwnerFinancingLand = () => {
       "priceRange": "$32,000 - $500,000",
       "priceCurrency": "USD"
     },
-    "termsOfService": "25% minimum down for option contract, 35% for immediate deed transfer, no prepayment penalty"
+    "termsOfService": "30% minimum down for option contract, 40% for immediate deed transfer, no prepayment penalty"
   };
 
   const faqSchema = {
@@ -70,7 +70,7 @@ const OwnerFinancingLand = () => {
         "name": "How does owner financing work for land in Florida?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Owner financing means you buy land directly from the seller without a bank. You pay a minimum 25% down for an option contract. Once you've paid 35% of the total purchase price, the deed transfers to your name. You continue making monthly payments until the lot is paid off. No prepayment penalty — pay it off early anytime."
+          "text": "Owner financing means you buy land directly from the seller without a bank. You pay a minimum 30% down for an option contract. Once you've paid 40% of the total purchase price, the deed transfers to your name. You continue making monthly payments until the lot is paid off. No prepayment penalty — pay it off early anytime."
         }
       },
       {
@@ -78,7 +78,7 @@ const OwnerFinancingLand = () => {
         "name": "What is the minimum down payment for owner financed land?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Minimum 25% down for an option contract. If you put 35% down, you receive the deed immediately. For a $41,000 lot, that's $10,250 minimum down. No bank qualification required."
+          "text": "Minimum 30% down for an option contract. If you put 40% down, you receive the deed immediately. For a $41,000 lot, that's $12,300 minimum down. No bank qualification required."
         }
       },
       {
@@ -86,7 +86,7 @@ const OwnerFinancingLand = () => {
         "name": "When do I get the deed with owner financing?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The deed transfers to your name once you've paid 35% of the total purchase price (down payment + monthly payments combined). Many other sellers keep the deed for the entire loan term — we don't. With minimum payments, this typically takes about a year."
+          "text": "The deed transfers to your name once you've paid 40% of the total purchase price (down payment + monthly payments combined). Many other sellers keep the deed for the entire loan term — we don't. With minimum payments, this typically takes about a year."
         }
       },
       {
@@ -94,7 +94,7 @@ const OwnerFinancingLand = () => {
         "name": "Can I build on the land before it's paid off?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Once you receive the deed (at 35% paid), you can start improvements — clearing the lot, applying for permits, and building. If you're getting a construction loan, the loan will pay us off. Just send us a payoff request with the closing date and we'll furnish a payoff statement. No prepayment penalty."
+          "text": "Yes. Once you receive the deed (at 40% paid), you can start improvements — clearing the lot, applying for permits, and building. If you're getting a construction loan, the loan will pay us off. Just send us a payoff request with the closing date and we'll furnish a payoff statement. No prepayment penalty."
         }
       },
       {
@@ -136,7 +136,7 @@ const OwnerFinancingLand = () => {
     <>
       <Helmet>
         <title>Owner Financing Land Florida | No Bank Qualification | Palm Bay Lots</title>
-        <meta name="description" content="Buy land in Florida with owner financing. No bank qualification required. 25% minimum down payment, deed transfers at 35% paid. 500+ lots in Palm Bay. Fast closing in 2-3 weeks." />
+        <meta name="description" content="Buy land in Florida with owner financing. No bank qualification required. 30% minimum down payment, deed transfers at 40% paid. 500+ lots in Palm Bay. Fast closing in 2-3 weeks." />
         <meta name="keywords" content="owner financing land Florida, land contract Florida, seller financing vacant land, no bank land purchase, Palm Bay owner financing, buy land no credit check" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/owner-financing-land-florida" />
@@ -193,7 +193,7 @@ const OwnerFinancingLand = () => {
               </p>
 
               <p className="text-lg text-slate-700 mb-6">
-                For buyers looking at <strong>vacant land in Palm Bay</strong>, owner financing is particularly valuable. Banks often hesitate to finance raw land, requiring large down payments (25-50%) and short repayment terms. Our <strong>owner financing program</strong> requires a minimum of 25% down for an option contract. Once you've paid 35% of the total price, the deed transfers to your name — and you continue making payments until the lot is paid off. No prepayment penalty.
+                For buyers looking at <strong>vacant land in Palm Bay</strong>, owner financing is particularly valuable. Banks often hesitate to finance raw land, requiring large down payments (25-50%) and short repayment terms. Our <strong>owner financing program</strong> requires a minimum of 30% down for an option contract. Once you've paid 40% of the total price, the deed transfers to your name — and you continue making payments until the lot is paid off. No prepayment penalty.
               </p>
 
               <p className="text-lg text-slate-700 mb-8">
@@ -233,14 +233,14 @@ const OwnerFinancingLand = () => {
                     <span className="text-2xl font-bold text-amber-600">2</span>
                   </div>
                   <h3 className="font-bold text-slate-900 mb-2">Pay Down Payment</h3>
-                  <p className="text-slate-600">Put down a minimum of 25% of the purchase price. You'll receive an option contract securing your lot. Or put down 35% and receive the deed immediately.</p>
+                  <p className="text-slate-600">Put down a minimum of 30% of the purchase price. You'll receive an option contract securing your lot. Or put down 40% and receive the deed immediately.</p>
                 </div>
                 <div className="text-center bg-white p-6 rounded-xl shadow-sm">
                   <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl font-bold text-amber-600">3</span>
                   </div>
                   <h3 className="font-bold text-slate-900 mb-2">Make Monthly Payments</h3>
-                  <p className="text-slate-600">Make affordable monthly payments until you reach 35% of the purchase price. At that point, title transfers to you and you continue payments until paid in full.</p>
+                  <p className="text-slate-600">Make affordable monthly payments until you reach 40% of the purchase price. At that point, title transfers to you and you continue payments until paid in full.</p>
                 </div>
               </div>
 
@@ -297,7 +297,7 @@ const OwnerFinancingLand = () => {
                   <Banknote className="w-8 h-8 text-green-600 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2">Manageable Option Money</h3>
-                    <p className="text-slate-600">Start with 25% option money and predictable monthly payments — no bank qualification and no long approval process. This makes <strong>Florida land ownership</strong> accessible to more buyers.</p>
+                    <p className="text-slate-600">Start with 30% option money and predictable monthly payments — no bank qualification and no long approval process. This makes <strong>Florida land ownership</strong> accessible to more buyers.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-xl">
@@ -512,7 +512,7 @@ const OwnerFinancingLand = () => {
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     When do I get the deed to the property?
                   </h3>
-                  <p className="text-slate-600">You receive the deed when you've paid 35% of the total purchase price (down payment + monthly payments). Until then, you hold an option contract that secures your right to the property. Once titled, you continue making payments until paid in full.</p>
+                  <p className="text-slate-600">You receive the deed when you've paid 40% of the total purchase price (down payment + monthly payments). Until then, you hold an option contract that secures your right to the property. Once titled, you continue making payments until paid in full.</p>
                 </div>
                 
                 <div className="bg-slate-50 p-6 rounded-xl">
@@ -528,7 +528,7 @@ const OwnerFinancingLand = () => {
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     Can I build on the land before it's paid off?
                   </h3>
-                  <p className="text-slate-600">Yes, once you receive the deed (at 35% paid), you can build on the property while continuing to make payments. Many buyers use this approach to start construction while still financing the land.</p>
+                  <p className="text-slate-600">Yes, once you receive the deed (at 40% paid), you can build on the property while continuing to make payments. Many buyers use this approach to start construction while still financing the land.</p>
                 </div>
                 
                 <div className="bg-slate-50 p-6 rounded-xl">

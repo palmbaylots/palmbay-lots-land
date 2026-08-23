@@ -255,7 +255,7 @@ const InventoryMap = () => {
             <MapPin className="w-7 h-7 text-amber-500" /> Palm Bay Inventory Map
           </h1>
           <p className="text-slate-300 text-sm mt-1">
-            Click any lot for its price, owner-financing options (25% / 35% down, monthly payment), and links to Google Maps and the BCPAO parcel map &amp; record.
+            Click any lot for its price, owner-financing options (25% / 40% down, monthly payment), and links to Google Maps and the BCPAO parcel map &amp; record.
           </p>
         </div>
       </div>

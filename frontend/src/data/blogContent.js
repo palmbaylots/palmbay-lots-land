@@ -46,7 +46,7 @@ export const blogContent = {
       <p>If mobile home placement is your goal and you want to stay near Palm Bay and the Space Coast, expect to look at <strong>rural western Brevard County</strong> where prices are lower and land is more abundant. Inside Palm Bay or near the coast, mobile home placement is not a practical or cost-effective option.</p>
 
       <h3>The better alternative for most buyers</h3>
-      <p>A standard <a href="/inventory">residential lot</a> with <a href="/price-guide">owner financing</a> — <strong>25% down, no bank required</strong> — gives you a buildable site in an established neighborhood at a price point that is genuinely accessible. You build equity, you own the land, and you have a property with real appreciation potential.</p>
+      <p>A standard <a href="/inventory">residential lot</a> with <a href="/price-guide">owner financing</a> — <strong>30% down, no bank required</strong> — gives you a buildable site in an established neighborhood at a price point that is genuinely accessible. You build equity, you own the land, and you have a property with real appreciation potential.</p>
 
       <h2>Commercial Land Lease in Palm Bay — What Actually Exists</h2>
       <p>Commercial ground leases in Palm Bay do exist but they are not a standard listed product. They are typically negotiated privately between landowners and commercial tenants for specific projects.</p>
@@ -102,7 +102,7 @@ export const blogContent = {
         <li>You build equity as values appreciate</li>
         <li>No landlord — complete control over your property</li>
         <li>Land appreciation in Palm Bay has historically been significant</li>
-        <li><a href="/price-guide">Owner financing</a> available — 25% down, no bank required</li>
+        <li><a href="/price-guide">Owner financing</a> available — 30% down, no bank required</li>
         <li>Annual carrying costs (taxes) are very low on vacant land</li>
       </ul>
       <p><strong>Lease:</strong></p>
@@ -333,7 +333,7 @@ export const blogContent = {
       <p>Or call Vahid directly: <strong><a href="tel:3213337230">321-333-7230</a></strong></p>
     `,
     faqs: [
-      { q: 'What is the minimum investment for Palm Bay land?', a: 'Buildable lots start at $41,000. With owner financing (25% down), you can get started for around $10,250 down.' },
+      { q: 'What is the minimum investment for Palm Bay land?', a: 'Buildable lots start at $41,000. With owner financing (30% down), you can get started for around $12,300 down.' },
       { q: 'How long should I hold before selling?', a: 'It depends on your strategy. Builders typically hold 6-12 months. Long-term investors typically hold 3-5+ years.' },
       { q: 'Can out-of-state investors buy land in Palm Bay?', a: 'Absolutely. Many of my clients live outside Florida. We handle everything remotely — contracts, closings, and guidance throughout the process.' },
       { q: 'Do you work with large investors or hedge funds?', a: 'Yes. We have experience structuring bulk lot acquisitions — packages of 10 to 300+ lots — for institutional buyers and hedge funds. Contact us directly to discuss your acquisition criteria.' },
@@ -344,8 +344,8 @@ export const blogContent = {
   'how-owner-financing-works': {
     title: 'How to Buy Land in Palm Bay With No Bank — Owner Financing Explained',
     metaTitle: 'How to Buy Land in Palm Bay With No Bank — Owner Financing Explained',
-    metaDescription: 'Buy land in Palm Bay without bank approval. Learn exactly how owner financing works, what it costs, and how to get started with as little as 25% down.',
-    subtitle: 'Buy land in Palm Bay, Florida without bank approval. Learn exactly how owner financing works, what it costs, and how to get started with as little as 25% down.',
+    metaDescription: 'Buy land in Palm Bay without bank approval. Learn exactly how owner financing works, what it costs, and how to get started with as little as 30% down.',
+    subtitle: 'Buy land in Palm Bay, Florida without bank approval. Learn exactly how owner financing works, what it costs, and how to get started with as little as 30% down.',
     category: 'Financing',
     date: 'April 2026',
     readTime: '10 min read',
@@ -370,16 +370,16 @@ export const blogContent = {
       <p><a href="/inventory"><strong>View Available Inventory</strong></a></p>
 
       <h3>Step 2: Pay Your Down Payment</h3>
-      <p>Minimum 25% down for an option contract, or 35% down to receive the deed immediately. Visit our <a href="/price-guide">financing terms page</a> for full details.</p>
+      <p>Minimum 30% down for an option contract, or 40% down to receive the deed immediately. Visit our <a href="/price-guide">financing terms page</a> for full details.</p>
 
       <h3>Step 3: Sign the Contract</h3>
       <p>You'll receive an option contract that secures your right to the property and outlines payment terms.</p>
 
       <h3>Step 4: Make Monthly Payments</h3>
-      <p>Pay your agreed monthly amount until you've paid 35% of the total purchase price. At that point, the deed transfers to your name.</p>
+      <p>Pay your agreed monthly amount until you've paid 40% of the total purchase price. At that point, the deed transfers to your name.</p>
 
       <h3>Step 5: Receive Your Deed</h3>
-      <p>Once 35% is paid, you get the deed. Continue making payments until the lot is paid in full. You can also pay off early with no prepayment penalty.</p>
+      <p>Once 40% is paid, you get the deed. Continue making payments until the lot is paid in full. You can also pay off early with no prepayment penalty.</p>
 
       <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/drfpkn57_image.png" alt="Our owner financing process is straightforward — no bank required, same-day approval in most cases" style="width:100%; border-radius: 12px; margin: 24px 0;" />
 
@@ -388,12 +388,12 @@ export const blogContent = {
 
       <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Purchase Price</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$41,000</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Down Payment (25% min)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$10,250</td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Down Payment (30% min)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$12,300</td></tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Amount Financed</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$30,750</td></tr>
         <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Interest Rate</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">10% interest rate (12.33% APR)</td></tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Term</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">120 months (10 years)</td></tr>
         <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Monthly Payment</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$406.52</td></tr>
-        <tr style="background: #fef3c7;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Deed Transfer Point</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">After 35% paid ($14,350)</td></tr>
+        <tr style="background: #fef3c7;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Deed Transfer Point</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">After 40% paid ($16,400)</td></tr>
       </table>
 
       <h2>Our Lot Protection Guarantee</h2>
@@ -422,20 +422,20 @@ export const blogContent = {
 
       <h2>Is Owner Financing Right for You?</h2>
       <p>Owner financing is ideal if you want to buy land but don't have (or don't want to use) traditional bank financing. It's a legitimate, widely-used method for land purchases throughout Florida and beyond.</p>
-      <p>One thing we do differently: Many sellers who offer owner financing use a contract for deed that keeps the deed in the seller's name for the entire loan term. We do it differently — we transfer the deed to you at 35% paid. With our option contract, this typically takes about a year if you make minimum payments, or shorter if you make additional principal payments.</p>
+      <p>One thing we do differently: Many sellers who offer owner financing use a contract for deed that keeps the deed in the seller's name for the entire loan term. We do it differently — we transfer the deed to you at 40% paid. With our option contract, this typically takes about a year if you make minimum payments, or shorter if you make additional principal payments.</p>
       <p>The key is working with a reputable seller who offers transparent terms and has a track record of successful transactions. I've been doing this since 2003 — call me to discuss your situation.</p>
 
       <h2>Ready to Buy Land in Palm Bay?</h2>
-      <p>Browse our current inventory of owner-financed lots throughout Palm Bay and Brevard County. Lots start at $41,000 with 25% down.</p>
+      <p>Browse our current inventory of owner-financed lots throughout Palm Bay and Brevard County. Lots start at $41,000 with 30% down.</p>
       <p><a href="/inventory"><strong>Browse Available Lots</strong></a> | <a href="/listings"><strong>View Current Listings</strong></a> | <a href="/contact"><strong>Contact Vahid Directly</strong></a></p>
       <p>Or call/text: <strong><a href="tel:3213337230">321-333-7230</a></strong></p>
     `,
     faqs: [
-      { q: 'Can I build on the land before it\'s paid off?', a: 'Yes, once you receive the deed (at 35% paid), you can start improvements like clearing the lot, applying for permits, and building with cash. If you\'re getting a construction loan, the loan will pay us off — just send us a payoff request with the closing date, and we\'ll furnish a payoff statement. There\'s no prepayment penalty.' },
+      { q: 'Can I build on the land before it\'s paid off?', a: 'Yes, once you receive the deed (at 40% paid), you can start improvements like clearing the lot, applying for permits, and building with cash. If you\'re getting a construction loan, the loan will pay us off — just send us a payoff request with the closing date, and we\'ll furnish a payoff statement. There\'s no prepayment penalty.' },
       { q: 'What if I want to sell before paying off?', a: 'When you have a buyer for your lot, give us a closing date. The title company will request the payoff amount, the loan gets paid off at closing, and any difference is handled through the transaction. There\'s no prepayment penalty.' },
       { q: 'Are there any hidden fees?', a: 'All fees are disclosed in advance. At closing, the buyer is responsible for their portion of the closing costs, which is normal procedure in real estate transactions.' },
       { q: 'What if there\'s a problem with my lot?', a: 'You\'re protected. If there\'s an issue, you can exchange it for another lot of the same size and price category — no extra cost except the deed transfer fee. If you choose a different category or larger lot, you pay the difference, and the price you paid for your original lot is deducted from the new amount.' },
-      { q: 'When do I get the deed?', a: 'We transfer the deed at 35% paid — typically about a year with minimum payments, or faster if you pay extra. Many other sellers keep the deed for the entire loan term, but we don\'t.' }
+      { q: 'When do I get the deed?', a: 'We transfer the deed at 40% paid — typically about a year with minimum payments, or faster if you pay extra. Many other sellers keep the deed for the entire loan term, but we don\'t.' }
     ]
   },
   
@@ -715,7 +715,7 @@ export const blogContent = {
       <p>The most valuable compound positions in 10 years will be the ones a builder or industrial user can actually do something with — typically multi-lot or multi-acre assemblages. If you can pick up two or three adjacent lots instead of one isolated parcel, that is a stronger position.</p>
 
       <h3>4. Use owner financing — preserve cash for the long hold</h3>
-      <p>Compound lots are inherently a long hold. Owner financing lets you build a position with a 25% down payment and predictable monthly payments — so you are not tying up the cash you might want for taxes, the eventual assessment, or your next acquisition.</p>
+      <p>Compound lots are inherently a long hold. Owner financing lets you build a position with a 30% down payment and predictable monthly payments — so you are not tying up the cash you might want for taxes, the eventual assessment, or your next acquisition.</p>
       <p><a href="/inventory"><strong>See compound and southwest Palm Bay lots with owner financing</strong></a></p>
 
       <h3>5. Verify the parcel — every time</h3>
@@ -757,7 +757,7 @@ export const blogContent = {
       { q: 'Will I get hit with an assessment if I buy now?', a: 'When city utilities arrive, all property owners in the assessment area will likely be billed proportionally — including you. That cost is typically spread over 10–20 years on the property tax bill. Build that into your underwriting before you buy.' },
       { q: 'Can I buy multiple lots at once?', a: 'Yes — and for serious investors that is often the smarter play. Assembling contiguous lots positions you for builder and developer demand once utilities arrive. I regularly help buyers acquire 5–50+ lot packages with owner financing.' },
       { q: 'What about the proposed Port Malabar Industrial designation?', a: 'The northern compound area has been formally studied for industrial land use. No rezoning has been adopted yet, but the planning work is complete. Parcels positioned for that future designation are some of the most strategic in the entire compound.' },
-      { q: 'Do you offer owner financing on compound lots?', a: 'Yes. Most of our compound inventory is available with 25% down and owner financing — designed for long-horizon investors who want to preserve cash for taxes, future assessments, and additional acquisitions.' }
+      { q: 'Do you offer owner financing on compound lots?', a: 'Yes. Most of our compound inventory is available with 30% down and owner financing — designed for long-horizon investors who want to preserve cash for taxes, future assessments, and additional acquisitions.' }
     ]
   },
 

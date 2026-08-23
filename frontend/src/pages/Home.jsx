@@ -114,7 +114,7 @@ const homeFaqSchema = {
       "name": "Can I buy a lot in Palm Bay with owner financing?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Owner financing is available on most of our residential lots. Minimum 25% down for an option contract, or 35% down to receive the deed immediately. No bank qualification required. No prepayment penalty."
+        "text": "Yes. Owner financing is available on most of our residential lots. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No bank qualification required. No prepayment penalty."
       }
     },
     {
@@ -268,7 +268,7 @@ const Home = () => {
     <>
       <Helmet>
         <title>Palm Bay Land for Sale | 500+ Lots | Owner Financing Available</title>
-        <meta name="description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available — 25% down, no bank required. Serving individuals, builders, and investors since 2003. Call 321-333-7230." />
+        <meta name="description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available — 30% down, no bank required. Serving individuals, builders, and investors since 2003. Call 321-333-7230." />
         <meta name="keywords" content="lots for sale in Palm Bay Florida, Palm Bay FL land for sale, owner financing lots Palm Bay, residential lots Brevard County, buy land Palm Bay Florida, Palm Bay lots no HOA, bulk lots for sale Brevard County, commercial land Palm Bay FL, industrial land Palm Bay Florida, land for sale near Space Coast Florida, Palm Bay buildable lots, SW Palm Bay lots for sale, Palm Bay land broker, Brevard County lots owner financing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/" />
@@ -294,7 +294,19 @@ const Home = () => {
       
       <main id="main-content">
       <div className="min-h-screen">
-      
+
+      {/* Buy-with-confidence bar */}
+      <section className="bg-[#1a3a5c] text-white">
+        <div className="container mx-auto px-4 py-3 text-center">
+          <p className="font-bold text-sm md:text-base">
+            🛡️ Buy with confidence — <span className="text-amber-400">9-day cancellation policy</span> &amp; <span className="text-amber-400">guaranteed buildable or exchange</span>*
+          </p>
+          <p className="text-[11px] text-slate-300 mt-1 max-w-3xl mx-auto leading-snug">
+            *No holding costs during the option contract — you pay only the deed-transfer cost (both sides). If you exchange for another lot and prices have gone up, your property is credited at the new price toward the new lot.
+          </p>
+        </div>
+      </section>
+
       {/* TWO BANNERS — side by side */}
       <section className="py-4 bg-slate-50">
         <div className="container mx-auto px-4">
@@ -614,7 +626,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <p className="text-center text-slate-500 text-sm mb-6">Deed transfers to you when 35% is paid — no bank ever involved</p>
+          <p className="text-center text-slate-500 text-sm mb-6">Deed transfers to you when 40% is paid — no bank ever involved</p>
           <div className="text-center">
             <Link to="/owner-financing-land-florida" className="inline-block px-8 py-4 bg-amber-500 text-white rounded-lg font-bold hover:bg-amber-600 transition-colors">
               See lots with owner financing
@@ -1007,7 +1019,7 @@ const Home = () => {
             <div className="space-y-4">
               <div className="bg-white p-6 rounded-xl shadow-sm">
                 <h3 className="font-bold text-slate-900 mb-2">Can I buy a lot in Palm Bay with owner financing?</h3>
-                <p className="text-slate-600">Yes. Owner financing is available on most of our residential lots. Minimum 25% down for an option contract, or 35% down to receive the deed immediately. No bank qualification required. No prepayment penalty.</p>
+                <p className="text-slate-600">Yes. Owner financing is available on most of our residential lots. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No bank qualification required. No prepayment penalty.</p>
               </div>
               <div className="bg-white p-6 rounded-xl shadow-sm">
                 <h3 className="font-bold text-slate-900 mb-2">What is the minimum lot size in Palm Bay?</h3>

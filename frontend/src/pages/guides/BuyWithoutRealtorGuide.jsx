@@ -136,7 +136,7 @@ const BuyWithoutRealtorGuide = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
                       <p className="font-bold text-amber-900">Owner Financing</p>
-                      <p className="text-sm text-amber-800 mt-1">25% minimum down. No bank needed. Deed at 35% paid. Most buyers choose this.</p>
+                      <p className="text-sm text-amber-800 mt-1">30% minimum down. No bank needed. Deed at 40% paid. Most buyers choose this.</p>
                       <Link to="/guide/owner-financing-what-to-watch" className="text-amber-600 text-xs font-medium mt-2 inline-block">Learn more →</Link>
                     </div>
                     <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">

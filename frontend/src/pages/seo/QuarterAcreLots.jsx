@@ -87,7 +87,7 @@ const QuarterAcreLots = () => {
         "name": "How much does a quarter acre lot cost in Palm Bay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Buildable quarter-acre lots in Palm Bay start at $41,000. Prices vary based on location, utility access, and zoning. Lots with city water cost more than well-and-septic lots. Owner financing available with 25% minimum down."
+          "text": "Buildable quarter-acre lots in Palm Bay start at $41,000. Prices vary based on location, utility access, and zoning. Lots with city water cost more than well-and-septic lots. Owner financing available with 30% minimum down."
         }
       },
       {
@@ -103,7 +103,7 @@ const QuarterAcreLots = () => {
         "name": "Can out-of-state investors buy land in Palm Bay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolutely. Many of our clients live in other states. We handle everything remotely — contracts, closings, and even property management if needed. Owner financing available with 25% minimum down, no bank qualification required."
+          "text": "Absolutely. Many of our clients live in other states. We handle everything remotely — contracts, closings, and even property management if needed. Owner financing available with 30% minimum down, no bank qualification required."
         }
       },
       {
@@ -500,7 +500,7 @@ const QuarterAcreLots = () => {
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     Do you offer owner financing on quarter acre lots?
                   </h3>
-                  <p className="text-slate-600">Yes! All our <strong>quarter acre lots</strong> qualify for <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">owner financing</Link>. Typical terms include a minimum 25% option money, a 10% interest rate (12.33% APR when the 10-point charge is financed), and up to 10-year amortization. No bank qualification required.</p>
+                  <p className="text-slate-600">Yes! All our <strong>quarter acre lots</strong> qualify for <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">owner financing</Link>. Typical terms include a minimum 30% option money, a 10% interest rate (12.33% APR when the 10-point charge is financed), and up to 10-year amortization. No bank qualification required.</p>
                 </div>
                 
                 <div className="bg-white p-6 rounded-xl shadow-sm">

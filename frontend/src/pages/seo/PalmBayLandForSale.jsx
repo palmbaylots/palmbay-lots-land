@@ -77,7 +77,7 @@ const PalmBayLandForSale = () => {
         "name": "Can I use owner financing to buy land in Palm Bay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. We offer owner financing on all residential lots. Minimum 25% down for an option contract, or 35% down to receive the deed immediately. No bank qualification required. No prepayment penalty. We do a personal approval — we look at you as an individual, not just a credit score."
+          "text": "Yes. We offer owner financing on all residential lots. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No bank qualification required. No prepayment penalty. We do a personal approval — we look at you as an individual, not just a credit score."
         }
       },
       {
@@ -453,7 +453,7 @@ const PalmBayLandForSale = () => {
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     How does owner financing work?
                   </h3>
-                  <p className="text-slate-600">We offer <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">flexible owner financing</Link> with no bank qualification required. Minimum 25% down for an option contract, or 35% down to receive the deed immediately. No prepayment penalty — pay it off early anytime. Title transfers once 35% of purchase price is paid. Visit our <Link to="/price-guide" className="text-amber-600 hover:underline">Price Guide</Link> for full terms.</p>
+                  <p className="text-slate-600">We offer <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">flexible owner financing</Link> with no bank qualification required. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No prepayment penalty — pay it off early anytime. Title transfers once 40% of purchase price is paid. Visit our <Link to="/price-guide" className="text-amber-600 hover:underline">Price Guide</Link> for full terms.</p>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-sm">
                   <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
