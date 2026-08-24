@@ -572,34 +572,6 @@ const Home = () => {
       {/* Featured Special Listing — 1039 Hooper Ave NE */}
       <FeaturedSpecialListing />
 
-      {/* Property Types Banner */}
-      <section className="bg-slate-800 py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-white font-semibold text-sm md:text-base">
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-amber-400 rounded-full"></span>
-              Residential Lots
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-amber-400 rounded-full"></span>
-              Commercial
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-amber-400 rounded-full"></span>
-              Industrial
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-amber-400 rounded-full"></span>
-              Multifamily
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-amber-400 rounded-full"></span>
-              Owner Financing Available
-            </span>
-          </div>
-        </div>
-      </section>
-
       {/* Owner Financing Terms */}
       <section className="py-14 bg-slate-900">
         <div className="container mx-auto px-4">
@@ -696,47 +668,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* We Serve Every Type of Buyer */}
-      <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">We Serve Every Type of Buyer</h2>
-            <p className="text-lg text-slate-600">Whether you're looking for a single lot or a package of 300+</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Individual Homebuyers & Families</h3>
-              <p className="text-slate-600">
-                Find an affordable residential lot in Palm Bay with owner financing. No need for a bank — we make it easy to own your piece of Florida. Lots available in established neighborhoods throughout Port Malabar and SW Palm Bay.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Small & Custom Builders</h3>
-              <p className="text-slate-600">
-                We work directly with local builders to identify buildable lots that match your project specs — zoning, utilities, access, and lot size all verified. Skip the MLS and work with a broker who knows the inventory.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold text-slate-900 mb-3">National & Regional Homebuilders</h3>
-              <p className="text-slate-600">
-                We have existing relationships with DR Horton, Lennar, Adams Homes, and other major builders. We can assemble packages of residential lots tailored to your acquisition criteria — quickly and off-market.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Investors & Hedge Funds</h3>
-              <p className="text-slate-600">
-                Bulk lot acquisitions available. We have experience structuring large transactions and can facilitate deals from single parcels to packages of 100 to 300+ lots. Ideal for land banking, spec development, or long-term appreciation plays.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Lots & Land for Every Purpose */}
+      {/* Lots & Land for Every Buyer & Purpose (merged) */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Lots & Land for Every Purpose</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Lots &amp; Land for Every Buyer</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">From families buying a single lot to builders and investors acquiring packages of 300+ — with owner financing on most residential lots.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-500">
