@@ -31,7 +31,7 @@ const PalmBayLandForSale = () => {
     "@type": "Service",
     "serviceType": "Real Estate Land Sales",
     "name": "Land for Sale in Palm Bay, Florida",
-    "description": "Browse 500+ lots for sale in Palm Bay, FL. Residential, commercial, and buildable land with owner financing. Prices starting at $32,000. Expert local guidance from a 20+ year veteran.",
+    "description": "Browse 500+ lots for sale in Palm Bay, FL. Residential, commercial, and buildable land with owner financing. Prices starting at $41,000. Expert local guidance from a 20+ year veteran.",
     "url": "https://palmbaylots-land.com/palm-bay-land-for-sale",
     "areaServed": {
       "@type": "City",
@@ -55,7 +55,7 @@ const PalmBayLandForSale = () => {
     },
     "offers": {
       "@type": "Offer",
-      "priceRange": "$32,000 - $5,000,000",
+      "priceRange": "$41,000 - $5,000,000",
       "priceCurrency": "USD"
     }
   };
@@ -119,12 +119,12 @@ const PalmBayLandForSale = () => {
     <>
       <Helmet>
         <title>Land for Sale in Palm Bay, FL | 500+ Lots | Owner Financing</title>
-        <meta name="description" content="Browse 500+ lots for sale in Palm Bay, Florida. Residential, commercial, and buildable land with owner financing available. Prices starting at $32,000. Contact Vahid Rajabian - 20+ years local expertise." />
+        <meta name="description" content="Browse 500+ lots for sale in Palm Bay, Florida. Residential, commercial, and buildable land with owner financing available. Prices starting at $41,000. Contact Vahid Rajabian - 20+ years local expertise." />
         <meta name="keywords" content="land for sale Palm Bay FL, Palm Bay lots, vacant land Brevard County, Florida land for sale, residential lots Palm Bay, buildable land Florida" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/palm-bay-land-for-sale" />
         <meta property="og:title" content="Land for Sale in Palm Bay, FL | Owner Financing Available" />
-        <meta property="og:description" content="500+ lots for sale in Palm Bay, Florida. Owner financing available. Prices from $32,000." />
+        <meta property="og:description" content="500+ lots for sale in Palm Bay, Florida. Owner financing available. Prices from $41,000." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/palm-bay-land-for-sale" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
@@ -140,7 +140,7 @@ const PalmBayLandForSale = () => {
                 Land for Sale in <span className="text-amber-400">Palm Bay, FL</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Discover over 500 <strong>buildable lots in Palm Bay</strong>, Florida's fastest-growing city on the Space Coast. Whether you're looking for <strong>residential land in Brevard County</strong> to build your dream home or <strong>vacant lots for investment</strong>, we have properties starting at just $32,000 with flexible owner financing options.
+                Discover over 500 <strong>buildable lots in Palm Bay</strong>, Florida's fastest-growing city on the Space Coast. Whether you're looking for <strong>residential land in Brevard County</strong> to build your dream home or <strong>vacant lots for investment</strong>, we have properties starting at just $41,000 with flexible owner financing options.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
@@ -169,7 +169,7 @@ const PalmBayLandForSale = () => {
                 <p className="text-sm">Lots Available</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold">$32K</p>
+                <p className="text-3xl font-bold">$41K</p>
                 <p className="text-sm">Starting Price</p>
               </div>
               <div className="text-center">
@@ -193,7 +193,7 @@ const PalmBayLandForSale = () => {
               </h2>
               
               <p className="text-lg text-slate-700 mb-6">
-                <strong>Palm Bay land</strong> represents one of Florida's best remaining opportunities for affordable property ownership. As the largest city by area in Brevard County, Palm Bay offers an incredible variety of <strong>vacant lots in Palm Bay FL</strong> ranging from quarter-acre residential parcels to large commercial tracts. Unlike overcrowded South Florida markets where entry prices start at $100,000+, you can still find excellent <strong>buildable land in Palm Bay</strong> starting at just $32,000.
+                <strong>Palm Bay land</strong> represents one of Florida's best remaining opportunities for affordable property ownership. As the largest city by area in Brevard County, Palm Bay offers an incredible variety of <strong>vacant lots in Palm Bay FL</strong> ranging from quarter-acre residential parcels to large commercial tracts. Unlike overcrowded South Florida markets where entry prices start at $100,000+, you can still find excellent <strong>buildable land in Palm Bay</strong> starting at just $41,000.
               </p>
 
               <p className="text-lg text-slate-700 mb-6">
@@ -302,7 +302,7 @@ const PalmBayLandForSale = () => {
                   <h3 className="text-xl font-bold text-slate-900 mb-3">Southwest Palm Bay (SW)</h3>
                   <p className="text-slate-600 mb-3">The most affordable area for <strong>vacant lots in Palm Bay</strong>. Primarily requires well and septic. Perfect for value-focused buyers and investors seeking maximum land for minimum investment.</p>
                   <p className="text-sm text-amber-600 font-semibold">Popular Units: 13, 14, 15, 17-25</p>
-                  <p className="text-sm text-slate-500 mt-2">Price Range: $32,000 - $55,000</p>
+                  <p className="text-sm text-slate-500 mt-2">Price Range: $41,000 - $55,000</p>
                 </div>
               </div>
 

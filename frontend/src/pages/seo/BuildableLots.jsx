@@ -55,7 +55,7 @@ const BuildableLotsPage = () => {
     },
     "offers": {
       "@type": "Offer",
-      "priceRange": "$32,000 - $5,000,000",
+      "priceRange": "$41,000 - $5,000,000",
       "priceCurrency": "USD"
     }
   };
@@ -111,7 +111,7 @@ const BuildableLotsPage = () => {
     <>
       <Helmet>
         <title>Buildable Lots Palm Bay FL | 500+ Vacant Land for Sale | Owner Financing</title>
-        <meta name="description" content="Find 500+ verified buildable lots in Palm Bay, Florida. Residential land in Brevard County with guaranteed buildability. City water, well & septic options. Owner financing available from $32,000." />
+        <meta name="description" content="Find 500+ verified buildable lots in Palm Bay, Florida. Residential land in Brevard County with guaranteed buildability. City water, well & septic options. Owner financing available from $41,000." />
         <meta name="keywords" content="buildable lots Palm Bay, vacant land Palm Bay FL, residential land Brevard County, buildable land Florida, Palm Bay lots for sale" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/buildable-lots-palm-bay" />
@@ -273,7 +273,7 @@ const BuildableLotsPage = () => {
                   <p className="text-slate-600">State income tax in Florida</p>
                 </div>
                 <div className="text-center p-6">
-                  <div className="text-4xl font-bold text-amber-600 mb-2">$32K</div>
+                  <div className="text-4xl font-bold text-amber-600 mb-2">$41K</div>
                   <p className="text-slate-600">Starting price for buildable lots</p>
                 </div>
               </div>

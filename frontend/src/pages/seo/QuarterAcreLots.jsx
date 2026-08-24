@@ -41,7 +41,7 @@ const QuarterAcreLots = () => {
     "@type": "Service",
     "serviceType": "Quarter Acre Land Sales",
     "name": "Quarter Acre Lots for Sale in Palm Bay, FL",
-    "description": "Buy 1/4 acre lots in Palm Bay, Florida. Perfect size for single family homes - approximately 10,000 sq ft of buildable residential land. Prices starting at $32,000 with owner financing available.",
+    "description": "Buy 1/4 acre lots in Palm Bay, Florida. Perfect size for single family homes - approximately 10,000 sq ft of buildable residential land. Prices starting at $41,000 with owner financing available.",
     "url": "https://palmbaylots-land.com/quarter-acre-lots-palm-bay",
     "areaServed": {
       "@type": "City",
@@ -65,7 +65,7 @@ const QuarterAcreLots = () => {
     },
     "offers": {
       "@type": "Offer",
-      "priceRange": "$32,000 - $75,000",
+      "priceRange": "$41,000 - $75,000",
       "priceCurrency": "USD"
     }
   };
@@ -121,12 +121,12 @@ const QuarterAcreLots = () => {
     <>
       <Helmet>
         <title>Quarter Acre Lots Palm Bay FL | 1/4 Acre Land for Sale | Owner Financing</title>
-        <meta name="description" content="Buy 1/4 acre lots in Palm Bay, Florida. Perfect size for single family homes - 10,000+ sq ft of buildable residential land. Prices starting at $32,000 with owner financing available." />
+        <meta name="description" content="Buy 1/4 acre lots in Palm Bay, Florida. Perfect size for single family homes - 10,000+ sq ft of buildable residential land. Prices starting at $41,000 with owner financing available." />
         <meta name="keywords" content="quarter acre lots Palm Bay, 1/4 acre land Florida, 10000 sq ft lots, residential lots Palm Bay FL, buildable land Brevard County, small acreage Florida" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/quarter-acre-lots-palm-bay" />
         <meta property="og:title" content="Quarter Acre Lots Palm Bay FL | 1/4 Acre Land" />
-        <meta property="og:description" content="Buy 1/4 acre lots in Palm Bay. Perfect for building your dream home. 10,000+ sq ft from $32,000." />
+        <meta property="og:description" content="Buy 1/4 acre lots in Palm Bay. Perfect for building your dream home. 10,000+ sq ft from $41,000." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/quarter-acre-lots-palm-bay" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
@@ -146,7 +146,7 @@ const QuarterAcreLots = () => {
                 Quarter Acre Lots in <span className="text-amber-400">Palm Bay, FL</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Looking for the ideal lot size to build your dream home? <strong>Quarter acre lots</strong> (approximately 10,000+ square feet) provide the perfect balance of space and affordability. Build a comfortable 3-4 bedroom home with room for a yard, pool, and outdoor living — all starting at just $32,000 with <strong>owner financing available</strong>.
+                Looking for the ideal lot size to build your dream home? <strong>Quarter acre lots</strong> (approximately 10,000+ square feet) provide the perfect balance of space and affordability. Build a comfortable 3-4 bedroom home with room for a yard, pool, and outdoor living — all starting at just $41,000 with <strong>owner financing available</strong>.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
@@ -397,7 +397,7 @@ const QuarterAcreLots = () => {
               </h2>
               
               <p className="text-lg text-slate-700 mb-6">
-                <strong>Quarter acre lots in Palm Bay</strong> range from approximately $32,000 to $75,000+ depending on location and utilities. The biggest factors affecting price are:
+                <strong>Quarter acre lots in Palm Bay</strong> range from approximately $41,000 to $75,000+ depending on location and utilities. The biggest factors affecting price are:
               </p>
 
               <div className="space-y-4 mb-8">
@@ -435,7 +435,7 @@ const QuarterAcreLots = () => {
                   </div>
                   <div className="bg-white p-4 rounded-lg text-center">
                     <p className="font-bold text-slate-900">Southwest (SW)</p>
-                    <p className="text-2xl font-bold text-amber-600">$32K - $45K</p>
+                    <p className="text-2xl font-bold text-amber-600">$41K - $45K</p>
                     <p className="text-sm text-slate-500">Best value</p>
                   </div>
                 </div>

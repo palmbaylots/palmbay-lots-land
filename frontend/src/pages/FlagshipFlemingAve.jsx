@@ -169,11 +169,11 @@ const FlagshipFlemingAve = () => {
                 <h3 className="text-xl font-bold text-amber-400 mb-4">Owner Financing Available</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-6">
                   <div>
-                    <p className="text-2xl font-bold text-amber-400">$16,250</p>
-                    <p className="text-sm text-gray-400">25% Min Down</p>
+                    <p className="text-2xl font-bold text-amber-400">$19,500</p>
+                    <p className="text-sm text-gray-400">30% Min Down</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-amber-400">35%</p>
+                    <p className="text-2xl font-bold text-amber-400">40%</p>
                     <p className="text-sm text-gray-400">Deed Transfers</p>
                   </div>
                   <div>
@@ -243,7 +243,7 @@ const FlagshipFlemingAve = () => {
                     <div className="flex justify-between"><span className="text-slate-600">Water</span><span className="font-semibold">City Water</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">Sewer</span><span className="font-semibold">Septic Required</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">HOA</span><span className="font-semibold">None</span></div>
-                    <div className="flex justify-between"><span className="text-slate-600">Financing</span><span className="font-semibold">25% Min Down</span></div>
+                    <div className="flex justify-between"><span className="text-slate-600">Financing</span><span className="font-semibold">30% Min Down</span></div>
                   </div>
                 </div>
               </div>

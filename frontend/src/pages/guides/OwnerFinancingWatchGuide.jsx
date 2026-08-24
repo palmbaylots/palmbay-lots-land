@@ -196,11 +196,11 @@ const OwnerFinancingWatchGuide = () => {
               <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Our Owner Financing Terms</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <p className="text-2xl font-bold text-amber-600">25%</p>
+                  <p className="text-2xl font-bold text-amber-600">30%</p>
                   <p className="text-sm text-slate-600">Minimum Down</p>
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <p className="text-2xl font-bold text-amber-600">35%</p>
+                  <p className="text-2xl font-bold text-amber-600">40%</p>
                   <p className="text-sm text-slate-600">Deed Transfers</p>
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-sm">

@@ -200,7 +200,7 @@ const FlagshipScatteredLots = () => {
                     <div className="flex justify-between"><span className="text-slate-600">Lot Count</span><span className="font-semibold">700+</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">Typical Size</span><span className="font-semibold">~0.25 AC</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">Zoning</span><span className="font-semibold">RS-2 Residential</span></div>
-                    <div className="flex justify-between"><span className="text-slate-600">Financing</span><span className="font-semibold">25% Min Down</span></div>
+                    <div className="flex justify-between"><span className="text-slate-600">Financing</span><span className="font-semibold">30% Min Down</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">HOA</span><span className="font-semibold">None</span></div>
                   </div>
                 </div>

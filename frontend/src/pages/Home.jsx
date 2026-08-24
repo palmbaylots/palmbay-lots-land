@@ -582,11 +582,11 @@ const Home = () => {
           </div>
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             {[
-              { val: '25%', lbl: 'Option money' },
+              { val: '30%', lbl: 'Option money' },
               { val: '10%', lbl: 'Interest rate' },
               { val: '12.33%', lbl: 'APR' },
               { val: '10 yr', lbl: 'Term' },
-              { val: '35%', lbl: 'Deed transfers' },
+              { val: '40%', lbl: 'Deed transfers' },
               { val: '$0', lbl: 'Prepay penalty' },
             ].map((item) => (
               <div key={item.lbl} className="bg-slate-800 border border-amber-500 rounded-xl px-6 py-4 text-center min-w-[100px]">

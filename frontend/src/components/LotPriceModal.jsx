@@ -4,7 +4,7 @@ import { X, Phone } from 'lucide-react';
 
 // Reusable "See Price & Financing" modal. Mirrors the calculator on the
 // Inventory page (same formulas + compliance disclosures) so the map popup
-// shows identical price, 25%/35% options, down-payment slider, and monthly
+// shows identical price, 30%/40% options, down-payment slider, and monthly
 // payment. Kept self-contained so the map page can use it without touching
 // the Inventory page. If the pricing rules change, update both.
 

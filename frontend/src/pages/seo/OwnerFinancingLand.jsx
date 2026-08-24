@@ -55,7 +55,7 @@ const OwnerFinancingLand = () => {
     },
     "offers": {
       "@type": "Offer",
-      "priceRange": "$32,000 - $500,000",
+      "priceRange": "$41,000 - $500,000",
       "priceCurrency": "USD"
     },
     "termsOfService": "30% minimum down for option contract, 40% for immediate deed transfer, no prepayment penalty"
@@ -248,7 +248,7 @@ const OwnerFinancingLand = () => {
                 <h3 className="font-bold text-slate-900 mb-4 text-center">Typical Owner Financing Terms</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                   <div>
-                    <p className="text-3xl font-bold text-amber-600">25%</p>
+                    <p className="text-3xl font-bold text-amber-600">30%</p>
                     <p className="text-sm text-slate-600">Min. Option Money</p>
                   </div>
                   <div>

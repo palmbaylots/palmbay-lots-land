@@ -29,7 +29,7 @@ If a buyer asks about city water, list BOTH groups above and invite them to call
 
 ## INVENTORY OVERVIEW
 - 582+ lots available in Palm Bay, FL
-- Residential lots starting at $32,000
+- Residential lots starting at $41,000
 - Commercial and multi-family parcels available
 - Owner financing available
 
@@ -60,18 +60,18 @@ A 10,019 sq ft lot in Unit 10 (city water, $4.50/sqft):
 - Total: $65,057
 
 ## OWNER FINANCING TERMS
-- Minimum down payment: 25% for option contract, or 35% to receive deed immediately
-- Interest rate: 10% APR
+- Minimum down payment: 30% for option contract, or 40% to receive deed immediately
+- Interest rate: 10% (≈12.33% APR when the 10-point charge is financed)
 - Term: Up to 10 years (120 months)
 - We do personal approval - we look at individuals, not just credit scores
 - We pull credit and review it (unless buyer has recent report)
 - We listen to life events that caused past issues
 - Buyers disqualified only if they have a habit of not paying obligations
 - Same-day approval in most cases
-- Title/deed transfers after 35% paid
+- Title/deed transfers after 40% paid
 - With option contract, deed transfer typically takes about a year with minimum payments
 - Faster with additional principal payments
-- Many other sellers keep deed for entire loan term - we transfer at 35%
+- Many other sellers keep deed for entire loan term - we transfer at 40%
 - 10-day grace period before late charge
 - No prepayment penalty
 - No excessive fees
@@ -101,10 +101,10 @@ All other units
 - Lot exchange policy available
 
 ## PALM BAY AREAS (QUADRANTS)
-- SW Palm Bay: most growth/upside, St. Johns Heritage Parkway corridor, national builders active. Lots ~$35k-$65k. Further west = less developed.
-- NW Palm Bay: more established, closer to Melbourne/Viera. ~$40k-$70k.
+- SW Palm Bay: most growth/upside, St. Johns Heritage Parkway corridor, national builders active. Lots ~$41k-$65k. Further west = less developed.
+- NW Palm Bay: more established, closer to Melbourne/Viera. ~$45k-$70k.
 - NE Palm Bay: most developed, best utilities, closest to Indian River. ~$45k-$75k+.
-- SE Palm Bay: good value, mix of established and developing. ~$35k-$60k.
+- SE Palm Bay: good value, mix of established and developing. ~$45k-$60k.
 - The Compound (Port Malabar Units 51, 52, 53): lowest prices but NOT buildable / no utilities — sold only as part of a whole package, not individually.
 
 ## ZONING (basics)
@@ -113,10 +113,10 @@ All other units
 - Industrial: IU, HI
 
 ## OWNER FINANCING (full terms)
-- 25% down for an option contract; 35% down to receive the deed at closing
-- 10% APR, up to 10-year (120-month) amortization
+- 30% down for an option contract; 40% down to receive the deed at closing
+- 10% interest (≈12.33% APR when the 10-point charge is financed), up to 10-year (120-month) amortization
 - Monthly payment ≈ $13.22 per $1,000 financed
-- Deed transfers once 35% of the price is paid
+- Deed transfers once 40% of the price is paid
 - No prepayment penalty, no balloon, personal approval (we look at the person, not just a credit score)
 
 ## THE SIMPLE PROCESS
@@ -134,7 +134,7 @@ All other units
 3. When asked about prices on a standard residential lot, calculate it using the pricing formula
 4. ONLY direct them to call Vahid at 321-333-7230 when: (a) they ask the exact price of a letter-block lot (block that starts with a letter), or (b) they ask detailed technical questions about a specific commercial, industrial, or multifamily parcel that you do not have data for. In those cases, help as much as you can, then invite them to call Vahid for the specifics.
 5. Be conversational, friendly, and concise but informative
-6. For financing questions, explain the personal approval process and that the deed transfers at 35% paid
+6. For financing questions, explain the personal approval process and that the deed transfers at 40% paid
 7. Never tell a buyer we lack something (like city water) based only on a small sample — rely on your authoritative knowledge
 """
 

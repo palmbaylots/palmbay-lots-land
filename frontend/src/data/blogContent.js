@@ -1244,7 +1244,7 @@ export const blogContent = {
 
       <h2>The Reality for Most Palm Bay Buyers</h2>
       <p>Here's my honest take after 20+ years in this market: <strong>for most primary residence buyers, the city water premium is worth it.</strong> You'll save on construction (no drilling or septic engineering), avoid future maintenance considerations, and have better resale options.</p>
-      <p>However, for investors buying multiple lots, budget-conscious builders, or buyers focused on lower entry costs — well and septic lots at $32,000–$40,000 are excellent values. The southwest Palm Bay lots we sell at these prices are solid investments that just require well and septic installation.</p>
+      <p>However, for investors buying multiple lots, budget-conscious builders, or buyers focused on lower entry costs — well and septic lots starting around $41,000 are excellent values. The southwest Palm Bay lots we sell at these prices are solid investments that just require well and septic installation.</p>
       <p><strong>Bottom line:</strong> Neither option is wrong. Both have served Palm Bay homeowners well for decades. Choose based on your budget, intended use, and personal preference — and don't let inflated maintenance fears push you away from an otherwise great lot.</p>
 
       <p><a href="/inventory"><strong>Browse Available Lots by Utility Type</strong></a> | <a href="/guide/septic-vs-sewer-palm-bay"><strong>See Our Full Utility Guide</strong></a> | <a href="/contact"><strong>Ask About a Specific Lot</strong></a></p>
