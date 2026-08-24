@@ -9,7 +9,6 @@ import axios from 'axios';
 import { useToast } from '../hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
 import { homepageSchemaGraph, todayISO } from '../data/businessSchema';
-import FeaturedSpecialListing from '../components/FeaturedSpecialListing';
 import ParcelMapModal from '../components/ParcelMapModal';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -572,8 +571,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Special Listing — 1039 Hooper Ave NE */}
-      <FeaturedSpecialListing />
+      {/* 1039 Hooper Ave NE featured listing moved to the Inventory page */}
 
       {/* Owner Financing Terms */}
       <section className="py-14 bg-slate-900">
