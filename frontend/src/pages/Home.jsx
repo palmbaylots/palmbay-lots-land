@@ -672,30 +672,29 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Palm Bay, Florida — One of the Southeast's Best Land Markets</h2>
+            <p className="text-lg text-slate-600 mb-4">
+              <a href="https://www.google.com/maps/place/Palm+Bay,+FL" target="_blank" rel="noopener noreferrer" className="font-semibold underline decoration-amber-500 underline-offset-2 hover:text-amber-700">Palm Bay</a> sits on Florida's Space Coast in East Central Florida — roughly halfway between Miami and Jacksonville and just an hour east of Orlando. That puts it close to Florida's major cities while staying remarkably affordable: in 2026 it was named the <span className="font-semibold text-slate-900">#13 most affordable city in America</span> — the only Florida city in the top 20.
+            </p>
             <p className="text-lg text-slate-600">
-              Palm Bay is <a href="https://www.bcpao.us/" target="_blank" rel="noopener noreferrer" className="underline decoration-amber-500 underline-offset-2 hover:text-amber-700">Brevard County's</a> largest city, with over 130,000 residents and rapid population growth fueled by <a href="https://www.spacecoastedc.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-amber-500 underline-offset-2 hover:text-amber-700">Space Coast employers</a> including L3Harris Technologies, Blue Origin, and NASA's Kennedy Space Center. As development pushes south and west, land values in Palm Bay continue to rise — making now an ideal time to buy.
+              It's also <a href="https://www.bcpao.us/" target="_blank" rel="noopener noreferrer" className="underline decoration-amber-500 underline-offset-2 hover:text-amber-700">Brevard County's</a> largest city, with over 130,000 residents and rapid growth fueled by <a href="https://www.spacecoastedc.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-amber-500 underline-offset-2 hover:text-amber-700">Space Coast employers</a> including L3Harris Technologies, Blue Origin, and NASA's Kennedy Space Center. As development pushes south and west, land values continue to rise — making now an ideal time to buy.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center max-w-4xl mx-auto">
             <div className="bg-slate-50 p-4 rounded-xl">
-              <p className="font-bold text-slate-900">I-95 & US-1</p>
-              <p className="text-sm text-slate-600">Proximity</p>
+              <p className="font-bold text-slate-900">#13</p>
+              <p className="text-sm text-slate-600">Most Affordable U.S. City (2026)</p>
             </div>
             <div className="bg-slate-50 p-4 rounded-xl">
-              <p className="font-bold text-slate-900">Saint Johns Pkwy</p>
-              <p className="text-sm text-slate-600">Major Expansion</p>
+              <p className="font-bold text-slate-900">No State Income Tax</p>
+              <p className="text-sm text-slate-600">Florida advantage</p>
             </div>
             <div className="bg-slate-50 p-4 rounded-xl">
-              <p className="font-bold text-slate-900">National Builders</p>
-              <p className="text-sm text-slate-600">Strong Demand</p>
+              <p className="font-bold text-slate-900">1 Hour</p>
+              <p className="text-sm text-slate-600">East of Orlando</p>
             </div>
             <div className="bg-slate-50 p-4 rounded-xl">
-              <p className="font-bold text-slate-900">No State Tax</p>
-              <p className="text-sm text-slate-600">Income Tax Free</p>
-            </div>
-            <div className="bg-slate-50 p-4 rounded-xl">
-              <p className="font-bold text-slate-900">Space Coast</p>
-              <p className="text-sm text-slate-600">Beaches & Attractions</p>
+              <p className="font-bold text-slate-900">I-95 &amp; US-1</p>
+              <p className="text-sm text-slate-600">Direct access</p>
             </div>
           </div>
         </div>
