@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, MapPin, Calculator, FileText, Phone, AlertCircle, DollarSign, X, ExternalLink } from 'lucide-react';
+import { ArrowRight, CheckCircle, MapPin, Calculator, FileText, Phone, AlertCircle, DollarSign, X, ExternalLink, ChevronDown } from 'lucide-react';
 import { mockTestimonials, mockFeaturedProperties } from '../data/mockData';
 import SocialShareButtons from '../components/SocialShareButtons';
 import { Input } from '../components/ui/input';
@@ -171,6 +171,9 @@ const Home = () => {
   const [dbReviews, setDbReviews] = useState([]);
   const testimonials = dbReviews.length ? dbReviews : mockTestimonials;
   const reviewCount = testimonials.length;
+  // Review popup + FAQ accordion open state
+  const [selectedReview, setSelectedReview] = useState(null);
+  const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -919,60 +922,99 @@ const Home = () => {
               View all reviews on RateMyAgent
             </a>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id || index} className="bg-slate-50 p-6 rounded-lg shadow-md">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
+          <div className="max-w-2xl mx-auto">
+            <div className="max-h-[420px] overflow-y-auto pr-1 space-y-4" data-testid="reviews-scroll">
+              {testimonials.map((testimonial, index) => (
+                <button
+                  key={testimonial.id || index}
+                  type="button"
+                  onClick={() => setSelectedReview(testimonial)}
+                  className="w-full text-left bg-slate-50 p-5 rounded-lg shadow-sm hover:shadow-md hover:bg-white border border-transparent hover:border-amber-300 transition-all"
+                  data-testid={`review-card-${index}`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    {testimonial.source && (
+                      <span className="text-xs text-slate-400">{testimonial.source}</span>
+                    )}
                   </div>
-                  {testimonial.source && (
-                    <span className="text-xs text-slate-400">{testimonial.source}</span>
-                  )}
-                </div>
-                <p className="text-slate-700 mb-4 italic">"{testimonial.text}"</p>
-                <p className="font-semibold text-slate-900">{testimonial.name}</p>
-                <p className="text-sm text-slate-600">{testimonial.title}</p>
-              </div>
-            ))}
+                  <p className="text-slate-700 italic line-clamp-3">"{testimonial.text}"</p>
+                  <div className="flex items-center justify-between mt-3">
+                    <div>
+                      <p className="font-semibold text-slate-900">{testimonial.name}</p>
+                      <p className="text-sm text-slate-600">{testimonial.title}</p>
+                    </div>
+                    <span className="text-xs font-medium text-amber-600 whitespace-nowrap ml-3">Read full →</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+            <p className="text-center text-xs text-slate-400 mt-3">Scroll for more · click any review to read it in full</p>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Review popup */}
+      {selectedReview && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={() => setSelectedReview(null)}>
+          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 relative animate-in fade-in zoom-in duration-200" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setSelectedReview(null)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" data-testid="close-review-modal" aria-label="Close review">
+              <X className="w-6 h-6" />
+            </button>
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <p className="text-slate-700 italic mb-4 leading-relaxed">"{selectedReview.text}"</p>
+            <p className="font-semibold text-slate-900">{selectedReview.name}</p>
+            <p className="text-sm text-slate-600">{selectedReview.title}</p>
+            {selectedReview.source && <p className="text-xs text-slate-400 mt-1">via {selectedReview.source}</p>}
+          </div>
+        </div>
+      )}
+
+      {/* FAQ Section — accordion */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-2">Can I buy a lot in Palm Bay with owner financing?</h3>
-                <p className="text-slate-600">Yes. Owner financing is available on most of our residential lots. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No bank qualification required. No prepayment penalty.</p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-2">What is the minimum lot size in Palm Bay?</h3>
-                <p className="text-slate-600">Standard residential lots in Palm Bay are approximately 10,000 sq ft (quarter acre). Larger parcels and assemblages are also available.</p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-2">Do you work with national homebuilders?</h3>
-                <p className="text-slate-600">Yes. We regularly work with large builders including DR Horton, Lennar, and Adams Homes, as well as regional and custom builders throughout Brevard County.</p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-2">Are lots in Palm Bay buildable?</h3>
-                <p className="text-slate-600">Most lots we represent are buildable for single-family residential use. We provide zoning, parcel, and utility information for every listing. For a full parcel and zoning report on any Palm Bay lot, <Link to="/contact" className="text-amber-600 hover:underline">contact us directly</Link>.</p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-2">Do you sell commercial or industrial land?</h3>
-                <p className="text-slate-600">Yes. In addition to residential lots, we handle commercial, industrial, multifamily, and institutional land throughout Brevard, Polk, Lake, and Marion counties.</p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-2">How do I get started?</h3>
-                <p className="text-slate-600">Call or text Vahid directly at <a href="tel:3213337230" className="text-amber-600 hover:underline font-medium">321-333-7230</a>, or <Link to="/contact" className="text-amber-600 hover:underline font-medium">submit your lot criteria</Link> using the contact form. We'll match you with available inventory that fits your needs.</p>
-              </div>
+            <div className="space-y-3">
+              {[
+                { q: 'Can I buy a lot in Palm Bay with owner financing?', a: (<>Yes. Owner financing is available on most of our residential lots. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No bank qualification required. No prepayment penalty.</>) },
+                { q: 'What is the minimum lot size in Palm Bay?', a: (<>Standard residential lots in Palm Bay are approximately 10,000 sq ft (quarter acre). Larger parcels and assemblages are also available.</>) },
+                { q: 'Do you work with national homebuilders?', a: (<>Yes. We regularly work with large builders including DR Horton, Lennar, and Adams Homes, as well as regional and custom builders throughout Brevard County.</>) },
+                { q: 'Are lots in Palm Bay buildable?', a: (<>Most lots we represent are buildable for single-family residential use. We provide zoning, parcel, and utility information for every listing. For a full parcel and zoning report on any Palm Bay lot, <Link to="/contact" className="text-amber-600 hover:underline">contact us directly</Link>.</>) },
+                { q: 'Do you sell commercial or industrial land?', a: (<>Yes. In addition to residential lots, we handle commercial, industrial, multifamily, and institutional land throughout Brevard, Polk, Lake, and Marion counties.</>) },
+                { q: 'How do I get started?', a: (<>Call or text Vahid directly at <a href="tel:3213337230" className="text-amber-600 hover:underline font-medium">321-333-7230</a>, or <Link to="/contact" className="text-amber-600 hover:underline font-medium">submit your lot criteria</Link> using the contact form. We'll match you with available inventory that fits your needs.</>) },
+              ].map((faq, i) => {
+                const open = openFaq === i;
+                return (
+                  <div key={i} className="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(open ? null : i)}
+                      className="w-full flex items-center justify-between gap-3 text-left px-6 py-4 font-bold text-slate-900 hover:bg-slate-50 transition-colors"
+                      aria-expanded={open}
+                      data-testid={`faq-toggle-${i}`}
+                    >
+                      <span>{faq.q}</span>
+                      <ChevronDown className={`w-5 h-5 text-amber-600 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
+                    </button>
+                    {open && (
+                      <div className="px-6 pb-5 -mt-1 text-slate-600">{faq.a}</div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
