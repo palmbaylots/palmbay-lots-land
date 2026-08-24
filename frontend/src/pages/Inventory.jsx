@@ -6,6 +6,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ParcelMapModal from '../components/ParcelMapModal';
 import LotCard from '../components/LotCard';
+import FeaturedSpecialListing from '../components/FeaturedSpecialListing';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -520,6 +521,9 @@ const Inventory = () => {
           </div>
         </div>
       </section>
+
+      {/* Featured spotlight lot — 1039 Hooper Ave NE */}
+      <FeaturedSpecialListing />
 
       {/* ===== STEP 2: Featured / Best Opportunities ===== */}
       <section className="py-12 bg-white border-b">
