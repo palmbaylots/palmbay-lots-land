@@ -307,34 +307,30 @@ const Home = () => {
         </div>
       </section>
 
-      {/* TWO BANNERS — side by side */}
-      <section className="py-4 bg-slate-50">
+      {/* Announcement strips — slim, clickable */}
+      <section className="py-2 bg-slate-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Orange — affordability (sourced, no price prediction) */}
-            <a
-              href="https://www.facebook.com/share/v/1Gi2aTJqkS/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl px-6 py-7 text-white text-center flex flex-col items-center justify-center gap-2 hover:opacity-95 transition-opacity min-h-[150px]"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {/* Orange — affordability (links to the Palm Bay investment article) */}
+            <Link
+              to="/blog/is-palm-bay-good-investment-2025"
+              className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg px-4 py-2.5 text-white flex items-center justify-center gap-2 text-sm md:text-base font-bold hover:opacity-95 transition-opacity"
               data-testid="property-tax-banner"
             >
-              <AlertCircle className="w-8 h-8" />
-              <span className="font-bold text-xl md:text-2xl leading-tight">Palm Bay Ranked #13 Most Affordable City in America</span>
-              <span className="text-base font-medium text-white/90">The only Florida city in the top 20 (Source: The Palm Bayer)</span>
-              <span className="inline-flex items-center gap-1 font-bold underline mt-1">See the news <ArrowRight className="w-5 h-5" /></span>
-            </a>
+              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+              <span>Palm Bay ranked #13 most affordable city in America</span>
+              <span className="hidden sm:inline-flex items-center gap-1 underline whitespace-nowrap">See why <ArrowRight className="w-4 h-4" /></span>
+            </Link>
 
             {/* Green — cash deals */}
             <button
               onClick={() => setShowCashDeals(true)}
-              className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl px-6 py-7 text-white text-center flex flex-col items-center justify-center gap-2 hover:opacity-95 transition-opacity min-h-[150px]"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg px-4 py-2.5 text-white flex items-center justify-center gap-2 text-sm md:text-base font-bold hover:opacity-95 transition-opacity"
               data-testid="cash-deals-banner"
             >
-              <DollarSign className="w-8 h-8" />
-              <span className="font-bold text-xl md:text-2xl leading-tight">💰 Cash Buyer Discounts</span>
-              <span className="text-base font-medium text-white/90">Special pricing on select cash-only lots</span>
-              <span className="inline-flex items-center gap-1 font-bold underline mt-1">See cash deals <ArrowRight className="w-5 h-5" /></span>
+              <DollarSign className="w-4 h-4 flex-shrink-0" />
+              <span>Cash buyer discounts on select lots</span>
+              <span className="hidden sm:inline-flex items-center gap-1 underline whitespace-nowrap">See deals <ArrowRight className="w-4 h-4" /></span>
             </button>
           </div>
         </div>
