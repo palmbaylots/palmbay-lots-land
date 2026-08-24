@@ -313,7 +313,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {/* Orange — affordability (links to the Palm Bay investment article) */}
             <Link
-              to="/blog/is-palm-bay-good-investment-2025"
+              to="/blog/palm-bay-13-most-affordable-city-2026"
               className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg px-4 py-2.5 text-white flex items-center justify-center gap-2 text-sm md:text-base font-bold hover:opacity-95 transition-opacity"
               data-testid="property-tax-banner"
             >
