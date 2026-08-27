@@ -36,6 +36,7 @@ from routes.blogs import router as blogs_router
 from routes.admin import router as admin_router
 from routes.parcel import router as parcel_router
 from routes.reviews import router as reviews_router
+from routes.idx import router as idx_router
 
 api_router.include_router(leads_router)
 api_router.include_router(properties_router)
@@ -45,6 +46,7 @@ api_router.include_router(blogs_router)
 api_router.include_router(admin_router)
 api_router.include_router(parcel_router)
 api_router.include_router(reviews_router)
+api_router.include_router(idx_router)
 
 
 @api_router.get("/")
