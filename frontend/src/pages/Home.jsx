@@ -920,16 +920,27 @@ const Home = () => {
               View all reviews on RateMyAgent
             </a>
           </div>
-          <div className="max-w-2xl mx-auto">
-            <div className="max-h-[420px] overflow-y-auto pr-1 space-y-4" data-testid="reviews-scroll">
-              {testimonials.map((testimonial, index) => (
-                <button
-                  key={testimonial.id || index}
-                  type="button"
-                  onClick={() => setSelectedReview(testimonial)}
-                  className="w-full text-left bg-slate-50 p-5 rounded-lg shadow-sm hover:shadow-md hover:bg-white border border-transparent hover:border-amber-300 transition-all"
-                  data-testid={`review-card-${index}`}
-                >
+          <div className="max-w-5xl mx-auto">
+            <style>{`
+              @keyframes reviewsScrollRTL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+              .reviews-marquee { animation: reviewsScrollRTL 45s linear infinite; }
+              .reviews-marquee-wrap:hover .reviews-marquee { animation-play-state: paused; }
+              @media (prefers-reduced-motion: reduce) { .reviews-marquee { animation: none; } }
+            `}</style>
+            <div
+              className="reviews-marquee-wrap overflow-hidden"
+              data-testid="reviews-scroll"
+              style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)', maskImage: 'linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)' }}
+            >
+              <div className="reviews-marquee flex gap-4 w-max py-1">
+                {[...testimonials, ...testimonials].map((testimonial, index) => (
+                  <button
+                    key={(testimonial.id || 'r') + '-' + index}
+                    type="button"
+                    onClick={() => setSelectedReview(testimonial)}
+                    className="shrink-0 w-80 text-left bg-slate-50 p-5 rounded-lg shadow-sm hover:shadow-md hover:bg-white border border-transparent hover:border-amber-300 transition-all"
+                    data-testid={`review-card-${index}`}
+                  >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => (
@@ -950,10 +961,11 @@ const Home = () => {
                     </div>
                     <span className="text-xs font-medium text-amber-600 whitespace-nowrap ml-3">Read full →</span>
                   </div>
-                </button>
-              ))}
+                  </button>
+                ))}
+              </div>
             </div>
-            <p className="text-center text-xs text-slate-400 mt-3">Scroll for more · click any review to read it in full</p>
+            <p className="text-center text-xs text-slate-400 mt-3">Hover to pause · click any review to read it in full</p>
           </div>
         </div>
       </section>
