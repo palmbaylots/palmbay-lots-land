@@ -988,6 +988,12 @@ const Home = () => {
             <p className="font-semibold text-slate-900">{selectedReview.name}</p>
             <p className="text-sm text-slate-600">{selectedReview.title}</p>
             {selectedReview.source && <p className="text-xs text-slate-400 mt-1">via {selectedReview.source}</p>}
+            {selectedReview.reply && selectedReview.reply.trim() && (
+              <div className="mt-4 pl-4 border-l-2 border-amber-400 bg-amber-50 rounded-r-lg p-3">
+                <p className="text-xs font-semibold text-amber-700 mb-1">Response from Vahid</p>
+                <p className="text-sm text-slate-700">{selectedReview.reply}</p>
+              </div>
+            )}
           </div>
         </div>
       )}

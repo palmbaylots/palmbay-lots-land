@@ -8,7 +8,7 @@ import { Textarea } from '../components/ui/textarea';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const emptyForm = { name: 'Verified Client', title: '', text: '', source: 'Google', rating: 5, order: 0 };
+const emptyForm = { name: 'Verified Client', title: '', text: '', reply: '', source: 'Google', rating: 5, order: 0 };
 
 /**
  * Reviews management tab — add/edit/delete client reviews that show on the
@@ -52,7 +52,7 @@ const AdminReviewsTab = ({ adminPassword }) => {
   const openCreate = () => { setEditingId(null); setForm({ ...emptyForm }); setShowModal(true); };
   const openEdit = (r) => {
     setEditingId(r.id);
-    setForm({ name: r.name || 'Verified Client', title: r.title || '', text: r.text || '', source: r.source || 'Google', rating: r.rating || 5, order: r.order || 0 });
+    setForm({ name: r.name || 'Verified Client', title: r.title || '', text: r.text || '', reply: r.reply || '', source: r.source || 'Google', rating: r.rating || 5, order: r.order || 0 });
     setShowModal(true);
   };
 
@@ -167,6 +167,11 @@ const AdminReviewsTab = ({ adminPassword }) => {
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Review text *</label>
                 <Textarea value={form.text} onChange={(e) => updateField('text', e.target.value)} rows={5} placeholder="Paste the client's review here" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Your reply (optional)</label>
+                <Textarea value={form.reply} onChange={(e) => updateField('reply', e.target.value)} rows={3} placeholder="Your response to this review (leave blank to show none)" />
+                <p className="text-xs text-slate-500 mt-1">Leave empty and no reply will appear under the review.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
