@@ -956,8 +956,8 @@ const Home = () => {
                   <p className="text-slate-700 italic line-clamp-3">"{testimonial.text}"</p>
                   <div className="flex items-center justify-between mt-3">
                     <div>
-                      <p className="font-semibold text-slate-900">{testimonial.name}</p>
-                      <p className="text-sm text-slate-600">{testimonial.title}</p>
+                      <p className="font-semibold text-slate-900">{(testimonial.name && testimonial.name.trim()) ? testimonial.name : 'Verified Client'}</p>
+                      <p className="text-sm text-slate-600">{testimonial.title}{testimonial.date ? ` · ${testimonial.date}` : ''}</p>
                     </div>
                     <span className="text-xs font-medium text-amber-600 whitespace-nowrap ml-3">Read full →</span>
                   </div>
@@ -985,8 +985,8 @@ const Home = () => {
               ))}
             </div>
             <p className="text-slate-700 italic mb-4 leading-relaxed">"{selectedReview.text}"</p>
-            <p className="font-semibold text-slate-900">{selectedReview.name}</p>
-            <p className="text-sm text-slate-600">{selectedReview.title}</p>
+            <p className="font-semibold text-slate-900">{(selectedReview.name && selectedReview.name.trim()) ? selectedReview.name : 'Verified Client'}</p>
+            <p className="text-sm text-slate-600">{selectedReview.title}{selectedReview.date ? ` · ${selectedReview.date}` : ''}</p>
             {selectedReview.source && <p className="text-xs text-slate-400 mt-1">via {selectedReview.source}</p>}
             {selectedReview.reply && selectedReview.reply.trim() && (
               <div className="mt-4 pl-4 border-l-2 border-amber-400 bg-amber-50 rounded-r-lg p-3">

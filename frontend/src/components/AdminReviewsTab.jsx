@@ -8,7 +8,7 @@ import { Textarea } from '../components/ui/textarea';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const emptyForm = { name: 'Verified Client', title: '', text: '', reply: '', source: 'Google', rating: 5, order: 0 };
+const emptyForm = { name: '', title: '', text: '', reply: '', date: '', source: 'Google', rating: 5, order: 0 };
 
 /**
  * Reviews management tab — add/edit/delete client reviews that show on the
@@ -52,7 +52,7 @@ const AdminReviewsTab = ({ adminPassword }) => {
   const openCreate = () => { setEditingId(null); setForm({ ...emptyForm }); setShowModal(true); };
   const openEdit = (r) => {
     setEditingId(r.id);
-    setForm({ name: r.name || 'Verified Client', title: r.title || '', text: r.text || '', reply: r.reply || '', source: r.source || 'Google', rating: r.rating || 5, order: r.order || 0 });
+    setForm({ name: r.name || '', title: r.title || '', text: r.text || '', reply: r.reply || '', date: r.date || '', source: r.source || 'Google', rating: r.rating || 5, order: r.order || 0 });
     setShowModal(true);
   };
 
@@ -175,16 +175,20 @@ const AdminReviewsTab = ({ adminPassword }) => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Name shown</label>
-                  <Input value={form.name} onChange={(e) => updateField('name', e.target.value)} placeholder="Verified Client" />
-                  <p className="text-xs text-slate-500 mt-1">Use "Verified Client" for privacy, or a first name.</p>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Reviewer's name</label>
+                  <Input value={form.name} onChange={(e) => updateField('name', e.target.value)} placeholder="e.g. John D." />
+                  <p className="text-xs text-slate-500 mt-1">Leave blank to show "Verified Client" for privacy.</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Label</label>
                   <Input value={form.title} onChange={(e) => updateField('title', e.target.value)} placeholder="Lot Buyer / Land Seller" />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Date (optional)</label>
+                  <Input value={form.date} onChange={(e) => updateField('date', e.target.value)} placeholder="e.g. August 2026" />
+                </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Source</label>
                   <Input value={form.source} onChange={(e) => updateField('source', e.target.value)} placeholder="Google / RateMyAgent" />

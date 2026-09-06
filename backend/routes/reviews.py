@@ -43,6 +43,7 @@ class ReviewIn(BaseModel):
     title: str = ''
     text: str
     reply: str = ''
+    date: str = ''
     source: str = 'Google'
     rating: int = 5
     order: int = 0
@@ -53,6 +54,7 @@ class ReviewPatch(BaseModel):
     title: Optional[str] = None
     text: Optional[str] = None
     reply: Optional[str] = None
+    date: Optional[str] = None
     source: Optional[str] = None
     rating: Optional[int] = None
     order: Optional[int] = None
@@ -65,6 +67,7 @@ class Review(BaseModel):
     title: str = ''
     text: str
     reply: str = ''
+    date: str = ''
     source: str = 'Google'
     rating: int = 5
     order: int = 0
