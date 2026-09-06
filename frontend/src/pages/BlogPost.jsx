@@ -11,6 +11,7 @@ const API = `${BACKEND_URL}/api`;
 // Permanent redirects for renamed/legacy slugs (preserves SEO + existing GSC index)
 const SLUG_REDIRECTS = {
   'city-water-vs-well-septic': 'city-water-vs-well-water',
+  'what-does-it-cost-to-build-a-home-in-palm-bay': 'building-costs-palm-bay',
 };
 
 const BlogPost = () => {
