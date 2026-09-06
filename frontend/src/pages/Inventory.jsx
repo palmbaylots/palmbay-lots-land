@@ -73,6 +73,11 @@ const parseAcres = (a) => {
   const n = parseFloat(String(a || '').replace(/[^0-9.]/g, ''));
   return isNaN(n) ? 0 : n;
 };
+// A blank zoning/FLU means a standard single-family residential lot.
+const effZoning = (item) => (item && item.zoning && String(item.zoning).trim()) ? String(item.zoning).trim() : 'Residential';
+const effFlu = (item) => (item && item.flu && String(item.flu).trim()) ? String(item.flu).trim() : 'Residential';
+// Numeric value of a unit/block/lot for low-to-high sorting (non-numeric sinks to the end).
+const numVal = (v) => { const n = parseInt(String(v || '').replace(/[^0-9]/g, ''), 10); return isNaN(n) ? 999999 : n; };
 // Parse a hand-set dollar price like "$75,000". Returns 0 if not a real number
 // (e.g. "Contact for Price"), so the calculator is used instead.
 const parsePrice = (p) => {
@@ -179,6 +184,13 @@ const Inventory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterUnit, setFilterUnit] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [minAcres, setMinAcres] = useState('');
+  const [maxAcres, setMaxAcres] = useState('');
+  const [zoningFilter, setZoningFilter] = useState([]); // selected zoning values
+  const [fluFilter, setFluFilter] = useState([]);        // selected FLU values
+  const [sortBy, setSortBy] = useState('unit');          // unit | block | lot | sizeAsc | sizeDesc
+  const [showZoning, setShowZoning] = useState(true);
+  const [showFlu, setShowFlu] = useState(false);
   const [inventory, setInventory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [featuredProperties, setFeaturedProperties] = useState([]);
@@ -307,23 +319,46 @@ const Inventory = () => {
     });
   }, [inventory]);
 
+  // Zoning / FLU checkbox options with live counts (blank counts as Residential).
+  const zoningOptions = useMemo(() => {
+    const counts = {};
+    inventory.forEach(i => { const z = effZoning(i); counts[z] = (counts[z] || 0) + 1; });
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  }, [inventory]);
+  const fluOptions = useMemo(() => {
+    const counts = {};
+    inventory.forEach(i => { const f = effFlu(i); counts[f] = (counts[f] || 0) + 1; });
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  }, [inventory]);
+
+  const toggleValue = (arr, setArr, val) =>
+    setArr(arr.includes(val) ? arr.filter(x => x !== val) : [...arr, val]);
+
   // Filter inventory
   const filteredInventory = useMemo(() => {
+    const min = parseFloat(minAcres);
+    const max = parseFloat(maxAcres);
     return inventory.filter(item => {
-      const matchesSearch = 
+      const matchesSearch =
         (item.inventoryId || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.unit.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.block.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.lot.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.streetName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         `${item.streetNumber} ${item.streetName}`.toLowerCase().includes(searchTerm.toLowerCase());
-      
+
       const matchesUnit = filterUnit === 'all' || item.unit === filterUnit;
       const matchesFav = !favoritesOnly || favorites.has(favId(item));
 
-      return matchesSearch && matchesUnit && matchesFav;
+      const ac = parseAcres(item.acres);
+      const matchesMin = isNaN(min) || ac >= min;
+      const matchesMax = isNaN(max) || ac <= max;
+      const matchesZoning = zoningFilter.length === 0 || zoningFilter.includes(effZoning(item));
+      const matchesFlu = fluFilter.length === 0 || fluFilter.includes(effFlu(item));
+
+      return matchesSearch && matchesUnit && matchesFav && matchesMin && matchesMax && matchesZoning && matchesFlu;
     });
-  }, [inventory, searchTerm, filterUnit, favoritesOnly, favorites]);
+  }, [inventory, searchTerm, filterUnit, favoritesOnly, favorites, minAcres, maxAcres, zoningFilter, fluFilter]);
 
   // Group inventory by utility type and sort by unit number
   const groupedInventory = useMemo(() => {
@@ -342,19 +377,23 @@ const Inventory = () => {
       }
     });
 
-    // Sort each group by unit number ascending
-    const sortByUnit = (a, b) => {
-      const unitA = parseInt(a.unit) || 999;
-      const unitB = parseInt(b.unit) || 999;
-      return unitA - unitB;
+    // Sort each group by the chosen field (low-to-high for unit/block/lot).
+    const comparator = (a, b) => {
+      switch (sortBy) {
+        case 'block': return numVal(a.block) - numVal(b.block);
+        case 'lot': return numVal(a.lot) - numVal(b.lot);
+        case 'sizeAsc': return parseAcres(a.acres) - parseAcres(b.acres);
+        case 'sizeDesc': return parseAcres(b.acres) - parseAcres(a.acres);
+        default: return numVal(a.unit) - numVal(b.unit);
+      }
     };
 
-    waterSewer.sort(sortByUnit);
-    waterOnly.sort(sortByUnit);
-    wellSeptic.sort(sortByUnit);
+    waterSewer.sort(comparator);
+    waterOnly.sort(comparator);
+    wellSeptic.sort(comparator);
 
     return { waterSewer, waterOnly, wellSeptic };
-  }, [filteredInventory]);
+  }, [filteredInventory, sortBy]);
 
   // Download as Excel (CSV)
   const downloadExcel = () => {
@@ -619,15 +658,23 @@ const Inventory = () => {
           {/* Search and Filters */}
           <div className="mb-6 space-y-3">
             <div className="flex flex-col sm:flex-row gap-3">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
-                <input 
-                  type="text" 
-                  placeholder="Search by ID, Unit, Block, Lot, or Address..." 
-                  value={searchTerm} 
-                  onChange={(e) => setSearchTerm(e.target.value)} 
-                  className="w-full pl-10 pr-4 py-3 border bg-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500" 
+              <div className="relative flex-1 flex shadow-md rounded-lg">
+                <input
+                  type="text"
+                  placeholder="Search by ID, Unit, Block, Lot, or Address..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-3 border border-r-0 bg-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
                 />
+                <button
+                  type="button"
+                  onClick={(e) => { const inp = e.currentTarget.parentElement.querySelector('input'); if (inp) inp.blur(); }}
+                  className="flex items-center gap-2 px-6 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-r-lg transition-colors"
+                  aria-label="Search"
+                >
+                  <Search className="w-5 h-5" />
+                  Search
+                </button>
               </div>
               <Button 
                 onClick={downloadExcel}
@@ -650,31 +697,88 @@ const Inventory = () => {
                 className="flex items-center justify-center gap-2 px-6 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border"
               >
                 <Filter className="w-5 h-5" />
-                Filters {filterUnit !== 'all' && '(Active)'}
+                Filters {(filterUnit !== 'all' || zoningFilter.length || fluFilter.length || minAcres || maxAcres) ? '(Active)' : ''}
               </button>
             </div>
-            
+
             {showFilters && (
-              <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-slate-700">Filter by Unit</label>
-                  <select 
-                    value={filterUnit} 
-                    onChange={(e) => setFilterUnit(e.target.value)} 
-                    className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
-                  >
-                    <option value="all">All Units</option>
-                    {uniqueUnits.map(unit => (
-                      <option key={unit} value={unit}>Unit {unit}</option>
-                    ))}
-                  </select>
+              <div className="rounded-xl overflow-hidden shadow-md border border-[#c9dcef]">
+                <div className="bg-[#1a3a5c] text-white font-semibold px-5 py-3 flex items-center gap-2">
+                  <Filter className="w-5 h-5" /> Refine your search
                 </div>
-                <button 
-                  onClick={() => { setFilterUnit('all'); }} 
-                  className="w-full py-2 text-amber-600 font-medium hover:text-amber-700 transition-colors"
-                >
-                  Clear Filters
-                </button>
+                <div className="bg-[#eef4fb] px-5 divide-y divide-[#dbe7f3]">
+                  {/* Zoning */}
+                  <div>
+                    <button type="button" onClick={() => setShowZoning(v => !v)} className="w-full flex items-center justify-between py-3 font-semibold text-slate-800">
+                      Zoning
+                      <span className={`text-amber-600 transition-transform ${showZoning ? 'rotate-180' : ''}`}>▾</span>
+                    </button>
+                    {showZoning && (
+                      <div className="pb-3 space-y-1">
+                        {zoningOptions.map(([name, count]) => (
+                          <label key={name} className="flex items-center gap-2 py-1.5 px-2 rounded hover:bg-[#dfeaf7] cursor-pointer text-sm text-slate-700">
+                            <input type="checkbox" className="w-4 h-4 accent-amber-600" checked={zoningFilter.includes(name)} onChange={() => toggleValue(zoningFilter, setZoningFilter, name)} />
+                            {name}
+                            <span className="ml-auto text-slate-400 text-xs">{count}</span>
+                          </label>
+                        ))}
+                        <p className="text-xs text-slate-500 italic pl-2">No zoning set = Residential (single-family).</p>
+                      </div>
+                    )}
+                  </div>
+                  {/* FLU */}
+                  <div>
+                    <button type="button" onClick={() => setShowFlu(v => !v)} className="w-full flex items-center justify-between py-3 font-semibold text-slate-800">
+                      FLU (Future Land Use)
+                      <span className={`text-amber-600 transition-transform ${showFlu ? 'rotate-180' : ''}`}>▾</span>
+                    </button>
+                    {showFlu && (
+                      <div className="pb-3 space-y-1">
+                        {fluOptions.map(([name, count]) => (
+                          <label key={name} className="flex items-center gap-2 py-1.5 px-2 rounded hover:bg-[#dfeaf7] cursor-pointer text-sm text-slate-700">
+                            <input type="checkbox" className="w-4 h-4 accent-amber-600" checked={fluFilter.includes(name)} onChange={() => toggleValue(fluFilter, setFluFilter, name)} />
+                            {name}
+                            <span className="ml-auto text-slate-400 text-xs">{count}</span>
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {/* Filter by Unit */}
+                  <div className="py-3">
+                    <label className="block text-sm font-semibold mb-2 text-slate-800">Filter by Unit</label>
+                    <select value={filterUnit} onChange={(e) => setFilterUnit(e.target.value)} className="w-full p-2.5 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-500">
+                      <option value="all">All Units</option>
+                      {uniqueUnits.map(unit => (<option key={unit} value={unit}>Unit {unit}</option>))}
+                    </select>
+                  </div>
+                  {/* Lot size range */}
+                  <div className="py-3">
+                    <label className="block text-sm font-semibold mb-2 text-slate-800">Lot size (acres)</label>
+                    <div className="flex items-center gap-3">
+                      <input type="number" step="0.01" min="0" value={minAcres} onChange={(e) => setMinAcres(e.target.value)} placeholder="e.g. 0.23" className="w-32 p-2.5 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-500" />
+                      <span className="text-slate-500">to</span>
+                      <input type="number" step="0.01" min="0" value={maxAcres} onChange={(e) => setMaxAcres(e.target.value)} placeholder="e.g. 0.35" className="w-32 p-2.5 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-500" />
+                    </div>
+                  </div>
+                  {/* Sort by */}
+                  <div className="py-3 flex items-center gap-3">
+                    <label className="text-sm font-semibold text-slate-800 whitespace-nowrap">Sort by:</label>
+                    <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="flex-1 p-2.5 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-500">
+                      <option value="unit">Unit number (low to high)</option>
+                      <option value="block">Block (low to high)</option>
+                      <option value="lot">Lot (low to high)</option>
+                      <option value="sizeAsc">Size (smallest to largest)</option>
+                      <option value="sizeDesc">Size (largest to smallest)</option>
+                    </select>
+                  </div>
+                  {/* Clear all */}
+                  <div className="py-3">
+                    <button onClick={() => { setFilterUnit('all'); setZoningFilter([]); setFluFilter([]); setMinAcres(''); setMaxAcres(''); setSortBy('unit'); }} className="w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors">
+                      Clear all filters
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
