@@ -254,7 +254,11 @@ const PropertyDetail = () => {
   const pageDescription = isCashSpecial
     ? `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Special cash-priced lot — cash purchase only, no owner financing. Call Vahid 321-333-7230.`
     : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing: 30% down, no bank needed. Call Vahid 321-333-7230.`;
-  const canonicalUrl = `https://palmbaylots-land.com/property/${slug}`;
+  // Always canonicalize to the clean slug (title/address based) so em-dash and
+  // other URL variants consolidate to one indexable URL instead of "duplicate".
+  const canonicalSlug = (property.title || `${property.streetNumber || ''} ${property.streetName || ''}`)
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') || slug;
+  const canonicalUrl = `https://palmbaylots-land.com/property/${canonicalSlug}`;
 
   const schemaData = {
     "@context": "https://schema.org",
