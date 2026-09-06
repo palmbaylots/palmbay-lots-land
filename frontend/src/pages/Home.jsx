@@ -936,7 +936,7 @@ const Home = () => {
               data-testid="reviews-scroll"
               style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)', maskImage: 'linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)' }}
             >
-              <div className="reviews-marquee flex gap-4 w-max py-1">
+              <div className="reviews-marquee flex gap-4 w-max py-1" style={{ animationDuration: `${Math.max(60, testimonials.length * 8)}s` }}>
                 {[...testimonials, ...testimonials].map((testimonial, index) => (
                   <button
                     key={(testimonial.id || 'r') + '-' + index}
