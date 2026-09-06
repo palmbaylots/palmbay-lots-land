@@ -180,9 +180,14 @@ const PropertyDetail = () => {
         const response = await axios.get(`${API}/properties`);
         const properties = response.data;
         
+        // Normalize any incoming slug the same way we generate them, so older
+        // URLs that still contain an em dash (—) or other punctuation resolve.
+        const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+        const wanted = norm(slug);
         const found = properties.find(p => {
-          const titleSlug = p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-          return p.id === slug || titleSlug === slug || p.inventoryId === slug;
+          const titleSlug = norm(p.title);
+          const addrSlug = norm(`${p.streetNumber || ''} ${p.streetName || ''}`);
+          return p.id === slug || p.inventoryId === slug || titleSlug === wanted || addrSlug === wanted;
         });
         
         if (found) {
