@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Plus, Edit, Trash2, X, Star, MessageSquareQuote, Loader2, Send } from 'lucide-react';
+import { Plus, Edit, Trash2, X, Star, MessageSquareQuote, Loader2, Send, GripVertical } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
@@ -24,6 +24,7 @@ const AdminReviewsTab = ({ adminPassword }) => {
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState(null);
+  const [dragIndex, setDragIndex] = useState(null);
 
   // Unlock the API key with the admin password (same flow as blogs)
   useEffect(() => {
@@ -86,6 +87,28 @@ const AdminReviewsTab = ({ adminPassword }) => {
     }
   };
 
+  // Persist the current visual order (order = position) to the server.
+  const persistOrder = async (list) => {
+    if (!apiKey) { showToast('Admin key not loaded yet', 'error'); return; }
+    try {
+      await Promise.all(list.map((r, i) => axios.patch(`${API}/reviews/${r.id}`, { order: i }, { headers: authHeaders() })));
+      showToast('New order saved.');
+    } catch (err) {
+      showToast('Could not save the new order', 'error');
+      fetchReviews();
+    }
+  };
+
+  const handleDrop = (targetIndex) => {
+    if (dragIndex === null || dragIndex === targetIndex) { setDragIndex(null); return; }
+    const list = [...reviews];
+    const [moved] = list.splice(dragIndex, 1);
+    list.splice(targetIndex, 0, moved);
+    setReviews(list);
+    setDragIndex(null);
+    persistOrder(list);
+  };
+
   const handleSeed = async () => {
     if (!apiKey) { showToast('Admin key not loaded yet', 'error'); return; }
     try {
@@ -115,7 +138,7 @@ const AdminReviewsTab = ({ adminPassword }) => {
       )}
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <p className="text-sm text-slate-600">{reviews.length} review{reviews.length !== 1 ? 's' : ''} on the homepage.</p>
+        <p className="text-sm text-slate-600">{reviews.length} review{reviews.length !== 1 ? 's' : ''} on the homepage.{reviews.length > 1 ? ' Drag the ⋮⋮ handle to reorder.' : ''}</p>
         <div className="flex gap-2 w-full sm:w-auto">
           {reviews.length === 0 && (
             <Button onClick={handleSeed} disabled={!apiKey} variant="outline" className="w-full sm:w-auto">
@@ -137,15 +160,26 @@ const AdminReviewsTab = ({ adminPassword }) => {
         </div>
       ) : (
         <div className="space-y-3">
-          {reviews.map((r) => (
-            <div key={r.id} className="bg-white rounded-lg shadow p-4 flex items-start justify-between gap-4">
-              <div className="min-w-0">
+          {reviews.map((r, idx) => (
+            <div
+              key={r.id}
+              draggable
+              onDragStart={() => setDragIndex(idx)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => handleDrop(idx)}
+              onDragEnd={() => setDragIndex(null)}
+              className={`bg-white rounded-lg shadow p-4 flex items-start gap-3 transition-shadow ${dragIndex === idx ? 'opacity-50 ring-2 ring-amber-400' : ''}`}
+            >
+              <div className="pt-1 cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 shrink-0" title="Drag to reorder">
+                <GripVertical className="w-5 h-5" />
+              </div>
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   {[...Array(r.rating || 5)].map((_, i) => <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />)}
                   <span className="text-xs text-slate-400">{r.source}</span>
                 </div>
                 <p className="text-slate-700 text-sm">{r.text}</p>
-                <p className="text-xs text-slate-500 mt-1">{r.name}{r.title ? ` · ${r.title}` : ''}</p>
+                <p className="text-xs text-slate-500 mt-1">{(r.name && r.name.trim()) ? r.name : 'Verified Client'}{r.title ? ` · ${r.title}` : ''}{r.date ? ` · ${r.date}` : ''}</p>
               </div>
               <div className="flex gap-2 shrink-0">
                 <button onClick={() => openEdit(r)} className="p-2 bg-amber-100 text-amber-600 rounded hover:bg-amber-200"><Edit className="w-4 h-4" /></button>
