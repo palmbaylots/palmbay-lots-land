@@ -53,7 +53,7 @@ const AdminReviewsTab = ({ adminPassword }) => {
   const openCreate = () => { setEditingId(null); setForm({ ...emptyForm }); setShowModal(true); };
   const openEdit = (r) => {
     setEditingId(r.id);
-    setForm({ name: r.name || '', title: r.title || '', text: r.text || '', reply: r.reply || '', date: r.date || '', source: r.source || 'Google', rating: r.rating || 5, order: r.order || 0 });
+    setForm({ name: (r.name && r.name.trim().toLowerCase() !== 'verified client') ? r.name : '', title: r.title || '', text: r.text || '', reply: r.reply || '', date: r.date || '', source: r.source || 'Google', rating: r.rating || 5, order: r.order || 0 });
     setShowModal(true);
   };
 
