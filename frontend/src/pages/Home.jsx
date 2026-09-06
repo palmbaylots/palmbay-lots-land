@@ -942,7 +942,7 @@ const Home = () => {
                     key={(testimonial.id || 'r') + '-' + index}
                     type="button"
                     onClick={() => setSelectedReview(testimonial)}
-                    className="shrink-0 w-96 text-left bg-slate-50 p-6 rounded-lg shadow-sm hover:shadow-md hover:bg-white border border-transparent hover:border-amber-300 transition-all"
+                    className="shrink-0 w-[420px] text-left bg-slate-50 p-6 rounded-xl shadow-sm hover:shadow-md hover:bg-white border border-transparent hover:border-amber-300 transition-all"
                     data-testid={`review-card-${index}`}
                   >
                   <div className="flex items-center justify-between mb-3">
@@ -957,7 +957,7 @@ const Home = () => {
                       <span className="text-xs text-slate-400">{testimonial.source}</span>
                     )}
                   </div>
-                  <p className="text-slate-700 italic line-clamp-3">"{testimonial.text}"</p>
+                  <p className="text-slate-700 italic line-clamp-4">"{testimonial.text}"</p>
                   <div className="flex items-center justify-between mt-3">
                     <div>
                       <p className="font-semibold text-slate-900">
@@ -970,8 +970,8 @@ const Home = () => {
                   </div>
                   {testimonial.reply && testimonial.reply.trim() && (
                     <div className="mt-3 pl-3 border-l-2 border-amber-400 bg-amber-50 rounded-r p-2">
-                      <p className="text-[11px] font-semibold text-amber-700 mb-0.5">Response from Vahid</p>
-                      <p className="text-xs text-slate-600 line-clamp-2">{testimonial.reply}</p>
+                      <p className="text-xs font-semibold text-amber-700 mb-0.5 flex items-center gap-1"><span>💬</span> Response from Vahid</p>
+                      <p className="text-sm text-slate-600 line-clamp-3">{testimonial.reply}</p>
                     </div>
                   )}
                   </button>
