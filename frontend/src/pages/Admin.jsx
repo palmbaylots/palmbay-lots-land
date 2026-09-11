@@ -705,6 +705,7 @@ const Admin = ({ adminPassword = '' }) => {
                           <th className="px-4 py-3 text-left font-semibold">Name</th>
                           <th className="px-4 py-3 text-left font-semibold">Email</th>
                           <th className="px-4 py-3 text-left font-semibold">Phone</th>
+                          <th className="px-4 py-3 text-left font-semibold">Message</th>
                           <th className="px-4 py-3 text-left font-semibold">Date</th>
                           <th className="px-4 py-3 text-left font-semibold">Actions</th>
                         </tr>
@@ -722,6 +723,17 @@ const Admin = ({ adminPassword = '' }) => {
                               <a href={`tel:${lead.phone}`} className="text-amber-600 hover:underline">
                                 {lead.phone}
                               </a>
+                            </td>
+                            <td className="px-4 py-3 text-sm text-slate-600">
+                              {lead.message ? (
+                                <span title={lead.message} className="cursor-help">
+                                  {lead.message.length > 50
+                                    ? lead.message.substring(0, 50) + '...'
+                                    : lead.message}
+                                </span>
+                              ) : (
+                                <span className="text-slate-400">—</span>
+                              )}
                             </td>
                             <td className="px-4 py-3 text-sm text-slate-600">
                               {formatDate(lead.timestamp)}
