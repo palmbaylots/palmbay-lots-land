@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
   { to: '/listings', label: 'Commercial' },
+  { to: '/mls-listings', label: 'MLS Listings' },
   { to: '/map', label: 'Map' },
   { to: '/price-guide', label: 'Owner Financing' },
   { to: '/sell-land', label: 'Sell Land' },
