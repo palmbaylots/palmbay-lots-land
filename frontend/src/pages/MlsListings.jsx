@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Search, MapPin, Ruler, Loader2, Phone } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -47,6 +48,7 @@ const lotSize = (l) => {
 const PER_PAGE = 24;
 
 const MlsListings = () => {
+  const navigate = useNavigate();
   const [city, setCity] = useState('Palm Bay');
   const [maxPrice, setMaxPrice] = useState('');
   const [minAcres, setMinAcres] = useState('');
@@ -206,7 +208,8 @@ const MlsListings = () => {
               {listings.map((l) => (
                 <article
                   key={l.id}
-                  className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                  onClick={() => navigate(`/mls-listing/${l.id}`)}
+                  className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-[#d97706] transition-all flex flex-col cursor-pointer"
                 >
                   <div className="aspect-[4/3] bg-slate-200">
                     {l.photo ? (

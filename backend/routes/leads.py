@@ -177,6 +177,57 @@ async def delete_lead(lead_id: str):
     return {"message": "Lead deleted successfully", "id": lead_id}
 
 
+@router.post("/idx/leads", response_model=Lead)
+async def create_idx_lead(input: LeadCreate):
+    """Save an inquiry/lead from an IDX (MLS) listing."""
+    if not input.agreedToContact:
+        raise HTTPException(status_code=400, detail="Consent required")
+
+    lead_dict = input.model_dump()
+    lead_obj = Lead(**lead_dict)
+    doc = lead_obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    doc['source'] = 'idx'
+    await db.leads.insert_one(doc)
+
+    try:
+        notify_email = os.environ.get('CONTACT_EMAIL', 'palmbaylotsland@gmail.com')
+        msg = (lead_obj.message or '').strip()
+        what_they_want = (lead_obj.what_they_want or '').strip()
+
+        email_body = f"""
+        <html><body>
+            <h2>New MLS Listing Inquiry</h2>
+            <p><strong>Name:</strong> {lead_obj.name}</p>
+            <p><strong>Email:</strong> {lead_obj.email}</p>
+            <p><strong>Phone:</strong> {lead_obj.phone}</p>
+            {f'<p><strong>Interested in:</strong> {what_they_want}</p>' if what_they_want else ''}
+            {f'<p><strong>Message:</strong> {msg}</p>' if msg else ''}
+            <hr>
+            <p style="color:#666;font-size:12px;">Sent from MLS Listings · {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+        </body></html>
+        """
+        await send_email(to_email=notify_email, subject=f"New MLS Inquiry: {lead_obj.name}", body=email_body)
+
+        sms_gateway = os.environ.get('SMS_GATEWAY_EMAIL', '3213337230@tmomail.net')
+        if sms_gateway:
+            await send_email(
+                to_email=sms_gateway,
+                subject=f"MLS inquiry: {lead_obj.name} {lead_obj.phone}",
+                body=f"{lead_obj.name} {lead_obj.phone}\n{what_they_want}" + (f"\n{msg[:300]}" if msg else ""),
+            )
+
+        if os.environ.get('TWILIO_TO_PHONE'):
+            send_sms(
+                to_phone=os.environ.get('TWILIO_TO_PHONE'),
+                message=f"MLS inquiry:\n{lead_obj.name}\n{lead_obj.phone}\n{what_they_want}" + (f"\n{msg[:150]}" if msg else ""),
+            )
+    except Exception as e:
+        logger.error(f"IDX lead saved but notification failed: {str(e)}")
+
+    return lead_obj
+
+
 # Contact form
 @router.post("/contact")
 async def submit_contact_form(contact: ContactMessage):

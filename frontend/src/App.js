@@ -14,6 +14,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PropertyAdminDemo from "./pages/PropertyAdminDemo";
 import CrexiListings from "./pages/CrexiListings";
 import MlsListings from "./pages/MlsListings";
+import MlsListingDetail from "./pages/MlsListingDetail";
 import FlagshipListing from "./pages/FlagshipListing";
 import FlagshipScatteredLots from "./pages/FlagshipScatteredLots";
 import FlagshipFlemingAve from "./pages/FlagshipFlemingAve";
@@ -85,6 +86,7 @@ function App() {
                   <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
                   <Route path="/listings" element={<CrexiListings />} />
                   <Route path="/mls-listings" element={<MlsListings />} />
+                  <Route path="/mls-listing/:listingKey" element={<MlsListingDetail />} />
                   <Route path="/listing/328-malabar-rd" element={<FlagshipListing />} />
                   <Route path="/listing/scattered-lots" element={<FlagshipScatteredLots />} />
                   <Route path="/listing/2418-fleming-ave" element={<FlagshipFlemingAve />} />

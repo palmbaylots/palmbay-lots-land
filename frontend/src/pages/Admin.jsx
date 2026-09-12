@@ -247,10 +247,10 @@ const Admin = ({ adminPassword = '' }) => {
 
   // Download leads as Excel (CSV)
   const downloadExcel = () => {
-    const csvHeader = 'Name,Email,Phone,Consented,Date Submitted\n';
+    const csvHeader = 'Name,Email,Phone,What They Want,Message,Consented,Date Submitted\n';
     const csvContent = filteredLeads.map(lead => {
       const date = new Date(lead.timestamp).toLocaleString();
-      return `"${lead.name}","${lead.email}","${lead.phone}","${lead.agreedToContact ? 'Yes' : 'No'}","${date}"`;
+      return `"${lead.name}","${lead.email}","${lead.phone}","${lead.what_they_want || ''}","${(lead.message || '').replace(/"/g, '""')}","${lead.agreedToContact ? 'Yes' : 'No'}","${date}"`;
     }).join('\n');
 
     const blob = new Blob([csvHeader + csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -705,6 +705,7 @@ const Admin = ({ adminPassword = '' }) => {
                           <th className="px-4 py-3 text-left font-semibold">Name</th>
                           <th className="px-4 py-3 text-left font-semibold">Email</th>
                           <th className="px-4 py-3 text-left font-semibold">Phone</th>
+                          <th className="px-4 py-3 text-left font-semibold">What They Want</th>
                           <th className="px-4 py-3 text-left font-semibold">Message</th>
                           <th className="px-4 py-3 text-left font-semibold">Date</th>
                           <th className="px-4 py-3 text-left font-semibold">Actions</th>
@@ -723,6 +724,13 @@ const Admin = ({ adminPassword = '' }) => {
                               <a href={`tel:${lead.phone}`} className="text-amber-600 hover:underline">
                                 {lead.phone}
                               </a>
+                            </td>
+                            <td className="px-4 py-3 text-sm text-slate-600">
+                              {lead.what_they_want ? (
+                                <span className="font-medium">{lead.what_they_want}</span>
+                              ) : (
+                                <span className="text-slate-400">—</span>
+                              )}
                             </td>
                             <td className="px-4 py-3 text-sm text-slate-600">
                               {lead.message ? (
