@@ -32,8 +32,7 @@ SELECT_FIELDS = ",".join([
     "BathroomsTotalInteger", "LivingArea", "LotSizeAcres",
     "LotSizeSquareFeet", "PublicRemarks", "ModificationTimestamp",
     "YearBuilt", "TaxAnnualAmount", "AssociationFee", "AssociationName",
-    "GarageSpaces", "ElementarySchool", "MiddleSchool", "HighSchool",
-    "Zoning", "CountyName", "TaxAccountNumber",
+    "GarageSpaces", "ElementarySchool", "HighSchool",
 ])
 
 # Cache responses briefly so repeated filtering doesn't hammer Spark.
@@ -81,11 +80,7 @@ def _normalize(p: dict) -> dict:
         "associationName": p.get("AssociationName"),
         "garageSpaces": p.get("GarageSpaces"),
         "elementarySchool": p.get("ElementarySchool"),
-        "middleSchool": p.get("MiddleSchool"),
         "highSchool": p.get("HighSchool"),
-        "zoning": p.get("Zoning"),
-        "county": p.get("CountyName"),
-        "taxAccountNumber": p.get("TaxAccountNumber"),
         "updated": p.get("ModificationTimestamp"),
     }
 

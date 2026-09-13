@@ -294,6 +294,8 @@ async def submit_contact_form(contact: ContactMessage):
             'name': contact.name,
             'email': contact.email,
             'phone': contact.phone,
+            'message': contact.message,
+            'what_they_want': '',
             'source': 'contact_form',
             'agreedToContact': True,
             'agreedToMarketing': True,

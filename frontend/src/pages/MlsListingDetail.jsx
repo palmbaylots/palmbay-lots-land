@@ -258,18 +258,6 @@ const MlsListingDetail = () => {
                     </span>
                   </div>
                 )}
-                {listing.zoning && (
-                  <div className="p-4 grid grid-cols-2">
-                    <span className="text-slate-600">Zoning:</span>
-                    <span className="font-semibold text-slate-900">{listing.zoning}</span>
-                  </div>
-                )}
-                {listing.county && (
-                  <div className="p-4 grid grid-cols-2">
-                    <span className="text-slate-600">County:</span>
-                    <span className="font-semibold text-slate-900">{listing.county}</span>
-                  </div>
-                )}
                 {listing.garageSpaces && (
                   <div className="p-4 grid grid-cols-2">
                     <span className="text-slate-600">Garage Spaces:</span>
