@@ -154,7 +154,6 @@ const InquiryForm = ({ listing, isOpen, onClose }) => {
                   <option value="">Select...</option>
                   <option value="Buy">Buy</option>
                   <option value="Sell">Sell</option>
-                  <option value="Owner Financing">Owner Financing</option>
                   <option value="Other">Other</option>
                 </select>
               </div>

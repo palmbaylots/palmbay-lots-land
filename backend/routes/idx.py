@@ -31,6 +31,9 @@ SELECT_FIELDS = ",".join([
     "StateOrProvince", "PostalCode", "BedroomsTotal",
     "BathroomsTotalInteger", "LivingArea", "LotSizeAcres",
     "LotSizeSquareFeet", "PublicRemarks", "ModificationTimestamp",
+    "YearBuilt", "TaxAnnualAmount", "AssociationFee", "AssociationName",
+    "GarageSpaces", "ElementarySchool", "MiddleSchool", "HighSchool",
+    "Zoning", "CountyName", "TaxAccountNumber",
 ])
 
 # Cache responses briefly so repeated filtering doesn't hammer Spark.
@@ -45,13 +48,13 @@ def _odata_str(value: str) -> str:
 
 def _normalize(p: dict) -> dict:
     """Flatten a RESO Property record into the shape the frontend expects."""
-    photo = None
+    photos = []
     media = p.get("Media")
     if isinstance(media, list):
         for m in media:
             if m.get("MediaURL"):
-                photo = m["MediaURL"]
-                break
+                photos.append(m["MediaURL"])
+
     return {
         "id": p.get("ListingKey") or p.get("ListingId"),
         "mlsNumber": p.get("ListingId"),
@@ -70,7 +73,19 @@ def _normalize(p: dict) -> dict:
         "lotAcres": p.get("LotSizeAcres"),
         "lotSqft": p.get("LotSizeSquareFeet"),
         "description": p.get("PublicRemarks") or "",
-        "photo": photo,
+        "photos": photos,
+        "photo": photos[0] if photos else None,
+        "yearBuilt": p.get("YearBuilt"),
+        "taxAnnualAmount": p.get("TaxAnnualAmount"),
+        "associationFee": p.get("AssociationFee"),
+        "associationName": p.get("AssociationName"),
+        "garageSpaces": p.get("GarageSpaces"),
+        "elementarySchool": p.get("ElementarySchool"),
+        "middleSchool": p.get("MiddleSchool"),
+        "highSchool": p.get("HighSchool"),
+        "zoning": p.get("Zoning"),
+        "county": p.get("CountyName"),
+        "taxAccountNumber": p.get("TaxAccountNumber"),
         "updated": p.get("ModificationTimestamp"),
     }
 
@@ -83,6 +98,7 @@ def idx_listings(
     max_price: float = None,
     min_acres: float = None,
     max_acres: float = None,
+    property_type: str = "",
     q: str = "",
     limit: int = 24,
     skip: int = 0,
@@ -112,6 +128,8 @@ def idx_listings(
         clauses.append(f"LotSizeAcres ge {float(min_acres)}")
     if max_acres is not None:
         clauses.append(f"LotSizeAcres le {float(max_acres)}")
+    if property_type:
+        clauses.append(f"PropertySubType eq '{_odata_str(property_type)}' or PropertyType eq '{_odata_str(property_type)}'")
     if q:
         s = _odata_str(q)
         clauses.append(

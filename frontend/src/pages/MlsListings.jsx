@@ -34,6 +34,14 @@ const ACRE_OPTIONS = [
   { label: '5+ acres', value: '5' },
 ];
 
+const PROPERTY_TYPE_OPTIONS = [
+  { label: 'All types', value: '' },
+  { label: 'Residential', value: 'Residential' },
+  { label: 'Land', value: 'Land' },
+  { label: 'Commercial', value: 'Commercial' },
+  { label: 'Multi-Family', value: 'Multi-Family' },
+];
+
 const money = (n) =>
   typeof n === 'number'
     ? n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
@@ -52,6 +60,7 @@ const MlsListings = () => {
   const [city, setCity] = useState('Palm Bay');
   const [maxPrice, setMaxPrice] = useState('');
   const [minAcres, setMinAcres] = useState('');
+  const [propertyType, setPropertyType] = useState('');
   const [keyword, setKeyword] = useState('');
   const [query, setQuery] = useState(''); // committed keyword
 
@@ -70,6 +79,7 @@ const MlsListings = () => {
       if (city) params.city = city;
       if (maxPrice) params.max_price = maxPrice;
       if (minAcres) params.min_acres = minAcres;
+      if (propertyType) params.property_type = propertyType;
       if (query) params.q = query;
 
       const res = await axios.get(`${API}/idx/listings`, { params });
@@ -94,7 +104,7 @@ const MlsListings = () => {
   useEffect(() => {
     fetchListings(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [city, maxPrice, minAcres, query]);
+  }, [city, maxPrice, minAcres, propertyType, query]);
 
   const onSearch = (e) => {
     e.preventDefault();
@@ -159,6 +169,19 @@ const MlsListings = () => {
               className="border border-slate-300 rounded-lg px-3 py-2 min-w-[140px]"
             >
               {ACRE_OPTIONS.map((o) => (
+                <option key={o.label} value={o.value}>{o.label}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-xs font-semibold text-slate-500 mb-1">Property type</label>
+            <select
+              value={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
+              className="border border-slate-300 rounded-lg px-3 py-2 min-w-[140px]"
+            >
+              {PROPERTY_TYPE_OPTIONS.map((o) => (
                 <option key={o.label} value={o.value}>{o.label}</option>
               ))}
             </select>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { MapPin, Ruler, Home, Bath, Square, Calendar, DollarSign, Loader2, MessageSquare, ArrowLeft } from 'lucide-react';
+import { MapPin, Ruler, Home, Bath, Square, Calendar, DollarSign, Loader2, MessageSquare, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import InquiryForm from '../components/InquiryForm';
 import axios from 'axios';
@@ -13,12 +13,6 @@ const money = (n) =>
   typeof n === 'number'
     ? n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
     : 'Contact for price';
-
-const lotSize = (l) => {
-  if (l.lotAcres) return `${l.lotAcres} acres`;
-  if (l.lotSqft) return `${Number(l.lotSqft).toLocaleString()} sqft`;
-  return null;
-};
 
 const MlsListingDetail = () => {
   const { listingKey } = useParams();
@@ -46,6 +40,7 @@ const MlsListingDetail = () => {
       const found = res.data.listings.find(l => l.id === listingKey);
       if (found) {
         setListing(found);
+        setPhotoIndex(0);
       } else {
         setError('Listing not found.');
       }
@@ -88,6 +83,17 @@ const MlsListingDetail = () => {
     );
   }
 
+  const photos = listing.photos || (listing.photo ? [listing.photo] : []);
+  const currentPhoto = photos[photoIndex];
+
+  const nextPhoto = () => {
+    setPhotoIndex((prev) => (prev + 1) % photos.length);
+  };
+
+  const prevPhoto = () => {
+    setPhotoIndex((prev) => (prev - 1 + photos.length) % photos.length);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Helmet>
@@ -96,7 +102,7 @@ const MlsListingDetail = () => {
       </Helmet>
 
       <div className="bg-white border-b">
-        <div className="max-w-4xl mx-auto px-4 py-4">
+        <div className="max-w-6xl mx-auto px-4 py-4">
           <button
             onClick={() => navigate('/mls-listings')}
             className="flex items-center gap-2 text-[#d97706] hover:text-[#b45309]"
@@ -106,20 +112,54 @@ const MlsListingDetail = () => {
         </div>
       </div>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Photo gallery */}
         <div className="mb-8">
-          {listing.photo ? (
-            <div className="aspect-video bg-slate-300 rounded-xl overflow-hidden">
+          {currentPhoto ? (
+            <div className="relative aspect-video bg-slate-300 rounded-xl overflow-hidden group">
               <img
-                src={listing.photo}
+                src={currentPhoto}
                 alt={listing.address}
                 className="w-full h-full object-cover"
               />
+              {photos.length > 1 && (
+                <>
+                  <button
+                    onClick={prevPhoto}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={nextPhoto}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                  <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
+                    {photoIndex + 1} / {photos.length}
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             <div className="aspect-video bg-slate-200 rounded-xl flex items-center justify-center">
               <MapPin className="w-12 h-12 text-slate-400" />
+            </div>
+          )}
+          {photos.length > 1 && (
+            <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
+              {photos.map((photo, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setPhotoIndex(idx)}
+                  className={`flex-shrink-0 w-20 h-20 rounded overflow-hidden border-2 transition ${
+                    idx === photoIndex ? 'border-[#d97706]' : 'border-slate-300'
+                  }`}
+                >
+                  <img src={photo} alt={`Photo ${idx + 1}`} className="w-full h-full object-cover" />
+                </button>
+              ))}
             </div>
           )}
         </div>
@@ -165,10 +205,12 @@ const MlsListingDetail = () => {
                   <p className="text-xs text-slate-500 uppercase">Sqft</p>
                 </div>
               )}
-              {lotSize(listing) && (
+              {(listing.lotAcres || listing.lotSqft) && (
                 <div className="bg-white rounded-lg p-4 text-center">
                   <Ruler className="w-5 h-5 text-[#d97706] mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-slate-900">{listing.lotAcres || (listing.lotSqft && Number(listing.lotSqft).toLocaleString())}</p>
+                  <p className="text-2xl font-bold text-slate-900">
+                    {listing.lotAcres ? listing.lotAcres : Number(listing.lotSqft).toLocaleString()}
+                  </p>
                   <p className="text-xs text-slate-500 uppercase">{listing.lotAcres ? 'Acres' : 'Lot Sqft'}</p>
                 </div>
               )}
@@ -177,17 +219,17 @@ const MlsListingDetail = () => {
             {/* Description */}
             {listing.description && (
               <div className="bg-white rounded-xl shadow p-6">
-                <h2 className="text-xl font-bold text-[#1a3a5c] mb-3">Details</h2>
+                <h2 className="text-xl font-bold text-[#1a3a5c] mb-3">Description</h2>
                 <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
                   {listing.description}
                 </p>
               </div>
             )}
 
-            {/* Property details table */}
+            {/* Detailed property info */}
             <div className="bg-white rounded-xl shadow overflow-hidden">
               <div className="p-6 border-b border-slate-200">
-                <h2 className="text-xl font-bold text-[#1a3a5c]">Property Information</h2>
+                <h2 className="text-xl font-bold text-[#1a3a5c]">Property Details</h2>
               </div>
               <div className="divide-y divide-slate-200">
                 {listing.propertyType && (
@@ -196,27 +238,118 @@ const MlsListingDetail = () => {
                     <span className="font-semibold text-slate-900">{listing.propertyType}</span>
                   </div>
                 )}
-                {listing.mlsNumber && (
+                {listing.yearBuilt && (
                   <div className="p-4 grid grid-cols-2">
-                    <span className="text-slate-600">MLS Number:</span>
-                    <span className="font-semibold text-slate-900">{listing.mlsNumber}</span>
+                    <span className="text-slate-600">Year Built:</span>
+                    <span className="font-semibold text-slate-900">{listing.yearBuilt}</span>
                   </div>
                 )}
-                {listing.updated && (
+                {listing.livingArea && (
                   <div className="p-4 grid grid-cols-2">
-                    <span className="text-slate-600">Updated:</span>
+                    <span className="text-slate-600">Living Area:</span>
+                    <span className="font-semibold text-slate-900">{Number(listing.livingArea).toLocaleString()} sqft</span>
+                  </div>
+                )}
+                {(listing.lotAcres || listing.lotSqft) && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">Lot Size:</span>
                     <span className="font-semibold text-slate-900">
-                      {new Date(listing.updated).toLocaleDateString()}
+                      {listing.lotAcres ? `${listing.lotAcres} acres` : `${Number(listing.lotSqft).toLocaleString()} sqft`}
                     </span>
+                  </div>
+                )}
+                {listing.zoning && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">Zoning:</span>
+                    <span className="font-semibold text-slate-900">{listing.zoning}</span>
+                  </div>
+                )}
+                {listing.county && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">County:</span>
+                    <span className="font-semibold text-slate-900">{listing.county}</span>
+                  </div>
+                )}
+                {listing.garageSpaces && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">Garage Spaces:</span>
+                    <span className="font-semibold text-slate-900">{listing.garageSpaces}</span>
                   </div>
                 )}
               </div>
             </div>
+
+            {/* Schools & HOA */}
+            <div className="bg-white rounded-xl shadow overflow-hidden">
+              <div className="p-6 border-b border-slate-200">
+                <h2 className="text-xl font-bold text-[#1a3a5c]">Schools & Community</h2>
+              </div>
+              <div className="divide-y divide-slate-200">
+                {listing.elementarySchool && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">Elementary School:</span>
+                    <span className="font-semibold text-slate-900">{listing.elementarySchool}</span>
+                  </div>
+                )}
+                {listing.middleSchool && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">Middle School:</span>
+                    <span className="font-semibold text-slate-900">{listing.middleSchool}</span>
+                  </div>
+                )}
+                {listing.highSchool && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">High School:</span>
+                    <span className="font-semibold text-slate-900">{listing.highSchool}</span>
+                  </div>
+                )}
+                {listing.associationName && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">HOA:</span>
+                    <span className="font-semibold text-slate-900">{listing.associationName}</span>
+                  </div>
+                )}
+                {listing.associationFee && (
+                  <div className="p-4 grid grid-cols-2">
+                    <span className="text-slate-600">HOA Fee:</span>
+                    <span className="font-semibold text-slate-900">{money(listing.associationFee)}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Tax info */}
+            {(listing.taxAccountNumber || listing.taxAnnualAmount) && (
+              <div className="bg-white rounded-xl shadow overflow-hidden">
+                <div className="p-6 border-b border-slate-200">
+                  <h2 className="text-xl font-bold text-[#1a3a5c]">Tax Information</h2>
+                </div>
+                <div className="divide-y divide-slate-200">
+                  {listing.taxAccountNumber && (
+                    <div className="p-4 grid grid-cols-2">
+                      <span className="text-slate-600">Tax Account:</span>
+                      <span className="font-semibold text-slate-900">{listing.taxAccountNumber}</span>
+                    </div>
+                  )}
+                  {listing.taxAnnualAmount && (
+                    <div className="p-4 grid grid-cols-2">
+                      <span className="text-slate-600">Annual Taxes:</span>
+                      <span className="font-semibold text-slate-900">{money(listing.taxAnnualAmount)}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {listing.updated && (
+              <div className="text-xs text-slate-500 text-center">
+                Last updated: {new Date(listing.updated).toLocaleDateString()}
+              </div>
+            )}
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            {/* Inquiry form */}
             <div className="bg-white rounded-xl shadow sticky top-6 p-6">
               <h3 className="text-lg font-bold text-[#1a3a5c] mb-4">Interested in this property?</h3>
               <Button
@@ -227,7 +360,7 @@ const MlsListingDetail = () => {
               </Button>
               <div className="text-xs text-slate-500 space-y-2">
                 <p><strong>Space Coast MLS Listing</strong></p>
-                <p>View all details in the Space Coast MLS system for complete information.</p>
+                <p>Questions about this property? Contact us and we'll get back to you as soon as possible.</p>
               </div>
             </div>
           </div>
@@ -235,8 +368,8 @@ const MlsListingDetail = () => {
 
         {/* CTA Footer */}
         <div className="mt-12 bg-[#1a3a5c] text-white rounded-xl p-8 text-center">
-          <p className="text-lg font-semibold mb-3">Not finding what you're looking for?</p>
-          <p className="text-blue-200 mb-4">We have over 2,200 lots available, including properties with owner financing.</p>
+          <p className="text-lg font-semibold mb-3">Looking for something different?</p>
+          <p className="text-blue-200 mb-4">Check out our full inventory of Palm Bay lots and land, including properties with owner financing available.</p>
           <Button
             onClick={() => navigate('/inventory')}
             className="bg-[#d97706] hover:bg-[#b45309]"
