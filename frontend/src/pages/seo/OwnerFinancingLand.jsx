@@ -350,6 +350,14 @@ const OwnerFinancingLand = () => {
                 Representative Financing Example
               </h2>
 
+              <img
+                src="/images/financing-couple.webp"
+                alt="Happy couple reviewing land purchase documents with 'Land For Sale' sign in background"
+                className="w-full rounded-xl shadow-lg mb-8"
+                loading="lazy"
+                decoding="async"
+              />
+
               <div className="bg-slate-900 border-2 border-amber-500 rounded-xl p-8 mb-8">
                 <div className="mb-8">
                   <h3 className="text-xl font-bold text-slate-900 mb-4">$25,000 Purchase Price Example</h3>
@@ -442,6 +450,21 @@ const OwnerFinancingLand = () => {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Financing Image */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <img
+                src="/images/financing-couple.webp"
+                alt="Happy couple reviewing land purchase documents with 'Land For Sale' sign in background"
+                className="w-full rounded-xl shadow-lg"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </section>
