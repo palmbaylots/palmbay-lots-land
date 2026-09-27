@@ -350,39 +350,39 @@ const OwnerFinancingLand = () => {
                 Representative Financing Example
               </h2>
 
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 border-2 border-amber-200 rounded-xl p-8 mb-8">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200 rounded-xl p-8 mb-8">
                 <div className="mb-8">
                   <h3 className="text-xl font-bold text-slate-900 mb-4">$25,000 Purchase Price Example</h3>
 
                   <div className="space-y-4">
                     <div className="flex items-center justify-between bg-white p-3 rounded">
                       <span className="text-slate-700 font-medium">Purchase Price:</span>
-                      <span className="text-lg font-bold text-amber-600">$25,000</span>
+                      <span className="text-lg font-bold text-green-600">$25,000</span>
                     </div>
                     <div className="flex items-center justify-between bg-white p-3 rounded">
                       <span className="text-slate-700 font-medium">Initial Option Payment (30%):</span>
-                      <span className="text-lg font-bold text-amber-600">$7,500</span>
+                      <span className="text-lg font-bold text-green-600">$7,500</span>
                     </div>
                     <div className="flex items-center justify-between bg-white p-3 rounded">
                       <span className="text-slate-700 font-medium">Initial Amount Financed:</span>
-                      <span className="text-lg font-bold text-amber-600">$17,500</span>
+                      <span className="text-lg font-bold text-green-600">$17,500</span>
                     </div>
                     <div className="flex items-center justify-between bg-white p-3 rounded">
                       <span className="text-slate-700 font-medium">Interest Rate:</span>
-                      <span className="text-lg font-bold text-amber-600">10% Fixed</span>
+                      <span className="text-lg font-bold text-green-600">10% Fixed</span>
                     </div>
                     <div className="flex items-center justify-between bg-white p-3 rounded">
                       <span className="text-slate-700 font-medium">Original Term:</span>
-                      <span className="text-lg font-bold text-amber-600">120 Months (10 Years)</span>
+                      <span className="text-lg font-bold text-green-600">120 Months (10 Years)</span>
                     </div>
-                    <div className="flex items-center justify-between bg-amber-200 p-3 rounded font-bold">
+                    <div className="flex items-center justify-between bg-green-200 p-3 rounded font-bold">
                       <span className="text-slate-900">Initial Monthly Principal &amp; Interest:</span>
-                      <span className="text-lg text-amber-700">Approximately $231.26</span>
+                      <span className="text-lg text-green-700">Approximately $231.26</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t-2 border-amber-300 pt-6">
+                <div className="border-t-2 border-green-300 pt-6">
                   <p className="text-slate-700 mb-4 font-medium">Step-by-step walkthrough:</p>
                   <ol className="space-y-4 text-slate-700 ml-4 list-decimal">
                     <li>
@@ -418,7 +418,7 @@ const OwnerFinancingLand = () => {
                 </div>
               </div>
 
-              <div className="bg-amber-50 border-l-4 border-amber-600 p-6 rounded-r-xl mb-8">
+              <div className="bg-green-50 border-l-4 border-green-600 p-6 rounded-r-xl mb-8">
                 <h3 className="font-bold text-slate-900 mb-4">📋 Financing Charge & APR Information</h3>
                 <div className="space-y-3 text-slate-700">
                   <p>
