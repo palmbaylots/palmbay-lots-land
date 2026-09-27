@@ -971,20 +971,18 @@ const Inventory = () => {
                           <span className="font-bold text-slate-900">30% Option Money</span>
                           <span className="text-slate-900 font-semibold">{usd(pricing.down30)} option money</span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin30)} — principal only</p>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin30)} at 10% fixed interest</p>
                         <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly30)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
-                        <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
-                        <p className="text-xs text-slate-500 mt-1">Option Contract — deed transfers once your payments reach 40% of the price.</p>
+                        <p className="text-xs text-slate-600 mt-1 font-medium">Option Contract — deed transfers at 40% paid. <span className="text-amber-700">Financing charges and APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" className="underline text-blue-600 hover:text-blue-700">View full terms.</a></p>
                       </div>
                       <div className="border border-slate-200 rounded-xl p-4">
                         <div className="flex items-baseline justify-between">
                           <span className="font-bold text-slate-900">40% Down</span>
                           <span className="text-slate-900 font-semibold">{usd(pricing.down40)} down</span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin40)} — principal only</p>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin40)} at 10% fixed interest</p>
                         <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly40)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
-                        <p className="text-base font-bold text-slate-900 mt-1">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
-                        <p className="text-xs text-slate-500 mt-1">Deed Transfer at closing.</p>
+                        <p className="text-xs text-slate-600 mt-1 font-medium">Deed Transfer at closing. <span className="text-amber-700">Financing charges and APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" className="underline text-blue-600 hover:text-blue-700">View full terms.</a></p>
                       </div>
                     </div>
 
@@ -1022,17 +1020,15 @@ const Inventory = () => {
                               <p className="text-sm font-bold text-amber-400">{financed <= 0 ? '$0' : usd(monthly) + '/mo'}</p>
                             </div>
                           </div>
-                          <p className="text-xs font-bold text-white mt-3 text-center">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
+                          <p className="text-xs font-bold text-white mt-3 text-center">10% fixed interest rate</p>
+                          <p className="text-[10px] text-amber-300 text-center mt-1"><strong>Financing charges & APR apply</strong></p>
                         </div>
                       );
                     })()}
 
                     {/* Required financing disclosure */}
                     <p className="text-[11px] leading-snug text-slate-500 mt-3">
-                      Financing example assumes the 10-point charge is financed (12.33% APR). If the points are paid at
-                      closing, the APR is 12.58%. Amortized up to 120 months at a 10% interest rate. No prepayment
-                      penalty, no balloon. Subject to credit approval and execution of appropriate legal documents.
-                      This is an example only and is not an offer of credit. Terms subject to change.
+                      Amortized up to 120 months at 10% fixed interest. A financing charge equal to 10% of the remaining principal balance applies at closing. Financing charges and APR apply — <a href="/owner-financing-land-florida#financing-disclosure" className="text-blue-600 underline hover:text-blue-700">see representative example and full financing terms</a>. No prepayment penalty, no balloon. Subject to credit approval and execution of appropriate legal documents. This is an example only and is not an offer of credit. Terms subject to change.
                     </p>
 
                     <Link

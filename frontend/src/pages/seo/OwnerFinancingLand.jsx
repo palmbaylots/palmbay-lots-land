@@ -193,8 +193,17 @@ const OwnerFinancingLand = () => {
               </p>
 
               <p className="text-lg text-slate-700 mb-6">
-                For buyers looking at <strong>vacant land in Palm Bay</strong>, owner financing is particularly valuable. Banks often hesitate to finance raw land, requiring large down payments (25-50%) and short repayment terms. Our <strong>owner financing program</strong> requires a minimum of 30% down for an option contract. Once you've paid 40% of the total price, the deed transfers to your name — and you continue making payments until the lot is paid off. No prepayment penalty.
+                For buyers looking at <strong>vacant land in Palm Bay</strong>, owner financing is particularly valuable. Banks often hesitate to finance raw land, requiring large down payments and short repayment terms. Our <strong>owner financing program</strong> is straightforward:
               </p>
+
+              <ul className="text-lg text-slate-700 mb-6 space-y-2 ml-6">
+                <li><strong>30% initial option payment</strong> — secures your lot with an option contract</li>
+                <li><strong>10% fixed interest rate</strong> — your rate stays the same throughout the loan</li>
+                <li><strong>10-year amortization</strong> — affordable monthly payments with principal and interest</li>
+                <li><strong>Deed transfers at 40%</strong> — once your total payments reach 40% of the purchase price, the deed is yours</li>
+                <li><strong>Financing charge at closing</strong> — a 10% charge (calculated on the remaining principal balance at closing) applies; you may pay it then or finance it</li>
+                <li><strong>No prepayment penalty</strong> — pay off early anytime without penalty</li>
+              </ul>
 
               <p className="text-lg text-slate-700 mb-8">
                 The beauty of <strong>seller financing for land</strong> is its accessibility. Whether you have perfect credit, imperfect credit, or are self-employed with non-traditional income documentation, we can work with you. If you can afford the monthly payments, you qualify. It's that simple.
@@ -245,23 +254,23 @@ const OwnerFinancingLand = () => {
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-md">
-                <h3 className="font-bold text-slate-900 mb-4 text-center">Typical Owner Financing Terms</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <h3 className="font-bold text-slate-900 mb-4 text-center">Owner Financing Program Terms</h3>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
                   <div>
                     <p className="text-3xl font-bold text-amber-600">30%</p>
-                    <p className="text-sm text-slate-600">Min. Option Money</p>
+                    <p className="text-sm text-slate-600">Initial Option Payment</p>
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-amber-600">10%</p>
-                    <p className="text-sm text-slate-600">Interest Rate</p>
+                    <p className="text-sm text-slate-600">Fixed Interest Rate</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-bold text-amber-600">12.33%</p>
-                    <p className="text-sm text-slate-600">APR</p>
+                    <p className="text-3xl font-bold text-amber-600">10 Yr</p>
+                    <p className="text-sm text-slate-600">Amortization</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-bold text-amber-600">10 Years</p>
-                    <p className="text-sm text-slate-600">Max Term</p>
+                    <p className="text-3xl font-bold text-amber-600">40%</p>
+                    <p className="text-sm text-slate-600">Deed Transfers</p>
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-amber-600">$0</p>
@@ -333,47 +342,99 @@ const OwnerFinancingLand = () => {
           </div>
         </section>
 
-        {/* Example Calculation */}
-        <section className="py-16 bg-slate-100">
+        {/* Representative Financing Example */}
+        <section id="financing-disclosure" className="py-16 bg-slate-100">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
-                Example Monthly Payment Calculator
+                Representative Financing Example
               </h2>
-              
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 border-2 border-amber-200 rounded-xl p-8">
-                <div className="text-center mb-8">
-                  <p className="text-slate-600 mb-2">For a $45,000 lot with 15% down ($6,750)</p>
-                  <p className="text-5xl font-bold text-amber-600">~$350/month</p>
-                  <p className="text-slate-500 mt-2">for 120 months (10 years) at a 10% interest rate — 12.33% Annual Percentage Rate (APR)</p>
+
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100 border-2 border-amber-200 rounded-xl p-8 mb-8">
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">$25,000 Purchase Price Example</h3>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between bg-white p-3 rounded">
+                      <span className="text-slate-700 font-medium">Purchase Price:</span>
+                      <span className="text-lg font-bold text-amber-600">$25,000</span>
+                    </div>
+                    <div className="flex items-center justify-between bg-white p-3 rounded">
+                      <span className="text-slate-700 font-medium">Initial Option Payment (30%):</span>
+                      <span className="text-lg font-bold text-amber-600">$7,500</span>
+                    </div>
+                    <div className="flex items-center justify-between bg-white p-3 rounded">
+                      <span className="text-slate-700 font-medium">Initial Amount Financed:</span>
+                      <span className="text-lg font-bold text-amber-600">$17,500</span>
+                    </div>
+                    <div className="flex items-center justify-between bg-white p-3 rounded">
+                      <span className="text-slate-700 font-medium">Interest Rate:</span>
+                      <span className="text-lg font-bold text-amber-600">10% Fixed</span>
+                    </div>
+                    <div className="flex items-center justify-between bg-white p-3 rounded">
+                      <span className="text-slate-700 font-medium">Original Term:</span>
+                      <span className="text-lg font-bold text-amber-600">120 Months (10 Years)</span>
+                    </div>
+                    <div className="flex items-center justify-between bg-amber-200 p-3 rounded font-bold">
+                      <span className="text-slate-900">Initial Monthly Principal &amp; Interest:</span>
+                      <span className="text-lg text-amber-700">Approximately $231.26</span>
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                  <div className="bg-white p-4 rounded-lg">
-                    <p className="text-2xl font-bold text-slate-900">$45,000</p>
-                    <p className="text-sm text-slate-500">Lot Price</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg">
-                    <p className="text-2xl font-bold text-slate-900">$6,750</p>
-                    <p className="text-sm text-slate-500">Down (15%)</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg">
-                    <p className="text-2xl font-bold text-slate-900">$38,250</p>
-                    <p className="text-sm text-slate-500">Amount Financed</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg">
-                    <p className="text-2xl font-bold text-slate-900">~$350</p>
-                    <p className="text-sm text-slate-500">Monthly Payment</p>
+
+                <div className="border-t-2 border-amber-300 pt-6">
+                  <p className="text-slate-700 mb-4 font-medium">Step-by-step walkthrough:</p>
+                  <ol className="space-y-4 text-slate-700 ml-4 list-decimal">
+                    <li>
+                      <strong>Make your initial option payment:</strong> You pay $7,500 (30% of $25,000) to secure the lot with an option contract.
+                    </li>
+                    <li>
+                      <strong>Begin monthly payments:</strong> Starting the next month, you pay $231.26/month. These payments are applied to principal and interest according to the 10% amortization schedule.
+                    </li>
+                    <li>
+                      <strong>Reach 40% threshold:</strong> After approximately 11 months of payments, your total amount paid exceeds 40% of the $25,000 purchase price.
+                    </li>
+                    <li>
+                      <strong>Deed transfers at closing:</strong> The transaction closes and the deed transfers to your name.
+                    </li>
+                    <li>
+                      <strong>Financing charge disclosed:</strong> A financing charge equal to 10% of your remaining principal balance (approximately $1,652) is disclosed and becomes due. You choose how to handle it.
+                    </li>
+                  </ol>
+
+                  <p className="text-slate-700 font-medium mb-3 mt-6">Two options for the financing charge (approximately $1,652):</p>
+                  <div className="space-y-3 ml-4">
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-300">
+                      <p className="font-semibold text-slate-900 mb-2">OPTION 1: Pay the Financing Charge at Closing</p>
+                      <p className="text-slate-700 text-sm mb-2">Pay approximately $1,652 at closing.</p>
+                      <p className="text-slate-700 text-sm"><strong>Your payments:</strong> Your remaining principal stays at approximately $16,520. You continue making approximately $231.26/month for approximately 109 months remaining in your original 10-year term.</p>
+                    </div>
+                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-300">
+                      <p className="font-semibold text-slate-900 mb-2">OPTION 2: Finance the Financing Charge</p>
+                      <p className="text-slate-700 text-sm mb-2">Add approximately $1,652 to your remaining $16,520 balance = approximately $18,172.</p>
+                      <p className="text-slate-700 text-sm"><strong>Your payments:</strong> Your new balance is re-amortized at 10% fixed interest over approximately 109 months remaining. Your new monthly payment becomes approximately $254.39.</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              <p className="text-center text-slate-500 mt-4 text-sm">
-                *Example only. Actual terms vary by property and down payment amount. Contact us for exact quotes on specific lots.
-              </p>
+
+              <div className="bg-amber-50 border-l-4 border-amber-600 p-6 rounded-r-xl mb-8">
+                <h3 className="font-bold text-slate-900 mb-4">📋 Financing Charge & APR Information</h3>
+                <div className="space-y-3 text-slate-700">
+                  <p>
+                    A financing charge equal to <strong>10% of the remaining principal balance</strong> applies when the property proceeds to closing.
+                  </p>
+                  <p>
+                    In this <strong>$25,000 representative example</strong>, the remaining principal balance at the 40% threshold is approximately <strong>$16,520</strong>, resulting in an approximate financing charge of <strong>$1,652</strong>. You may pay this charge at closing or finance it as part of your remaining balance.
+                  </p>
+                  <p className="text-sm text-slate-600 mt-3">
+                    <strong>APR:</strong> The Annual Percentage Rate (APR) reflects the interest rate plus applicable financing charges and may vary depending on the specific transaction and whether the financing charge is paid at closing or financed. Complete financing terms and APR will be provided for your specific purchase.
+                  </p>
+                </div>
+              </div>
 
               <div className="text-center mt-6">
-                <Link 
+                <Link
                   to="/price-guide"
                   className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold"
                 >

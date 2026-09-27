@@ -137,8 +137,8 @@ const FeaturedSpecialListing = () => {
                     <span className="text-slate-900 font-semibold text-sm">{usd(down30)} · finance {usd(fin30)}</span>
                   </div>
                   <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo30)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
-                  <p className="text-sm font-bold text-slate-900">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
-                  <p className="text-xs text-slate-500">Option Contract — deed transfers once payments reach 40% of the price.</p>
+                  <p className="text-sm font-bold text-slate-900">10% fixed interest rate</p>
+                  <p className="text-xs text-slate-600 font-medium">Option Contract — deed at 40% paid. <span style={{ color: '#d97706' }}>Financing charges & APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" style={{ color: '#2563eb', textDecoration: 'underline' }}>View terms.</a></p>
                 </div>
                 <div className="border border-slate-200 rounded-xl p-3.5">
                   <div className="flex items-baseline justify-between">
@@ -146,15 +146,13 @@ const FeaturedSpecialListing = () => {
                     <span className="text-slate-900 font-semibold text-sm">{usd(down40)} · finance {usd(fin40)}</span>
                   </div>
                   <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo40)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
-                  <p className="text-sm font-bold text-slate-900">10% interest rate · 12.33% Annual Percentage Rate (APR)</p>
-                  <p className="text-xs text-slate-500">Deed Transfer at closing.</p>
+                  <p className="text-sm font-bold text-slate-900">10% fixed interest rate</p>
+                  <p className="text-xs text-slate-600 font-medium">Deed Transfer at closing. <span style={{ color: '#d97706' }}>Financing charges & APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" style={{ color: '#2563eb', textDecoration: 'underline' }}>View terms.</a></p>
                 </div>
               </div>
 
               <p className="text-[11px] leading-snug text-slate-500 mt-2.5">
-                Financing example assumes the 10-point charge is financed (12.33% APR); if the points are paid at closing, the
-                APR is 12.58%. Amortized up to 120 months at a 10% interest rate. No prepayment penalty, no balloon. Subject to
-                credit approval. Example only, not an offer of credit. Terms subject to change.
+                Amortized up to 120 months at 10% fixed interest. A financing charge equal to 10% of the remaining principal balance applies at closing. Financing charges and APR apply — <a href="/owner-financing-land-florida#financing-disclosure" style={{ color: '#2563eb', textDecoration: 'underline' }}>see complete financing terms and representative example</a>. No prepayment penalty, no balloon. Subject to credit approval. Example only, not an offer of credit. Terms subject to change.
               </p>
 
               {/* 3 detail links */}

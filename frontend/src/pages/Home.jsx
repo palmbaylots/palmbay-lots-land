@@ -586,12 +586,11 @@ const Home = () => {
           </div>
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             {[
-              { val: '30%', lbl: 'Option money' },
-              { val: '10%', lbl: 'Interest rate' },
-              { val: '12.33%', lbl: 'APR' },
-              { val: '10 yr', lbl: 'Term' },
-              { val: '40%', lbl: 'Deed transfers' },
-              { val: '$0', lbl: 'Prepay penalty' },
+              { val: '30%', lbl: 'Initial Option Payment' },
+              { val: '10%', lbl: 'Fixed Interest Rate*' },
+              { val: '10 Years', lbl: 'Financing Term' },
+              { val: '40%', lbl: 'Deed Transfer Threshold' },
+              { val: '$0', lbl: 'Prepayment Penalty' },
             ].map((item) => (
               <div key={item.lbl} className="bg-slate-800 border border-amber-500 rounded-xl px-6 py-4 text-center min-w-[100px]">
                 <p className="text-amber-400 text-2xl font-bold">{item.val}</p>
@@ -599,11 +598,16 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <p className="text-center text-slate-500 text-sm mb-6">Deed transfers to you when 40% is paid — no bank ever involved</p>
-          <div className="text-center">
-            <Link to="/owner-financing-land-florida" className="inline-block px-8 py-4 bg-amber-500 text-white rounded-lg font-bold hover:bg-amber-600 transition-colors">
-              See lots with owner financing
+          <p className="text-center text-slate-400 text-sm mb-6">*Financing charges and APR apply. See complete financing terms and representative example.</p>
+          <div className="text-center space-y-4">
+            <Link to="/owner-financing-land-florida#financing-disclosure" className="inline-block px-8 py-4 bg-amber-500 text-white rounded-lg font-bold hover:bg-amber-600 transition-colors">
+              VIEW FULL FINANCING TERMS
             </Link>
+            <div className="pt-2">
+              <Link to="/owner-financing-land-florida" className="inline-block text-amber-300 hover:text-amber-200 transition-colors text-sm">
+                See lots with owner financing
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financing Updates Preview</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { font-size: 28px; margin: 40px 0 20px; color: #1a3a5c; border-bottom: 3px solid #d97706; padding-bottom: 10px; }
+        h2 { font-size: 24px; margin: 30px 0 15px; color: #1a3a5c; }
+        h3 { font-size: 18px; margin: 20px 0 10px; color: #1a3a5c; }
+        .section { background: white; padding: 30px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+        /* Homepage Section */
+        .financing-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin: 20px 0; }
+        .box { background: #1a3a5c; border: 2px solid #d97706; border-radius: 8px; padding: 20px; text-align: center; color: white; }
+        .box-value { font-size: 24px; font-weight: bold; color: #fbbf24; }
+        .box-label { font-size: 12px; color: #cbd5e1; margin-top: 8px; }
+
+        /* Financing Example */
+        .example-box { background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%); border: 2px solid #f59e0b; border-radius: 8px; padding: 30px; margin: 20px 0; }
+        .info-row { display: flex; justify-content: space-between; background: white; padding: 12px; margin: 8px 0; border-radius: 4px; }
+        .info-label { color: #475569; font-weight: 500; }
+        .info-value { font-weight: bold; color: #d97706; font-size: 16px; }
+
+        .walkthrough { margin: 20px 0; }
+        .walkthrough ol { margin-left: 20px; }
+        .walkthrough li { margin: 15px 0; color: #334155; }
+        .walkthrough strong { color: #1a3a5c; }
+
+        .option { background: white; border-left: 4px solid #d97706; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .option.paid { border-left-color: #16a34a; }
+        .option.financed { border-left-color: #2563eb; }
+        .option-title { font-weight: bold; color: #1a3a5c; margin-bottom: 8px; }
+
+        .disclosure { background: #fef3c7; border-left: 4px solid #b45309; padding: 20px; margin: 20px 0; border-radius: 4px; }
+        .disclosure h3 { margin-top: 0; }
+        .disclosure p { margin: 10px 0; color: #334155; }
+
+        .button { display: inline-block; padding: 12px 24px; background: #d97706; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin: 10px 10px 10px 0; }
+        .button:hover { background: #b45309; }
+
+        .note { background: #fee2e2; border-left: 4px solid #dc2626; padding: 15px; margin: 15px 0; border-radius: 4px; color: #7f1d1d; }
+        .highlight { background: #fef3c7; padding: 2px 4px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Financing Updates Preview</h1>
+
+        <!-- HOMEPAGE SECTION -->
+        <div class="section">
+            <h2>📱 HOMEPAGE: Owner Financing Section</h2>
+
+            <p style="margin-bottom: 20px; color: #475569;">Dark background with amber and white text</p>
+
+            <div style="background: #0f172a; padding: 30px; border-radius: 8px; color: white; margin-bottom: 20px;">
+                <h3 style="color: white; text-align: center; margin-bottom: 15px;">Owner Financing — No Bank Required</h3>
+                <p style="text-align: center; color: #94a3b8; margin-bottom: 20px;">Easy financing. Clear terms. No prepayment penalty. Banks typically don't lend on vacant land — we do.</p>
+
+                <div class="financing-boxes">
+                    <div class="box">
+                        <div class="box-value">30%</div>
+                        <div class="box-label">Initial Option Payment</div>
+                    </div>
+                    <div class="box">
+                        <div class="box-value">10%</div>
+                        <div class="box-label">Fixed Interest Rate*</div>
+                    </div>
+                    <div class="box">
+                        <div class="box-value">10 Years</div>
+                        <div class="box-label">Financing Term</div>
+                    </div>
+                    <div class="box">
+                        <div class="box-value">40%</div>
+                        <div class="box-label">Deed Transfer Threshold</div>
+                    </div>
+                    <div class="box">
+                        <div class="box-value">$0</div>
+                        <div class="box-label">Prepayment Penalty</div>
+                    </div>
+                </div>
+
+                <p style="text-align: center; color: #cbd5e1; font-size: 13px; margin: 20px 0;">*Financing charges and APR apply. See complete financing terms and representative example.</p>
+
+                <div style="text-align: center;">
+                    <a href="#" class="button">VIEW FULL FINANCING TERMS</a>
+                    <div style="margin-top: 10px;">
+                        <a href="#" style="color: #fcd34d; text-decoration: none; font-size: 14px;">See lots with owner financing</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FINANCING TERMS PAGE SECTION -->
+        <div class="section">
+            <h2>📄 OWNER FINANCING PAGE: Representative Example</h2>
+
+            <h3>$25,000 Purchase Price Example</h3>
+            <div class="example-box">
+                <div class="info-row">
+                    <span class="info-label">Purchase Price:</span>
+                    <span class="info-value">$25,000</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Initial Option Payment (30%):</span>
+                    <span class="info-value">$7,500</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Initial Amount Financed:</span>
+                    <span class="info-value">$17,500</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Interest Rate:</span>
+                    <span class="info-value">10% Fixed</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Original Term:</span>
+                    <span class="info-value">120 Months (10 Years)</span>
+                </div>
+                <div class="info-row" style="background: #fcd34d; font-weight: bold;">
+                    <span class="info-label" style="color: #1a3a5c;">Initial Monthly Principal & Interest:</span>
+                    <span class="info-value" style="color: #b45309;">Approximately $231.26</span>
+                </div>
+            </div>
+
+            <div class="walkthrough">
+                <p style="font-weight: bold; margin-bottom: 15px;">Step-by-step walkthrough:</p>
+                <ol>
+                    <li><strong>Make your initial option payment:</strong> You pay $7,500 (30% of $25,000) to secure the lot with an option contract.</li>
+                    <li><strong>Begin monthly payments:</strong> Starting the next month, you pay $231.26/month. These payments are applied to principal and interest according to the 10% amortization schedule.</li>
+                    <li><strong>Reach 40% threshold:</strong> After approximately 11 months of payments, your total amount paid exceeds 40% of the $25,000 purchase price.</li>
+                    <li><strong>Deed transfers at closing:</strong> The transaction closes and the deed transfers to your name.</li>
+                    <li><strong>Financing charge disclosed:</strong> A financing charge equal to 10% of your remaining principal balance (approximately <span class="highlight">$1,652</span>) is disclosed and becomes due. You choose how to handle it.</li>
+                </ol>
+            </div>
+
+            <p style="font-weight: bold; margin: 20px 0 15px;">Two options for the financing charge (approximately $1,652):</p>
+
+            <div class="option paid">
+                <div class="option-title">✅ OPTION 1: Pay the Financing Charge at Closing</div>
+                <p style="margin-bottom: 8px; font-size: 14px;">Pay approximately <span class="highlight">$1,652</span> at closing.</p>
+                <p style="font-size: 14px;"><strong>Your payments:</strong> Your remaining principal stays at approximately <span class="highlight">$16,520</span>. You continue making approximately $231.26/month for approximately 109 months remaining in your original 10-year term.</p>
+            </div>
+
+            <div class="option financed">
+                <div class="option-title">💰 OPTION 2: Finance the Financing Charge</div>
+                <p style="margin-bottom: 8px; font-size: 14px;">Add approximately <span class="highlight">$1,652</span> to your remaining $16,520 balance = approximately <span class="highlight">$18,172</span>.</p>
+                <p style="font-size: 14px;"><strong>Your payments:</strong> Your new balance is re-amortized at 10% fixed interest over approximately 109 months remaining. Your new monthly payment becomes approximately <span class="highlight">$254.39</span>.</p>
+            </div>
+
+            <div class="disclosure">
+                <h3>📋 Financing Charge & APR Information</h3>
+                <p>A financing charge equal to <strong>10% of the remaining principal balance</strong> applies when the property proceeds to closing.</p>
+                <p>In this <strong>$25,000 representative example</strong>, the remaining principal balance at the 40% threshold is approximately <strong>$16,520</strong>, resulting in an approximate financing charge of <strong>$1,652</strong>. You may pay this charge at closing or finance it as part of your remaining balance.</p>
+                <p><strong>APR:</strong> The Annual Percentage Rate (APR) reflects the interest rate plus applicable financing charges and may vary depending on the specific transaction and whether the financing charge is paid at closing or financed. Complete financing terms and APR will be provided for your specific purchase.</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

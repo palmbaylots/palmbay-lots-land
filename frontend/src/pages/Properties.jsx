@@ -181,7 +181,7 @@ const Properties = () => {
               <li>1. Amortizations up to 10 years (120 months).</li>
               <li>2. There is no pre-payment penalty and no balloon.</li>
               <li>3. Calculate monthly payments as $13.22 per $1,000 financed at a 10% interest rate. Monthly payments can be paid by Zelle, check, or money order to David Moallem.</li>
-              <li>4. The interest rate is 10%, 12.58% APR, or 12.33% APR if the points are financed.</li>
+              <li>4. The fixed interest rate is 10%. APR varies depending on whether the financing charge is paid at closing or financed; see complete financing terms and representative example.</li>
               <li>5. Buyer needs to fill out a simple application and we need a copy of the buyer ID.</li>
               <li>6. There is a $50 application fee per person. We may pull credit most of the time.</li>
               <li>7. There is a 10 point charge added to financed amount at the time of closing that may be added to the loan amount. For example, if you are owner-financing $20,000, the loan amount will be $22,000.</li>
@@ -234,10 +234,10 @@ const Properties = () => {
     <>
       <Helmet>
         <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
-        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 30% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required. See current pricing by unit and area." />
+        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 30% option money, 10% fixed interest rate, up to 10 years. No bank required. See current pricing by unit and area." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
         <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />
-        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 30% option money, 10% interest rate (12.33% APR), up to 10 years. No bank required." />
+        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 30% option money, 10% fixed interest rate, up to 10 years. No bank required." />
         <meta property="og:url" content="https://palmbaylots-land.com/price-guide" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
@@ -260,7 +260,7 @@ const Properties = () => {
               name: 'What are the owner financing terms?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Standard owner financing terms are 30% option money and a 10% interest rate (12.33% APR when the 10-point charge is financed, 12.58% APR if points are paid at closing), amortized over up to 10 years. The deed transfers when 40% of the purchase price has been paid. No banks, no credit checks, no traditional mortgage process.'
+                text: 'Standard owner financing terms are 30% option money and a 10% fixed interest rate, amortized over up to 10 years. A financing charge applies at closing; APR varies depending on how it is handled. The deed transfers when 40% of the purchase price has been paid. No banks, no credit checks, no traditional mortgage process. See complete financing terms and representative example for full details.'
               }
             },
             {
@@ -367,7 +367,7 @@ const Properties = () => {
               <p className="text-sm text-slate-700 mt-3">Use the <span className="font-semibold">See Price</span> button on any lot in the <Link to="/inventory" className="text-amber-700 underline font-semibold">inventory</Link> to calculate the exact price and monthly payment instantly.</p>
 
               <h3 className="text-lg font-bold text-slate-900 mt-8 mb-2">Owner Financing</h3>
-              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% interest rate — 12.33% Annual Percentage Rate (APR) when the 10-point charge is financed, or 12.58% APR if points are paid at closing — minimum 30% option money. No pre-payment penalty, no balloon.</p>
+              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% fixed interest rate, minimum 30% option money. Financing charges and APR vary — see complete financing terms and representative example for details. No pre-payment penalty, no balloon.</p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <button onClick={() => openFinancing(false)} className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
                   <Calculator className="w-4 h-4" /> See Full Financing Terms
