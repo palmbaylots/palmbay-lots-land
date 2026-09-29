@@ -1,6 +1,23 @@
 # Robots.txt for palmbaylots-land.com
 # Florida Land Broker - Palm Bay Real Estate - Brevard County Land
 
+# Allow AI Search Engines to crawl and index
+User-agent: GPTBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Default rule for all other bots
 User-agent: *
 Allow: /
 
