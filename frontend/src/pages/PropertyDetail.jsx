@@ -266,28 +266,58 @@ const PropertyDetail = () => {
     "name": property.title,
     "description": pageDescription,
     "url": canonicalUrl,
+    "image": property.image || "https://palmbaylots-land.com/images/lot-placeholder.jpg",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": property.address,
+      "streetAddress": property.address || property.title,
       "addressLocality": property.city.replace(', FL', ''),
       "addressRegion": "FL",
+      "postalCode": "32907",
       "addressCountry": "US"
     },
     "offers": {
       "@type": "Offer",
       "price": property.price.replace(/[^0-9]/g, '') || "0",
       "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "RealEstateAgent",
+        "name": "Vahid Rajabian",
+        "organizationName": "M. David Moallem, Inc.",
+        "telephone": "+1-321-333-7230",
+        "url": "https://palmbaylots-land.com"
+      }
+    },
+    "floorSize": {
+      "@type": "QuantitativeValue",
+      "unitText": "SqFt",
+      "value": sqft.toString()
     },
     "additionalProperty": [
-      { "@type": "PropertyValue", "name": "Lot Size", "value": property.acres },
+      { "@type": "PropertyValue", "name": "Lot Size (Acres)", "value": property.acres },
+      { "@type": "PropertyValue", "name": "Lot Size (Sq Ft)", "value": sqft.toString() },
       { "@type": "PropertyValue", "name": "Utilities", "value": utility.label },
-      ...(unit ? [{ "@type": "PropertyValue", "name": "Unit", "value": unit }] : [])
+      { "@type": "PropertyValue", "name": "Zoning", "value": property.zoning || "RS-1 Residential" },
+      { "@type": "PropertyValue", "name": "Financing Available", "value": isCashSpecial ? "Cash Only" : "Owner Financing: 30% down, 10% interest, 10-year term" },
+      ...(unit ? [{ "@type": "PropertyValue", "name": "Unit", "value": unit }] : []),
+      ...(property.block ? [{ "@type": "PropertyValue", "name": "Block", "value": property.block }] : []),
+      ...(property.lot ? [{ "@type": "PropertyValue", "name": "Lot", "value": property.lot }] : []),
+      ...(property.dimensions ? [{ "@type": "PropertyValue", "name": "Dimensions", "value": property.dimensions }] : [])
     ],
-    "broker": {
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": property.lat || "28.0836",
+      "longitude": property.lon || "-80.6781"
+    },
+    "areaServed": "Palm Bay, Florida; Brevard County, Florida; Space Coast",
+    "agent": {
       "@type": "RealEstateAgent",
-      "name": "Vahid Reza Rajabian",
-      "telephone": "+1-321-333-7230"
+      "name": "Vahid Rajabian, Broker Associate",
+      "organizationName": "M. David Moallem, Inc.",
+      "telephone": "+1-321-333-7230",
+      "email": "vahid@palmbayland.com",
+      "url": "https://palmbaylots-land.com",
+      "license": "BK3454072"
     }
   };
 
