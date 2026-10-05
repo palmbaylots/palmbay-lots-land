@@ -180,6 +180,16 @@ const readFavorites = () => {
   catch (e) { return new Set(); }
 };
 
+// Extract quadrant (NW, NE, SW, SE) from street name
+const extractQuadrant = (streetName) => {
+  const str = String(streetName || '').toUpperCase();
+  if (str.includes(' NW')) return 'NW';
+  if (str.includes(' NE')) return 'NE';
+  if (str.includes(' SW')) return 'SW';
+  if (str.includes(' SE')) return 'SE';
+  return null;
+};
+
 const Inventory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterUnit, setFilterUnit] = useState('all');
@@ -188,9 +198,11 @@ const Inventory = () => {
   const [maxAcres, setMaxAcres] = useState('');
   const [zoningFilter, setZoningFilter] = useState([]); // selected zoning values
   const [fluFilter, setFluFilter] = useState([]);        // selected FLU values
+  const [quadrantFilter, setQuadrantFilter] = useState([]); // selected quadrants: NW, NE, SW, SE
   const [sortBy, setSortBy] = useState('unit');          // unit | block | lot | sizeAsc | sizeDesc
   const [showZoning, setShowZoning] = useState(true);
   const [showFlu, setShowFlu] = useState(false);
+  const [showQuadrant, setShowQuadrant] = useState(false);
   const [inventory, setInventory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [featuredProperties, setFeaturedProperties] = useState([]);
@@ -319,7 +331,7 @@ const Inventory = () => {
     });
   }, [inventory]);
 
-  // Zoning / FLU checkbox options with live counts (blank counts as Residential).
+  // Zoning / FLU / Quadrant checkbox options with live counts
   const zoningOptions = useMemo(() => {
     const counts = {};
     inventory.forEach(i => { const z = effZoning(i); counts[z] = (counts[z] || 0) + 1; });
@@ -329,6 +341,14 @@ const Inventory = () => {
     const counts = {};
     inventory.forEach(i => { const f = effFlu(i); counts[f] = (counts[f] || 0) + 1; });
     return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  }, [inventory]);
+  const quadrantOptions = useMemo(() => {
+    const counts = { 'NW': 0, 'NE': 0, 'SW': 0, 'SE': 0 };
+    inventory.forEach(i => {
+      const q = extractQuadrant(i.streetName);
+      if (q && counts[q] !== undefined) counts[q]++;
+    });
+    return Object.entries(counts).filter(([_, count]) => count > 0).sort((a, b) => b[1] - a[1]);
   }, [inventory]);
 
   const toggleValue = (arr, setArr, val) =>
@@ -355,10 +375,11 @@ const Inventory = () => {
       const matchesMax = isNaN(max) || ac <= max;
       const matchesZoning = zoningFilter.length === 0 || zoningFilter.includes(effZoning(item));
       const matchesFlu = fluFilter.length === 0 || fluFilter.includes(effFlu(item));
+      const matchesQuadrant = quadrantFilter.length === 0 || quadrantFilter.includes(extractQuadrant(item.streetName));
 
-      return matchesSearch && matchesUnit && matchesFav && matchesMin && matchesMax && matchesZoning && matchesFlu;
+      return matchesSearch && matchesUnit && matchesFav && matchesMin && matchesMax && matchesZoning && matchesFlu && matchesQuadrant;
     });
-  }, [inventory, searchTerm, filterUnit, favoritesOnly, favorites, minAcres, maxAcres, zoningFilter, fluFilter]);
+  }, [inventory, searchTerm, filterUnit, favoritesOnly, favorites, minAcres, maxAcres, zoningFilter, fluFilter, quadrantFilter]);
 
   // Group inventory by utility type and sort by unit number
   const groupedInventory = useMemo(() => {
@@ -697,7 +718,7 @@ const Inventory = () => {
                 className="flex items-center justify-center gap-2 px-6 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border"
               >
                 <Filter className="w-5 h-5" />
-                Filters {(filterUnit !== 'all' || zoningFilter.length || fluFilter.length || minAcres || maxAcres) ? '(Active)' : ''}
+                Filters {(filterUnit !== 'all' || zoningFilter.length || fluFilter.length || quadrantFilter.length || minAcres || maxAcres) ? '(Active)' : ''}
               </button>
             </div>
 
@@ -744,6 +765,31 @@ const Inventory = () => {
                       </div>
                     )}
                   </div>
+                  {/* Quadrant Filter */}
+                  <div>
+                    <button type="button" onClick={() => setShowQuadrant(v => !v)} className="w-full flex items-center justify-between py-3 font-semibold text-slate-800">
+                      Quadrant (NW, NE, SW, SE)
+                      <span className={`text-amber-600 transition-transform ${showQuadrant ? 'rotate-180' : ''}`}>▾</span>
+                    </button>
+                    {showQuadrant && (
+                      <div className="pb-3 space-y-1">
+                        {quadrantOptions.length > 0 ? (
+                          <>
+                            {quadrantOptions.map(([name, count]) => (
+                              <label key={name} className="flex items-center gap-2 py-1.5 px-2 rounded hover:bg-[#dfeaf7] cursor-pointer text-sm text-slate-700">
+                                <input type="checkbox" className="w-4 h-4 accent-amber-600" checked={quadrantFilter.includes(name)} onChange={() => toggleValue(quadrantFilter, setQuadrantFilter, name)} />
+                                {name}
+                                <span className="ml-auto text-slate-400 text-xs">{count}</span>
+                              </label>
+                            ))}
+                            <p className="text-xs text-slate-500 italic pl-2 pt-1">Malabar Rd divides North/South • Minton Rd divides East/West</p>
+                          </>
+                        ) : (
+                          <p className="text-sm text-slate-500 p-2">No lots with quadrant data available</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
                   {/* Filter by Unit */}
                   <div className="py-3">
                     <label className="block text-sm font-semibold mb-2 text-slate-800">Filter by Unit</label>
@@ -774,7 +820,7 @@ const Inventory = () => {
                   </div>
                   {/* Clear all */}
                   <div className="py-3">
-                    <button onClick={() => { setFilterUnit('all'); setZoningFilter([]); setFluFilter([]); setMinAcres(''); setMaxAcres(''); setSortBy('unit'); }} className="w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors">
+                    <button onClick={() => { setFilterUnit('all'); setZoningFilter([]); setFluFilter([]); setQuadrantFilter([]); setMinAcres(''); setMaxAcres(''); setSortBy('unit'); }} className="w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors">
                       Clear all filters
                     </button>
                   </div>
