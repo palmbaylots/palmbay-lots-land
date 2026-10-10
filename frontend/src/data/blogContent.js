@@ -425,7 +425,7 @@ export const blogContent = {
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Purchase Price</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$41,000</td></tr>
         <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Down Payment (30% min)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$12,300</td></tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Amount Financed</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$30,750</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Interest Rate</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">10% fixed interest rate</td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Interest Rate</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">10% fixed interest rate (12.33%–12.58% APR*)</td></tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Term</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">120 months (10 years)</td></tr>
         <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Monthly Payment</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$406.52</td></tr>
         <tr style="background: #fef3c7;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Deed Transfer Point</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">After 40% paid ($16,400)</td></tr>

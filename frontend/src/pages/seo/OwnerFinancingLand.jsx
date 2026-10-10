@@ -198,7 +198,7 @@ const OwnerFinancingLand = () => {
 
               <ul className="text-lg text-slate-700 mb-6 space-y-2 ml-6">
                 <li><strong>30% initial option payment</strong> — secures your lot with an option contract</li>
-                <li><strong>10% fixed interest rate</strong> — your rate stays the same throughout the loan</li>
+                <li><strong>10% fixed interest rate (12.33%–12.58% APR*)</strong> — your rate stays the same throughout the loan</li>
                 <li><strong>10-year amortization</strong> — affordable monthly payments with principal and interest</li>
                 <li><strong>Deed transfers at 40%</strong> — once your total payments reach 40% of the purchase price, the deed is yours</li>
                 <li><strong>Financing charge at closing</strong> — a 10% charge (calculated on the remaining principal balance at closing) applies; you may pay it then or finance it</li>
@@ -262,6 +262,7 @@ const OwnerFinancingLand = () => {
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-amber-600">10%</p>
+                    <p className="text-3xl font-bold text-amber-600">{"12.33%–12.58% APR*"}</p>
                     <p className="text-sm text-slate-600">Fixed Interest Rate</p>
                   </div>
                   <div>
@@ -377,7 +378,7 @@ const OwnerFinancingLand = () => {
                     </div>
                     <div className="flex items-center justify-between bg-transparent p-3 rounded border-b border-amber-600/30">
                       <span className="text-slate-300 font-medium">Interest Rate:</span>
-                      <span className="text-lg font-bold text-amber-500">10% Fixed</span>
+                      <span className="text-lg font-bold text-amber-500">10% Fixed (12.33%–12.58% APR*)</span>
                     </div>
                     <div className="flex items-center justify-between bg-transparent p-3 rounded border-b border-amber-600/30">
                       <span className="text-slate-300 font-medium">Original Term:</span>

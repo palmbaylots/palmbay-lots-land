@@ -1017,7 +1017,7 @@ const Inventory = () => {
                           <span className="font-bold text-slate-900">30% Option Money</span>
                           <span className="text-slate-900 font-semibold">{usd(pricing.down30)} option money</span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin30)} at 10% fixed interest</p>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin30)} at 10% fixed interest (12.33%–12.58% APR*)</p>
                         <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly30)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                         <p className="text-xs text-slate-600 mt-1 font-medium">Option Contract — deed transfers at 40% paid. <span className="text-amber-700">Financing charges and APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" className="underline text-blue-600 hover:text-blue-700">View full terms.</a></p>
                       </div>
@@ -1026,7 +1026,7 @@ const Inventory = () => {
                           <span className="font-bold text-slate-900">40% Down</span>
                           <span className="text-slate-900 font-semibold">{usd(pricing.down40)} down</span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin40)} at 10% fixed interest</p>
+                        <p className="text-xs text-slate-500 mt-1">Financing {usd(pricing.fin40)} at 10% fixed interest (12.33%–12.58% APR*)</p>
                         <p className="text-2xl font-bold text-amber-600 mt-1">{usd(pricing.monthly40)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
                         <p className="text-xs text-slate-600 mt-1 font-medium">Deed Transfer at closing. <span className="text-amber-700">Financing charges and APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" className="underline text-blue-600 hover:text-blue-700">View full terms.</a></p>
                       </div>
@@ -1066,7 +1066,7 @@ const Inventory = () => {
                               <p className="text-sm font-bold text-amber-400">{financed <= 0 ? '$0' : usd(monthly) + '/mo'}</p>
                             </div>
                           </div>
-                          <p className="text-xs font-bold text-white mt-3 text-center">10% fixed interest rate</p>
+                          <p className="text-xs font-bold text-white mt-3 text-center">10% fixed interest rate (12.33%–12.58% APR*)</p>
                           <p className="text-[10px] text-amber-300 text-center mt-1"><strong>Financing charges & APR apply</strong></p>
                         </div>
                       );

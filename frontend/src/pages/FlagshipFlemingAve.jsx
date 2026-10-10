@@ -181,7 +181,7 @@ const FlagshipFlemingAve = () => {
                     <p className="text-sm text-gray-400">Prepayment Penalty</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-amber-400">10%</p>
+                    <p className="text-2xl font-bold text-amber-400">10% / 12.33%–12.58% APR*</p>
                     <p className="text-sm text-gray-400">Interest Rate</p>
                   </div>
                 </div>

@@ -208,7 +208,7 @@ const OwnerFinancingWatchGuide = () => {
                   <p className="text-sm text-slate-600">Prepayment Penalty</p>
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <p className="text-2xl font-bold text-amber-600">10%</p>
+                  <p className="text-2xl font-bold text-amber-600">10% / 12.33%–12.58% APR*</p>
                   <p className="text-sm text-slate-600">Interest Rate</p>
                 </div>
               </div>

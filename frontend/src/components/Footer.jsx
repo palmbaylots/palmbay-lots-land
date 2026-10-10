@@ -218,6 +218,13 @@ const Footer = () => {
               © {new Date().getFullYear()} Vahid Reza Rajabian. All rights reserved.
             </p>
           </div>
+
+          {/* Reg Z APR disclosure for the "12.33%–12.58% APR*" shown next to every 10% rate */}
+          <p className="text-xs text-gray-400 text-center mb-4">
+            *Owner financing: APR is 12.33% if the 10% financing charge is fully financed, and up to 12.58% if it is paid in full at closing.
+            Example: $25,000 lot, $7,500 (30%) down, $17,500 financed at 10% fixed for 120 months
+            ($231.26/month if the charge is paid at closing; $254.39/month if it is financed). Subject to approval; terms may vary.
+          </p>
           
           {/* Visitor Counter */}
           {visitorCount !== null && (

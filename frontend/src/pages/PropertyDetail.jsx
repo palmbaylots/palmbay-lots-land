@@ -298,7 +298,7 @@ const PropertyDetail = () => {
       { "@type": "PropertyValue", "name": "Lot Size (Sq Ft)", "value": sqft.toString() },
       { "@type": "PropertyValue", "name": "Utilities", "value": utility.label },
       { "@type": "PropertyValue", "name": "Zoning", "value": property.zoning || "RS-1 Residential" },
-      { "@type": "PropertyValue", "name": "Financing Available", "value": isCashSpecial ? "Cash Only" : "Owner Financing: 30% down, 10% interest, 10-year term" },
+      { "@type": "PropertyValue", "name": "Financing Available", "value": isCashSpecial ? "Cash Only" : "Owner financing available, call for terms" },
       ...(unit ? [{ "@type": "PropertyValue", "name": "Unit", "value": unit }] : []),
       ...(property.block ? [{ "@type": "PropertyValue", "name": "Block", "value": property.block }] : []),
       ...(property.lot ? [{ "@type": "PropertyValue", "name": "Lot", "value": property.lot }] : []),
@@ -550,7 +550,7 @@ const PropertyDetail = () => {
                         <p className="text-xs text-slate-600">Prepay Penalty</p>
                       </div>
                       <div className="bg-white p-3 rounded-lg">
-                        <p className="text-xl font-bold text-amber-600">10%</p>
+                        <p className="text-xl font-bold text-amber-600">10% / 12.33%–12.58% APR*</p>
                         <p className="text-xs text-slate-600">Interest</p>
                       </div>
                     </div>

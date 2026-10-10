@@ -137,7 +137,7 @@ const FeaturedSpecialListing = () => {
                     <span className="text-slate-900 font-semibold text-sm">{usd(down30)} · finance {usd(fin30)}</span>
                   </div>
                   <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo30)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
-                  <p className="text-sm font-bold text-slate-900">10% fixed interest rate</p>
+                  <p className="text-sm font-bold text-slate-900">10% fixed interest rate (12.33%–12.58% APR*)</p>
                   <p className="text-xs text-slate-600 font-medium">Option Contract — deed at 40% paid. <span style={{ color: '#d97706' }}>Financing charges & APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" style={{ color: '#2563eb', textDecoration: 'underline' }}>View terms.</a></p>
                 </div>
                 <div className="border border-slate-200 rounded-xl p-3.5">
@@ -146,7 +146,7 @@ const FeaturedSpecialListing = () => {
                     <span className="text-slate-900 font-semibold text-sm">{usd(down40)} · finance {usd(fin40)}</span>
                   </div>
                   <p className="text-2xl font-bold mt-0.5" style={{ color: '#d97706' }}>{usd(mo40)}<span className="text-sm font-medium text-slate-500">/mo · 120 months</span></p>
-                  <p className="text-sm font-bold text-slate-900">10% fixed interest rate</p>
+                  <p className="text-sm font-bold text-slate-900">10% fixed interest rate (12.33%–12.58% APR*)</p>
                   <p className="text-xs text-slate-600 font-medium">Deed Transfer at closing. <span style={{ color: '#d97706' }}>Financing charges & APR apply.</span> <a href="/owner-financing-land-florida#financing-disclosure" style={{ color: '#2563eb', textDecoration: 'underline' }}>View terms.</a></p>
                 </div>
               </div>

@@ -180,7 +180,7 @@ const Properties = () => {
             <ol className="space-y-3 ml-4 text-slate-700">
               <li>1. Amortizations up to 10 years (120 months).</li>
               <li>2. There is no pre-payment penalty and no balloon.</li>
-              <li>3. Calculate monthly payments as $13.22 per $1,000 financed at a 10% interest rate. Monthly payments can be paid by Zelle, check, or money order to David Moallem.</li>
+              <li>3. Calculate monthly payments as $13.22 per $1,000 financed at a 10% interest rate (12.33%–12.58% APR*). Monthly payments can be paid by Zelle, check, or money order to David Moallem.</li>
               <li>4. The fixed interest rate is 10%. APR varies depending on whether the financing charge is paid at closing or financed; see complete financing terms and representative example.</li>
               <li>5. Buyer needs to fill out a simple application and we need a copy of the buyer ID.</li>
               <li>6. There is a $50 application fee per person. We may pull credit most of the time.</li>
@@ -367,7 +367,7 @@ const Properties = () => {
               <p className="text-sm text-slate-700 mt-3">Use the <span className="font-semibold">See Price</span> button on any lot in the <Link to="/inventory" className="text-amber-700 underline font-semibold">inventory</Link> to calculate the exact price and monthly payment instantly.</p>
 
               <h3 className="text-lg font-bold text-slate-900 mt-8 mb-2">Owner Financing</h3>
-              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% fixed interest rate, minimum 30% option money. Financing charges and APR vary — see complete financing terms and representative example for details. No pre-payment penalty, no balloon.</p>
+              <p className="text-sm text-slate-700">Typical monthly payment is $13.22 per $1,000 financed, 10-year amortization at a 10% fixed interest rate (12.33%–12.58% APR*), minimum 30% option money. Financing charges and APR vary — see complete financing terms and representative example for details. No pre-payment penalty, no balloon.</p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <button onClick={() => openFinancing(false)} className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm">
                   <Calculator className="w-4 h-4" /> See Full Financing Terms

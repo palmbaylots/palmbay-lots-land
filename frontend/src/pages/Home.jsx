@@ -587,7 +587,7 @@ const Home = () => {
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             {[
               { val: '30%', lbl: 'Initial Option Payment' },
-              { val: '10%', lbl: 'Fixed Interest Rate*' },
+              { val: '10% / 12.33%–12.58% APR*', lbl: 'Fixed Rate / APR' },
               { val: '10 Years', lbl: 'Financing Term' },
               { val: '40%', lbl: 'Deed Transfer Threshold' },
               { val: '$0', lbl: 'Prepayment Penalty' },
@@ -598,7 +598,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <p className="text-center text-slate-400 text-sm mb-6">*Financing charges and APR apply. See complete financing terms and representative example.</p>
+          <p className="text-center text-slate-400 text-sm mb-6">*APR is 12.33% if the 10% financing charge is fully financed, and up to 12.58% if it is paid in full at closing. Example: $25,000 lot, $7,500 (30%) down, $17,500 financed at 10% for 120 months.</p>
           <div className="text-center space-y-4">
             <Link to="/owner-financing-land-florida#financing-disclosure" className="inline-block px-8 py-4 bg-amber-500 text-white rounded-lg font-bold hover:bg-amber-600 transition-colors">
               VIEW FULL FINANCING TERMS
