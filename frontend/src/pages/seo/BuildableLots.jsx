@@ -31,7 +31,7 @@ const BuildableLotsPage = () => {
     "@type": "Service",
     "serviceType": "Real Estate Land Sales",
     "name": "Buildable Lots for Sale in Palm Bay, FL",
-    "description": "500+ verified buildable residential and commercial lots for sale in Palm Bay, Florida. All lots guaranteed buildable with verified zoning, permits, and utility access. Owner financing available.",
+    "description": "500+ residential and commercial lots for sale in Palm Bay, Florida, with zoning and utility info for each lot and lot exchange protection. Owner financing available, call for terms.",
     "url": "https://palmbaylots-land.com/buildable-lots-palm-bay",
     "areaServed": {
       "@type": "City",
@@ -111,12 +111,12 @@ const BuildableLotsPage = () => {
     <>
       <Helmet>
         <title>Buildable Lots Palm Bay FL | 500+ Vacant Land for Sale | Owner Financing</title>
-        <meta name="description" content="Find 500+ verified buildable lots in Palm Bay, Florida. Residential land in Brevard County with guaranteed buildability. City water, well & septic options. Owner financing available from $41,000." />
+        <meta name="description" content="Find 500+ residential lots in Palm Bay, Florida. Residential land in Brevard County with lot exchange protection. City water, well & septic options. Owner financing available from $41,000." />
         <meta name="keywords" content="buildable lots Palm Bay, vacant land Palm Bay FL, residential land Brevard County, buildable land Florida, Palm Bay lots for sale" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/buildable-lots-palm-bay" />
         <meta property="og:title" content="Buildable Lots Palm Bay FL | Guaranteed Buildable Land" />
-        <meta property="og:description" content="500+ verified buildable lots in Palm Bay. All lots guaranteed buildable with verified zoning and permits." />
+        <meta property="og:description" content="500+ residential lots in Palm Bay with zoning and utility info and lot exchange protection." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/buildable-lots-palm-bay" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
@@ -136,7 +136,7 @@ const BuildableLotsPage = () => {
                 Buildable Lots in Palm Bay, FL
               </h1>
               <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Find your perfect <strong>buildable land in Palm Bay</strong>, Florida. We offer 500+ verified <strong>vacant lots in Brevard County</strong> with guaranteed buildability. Every lot is checked for zoning, permits, and utilities before listing.
+                Find your perfect <strong>buildable land in Palm Bay</strong>, Florida. We offer 500+ verified <strong>vacant lots in Brevard County</strong> with lot exchange protection. We check zoning and utilities on every lot before listing.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 

@@ -234,10 +234,10 @@ const Properties = () => {
     <>
       <Helmet>
         <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
-        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. 30% option money, 10% fixed interest rate, up to 10 years. No bank required. See current pricing by unit and area." />
+        <meta name="description" content="Palm Bay lot pricing and owner financing calculator. Owner financing available, call for terms. No bank required. See current pricing by unit and area." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
         <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />
-        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — 30% option money, 10% fixed interest rate, up to 10 years. No bank required." />
+        <meta property="og:description" content="Calculate Palm Bay lot value by unit, size, and utilities. Owner financing — Owner financing available, call for terms. No bank required." />
         <meta property="og:url" content="https://palmbaylots-land.com/price-guide" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />

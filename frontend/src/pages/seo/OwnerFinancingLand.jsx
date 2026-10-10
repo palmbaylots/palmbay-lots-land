@@ -31,7 +31,7 @@ const OwnerFinancingLand = () => {
     "@type": "Service",
     "serviceType": "Owner Financing for Land Purchase",
     "name": "Owner Financing Land in Florida",
-    "description": "Buy land in Palm Bay, Florida with owner financing. No bank qualification required. 30% minimum down payment, flexible monthly terms, and fast closing. 500+ lots available.",
+    "description": "Buy land in Palm Bay, Florida with owner financing. No bank qualification required. Owner financing available, call for terms. 500+ lots available.",
     "url": "https://palmbaylots-land.com/owner-financing-land-florida",
     "areaServed": {
       "@type": "City",
@@ -136,7 +136,7 @@ const OwnerFinancingLand = () => {
     <>
       <Helmet>
         <title>Owner Financing Land Florida | No Bank Qualification | Palm Bay Lots</title>
-        <meta name="description" content="Buy land in Florida with owner financing. No bank qualification required. 30% minimum down payment, deed transfers at 40% paid. 500+ lots in Palm Bay. Fast closing in 2-3 weeks." />
+        <meta name="description" content="Buy land in Florida with owner financing. No bank qualification required. Deed transfers before payoff. 500+ lots in Palm Bay. Owner financing available, call for terms." />
         <meta name="keywords" content="owner financing land Florida, land contract Florida, seller financing vacant land, no bank land purchase, Palm Bay owner financing, buy land no credit check" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/owner-financing-land-florida" />

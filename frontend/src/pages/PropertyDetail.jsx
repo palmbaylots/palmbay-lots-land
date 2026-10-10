@@ -253,7 +253,7 @@ const PropertyDetail = () => {
   const pageTitle = `${property.title}, ${property.city} | ${property.acres} Lot${unit ? ` | ${utility.label}` : ''}`;
   const pageDescription = isCashSpecial
     ? `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Special cash-priced lot — cash purchase only, no owner financing. Call Vahid 321-333-7230.`
-    : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing: 30% down, no bank needed. Call Vahid 321-333-7230.`;
+    : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing available, call for terms. Call Vahid 321-333-7230.`;
   // Always canonicalize to the clean slug (title/address based) so em-dash and
   // other URL variants consolidate to one indexable URL instead of "duplicate".
   const canonicalSlug = (property.title || `${property.streetNumber || ''} ${property.streetName || ''}`)

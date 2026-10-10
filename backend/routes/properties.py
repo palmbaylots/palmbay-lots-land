@@ -428,70 +428,9 @@ async def seed_inventory(password: str = "PalmBay2024!"):
     return {"success": True, "message": f"Seeded {len(records)} inventory lots into database"}
 
 
-# Sitemap endpoint
+# Sitemap endpoint — now one full sitemap (static pages + every blog + every lot).
+# Kept at /api/sitemap.xml because Google and Bing already have this URL.
 @router.get("/sitemap.xml")
 async def get_sitemap():
-    base_url = "https://palmbaylots-land.com"
-
-    static_pages = [
-        ("", "1.0", "weekly"),
-        ("/about", "0.8", "monthly"),
-        ("/listings", "0.9", "daily"),
-        ("/inventory", "0.9", "daily"),
-        ("/map", "0.8", "weekly"),
-        ("/price-guide", "0.8", "weekly"),
-        ("/contact", "0.7", "monthly"),
-        ("/sell-land", "0.8", "weekly"),
-        ("/blog", "0.8", "weekly"),
-        ("/palm-bay-land-for-sale", "0.9", "weekly"),
-        ("/owner-financing-land-florida", "0.9", "weekly"),
-        ("/quarter-acre-lots-palm-bay", "0.9", "weekly"),
-        ("/buildable-lots-palm-bay", "0.9", "weekly"),
-        ("/guide/build-on-land-palm-bay", "0.9", "weekly"),
-        ("/guide/septic-vs-sewer-palm-bay", "0.9", "weekly"),
-        ("/guide/owner-financing-what-to-watch", "0.9", "weekly"),
-        ("/guide/buy-land-without-realtor", "0.9", "weekly"),
-        ("/guide/flood-zones-palm-bay", "0.9", "weekly"),
-        ("/listing/328-malabar-rd", "0.8", "monthly"),
-        ("/listing/scattered-lots", "0.8", "monthly"),
-        ("/listing/2418-fleming-ave", "0.8", "monthly"),
-    ]
-
-    properties = await db.properties.find({}, {"title": 1, "updatedAt": 1}).to_list(10000)
-
-    xml_parts = ['<?xml version="1.0" encoding="UTF-8"?>']
-    xml_parts.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-
-    for path, priority, changefreq in static_pages:
-        xml_parts.append(f'''  <url>
-    <loc>{base_url}{path}</loc>
-    <priority>{priority}</priority>
-    <changefreq>{changefreq}</changefreq>
-  </url>''')
-
-    for prop in properties:
-        title = prop.get("title", "")
-        slug = title.lower()
-        for char in [' ', ',', '.', '#', '&', "'", '"']:
-            slug = slug.replace(char, '-')
-        while '--' in slug:
-            slug = slug.replace('--', '-')
-        slug = slug.strip('-')
-
-        updated = prop.get("updatedAt", "")
-        lastmod = ""
-        if updated:
-            if isinstance(updated, str):
-                lastmod = f"\n    <lastmod>{updated[:10]}</lastmod>"
-            elif hasattr(updated, 'isoformat'):
-                lastmod = f"\n    <lastmod>{updated.strftime('%Y-%m-%d')}</lastmod>"
-
-        xml_parts.append(f'''  <url>
-    <loc>{base_url}/property/{slug}</loc>
-    <priority>0.7</priority>
-    <changefreq>weekly</changefreq>{lastmod}
-  </url>''')
-
-    xml_parts.append('</urlset>')
-    xml_content = '\n'.join(xml_parts)
-    return Response(content=xml_content, media_type="application/xml")
+    from routes.seo import sitemap_full
+    return await sitemap_full()
