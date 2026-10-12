@@ -81,17 +81,17 @@ const Header = () => {
         {/* Brand row — logo left, big centered name */}
         <div style={{ backgroundColor: NAVY }}>
           <div className="container mx-auto px-4">
-            <div className="relative flex items-center justify-center py-4 min-h-[92px]">
+            <div className="relative flex flex-col md:flex-row items-center justify-center gap-3 md:gap-0 py-6 md:min-h-[208px]">
               {/* Logo pinned left */}
               <Link
                 to="/"
-                className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center"
+                className="flex items-center md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2"
                 data-testid="header-brand-link"
               >
                 <img
                   src="/images/palm-bay-logo.png"
                   alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo"
-                  className="h-20 md:h-24 w-auto object-contain"
+                  className="h-32 md:h-48 w-auto object-contain"
                   loading="eager"
                   decoding="async"
                   data-testid="header-brand-logo"
@@ -99,7 +99,7 @@ const Header = () => {
               </Link>
 
               {/* Centered brand name + compliance line */}
-              <div className="text-center px-16 md:px-0">
+              <div className="text-center px-4 md:px-0">
                 <div className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-none">
                   PALM BAY LOTS &amp; LAND
                 </div>
@@ -111,7 +111,7 @@ const Header = () => {
               {/* Mobile menu button pinned right */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white"
+                className="lg:hidden absolute right-0 top-4 md:top-1/2 md:-translate-y-1/2 p-2 text-white"
                 aria-label="Toggle menu"
                 data-testid="mobile-menu-toggle"
               >

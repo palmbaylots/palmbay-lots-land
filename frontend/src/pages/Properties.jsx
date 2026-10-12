@@ -382,7 +382,7 @@ const Properties = () => {
 
               <div className="mt-8 text-sm text-slate-700 leading-relaxed space-y-2">
                 <p>Exceptional and oversized lots are priced individually.</p>
-                <p>All lots are guaranteed buildable, unless otherwise noted in the contract.</p>
+                <p>All lots come with our lot exchange guarantee: if a lot has an issue, you can exchange it for another lot of the same price and size category, unless otherwise noted in the contract.</p>
                 <p>Buildable lots may be exchanged within our inventory — minimum $7,500 exchange fee (includes title insurance).</p>
               </div>
             </div>
@@ -434,7 +434,7 @@ const Properties = () => {
                   {selectedLot.water && !selectedLot.sewer && <li>• City water included: +$20,000</li>}
                   {selectedLot.sewer && <li>• City water & sewer included: +$40,000</li>}
                   <li>• Exceptional canal lots: +$5,000</li>
-                  <li>• All lots guaranteed buildable</li>
+                  <li>• Lot exchange guarantee on every lot</li>
                   <li>• Owner financing available</li>
                   <li>• Prices subject to change without notice</li>
                 </ul>
