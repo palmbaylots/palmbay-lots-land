@@ -140,7 +140,7 @@ const FloodZonesGuide = () => {
                     Our Guarantee
                   </h3>
                   <p className="text-slate-700">
-                    We can tell you the flood zone for any lot in our inventory before you buy. If there's an unexpected issue with a lot after purchase, our lot exchange guarantee protects you — swap for another lot of the same size and price, no extra cost except the deed transfer fee.
+                    We can tell you the flood zone for any lot in our inventory before you buy. If there's an unexpected issue with a lot after purchase, our lot exchange guarantee protects you — swap for another lot of the same size and price within the same year you purchased it. No recording fee during the option contract; fees apply after the deed transfers.
                   </p>
                 </div>
               </div>

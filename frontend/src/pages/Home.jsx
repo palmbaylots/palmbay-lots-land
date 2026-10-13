@@ -305,10 +305,10 @@ const Home = () => {
       <section className="bg-[#1a3a5c] text-white">
         <div className="container mx-auto px-4 py-3 text-center">
           <p className="font-bold text-sm md:text-base">
-            🛡️ Buy with confidence — <span className="text-amber-400">9-day cancellation policy</span> &amp; <span className="text-amber-400">lot exchange guarantee in the year that was purchased</span>*
+            🛡️ Buy with confidence — <span className="text-amber-400">9-day cancellation policy</span> &amp; <span className="text-amber-400">same-year lot exchange guarantee</span>*
           </p>
           <p className="text-[11px] text-slate-300 mt-1 max-w-3xl mx-auto leading-snug">
-            *No holding costs during the option contract — you pay only the deed-transfer cost (both sides). If you exchange for another lot and prices have gone up, your property is credited at the new price toward the new lot.
+            *No holding costs and no recording fee during the option contract; fees apply after the deed transfers. If you exchange for another lot and prices have gone up, your property is credited at the new price toward the new lot.
           </p>
         </div>
       </section>

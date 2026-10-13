@@ -60,7 +60,7 @@ const faqSchema = {
       "name": "What if there's a problem with my lot after purchase?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You're protected with our lot exchange guarantee. If there's a buildability issue or something unexpected, you can exchange it for another lot of the same size and price category — no extra cost except the deed transfer fee, even if market values have increased."
+        "text": "You're protected with our lot exchange guarantee. If there's a buildability issue or something unexpected, you can exchange it within the same year you purchased it for another lot of the same size and price category. There is no recording fee during the option contract; fees apply after the deed transfers, even if market values have increased."
       }
     }
   ]
@@ -162,7 +162,7 @@ const OwnerFinancingWatchGuide = () => {
                     </p>
                     <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded-r-lg">
                       <p className="text-green-800">
-                        <strong>How we do it:</strong> Lot exchange guarantee. If there's a problem, you swap for another lot of the same size and price — no extra cost except the deed transfer fee. Even if prices have gone up.
+                        <strong>How we do it:</strong> Lot exchange guarantee. If there's a problem, you swap for another lot of the same size and price within the same year you purchased it. No recording fee during the option contract; fees apply after the deed transfers. Even if prices have gone up.
                       </p>
                     </div>
                   </div>

@@ -132,7 +132,7 @@ const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area, 
   
   faqs.push({
     q: `What happens if there's a problem with this lot?`,
-    a: `You're protected with our lot exchange guarantee. If there's a buildability issue, you can swap for another lot of the same size and price — no extra cost except the deed transfer fee, even if market values have increased.`
+    a: `You're protected with our lot exchange guarantee. If there's a buildability issue, you can swap for another lot of the same size and price within the same year you purchased it. There is no recording fee during the option contract; fees apply after the deed transfers, even if market values have increased.`
   });
   
   return faqs;

@@ -432,7 +432,7 @@ export const blogContent = {
       </table>
 
       <h2>Our Lot Protection Guarantee</h2>
-      <p>Buy with confidence. If there's ever an issue with a lot you purchase from us — whether it's a buildability problem or something unexpected — you can exchange it for another lot in our inventory. As long as it's the same price category and same size, you pay nothing except the deed transfer fee, even if market values have increased.</p>
+      <p>Buy with confidence. If there's ever an issue with a lot you purchase from us — whether it's a buildability problem or something unexpected — you can exchange it within the same year you purchased it for another lot in our inventory. As long as it's the same price category and same size, there is no recording fee during the option contract, and fees apply after the deed transfers, even if market values have increased.</p>
       <p>We've seen buyers who purchased land elsewhere get stuck with problem lots they couldn't build on or had to spend money to fix. With us, you're protected.</p>
 
       <h2>Benefits of Owner Financing</h2>
@@ -469,7 +469,7 @@ export const blogContent = {
       { q: 'Can I build on the land before it\'s paid off?', a: 'Yes, once you receive the deed (at 40% paid), you can start improvements like clearing the lot, applying for permits, and building with cash. If you\'re getting a construction loan, the loan will pay us off — just send us a payoff request with the closing date, and we\'ll furnish a payoff statement. There\'s no prepayment penalty.' },
       { q: 'What if I want to sell before paying off?', a: 'When you have a buyer for your lot, give us a closing date. The title company will request the payoff amount, the loan gets paid off at closing, and any difference is handled through the transaction. There\'s no prepayment penalty.' },
       { q: 'Are there any hidden fees?', a: 'All fees are disclosed in advance. At closing, the buyer is responsible for their portion of the closing costs, which is normal procedure in real estate transactions.' },
-      { q: 'What if there\'s a problem with my lot?', a: 'You\'re protected. If there\'s an issue, you can exchange it for another lot of the same size and price category — no extra cost except the deed transfer fee. If you choose a different category or larger lot, you pay the difference, and the price you paid for your original lot is deducted from the new amount.' },
+      { q: 'What if there\'s a problem with my lot?', a: 'You\'re protected. If there\'s an issue, you can exchange it within the same year you purchased it for another lot of the same size and price category. There is no recording fee during the option contract; fees apply after the deed transfers. If you choose a different category or larger lot, you pay the difference, and the price you paid for your original lot is deducted from the new amount.' },
       { q: 'When do I get the deed?', a: 'We transfer the deed at 40% paid — typically about a year with minimum payments, or faster if you pay extra. Many other sellers keep the deed for the entire loan term, but we don\'t.' }
     ]
   },

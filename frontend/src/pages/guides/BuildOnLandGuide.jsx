@@ -161,7 +161,7 @@ const BuildOnLandGuide = () => {
                     4. Our Lot Protection
                   </h3>
                   <p className="text-slate-700">
-                    If there's ever a buildability issue with a lot you purchase from us, you can exchange it for another lot of the same size and price category — <strong>no extra cost except the deed transfer fee</strong>, even if market values have increased. Buyers who purchase elsewhere can get stuck with problem lots. With us, you're protected.
+                    If there's ever a buildability issue with a lot you purchase from us, you can exchange it within the same year you purchased it for another lot of the same size and price category — <strong>no recording fee during the option contract; fees apply after the deed transfers</strong>, even if market values have increased. Buyers who purchase elsewhere can get stuck with problem lots. With us, you're protected.
                   </p>
                 </div>
               </div>

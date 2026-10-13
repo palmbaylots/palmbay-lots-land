@@ -118,7 +118,7 @@ const OwnerFinancingLand = () => {
         "name": "What if there's a problem with my lot after I buy it?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You're protected. If there's an issue with buildability or something unexpected, you can exchange it for another lot of the same size and price category — no extra cost except the deed transfer fee. If you choose a different category or larger lot, you pay the difference."
+          "text": "You're protected. If there's an issue with buildability or something unexpected, you can exchange it within the same year you purchased it for another lot of the same size and price category. There is no recording fee during the option contract; fees apply after the deed transfers. If you choose a different category or larger lot, you pay the difference."
         }
       },
       {
