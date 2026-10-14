@@ -383,7 +383,7 @@ const Properties = () => {
               <div className="mt-8 text-sm text-slate-700 leading-relaxed space-y-2">
                 <p>Exceptional and oversized lots are priced individually.</p>
                 <p>All lots come with our lot exchange guarantee: if a lot has an issue, you can exchange it within the same year you purchased it for another lot of the same price and size category, unless otherwise noted in the contract. There is no recording fee during the option contract; fees apply after the deed transfers.</p>
-                <p>Buildable lots may be exchanged within our inventory — minimum $7,500 exchange fee (includes title insurance).</p>
+                <p>If you bought a lot from another seller and want to exchange it into our inventory, the minimum exchange fee is $7,500 (includes title insurance).</p>
               </div>
             </div>
           </div>
