@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import { useState, useEffect } from 'react';
 import LotImage from '../components/LotImage';
+import { getUtilityType, getLotPricing, priceLabel } from '../lib/lotPricing';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -114,7 +115,7 @@ const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area, 
   } else {
     faqs.push({
       q: `Is owner financing available for this lot?`,
-      a: `Yes. 30% minimum down for an option contract ($${Math.round(parseFloat(property.price.replace(/[^0-9.]/g, '') || 41000) * 0.30).toLocaleString()} on this lot). Deed transfers at 40% paid. No bank qualification required. No prepayment penalty.`
+      a: `Yes. 30% minimum down for an option contract${(() => { const p = getLotPricing(property, getUtilityType(property)); return p.status === 'price' ? ` ($${Math.round(p.price * 0.30).toLocaleString()} on this lot)` : ''; })()}. Deed transfers at 40% paid. 10% fixed interest rate (12.33%–12.58% APR). See the price guide for full terms. No bank qualification required. No prepayment penalty.`
     });
   }
   
@@ -241,6 +242,9 @@ const PropertyDetail = () => {
     ? `${property.lat},${property.lon}`
     : encodeURIComponent([property.address || property.title, property.city, 'FL'].filter(Boolean).join(', '));
   const utility = getUtilityInfo(unit);
+  // Calculated price (same formula as the inventory page) instead of "Contact for Price".
+  const pricing = getLotPricing(property, getUtilityType(property));
+  const displayPrice = priceLabel(pricing);
   const quadrant = getQuadrant(property.address || property.title);
   const area = getAreaDetails(quadrant);
   const acresNum = parseFloat((property.acres || '0.25').match(/[\d.]+/)?.[0] || 0.25);
@@ -256,7 +260,7 @@ const PropertyDetail = () => {
   const pageTitle = withUtility.length <= 60 ? withUtility : baseTitle;
   const pageDescription = isCashSpecial
     ? `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Special cash-priced lot — cash purchase only, no owner financing. Call Vahid 321-333-7230.`
-    : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing available, call for terms. Call Vahid 321-333-7230.`;
+    : `${pricing.status === 'price' ? `${displayPrice}: ` : ''}${property.acres} lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing available, call for terms. Call Vahid 321-333-7230.`;
   // Always canonicalize to the clean slug (title/address based) so em-dash and
   // other URL variants consolidate to one indexable URL instead of "duplicate".
   const canonicalSlug = (property.title || `${property.streetNumber || ''} ${property.streetName || ''}`)
@@ -275,12 +279,11 @@ const PropertyDetail = () => {
       "streetAddress": property.address || property.title,
       "addressLocality": property.city.replace(', FL', ''),
       "addressRegion": "FL",
-      "postalCode": "32907",
       "addressCountry": "US"
     },
     "offers": {
       "@type": "Offer",
-      "price": property.price.replace(/[^0-9]/g, '') || "0",
+      ...(pricing.status === 'price' ? { "price": String(pricing.price) } : {}),
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
       "seller": {
@@ -408,7 +411,7 @@ const PropertyDetail = () => {
                   <div className="flex flex-wrap gap-4 mb-6">
                     <div className="bg-slate-700 px-4 py-2 rounded-lg">
                       <p className="text-gray-400 text-sm">Price</p>
-                      <p className="text-2xl font-bold text-amber-400">{property.price}</p>
+                      <p className="text-2xl font-bold text-amber-400">{displayPrice}</p>
                     </div>
                     <div className="bg-slate-700 px-4 py-2 rounded-lg">
                       <p className="text-gray-400 text-sm">Size</p>
