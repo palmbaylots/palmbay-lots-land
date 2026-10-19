@@ -114,6 +114,10 @@ const MlsListings = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <Helmet>
+        <link rel="canonical" href="https://palmbaylots-land.com/mls-listings" />
+        <meta property="og:title" content="Space Coast MLS Listings | Palm Bay Lots &amp; Land" />
+        <meta property="og:description" content="Search active Space Coast MLS listings — lots, land, and homes in Palm Bay, Melbourne, and Brevard County, FL. Filter by city, price, and acreage." />
+        <meta property="og:url" content="https://palmbaylots-land.com/mls-listings" />
         <title>Space Coast MLS Listings | Palm Bay Lots &amp; Land</title>
         <meta
           name="description"

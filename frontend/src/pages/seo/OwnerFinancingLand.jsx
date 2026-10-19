@@ -58,7 +58,7 @@ const OwnerFinancingLand = () => {
       "priceRange": "$41,000 - $500,000",
       "priceCurrency": "USD"
     },
-    "termsOfService": "30% minimum down for option contract, 40% for immediate deed transfer, no prepayment penalty"
+    "termsOfService": "Owner financing available, call for terms. No prepayment penalty. Full terms and APR at https://palmbaylots-land.com/price-guide"
   };
 
   const faqSchema = {
@@ -70,7 +70,7 @@ const OwnerFinancingLand = () => {
         "name": "How does owner financing work for land in Florida?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Owner financing means you buy land directly from the seller without a bank. You pay a minimum 30% down for an option contract. Once you've paid 40% of the total purchase price, the deed transfers to your name. You continue making monthly payments until the lot is paid off. No prepayment penalty — pay it off early anytime."
+          "text": "Owner financing means you buy land directly from the seller without a bank. You start with an option contract, and the deed transfers to your name once you've paid a set share of the purchase price. You continue making monthly payments until the lot is paid off. No prepayment penalty — pay it off early anytime."
         }
       },
       {
@@ -78,7 +78,7 @@ const OwnerFinancingLand = () => {
         "name": "What is the minimum down payment for owner financed land?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Minimum 30% down for an option contract. If you put 40% down, you receive the deed immediately. For a $41,000 lot, that's $12,300 minimum down. No bank qualification required."
+          "text": "The down payment depends on whether you choose an option contract or take the deed at closing. Full terms, including the APR, are on our price guide, or call for terms. No bank qualification required."
         }
       },
       {
@@ -135,13 +135,13 @@ const OwnerFinancingLand = () => {
   return (
     <>
       <Helmet>
-        <title>Owner Financing Land Florida | No Bank Qualification | Palm Bay Lots</title>
-        <meta name="description" content="Buy land in Florida with owner financing. No bank qualification required. Deed transfers before payoff. 500+ lots in Palm Bay. Owner financing available, call for terms." />
-        <meta name="keywords" content="owner financing land Florida, land contract Florida, seller financing vacant land, no bank land purchase, Palm Bay owner financing, buy land no credit check" />
+        <title>Owner Financing Land in Florida | No Bank | Palm Bay Lots</title>
+        <meta name="description" content="Buy land in Palm Bay, FL with owner financing. No bank qualification, and the deed transfers before payoff. Owner financing available, call for terms." />
+        <meta name="keywords" content="owner financing land Florida, land contract Florida, seller financing vacant land, no bank land purchase, Palm Bay owner financing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/owner-financing-land-florida" />
         <meta property="og:title" content="Owner Financing Land Florida | No Bank Needed" />
-        <meta property="og:description" content="Buy Florida land with owner financing. No bank needed. Low down payments, flexible terms. 500+ lots available." />
+        <meta property="og:description" content="Buy Florida land with owner financing. No bank needed. Owner financing available, call for terms. 500+ lots available." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/owner-financing-land-florida" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>

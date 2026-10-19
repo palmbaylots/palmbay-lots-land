@@ -36,111 +36,101 @@
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
         
-        <!-- Additional SEO Meta Tags -->
-        <meta name="classification" content="Real Estate" />
-        <meta name="category" content="Real Estate, Land Sales, Property" />
-        <meta name="coverage" content="Palm Bay, Brevard County, Florida, USA" />
-        <meta name="distribution" content="global" />
-        <meta name="rating" content="general" />
-        <meta name="revisit-after" content="7 days" />
-        <meta name="subject" content="Palm Bay Land for Sale, Florida Real Estate, Brevard County Land, Vacant Lots" />
-        <meta name="topic" content="Palm Bay real estate, Florida land broker, Brevard County real estate, vacant land Florida" />
-        <meta name="summary" content="Florida land specialist offering 500+ residential and commercial lots in Palm Bay and Brevard County. Owner financing available. Off-market land deals." />
-        <meta name="abstract" content="Buy land in Palm Bay, Florida from a trusted Brevard County real estate broker. Vacant lots, residential land, and off-market properties available." />
-        <meta name="hashtags" content="#PalmBayRealEstate, #BrevardCountyRealEstate, #FloridaVacantLand, #LandForSaleFL, #OffMarketLand, #FloridaLandBroker, #BuyLandFlorida, #SellLandFlorida, #PalmBayLand, #BrevardCountyLand, #FloridaRealEstateBroker, #VacantLotsFlorida, #ResidentialLandFlorida, #FloridaLandDeals, #PalmBayProperty, #FloridaLandSpecialist" />
-        
-        <!-- Location / Geo Tags -->
-        <meta name="geo.region" content="US-FL" />
-        <meta name="geo.placename" content="Palm Bay, Florida" />
-        <meta name="geo.position" content="27.9859;-80.5887" />
-        <meta name="ICBM" content="27.9859, -80.5887" />
-        
-        <!-- Structured Data for Local Business (JSON-LD) — appears on every page via index.html -->
+        <!-- Structured Data (JSON-LD) — the ONE business/agent entity, on every page via index.html.
+             Brokerage of record is M. David Moallem, Inc. (FL Rule 61J2-10.025) and must always appear
+             with Vahid's name. Palm Bay Lots-Land, Inc. is Vahid's own separate company, never listed as
+             the brokerage. Hours: Mon-Fri 9-5, by appointment (confirmed by Vahid 2026-10-18). -->
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
-          "@type": "RealEstateAgent",
-          "@id": "https://palmbaylots-land.com/#business",
-          "name": "Palm Bay Lots-Land, Inc.",
-          "alternateName": "Vahid Rajabian — Palm Bay Lots & Land",
-          "legalName": "Palm Bay Lots-Land, Inc.",
-          "description": "Palm Bay's leading real estate brokerage for vacant land, residential lots, commercial parcels, and owner-financed properties. Serving Palm Bay, Brevard County, and Central Florida since 2003.",
-          "image": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
-          "logo": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
-          "url": "https://palmbaylots-land.com",
-          "telephone": "+13213337230",
-          "email": "vahid@palmbayland.com",
-          "priceRange": "$41,000+",
-          "currenciesAccepted": "USD",
-          "paymentAccepted": "Cash, Owner Financing, Wire Transfer",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "1663 Georgia St NE, Suite 700",
-            "addressLocality": "Palm Bay",
-            "addressRegion": "FL",
-            "postalCode": "32907",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 27.9859,
-            "longitude": -80.5887
-          },
-          "hasMap": "https://www.google.com/maps/search/?api=1&query=1663+Georgia+St+NE+Palm+Bay+FL+32907",
-          "openingHoursSpecification": [
+          "@graph": [
             {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "09:00",
-              "closes": "17:00"
+              "@type": "RealEstateAgent",
+              "@id": "https://palmbaylots-land.com/#brokerage",
+              "name": "M. David Moallem, Inc.",
+              "telephone": "+1-321-333-7230",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "1663 Georgia St NE, Suite 700",
+                "addressLocality": "Palm Bay",
+                "addressRegion": "FL",
+                "postalCode": "32907",
+                "addressCountry": "US"
+              }
+            },
+            {
+              "@type": "RealEstateAgent",
+              "@id": "https://palmbaylots-land.com/#agent",
+              "name": "Vahid Rajabian",
+              "alternateName": ["Vahid Reza Rajabian", "Palm Bay Lots & Land"],
+              "description": "Vahid Rajabian, Broker Associate with M. David Moallem, Inc., has sold residential lots and land in Palm Bay and Brevard County, Florida, since 2003. Residential, commercial, industrial and multifamily land. Owner financing available on most residential lots, call for terms.",
+              "url": "https://palmbaylots-land.com/",
+              "image": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
+              "logo": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
+              "telephone": "+1-321-333-7230",
+              "email": "vahid@palmbayland.com",
+              "priceRange": "$41,000+",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "1663 Georgia St NE, Suite 700",
+                "addressLocality": "Palm Bay",
+                "addressRegion": "FL",
+                "postalCode": "32907",
+                "addressCountry": "US"
+              },
+              "hasMap": "https://www.google.com/maps/search/?api=1&query=1663+Georgia+St+NE+Palm+Bay+FL+32907",
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "09:00",
+                  "closes": "17:00",
+                  "description": "By appointment"
+                }
+              ],
+              "areaServed": [
+                { "@type": "City", "name": "Palm Bay, Florida" },
+                { "@type": "AdministrativeArea", "name": "Brevard County, Florida" },
+                { "@type": "AdministrativeArea", "name": "Polk County, Florida" },
+                { "@type": "AdministrativeArea", "name": "Lake County, Florida" },
+                { "@type": "AdministrativeArea", "name": "Marion County, Florida" }
+              ],
+              "parentOrganization": { "@id": "https://palmbaylots-land.com/#brokerage" },
+              "hasCredential": {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "Florida Real Estate Broker Associate License",
+                "identifier": "BK3454072",
+                "recognizedBy": { "@type": "GovernmentOrganization", "name": "Florida Department of Business and Professional Regulation" }
+              },
+              "knowsAbout": [
+                "Palm Bay residential lots", "Brevard County vacant land", "Palm Bay zoning",
+                "Commercial and industrial land in Palm Bay", "Owner financing for land", "Selling vacant land in Palm Bay"
+              ],
+              "sameAs": [
+                "https://www.facebook.com/vahid.rajabian.144",
+                "https://www.linkedin.com/in/vahid-rajabian",
+                "https://www.instagram.com/lotsandland",
+                "https://www.tiktok.com/@lots_and_land",
+                "https://www.crexi.com/properties?searchBrokerId=fca17317-df0a-4445-9f8e-f6e05efc6cb8"
+              ]
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://palmbaylots-land.com/#company",
+              "name": "Palm Bay Lots-Land, Inc.",
+              "legalName": "Palm Bay Lots-Land, Inc.",
+              "description": "Vahid Rajabian's company. Not the brokerage: real estate services are provided through M. David Moallem, Inc.",
+              "founder": { "@type": "Person", "name": "Vahid Rajabian" },
+              "url": "https://palmbaylots-land.com/"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://palmbaylots-land.com/#website",
+              "name": "Palm Bay Lots & Land",
+              "url": "https://palmbaylots-land.com/",
+              "publisher": { "@id": "https://palmbaylots-land.com/#agent" }
             }
-          ],
-          "areaServed": [
-            { "@type": "City", "name": "Palm Bay", "containedInPlace": { "@type": "AdministrativeArea", "name": "Brevard County" } },
-            { "@type": "AdministrativeArea", "name": "Brevard County", "containedInPlace": { "@type": "State", "name": "Florida" } },
-            { "@type": "AdministrativeArea", "name": "Polk County", "containedInPlace": { "@type": "State", "name": "Florida" } },
-            { "@type": "AdministrativeArea", "name": "Lake County", "containedInPlace": { "@type": "State", "name": "Florida" } },
-            { "@type": "AdministrativeArea", "name": "Marion County", "containedInPlace": { "@type": "State", "name": "Florida" } },
-            { "@type": "State", "name": "Florida" }
-          ],
-          "employee": {
-            "@type": "Person",
-            "name": "Vahid Rajabian",
-            "alternateName": "Vahid Reza Rajabian",
-            "jobTitle": "Broker Associate",
-            "telephone": "+13213337230",
-            "email": "vahid@palmbayland.com",
-            "image": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
-            "url": "https://palmbaylots-land.com/about",
-            "worksFor": { "@type": "Organization", "name": "M. David Moallem, Inc." },
-            "memberOf": { "@type": "Organization", "name": "M. David Moallem, Inc." },
-            "sameAs": [
-              "https://www.facebook.com/vahid.rajabian.144",
-              "https://www.linkedin.com/in/vahid-rajabian",
-              "https://www.instagram.com/lotsandland",
-              "https://www.tiktok.com/@lots_and_land"
-            ]
-          },
-          "sameAs": [
-            "https://www.facebook.com/vahid.rajabian.144",
-            "https://www.linkedin.com/in/vahid-rajabian",
-            "https://www.instagram.com/lotsandland",
-            "https://www.tiktok.com/@lots_and_land"
-          ],
-          "knowsAbout": [
-            "Palm Bay real estate", "Brevard County real estate", "Florida vacant land",
-            "land for sale Florida", "off-market land deals", "Florida land broker",
-            "buy land Florida", "sell land Florida", "Palm Bay land for sale",
-            "Brevard County land", "Florida real estate broker", "vacant lots Florida",
-            "residential land Florida", "owner financing", "land acquisition Florida",
-            "Florida land deals", "direct land sales Florida", "Florida real estate investment",
-            "raw land Florida", "Florida land specialist", "Polk County land",
-            "Lake County land", "Marion County land"
-          ],
-          "memberOf": {
-            "@type": "Organization",
-            "name": "M. David Moallem, Inc."
-          }
+          ]
         }
         </script>
         
@@ -157,7 +147,6 @@
         work correctly both with client-side routing and a non-root public URL.
         Learn how to configure a non-root public URL by running `npm run build`.
         -->
-        <title>Palm Bay Land & Lots for Sale | Vahid Rajabian Real Estate</title>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
@@ -185,20 +174,20 @@
     </head>
     <body>
         <noscript>
-            <h1>Palm Bay Land for Sale - Vahid Rajabian Real Estate</h1>
-            <p>Find residential lots, land, and new homes for sale in Palm Bay, Florida. Vahid Rajabian has 20+ years of experience helping buyers find the perfect lot in Palm Bay, Brevard County.</p>
+            <p><strong>Palm Bay Land for Sale - Vahid Rajabian, Broker Associate, M. David Moallem, Inc.</strong></p>
+            <p>Find residential lots and land for sale in Palm Bay, Florida. Vahid Rajabian has helped buyers and sellers with Palm Bay and Brevard County land since 2003.</p>
             <h2>Why Choose Palm Bay?</h2>
-            <p>Palm Bay is Florida's fastest-growing city with no state income tax, Space Coast employment opportunities, and affordable land starting at $41,000. Owner financing available with 25% down payment and no credit check required.</p>
+            <p>Palm Bay ranked #13 most affordable city in America in 2026 and was the only Florida city in the top 20 (Source: The Palm Bayer). No state income tax, Space Coast jobs, and residential lots starting at $41,000. Owner financing available, call for terms.</p>
             <h2>Our Services</h2>
             <ul>
-                <li>582+ residential lots available</li>
-                <li>Commercial and multi-family land</li>
-                <li>Owner financing with flexible terms</li>
+                <li>580+ active residential lots</li>
+                <li>Commercial, industrial, and multifamily land</li>
+                <li>Owner financing available, call for terms</li>
                 <li>Zoning and permit guidance</li>
                 <li>Free land value assessments</li>
             </ul>
             <h2>Browse Our Inventory</h2>
-            <p>Visit our <a href="/inventory">full inventory page</a> to search 582+ lots by location, size, and utility availability. View our <a href="/listings">commercial listings</a> for investment opportunities.</p>
+            <p>Visit our <a href="/inventory">full inventory page</a> to search 580+ lots by location, size, and utility availability. View our <a href="/listings">commercial listings</a> for investment opportunities.</p>
             <h2>Contact Us</h2>
             <p>Call Vahid Rajabian at 321-333-7230 or email vahid@palmbayland.com. Visit our <a href="/contact">contact page</a> to send us a message.</p>
             <p>Learn more <a href="/about">about us</a>, read our <a href="/blog">blog articles</a>, or check our <a href="/price-guide">price guide</a> for financing details.</p>

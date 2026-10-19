@@ -217,7 +217,7 @@ const PropertyDetail = () => {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <Helmet>
-          <title>Property Not Found | Palm Bay Lots-Land</title>
+          <title>Property Not Found | Palm Bay Lots &amp; Land</title>
           <meta name="description" content="The property you are looking for is no longer available or has been moved. Browse current Palm Bay land inventory." />
           {/* Tell search engines not to index this not-found page */}
           <meta name="robots" content="noindex, follow" />
@@ -250,7 +250,10 @@ const PropertyDetail = () => {
   const relatedGuides = getRelatedGuides(utility);
   const unitBlockInfo = unit ? `Unit ${unit}${property.block ? `, Block ${property.block}` : ''}${property.lot ? `, Lot ${property.lot}` : ''}` : '';
 
-  const pageTitle = `${property.title}, ${property.city} | ${property.acres} Lot${unit ? ` | ${utility.label}` : ''}`;
+  // Keep search titles under ~60 chars: drop the utility label when it would overflow.
+  const baseTitle = `${property.title}, ${property.city} | ${property.acres} Lot`;
+  const withUtility = unit ? `${baseTitle} | ${utility.label}` : baseTitle;
+  const pageTitle = withUtility.length <= 60 ? withUtility : baseTitle;
   const pageDescription = isCashSpecial
     ? `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Special cash-priced lot — cash purchase only, no owner financing. Call Vahid 321-333-7230.`
     : `${property.acres} buildable lot at ${property.title}, ${property.city}. ${utility.label}. ${unit ? `Unit ${unit}. ` : ''}Owner financing available, call for terms. Call Vahid 321-333-7230.`;

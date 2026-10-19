@@ -8,101 +8,10 @@ import { Button } from '../components/ui/button';
 import axios from 'axios';
 import { useToast } from '../hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
-import { homepageSchemaGraph, todayISO } from '../data/businessSchema';
 import ParcelMapModal from '../components/ParcelMapModal';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
-
-// RealEstateAgent Schema for Homepage
-const realEstateAgentSchema = {
-  "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  "name": "Vahid Reza Rajabian",
-  "description": "Broker Associate with 20+ years experience selling residential lots, commercial land, industrial parcels, and multifamily properties in Palm Bay and Brevard County, Florida. Affiliated with M. David Moallem, Inc. Specializing in owner financing and land sales.",
-  "url": "https://palmbaylots-land.com",
-  "telephone": "+1-321-333-7230",
-  "email": "vahid@palmbayland.com",
-  "image": "https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "1663 Georgia Street NE, Suite 700",
-    "addressLocality": "Palm Bay",
-    "addressRegion": "FL",
-    "postalCode": "32907",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "27.9689",
-    "longitude": "-80.6625"
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Palm Bay", "containedInPlace": { "@type": "State", "name": "Florida" } },
-    { "@type": "County", "name": "Brevard County" },
-    { "@type": "County", "name": "Polk County" },
-    { "@type": "County", "name": "Lake County" },
-    { "@type": "County", "name": "Marion County" }
-  ],
-  "priceRange": "$41,000 - $5,000,000",
-  "openingHours": "Mo-Fr 09:00-18:00",
-  "sameAs": [],
-  "knowsAbout": [
-    "Palm Bay land sales",
-    "Florida real estate",
-    "Owner financing",
-    "Residential lots",
-    "Commercial land",
-    "Industrial land",
-    "Multifamily parcels",
-    "Bulk lot assemblages",
-    "Brevard County real estate"
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "7",
-    "bestRating": "5"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "author": { "@type": "Person", "name": "Verified Client" },
-      "reviewBody": "Very informative and consistent updates. Vahid connected me with the right people to complete the sale of my property, and he was the foundation that directed the best outcome. My realtor in Washington State researched and found Vahid Rajabian to be the best — he was right!"
-    },
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "author": { "@type": "Person", "name": "Verified Client" },
-      "reviewBody": "Mr. Rajabian was extremely professional and always available to answer any questions I had. His many years of experience in Palm Bay were evident — he knows the market exceptionally well."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "author": { "@type": "Person", "name": "Verified Client" },
-      "reviewBody": "Vahid is phenomenal. He is accessible and extremely patient. My experience overall is top rated. Vahid is an absolute pleasure to work with."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "author": { "@type": "Person", "name": "Verified Client" },
-      "reviewBody": "Exceptional Customer Service and precise and detailed information offered. We purchased our lot the exact same day."
-    }
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Palm Bay Land Listings",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Residential Lot Sales" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Land Sales" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Industrial Land Sales" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Multifamily Parcel Sales" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bulk Lot Assemblages" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Owner Financing" } }
-    ]
-  }
-};
 
 const homeFaqSchema = {
   "@context": "https://schema.org",
@@ -113,7 +22,7 @@ const homeFaqSchema = {
       "name": "Can I buy a lot in Palm Bay with owner financing?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Owner financing is available on most of our residential lots. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No bank qualification required. No prepayment penalty."
+        "text": "Yes. Owner financing is available on most of our residential lots. No bank qualification required and no prepayment penalty. Full terms, including the APR, are on our price guide, or call for terms."
       }
     },
     {
@@ -274,7 +183,7 @@ const Home = () => {
     <>
       <Helmet>
         <title>Palm Bay Land for Sale | 500+ Lots | Owner Financing Available</title>
-        <meta name="description" content="Residential lots starting at $41,000 in Palm Bay, FL. Owner financing available, call for terms. Serving individuals, builders, and investors since 2003. Call 321-333-7230." />
+        <meta name="description" content="Residential lots from $41,000 in Palm Bay, FL. Owner financing available, call for terms. Serving buyers, builders, and investors since 2003. 321-333-7230." />
         <meta name="keywords" content="lots for sale in Palm Bay Florida, Palm Bay FL land for sale, owner financing lots Palm Bay, residential lots Brevard County, buy land Palm Bay Florida, Palm Bay lots no HOA, bulk lots for sale Brevard County, commercial land Palm Bay FL, industrial land Palm Bay Florida, land for sale near Space Coast Florida, Palm Bay buildable lots, SW Palm Bay lots for sale, Palm Bay land broker, Brevard County lots owner financing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/" />
@@ -283,18 +192,8 @@ const Home = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/" />
         <meta property="og:image" content="https://customer-assets.emergentagent.com/job_palmbayhomes/artifacts/am09bmq5_Untitled.png" />
-        {/* Organization + LocalBusiness + RealEstateAgent schema graph */}
-        <script type="application/ld+json">{JSON.stringify({
-          ...homepageSchemaGraph(),
-          dateModified: todayISO()
-        })}</script>
-        {/* Keep legacy RealEstateAgent + FAQ schemas — review count stays in sync
-            with the live reviews so the Google star rating matches the page. */}
-        <script type="application/ld+json">{JSON.stringify({
-          ...realEstateAgentSchema,
-          aggregateRating: { ...realEstateAgentSchema.aggregateRating, reviewCount: String(reviewCount) },
-          dateModified: todayISO()
-        })}</script>
+        {/* The business/agent entity is defined once in public/index.html (every page).
+            No self-serving review stars here — Google ignores them on a business's own site. */}
         <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
       </Helmet>
       
@@ -427,7 +326,9 @@ const Home = () => {
         {/* Background Image with lighter overlay so the picture is clearly visible */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1920&q=85"
+            src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1920&q=75"
+            srcSet="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=768&q=70 768w, https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1280&q=75 1280w, https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1920&q=75 1920w"
+            sizes="100vw"
             alt="Florida home with palm trees and green lawn in Palm Bay"
             className="w-full h-full object-cover"
             loading="eager"
@@ -445,7 +346,7 @@ const Home = () => {
             {/* Left - Headline & CTA */}
             <div className="text-center lg:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                Own Land in Florida's Fastest-Growing City — <span className="text-amber-400">Residential Lots Starting at $41,000</span> with Owner Financing
+                Own Land in Palm Bay, Florida — <span className="text-amber-400">Residential Lots Starting at $41,000</span> with Owner Financing
               </h1>
               <p className="text-lg text-gray-200 mb-6">
                 No bank needed. Cash or owner financing — just fill out a simple application and we handle the rest. 500+ lots available across residential, commercial, and industrial. 23 years of local expertise serving individuals, builders, and investors.
@@ -1027,7 +928,7 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Questions</h2>
             <div className="space-y-3">
               {[
-                { q: 'Can I buy a lot in Palm Bay with owner financing?', a: (<>Yes. Owner financing is available on most of our residential lots. Minimum 30% down for an option contract, or 40% down to receive the deed immediately. No bank qualification required. No prepayment penalty.</>) },
+                { q: 'Can I buy a lot in Palm Bay with owner financing?', a: (<>Yes. Owner financing is available on most of our residential lots. No bank qualification required and no prepayment penalty. Full terms, including the APR, are on our price guide, or call for terms.</>) },
                 { q: 'What is the minimum lot size in Palm Bay?', a: (<>Standard residential lots in Palm Bay are approximately 10,000 sq ft (quarter acre). Larger parcels and assemblages are also available.</>) },
                 { q: 'Do you work with national homebuilders?', a: (<>Yes. We regularly work with large builders including DR Horton, Lennar, and Adams Homes, as well as regional and custom builders throughout Brevard County.</>) },
                 { q: 'Are lots in Palm Bay buildable?', a: (<>Most lots we represent are buildable for single-family residential use. We provide zoning, parcel, and utility information for every listing. For a full parcel and zoning report on any Palm Bay lot, <Link to="/contact" className="text-amber-600 hover:underline">contact us directly</Link>.</>) },

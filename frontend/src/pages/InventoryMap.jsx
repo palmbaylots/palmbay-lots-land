@@ -244,8 +244,11 @@ const InventoryMap = () => {
   return (
     <>
       <Helmet>
+        <meta property="og:title" content="Palm Bay Land Inventory Map | Vahid Rajabian, Broker" />
+        <meta property="og:description" content="Interactive map of lots for sale in Palm Bay, FL. Click any lot for its price and links to Google Maps and Brevard County parcel records." />
+        <meta property="og:url" content="https://palmbaylots-land.com/map" />
         <title>Palm Bay Land Inventory Map | Vahid Rajabian, Broker</title>
-        <meta name="description" content="Interactive map of Palm Bay, FL lots for sale. Click any lot for price and links to Google Maps and the Brevard County (BCPAO) parcel map and records. Owner financing available." />
+        <meta name="description" content="Interactive map of lots for sale in Palm Bay, FL. Click any lot for its price and links to Google Maps and Brevard County parcel records." />
         <link rel="canonical" href="https://palmbaylots-land.com/map" />
       </Helmet>
 

@@ -1,58 +1,39 @@
-# Robots.txt for palmbaylots-land.com
-# Florida Land Broker - Palm Bay Real Estate - Brevard County Land
+# robots.txt for palmbaylots-land.com
 
-# Allow AI Search Engines to crawl and index
-User-agent: GPTBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Default rule for all other bots
 User-agent: *
 Allow: /
-
-# Main Pages
-Allow: /about
-Allow: /inventory
-Allow: /listings
-Allow: /price-guide
-Allow: /contact
-Allow: /sell-land
-Allow: /blog
-
-# SEO Landing Pages
-Allow: /palm-bay-land-for-sale
-Allow: /owner-financing-land-florida
-Allow: /quarter-acre-lots-palm-bay
-Allow: /buildable-lots-palm-bay
-
-# Property Pages
-Allow: /property/
-
-# Blog Posts
-Allow: /blog/
-
-# Disallow admin and non-public paths
 Disallow: /admin
 Disallow: /property-admin-demo
 
-# Crawl-delay for polite crawling
-Crawl-delay: 1
+# Search and AI crawlers are welcome (listed for clarity; the * rule above already allows them)
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /property-admin-demo
 
-# Sitemap locations
-Sitemap: https://palmbaylots-land.com/sitemap.xml
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /property-admin-demo
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /property-admin-demo
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /property-admin-demo
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /property-admin-demo
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /property-admin-demo
+
 Sitemap: https://palmbaylots-land.com/api/sitemap.xml
-
-# Keywords: Palm Bay real estate, Brevard County real estate, Florida vacant land, 
-# land for sale Florida, off-market land deals, Florida land broker, buy land Florida, 
-# sell land Florida, Palm Bay land for sale, Brevard County land, Florida real estate broker

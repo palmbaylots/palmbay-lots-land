@@ -54,8 +54,11 @@ const BuyWithoutRealtorGuide = () => {
   return (
     <>
       <Helmet>
+        <meta property="og:title" content="How to Buy Land Without a Realtor in Florida | Step-by-Step Guide" />
+        <meta property="og:description" content="How to buy land in Florida without a realtor: check zoning and utilities, avoid scams, and close directly with the seller. From a Palm Bay broker since 2003." />
+        <meta property="og:url" content="https://palmbaylots-land.com/guide/buy-land-without-realtor" />
         <title>How to Buy Land Without a Realtor in Florida | Step-by-Step Guide</title>
-        <meta name="description" content="Complete guide to buying land in Florida without a realtor. How to verify zoning, check utilities, avoid scams, and close directly with the seller. From a 20+ year Palm Bay land expert." />
+        <meta name="description" content="How to buy land in Florida without a realtor: check zoning and utilities, avoid scams, and close directly with the seller. From a Palm Bay broker since 2003." />
         <meta name="keywords" content="buy land without realtor Florida, buy land directly from seller, no realtor land purchase, FSBO land Florida, how to buy vacant land" />
         <link rel="canonical" href="https://palmbaylots-land.com/guide/buy-land-without-realtor" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -97,7 +100,7 @@ const BuyWithoutRealtorGuide = () => {
                     Start with what you need: location, size, utility access, and budget. A land specialist can narrow 500+ lots to the ones that match your goals — whether that's building a home, investing, or building to sell.
                   </p>
                   <p className="text-slate-600 text-sm">
-                    <Link to="/inventory" className="text-amber-600 hover:underline font-medium">Browse our 582+ lots</Link> grouped by utility type, or <Link to="/contact" className="text-amber-600 hover:underline font-medium">call us</Link> and tell us what you're looking for.
+                    <Link to="/inventory" className="text-amber-600 hover:underline font-medium">Browse our 580+ lots</Link> grouped by utility type, or <Link to="/contact" className="text-amber-600 hover:underline font-medium">call us</Link> and tell us what you're looking for.
                   </p>
                 </div>
 
@@ -136,7 +139,7 @@ const BuyWithoutRealtorGuide = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
                       <p className="font-bold text-amber-900">Owner Financing</p>
-                      <p className="text-sm text-amber-800 mt-1">30% minimum down. No bank needed. Deed at 40% paid. Most buyers choose this.</p>
+                      <p className="text-sm text-amber-800 mt-1">Owner financing available, call for terms. No bank needed. Most buyers choose this.</p>
                       <Link to="/guide/owner-financing-what-to-watch" className="text-amber-600 text-xs font-medium mt-2 inline-block">Learn more →</Link>
                     </div>
                     <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">

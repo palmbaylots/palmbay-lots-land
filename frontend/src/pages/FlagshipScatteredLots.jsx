@@ -8,8 +8,8 @@ const CREXI_URL = "https://www.crexi.com/properties?searchBrokerId=fca17317-df0a
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "RealEstateListing",
-  "name": "700+ Scattered Residential Lots — Palm Bay, FL",
-  "description": "700+ buildable residential lots available in Palm Bay, Florida. Ideal for production builders, land investors, or individual buyers. Owner financing from $41,000. Volume pricing available.",
+  "name": "580+ Scattered Residential Lots — Palm Bay, FL",
+  "description": "580+ buildable residential lots available in Palm Bay, Florida. Ideal for production builders, land investors, or individual buyers. Owner financing from $41,000. Volume pricing available.",
   "url": "https://palmbaylots-land.com/listing/scattered-lots",
   "address": { "@type": "PostalAddress", "addressLocality": "Palm Bay", "addressRegion": "FL", "addressCountry": "US" },
   "offers": { "@type": "Offer", "price": "41000", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
@@ -20,8 +20,11 @@ const FlagshipScatteredLots = () => {
   return (
     <>
       <Helmet>
-        <title>700+ Scattered Lots for Sale in Palm Bay FL | From $41,000 | Owner Financing</title>
-        <meta name="description" content="700+ buildable residential lots available in Palm Bay, FL. Ideal for builders, investors, or individual buyers. Owner financing from $41,000. Volume pricing for bulk purchases." />
+        <meta property="og:title" content="Residential Lots for Sale in Palm Bay FL | From $41,000" />
+        <meta property="og:description" content="Buildable residential lots across Palm Bay, FL from $41,000, for builders, investors, and individual buyers. Owner financing available, call for terms." />
+        <meta property="og:url" content="https://palmbaylots-land.com/listing/scattered-lots" />
+        <title>Residential Lots for Sale in Palm Bay FL | From $41,000</title>
+        <meta name="description" content="Buildable residential lots across Palm Bay, FL from $41,000, for builders, investors, and individual buyers. Owner financing available, call for terms." />
         <link rel="canonical" href="https://palmbaylots-land.com/listing/scattered-lots" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
@@ -47,7 +50,7 @@ const FlagshipScatteredLots = () => {
                   </span>
                 </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
-                  700+ Scattered Lots
+                  580+ Scattered Lots
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-4">Palm Bay, Florida</p>
                 <p className="text-3xl md:text-4xl font-bold text-amber-400">From $41,000</p>
@@ -90,7 +93,7 @@ const FlagshipScatteredLots = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 mb-2">Individual Buyers</h4>
-                    <p className="text-slate-600 text-sm">Pick the perfect lot for your future home. Owner financing available — 30% minimum down, no bank qualification. Deed transfers at 40% paid.</p>
+                    <p className="text-slate-600 text-sm">Pick the perfect lot for your future home. Owner financing available, call for terms. No bank qualification.</p>
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 mb-2">Out-of-State Investors</h4>
@@ -131,7 +134,7 @@ const FlagshipScatteredLots = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                    <span>Owner financing: 30% minimum down, deed at 40% paid</span>
+                    <span>Owner financing available, call for terms</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
@@ -197,10 +200,10 @@ const FlagshipScatteredLots = () => {
                   <h4 className="text-sm font-semibold text-amber-800 uppercase tracking-wide mb-3">Quick Facts</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between"><span className="text-slate-600">Starting Price</span><span className="font-semibold">From $41,000</span></div>
-                    <div className="flex justify-between"><span className="text-slate-600">Lot Count</span><span className="font-semibold">700+</span></div>
+                    <div className="flex justify-between"><span className="text-slate-600">Lot Count</span><span className="font-semibold">580+</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">Typical Size</span><span className="font-semibold">~0.25 AC</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">Zoning</span><span className="font-semibold">RS-2 Residential</span></div>
-                    <div className="flex justify-between"><span className="text-slate-600">Financing</span><span className="font-semibold">30% Min Down</span></div>
+                    <div className="flex justify-between"><span className="text-slate-600">Financing</span><span className="font-semibold">Call for terms</span></div>
                     <div className="flex justify-between"><span className="text-slate-600">HOA</span><span className="font-semibold">None</span></div>
                   </div>
                 </div>

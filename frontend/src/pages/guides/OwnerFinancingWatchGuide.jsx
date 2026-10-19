@@ -70,8 +70,11 @@ const OwnerFinancingWatchGuide = () => {
   return (
     <>
       <Helmet>
-        <title>Owner Financing Land: What to Watch Out For | Palm Bay Expert Guide</title>
-        <meta name="description" content="What to watch out for when buying land with owner financing in Florida. Deed transfer timing, hidden fees, prepayment penalties, and how our approach is different. From a 20+ year Palm Bay land expert." />
+        <meta property="og:title" content="Owner Financing Land: What to Watch Out For | Palm Bay" />
+        <meta property="og:description" content="What to watch for when buying land with owner financing in Florida: deed timing, hidden fees, and prepayment penalties. From a Palm Bay broker since 2003." />
+        <meta property="og:url" content="https://palmbaylots-land.com/guide/owner-financing-what-to-watch" />
+        <title>Owner Financing Land: What to Watch Out For | Palm Bay</title>
+        <meta name="description" content="What to watch for when buying land with owner financing in Florida: deed timing, hidden fees, and prepayment penalties. From a Palm Bay broker since 2003." />
         <meta name="keywords" content="owner financing land watch out, seller financing land scam, owner financing red flags, land contract Florida, is owner financing safe, owner financing vs bank" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/guide/owner-financing-what-to-watch" />

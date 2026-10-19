@@ -101,7 +101,6 @@ const FeaturedSpecialListing = () => {
           <a href="tel:3213337230" className="text-center md:px-3 flex items-center justify-center gap-1.5 text-slate-200 hover:text-amber-400"><Phone className="w-4 h-4" /><b className="text-white">321-333-7230</b></a>
         </div>
 
-        <p className="sr-only">city water and sewer lot Palm Bay Florida · build ready lot Palm Bay FL · 1039 Hooper Ave NE Palm Bay · owner financing lot Palm Bay · residential lot NE Palm Bay 32905</p>
       </div>
 
       {/* See Price & Details popup */}

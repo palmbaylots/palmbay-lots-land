@@ -25,8 +25,11 @@ const FlagshipFlemingAve = () => {
   return (
     <>
       <Helmet>
-        <title>2418 Fleming Avenue SW, Palm Bay FL | $65,000 | City Water | Owner Financing</title>
-        <meta name="description" content="Buildable residential lot at 2418 Fleming Avenue SW, Palm Bay, FL. 10,019 sq ft with city water. $65,000. Owner financing available, call for terms. Contact Vahid Rajabian." />
+        <meta property="og:title" content="2418 Fleming Ave SW, Palm Bay FL | $65,000 | City Water" />
+        <meta property="og:description" content="Residential lot at 2418 Fleming Ave SW, Palm Bay, FL. 10,019 sq ft with city water, $65,000. Owner financing available, call for terms." />
+        <meta property="og:url" content="https://palmbaylots-land.com/listing/2418-fleming-ave" />
+        <title>2418 Fleming Ave SW, Palm Bay FL | $65,000 | City Water</title>
+        <meta name="description" content="Residential lot at 2418 Fleming Ave SW, Palm Bay, FL. 10,019 sq ft with city water, $65,000. Owner financing available, call for terms." />
         <link rel="canonical" href="https://palmbaylots-land.com/listing/2418-fleming-ave" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>

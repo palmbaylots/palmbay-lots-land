@@ -21,7 +21,7 @@ const NotFound = () => {
   return (
     <div className="min-h-[70vh] bg-slate-50 flex items-center justify-center px-4 py-16">
       <Helmet>
-        <title>Page Not Found (404) | Palm Bay Lots-Land</title>
+        <title>Page Not Found (404) | Palm Bay Lots &amp; Land</title>
         <meta name="description" content="The page you are looking for could not be found. Browse current Palm Bay land inventory, listings, and resources." />
         <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href={canonicalUrl} />

@@ -54,6 +54,9 @@ const BuildOnLandGuide = () => {
   return (
     <>
       <Helmet>
+        <meta property="og:title" content="How to Build on a Lot in Palm Bay FL | Palm Bay Lots & Land" />
+        <meta property="og:description" content="Thinking about building on a vacant lot in Palm Bay? Learn the steps, permits, and what to expect — from a team that has sold thousands of Palm Bay lots." />
+        <meta property="og:url" content="https://palmbaylots-land.com/guide/build-on-land-palm-bay" />
         <title>How to Build on a Lot in Palm Bay FL | Palm Bay Lots & Land</title>
         <meta name="description" content="Thinking about building on a vacant lot in Palm Bay? Learn the steps, permits, and what to expect — from a team that has sold thousands of Palm Bay lots." />
         <meta name="keywords" content="build on land Palm Bay, building permit Palm Bay FL, zoning Palm Bay, construction cost Palm Bay, well septic Palm Bay, vacant land buildable" />
@@ -205,7 +208,7 @@ const BuildOnLandGuide = () => {
                 </Link>
                 <Link to="/inventory" className="p-4 bg-slate-50 rounded-lg hover:shadow-md transition-shadow text-center" data-testid="buildguide-inventory-link">
                   <p className="font-bold text-slate-900">Browse Our Palm Bay Lot Inventory</p>
-                  <p className="text-sm text-slate-500">582+ buildable lots</p>
+                  <p className="text-sm text-slate-500">580+ buildable lots</p>
                 </Link>
               </div>
             </div>

@@ -361,15 +361,11 @@ const Contact = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-300">Monday - Friday:</span>
-                      <span className="font-medium">9:00 AM - 6:00 PM</span>
+                      <span className="font-medium">9:00 AM - 5:00 PM, by appointment</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-300">Saturday:</span>
-                      <span className="font-medium">10:00 AM - 4:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-300">Sunday:</span>
-                      <span className="font-medium">By Appointment</span>
+                      <span className="text-gray-300">Saturday &amp; Sunday:</span>
+                      <span className="font-medium">By appointment</span>
                     </div>
                   </div>
                   <p className="mt-4 pt-4 border-t border-slate-700 text-gray-300 text-sm italic">

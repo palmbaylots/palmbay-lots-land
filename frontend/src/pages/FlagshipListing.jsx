@@ -7,8 +7,8 @@ const FlagshipListing = () => {
   return (
     <div className="min-h-screen bg-white">
       <Helmet>
-        <title>328 Malabar Rd Palm Bay FL | 1.75 AC Commercial Corner | $1,575,000</title>
-        <meta name="description" content="Prime 1.75-acre commercial corner at 328 Malabar Rd, Palm Bay FL. Signalized intersection, 23K daily traffic, 475 ft frontage. Ideal for QSR, medical, retail, mixed-use." />
+        <title>328 Malabar Rd, Palm Bay FL | 1.75 AC Commercial Corner</title>
+        <meta name="description" content="1.75-acre commercial corner at 328 Malabar Rd, Palm Bay, FL. Signalized intersection, 475 ft frontage, about 23K daily traffic. name="description" content=",575,000." />
         <link rel="canonical" href="https://palmbaylots-land.com/listing/328-malabar-rd" />
         <meta property="og:title" content="328 Malabar Rd Palm Bay FL | 1.75 AC Commercial Corner" />
         <meta property="og:description" content="Prime 1.75-acre commercial corner with 475 ft frontage on Malabar Road. $1,575,000." />

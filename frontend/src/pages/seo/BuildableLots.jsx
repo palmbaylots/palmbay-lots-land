@@ -101,7 +101,7 @@ const BuildableLotsPage = () => {
         "name": "Is owner financing available on buildable lots?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. We offer owner financing on all residential lots. Minimum 30% down for an option contract. Deed transfers at 40% paid. No prepayment penalty. No bank qualification required. For a $41,000 lot, that's $12,300 minimum down."
+          "text": "Yes. We offer owner financing on most residential lots. No bank qualification required and no prepayment penalty. Full terms, including the APR, are on our price guide, or call for terms."
         }
       }
     ]
@@ -110,12 +110,12 @@ const BuildableLotsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Buildable Lots Palm Bay FL | 500+ Vacant Land for Sale | Owner Financing</title>
-        <meta name="description" content="Find 500+ residential lots in Palm Bay, Florida. Residential land in Brevard County with lot exchange protection. City water, well & septic options. Owner financing available from $41,000." />
+        <title>Buildable Lots for Sale in Palm Bay FL | Owner Financing</title>
+        <meta name="description" content="Residential lots in Palm Bay, FL with zoning and utility info and a same-year lot exchange guarantee. City water or well and septic. From $41,000." />
         <meta name="keywords" content="buildable lots Palm Bay, vacant land Palm Bay FL, residential land Brevard County, buildable land Florida, Palm Bay lots for sale" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/buildable-lots-palm-bay" />
-        <meta property="og:title" content="Buildable Lots Palm Bay FL | Guaranteed Buildable Land" />
+        <meta property="og:title" content="Buildable Lots Palm Bay FL | Residential Land for Sale" />
         <meta property="og:description" content="500+ residential lots in Palm Bay with zoning and utility info and lot exchange protection." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/buildable-lots-palm-bay" />
@@ -260,7 +260,7 @@ const BuildableLotsPage = () => {
                 Why Invest in Palm Bay Land?
               </h2>
               <p className="text-lg text-slate-600 mb-8">
-                <strong>Palm Bay, Florida</strong> is one of the fastest-growing cities in the state, making it an excellent choice for land investment. Here's why smart buyers are choosing <strong>buildable lots in Brevard County</strong>:
+                <strong>Palm Bay, Florida</strong> was ranked the #13 most affordable city in America in 2026 and the only Florida city in the top 20 (Source: The Palm Bayer). Here's why smart buyers are choosing <strong>buildable lots in Brevard County</strong>:
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

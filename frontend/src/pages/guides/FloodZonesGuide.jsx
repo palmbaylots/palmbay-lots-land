@@ -54,6 +54,9 @@ const FloodZonesGuide = () => {
   return (
     <>
       <Helmet>
+        <meta property="og:title" content="Palm Bay Flood Zones Explained | Palm Bay Lots & Land" />
+        <meta property="og:description" content="Find out which flood zone your Palm Bay lot is in before you buy. We explain FEMA flood zones, what they mean, and how they affect building in Palm Bay, FL." />
+        <meta property="og:url" content="https://palmbaylots-land.com/guide/flood-zones-palm-bay" />
         <title>Palm Bay Flood Zones Explained | Palm Bay Lots & Land</title>
         <meta name="description" content="Find out which flood zone your Palm Bay lot is in before you buy. We explain FEMA flood zones, what they mean, and how they affect building in Palm Bay, FL." />
         <meta name="keywords" content="flood zone Palm Bay FL, FEMA flood map Palm Bay, flood insurance Palm Bay, Zone X Palm Bay, building in flood zone Florida" />

@@ -233,7 +233,7 @@ const Properties = () => {
   return (
     <>
       <Helmet>
-        <title>Palm Bay Lot Price Guide & Financing Terms | Owner Financing Available</title>
+        <title>Palm Bay Lot Price Guide &amp; Owner Financing Terms</title>
         <meta name="description" content="Palm Bay lot pricing and owner financing calculator. Owner financing available, call for terms. No bank required. See current pricing by unit and area." />
         <link rel="canonical" href="https://palmbaylots-land.com/price-guide" />
         <meta property="og:title" content="Palm Bay Lot Price Guide & Financing Terms" />

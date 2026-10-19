@@ -62,6 +62,9 @@ const SepticVsSewerGuide = () => {
   return (
     <>
       <Helmet>
+        <meta property="og:title" content="Septic vs Sewer in Palm Bay FL | Palm Bay Lots & Land" />
+        <meta property="og:description" content="Not sure if your Palm Bay lot is on septic or sewer? We break down the difference, the costs, and what it means for building your home." />
+        <meta property="og:url" content="https://palmbaylots-land.com/guide/septic-vs-sewer-palm-bay" />
         <title>Septic vs Sewer in Palm Bay FL | Palm Bay Lots & Land</title>
         <meta name="description" content="Not sure if your Palm Bay lot is on septic or sewer? We break down the difference, the costs, and what it means for building your home." />
         <meta name="keywords" content="septic Palm Bay FL, sewer Palm Bay, city water Palm Bay, well water Palm Bay, utility cost Palm Bay lots, septic system cost Florida" />

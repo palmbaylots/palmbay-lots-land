@@ -281,8 +281,8 @@ export const blogContent = {
   'is-palm-bay-good-investment-2025': {
     title: 'Why Investors Are Buying Land in Palm Bay, Florida in 2026',
     metaTitle: 'Why Investors Are Buying Land in Palm Bay Florida in 2026',
-    metaDescription: "Palm Bay is one of Florida's fastest-growing cities. Here's why smart investors, builders, and families are buying lots now — and how to get started with owner financing.",
-    subtitle: 'Palm Bay is one of Florida\'s fastest-growing cities. Here\'s why smart investors, builders, and families are buying lots now — and how to get started with owner financing.',
+    metaDescription: "Palm Bay was ranked the #13 most affordable city in America in 2026. Here's why smart investors, builders, and families are buying lots now — and how to get started with owner financing.",
+    subtitle: 'Palm Bay was ranked the #13 most affordable city in America in 2026 (Source: The Palm Bayer). Here\'s why investors, builders, and families are buying lots now — and how to get started with owner financing.',
     category: 'Investment',
     date: 'April 2026',
     readTime: '10 min read',
@@ -682,23 +682,25 @@ export const blogContent = {
         For 50 years, Port Malabar Units 51, 52, and 53 — known locally as "The Compound" — have sat with roads but no utilities. In 2024 and 2025 that finally started to change. If you are a buyer, builder, or patient investor, this is the area you should understand before everyone else does.
       </blockquote>
 
+      <p style="border: 1px solid #1a3a5c; border-radius: 8px; padding: 14px 18px; background: #f1f5f9;"><strong>Important:</strong> Our Compound lots in Units 51, 52, and 53 are sold only as one whole package. They are not sold one lot at a time. Most Compound lots are not buildable on their own today.</p>
+
       <h2>The Short Version</h2>
       <p>I have been selling land in Palm Bay since 2003. I have been watching the compound that entire time, and I have never seen this much real activity around it. EPA studies, a $1.5 million brownfields grant, a city redevelopment action plan, and a proposed "Port Malabar Industrial" designation are all moving forward at once.</p>
-      <p>This is still a long-horizon play — but the math for a smart buyer has fundamentally changed. Here is what is actually happening, what it means for land prices, and how to buy intelligently.</p>
+      <p>This is still a long-horizon situation. Here is what is actually happening and what it means for buyers.</p>
 
       <h2>Where The Compound Actually Sits</h2>
-      <p>One of the most underappreciated facts about the compound is its <strong>location</strong>. It is not in the middle of nowhere. It sits inside the city limits of Palm Bay — the largest city in Brevard County — directly between two of the fastest-growing economic engines in Florida.</p>
+      <p>One of the most underappreciated facts about the compound is its <strong>location</strong>. It is not in the middle of nowhere. It sits inside the city limits of Palm Bay — the largest city in Brevard County — between Orlando and the Space Coast.</p>
 
       <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/s8b5ndmo_Compound4.jpg" alt="Regional context map of Palm Bay, Florida showing The Compound location between Orlando and the Space Coast, with Interstate 95 corridor and Atlantic coastline" style="width:100%; border-radius: 12px; margin-top: 12px; margin-bottom: 12px;" loading="lazy" />
-      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">The Compound sits inside Palm Bay city limits, minutes from I-95, between Orlando and the Space Coast — one of the most strategic but undervalued positions in Central Florida.</p>
+      <p style="text-align:center; color:#64748b; font-size: 0.9em; font-style: italic; margin-top: -8px; margin-bottom: 28px;">The Compound sits inside Palm Bay city limits, minutes from I-95, between Orlando and the Space Coast between Orlando and the Space Coast.</p>
 
       <ul>
         <li><strong>~10 minutes</strong> to Interstate 95</li>
         <li><strong>~45 minutes</strong> to Orlando International Airport</li>
         <li><strong>~45 minutes</strong> to Kennedy Space Center / Cape Canaveral</li>
-        <li><strong>Inside city limits</strong> of Palm Bay (130,000+ residents, fastest-growing city in Brevard County)</li>
+        <li><strong>Inside city limits</strong> of Palm Bay (130,000+ residents, Brevard County's largest city)</li>
       </ul>
-      <p>You will not find another block of 2,492 mostly-undeveloped urban acres anywhere along the Central Florida coast at compound-level pricing. That is the entire investment thesis in one sentence.</p>
+      <p>It is one of the largest blocks of mostly undeveloped land inside a Brevard County city.</p>
 
       <h2>What Is Actually Happening — Verified, 2024–2026</h2>
       <p>This is not speculation. Each of these is documented public record:</p>
@@ -730,7 +732,7 @@ export const blogContent = {
       <h2>Why This Matters for Buyers</h2>
       <p>For five decades, the only buyers brave enough to touch compound lots were long-horizon speculators and out-of-state owners who didn't fully understand what they were buying. That kept prices unusually low for inside-city-limits Florida land.</p>
       <p>Now, for the first time, there is a <strong>plausible path</strong> from where the compound is today to where it could be in 10–20 years: assessed, environmentally cleared, partially industrial, partially residential, and connected to city water and sewer.</p>
-      <p>You don't have to believe in a fast timeline to see the asymmetry. You just have to believe that 2,492 acres inside the city limits of Florida's fastest-growing county will not stay vacant forever.</p>
+      <p>None of this is a promise. Timelines are unknown, future values are not guaranteed, and any change depends on decisions by the City of Palm Bay.</p>
 
       <p style="background:#fef3c7; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #d97706;"><strong>Honest disclosure:</strong> Today, most compound lots still have no city water, no city sewer, and no power at the lot line. This is a patience play, not a build-this-year play. The buyers who do best here are the ones who buy right, hold without stress, and wait for the city's plan to mature.</p>
 
@@ -787,12 +789,12 @@ export const blogContent = {
       <p style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; color:#64748b; font-size: 0.85em;"><em>Sources: City of Palm Bay Compound Redevelopment Action Plan; EPA Land Revitalization Technical Assistance Program; Resilient Corridors Coalition Brownfields Assessment Grant; Brevard County Property Appraiser; Palm Bay Land Development Division.</em></p>
     `,
     faqs: [
-      { q: 'Is The Compound actually buildable today?', a: 'Some lots are — particularly those close to existing infrastructure along J.A. Bombardier Blvd and the Unit 49 power network — using well, septic, and extended power poles. Most compound lots, however, are bought as long-term holds while the city\'s redevelopment plan and utilities mature. Always verify your specific parcel before buying.' },
-      { q: 'How much do compound lots cost in 2026?', a: 'Compound lot pricing varies significantly by location, size, and access to existing infrastructure. Many quarter-acre lots are still available well below comparable inside-city-limits Florida land. Call me for current pricing on specific parcels — pricing changes as redevelopment news moves forward.' },
+      { q: 'Is The Compound actually buildable today?', a: 'Some lots are — particularly those close to existing infrastructure along J.A. Bombardier Blvd and the Unit 49 power network — using well, septic, and extended power poles. Most of The Compound has no water, sewer, or power today. Our Compound lots are not sold individually. They are offered only as one whole package. Always verify any specific parcel before buying.' },
+      { q: 'How much do compound lots cost in 2026?', a: 'Our Compound lots are sold only as one whole package, not one lot at a time, so there is no per-lot price. Call me to discuss the package.' },
       { q: 'Will I get hit with an assessment if I buy now?', a: 'When city utilities arrive, all property owners in the assessment area will likely be billed proportionally — including you. That cost is typically spread over 10–20 years on the property tax bill. Build that into your underwriting before you buy.' },
-      { q: 'Can I buy multiple lots at once?', a: 'Yes — and for serious investors that is often the smarter play. Assembling contiguous lots positions you for builder and developer demand once utilities arrive. I regularly help buyers acquire 5–50+ lot packages with owner financing.' },
-      { q: 'What about the proposed Port Malabar Industrial designation?', a: 'The northern compound area has been formally studied for industrial land use. No rezoning has been adopted yet, but the planning work is complete. Parcels positioned for that future designation are some of the most strategic in the entire compound.' },
-      { q: 'Do you offer owner financing on compound lots?', a: 'Yes. Most of our compound inventory is available with 30% down and owner financing — designed for long-horizon investors who want to preserve cash for taxes, future assessments, and additional acquisitions.' }
+      { q: 'Can I buy just one Compound lot?', a: 'No. Our Compound lots in Units 51, 52, and 53 are sold only as one whole package. They are not sold one by one.' },
+      { q: 'What about the proposed Port Malabar Industrial designation?', a: 'The northern compound area has been formally studied for industrial land use. No rezoning has been adopted yet, but the planning work is complete. Any future land use change is up to the City of Palm Bay and is not guaranteed.' },
+      { q: 'Do you offer owner financing on compound lots?', a: 'Financing for the Compound package is discussed directly. Call for terms.' }
     ]
   },
 

@@ -13,7 +13,7 @@ const fallbackListings = [
   { id: 32, title: "328 Malabar Rd", city: "Palm Bay, FL", price: "$1,575,000", acres: "1.75 AC", type: "Commercial", tags: ["Zoned Commercial", "Signalized Corner", "23K Traffic/Day"], valueStatement: "Prime redevelopment site with 475 ft frontage, existing income, utilities ready. Ideal for QSR, medical, retail, or mixed-use.", image: "https://images.crexi.com/assets/1154695/ae46c0ccf60e4fb58b52ed52e99ebacd_716x444.jpg", flagship: true, flagshipUrl: "/listing/328-malabar-rd" },
   { id: 15, title: "6950 Babcock Street SE", city: "Palm Bay, FL", price: "$4,950,000", acres: "18 AC", type: "Commercial", tags: ["Zoned Commercial", "Large Tract", "High Visibility"], valueStatement: "Major development opportunity on Babcock corridor. Suitable for commercial, multifamily, or mixed-use master plan.", image: "https://images.crexi.com/assets/1519634/20f1c7a72e3d4123ac8b8c3eae075407_716x444.jpg" },
   { id: 30, title: "451 Thor Ave SE", city: "Palm Bay, FL", price: "$328,500", acres: "0.73 AC", type: "Multi-Family", tags: ["MF-20 Zoned", "Corner Lot", "14 Units"], valueStatement: "Multi-family zoned corner site. Approved for 14+ units. Strong rental demand area.", image: "https://images.crexi.com/assets/1170560/60d181304b9f441cbc8a60f59f01ffdc_716x444.jpg" },
-  { id: 36, title: "Multiple Scattered Lots", city: "Palm Bay, FL", price: "$41,000+", acres: "700+ Lots", type: "Assemblage", tags: ["Bulk Available", "Builder Inventory", "Volume Pricing"], valueStatement: "700+ SFR lots available. Ideal for production builders or investors.", image: "https://images.crexi.com/assets/887500/83f1a143c87b4311b4121382e0bec4eb_716x444.jpg" },
+  { id: 36, title: "Multiple Scattered Lots", city: "Palm Bay, FL", price: "$41,000+", acres: "580+ Lots", type: "Assemblage", tags: ["Bulk Available", "Builder Inventory", "Volume Pricing"], valueStatement: "580+ SFR lots available. Ideal for production builders or investors.", image: "https://images.crexi.com/assets/887500/83f1a143c87b4311b4121382e0bec4eb_716x444.jpg" },
   { id: 1, title: "2418 Fleming Avenue SW", city: "Palm Bay, FL", price: "$60,000", acres: "10,019 SF", type: "Residential", tags: ["City Water", "Buildable", "SF Home Site"], valueStatement: "Ready-to-build single family lot with city water. No HOA.", image: "https://images.crexi.com/assets/1658353/99c521fefb5c4f2990049f3f366577ea_716x444.jpg" },
 ];
 
@@ -150,8 +150,8 @@ const CrexiListings = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <Helmet>
-        <title>Palm Bay Commercial, Industrial & Investment Land for Sale | Vahid Rajabian</title>
-        <meta name="description" content="Commercial, industrial, multifamily, and investment land for sale in Palm Bay and Brevard County. Signalized corners, bulk packages, and development parcels available." />
+        <title>Commercial &amp; Industrial Land for Sale in Palm Bay, FL</title>
+        <meta name="description" content="Commercial, industrial, multifamily, and investment land for sale in Palm Bay and Brevard County, FL. Corner parcels and development sites available." />
         <link rel="canonical" href="https://palmbaylots-land.com/listings" />
         <meta property="og:title" content="Palm Bay Commercial, Industrial & Investment Land for Sale | Vahid Rajabian" />
         <meta property="og:description" content="Commercial, industrial, multifamily, assemblages, and investment land for sale in Palm Bay and Brevard County, Florida." />

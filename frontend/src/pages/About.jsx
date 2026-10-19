@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
     <Helmet>
-      <title>About Vahid Reza Rajabian | Palm Bay Real Estate Broker Since 2003</title>
+      <title>About Vahid Rajabian | Palm Bay Land Broker Since 2003</title>
       <meta name="description" content="Vahid Rajabian — Palm Bay land specialist since 2003. 20+ years selling residential, commercial, and industrial lots throughout Brevard County." />
       <link rel="canonical" href="https://palmbaylots-land.com/about" />
       <meta property="og:title" content="About Vahid Reza Rajabian | Palm Bay Real Estate Broker" />
@@ -225,7 +225,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-slate-900 mb-6">Why Palm Bay?</h2>
               <div className="bg-gradient-to-br from-amber-50 to-slate-50 p-8 rounded-lg">
                 <p className="text-slate-700 leading-relaxed mb-4">
-                  Palm Bay is one of Florida's fastest-growing real estate markets. Located in east central Florida with access to rivers and the ocean, the area attracts families, retirees, and investors who recognize its value and potential.
+                  Palm Bay is Brevard County's largest city and was ranked the #13 most affordable city in America in 2026 (Source: The Palm Bayer). Located in east central Florida with access to rivers and the ocean, the area attracts families, retirees, and investors who recognize its value and potential.
                 </p>
                 <p className="text-slate-700 leading-relaxed">
                   Understanding zoning, development trends, and long-term growth patterns is critical here. Having worked this market since 2003, I provide the insights that help clients make informed decisions — whether buying, selling, or developing.
