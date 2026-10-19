@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 SITE_URL = os.environ.get('SITE_URL', 'https://palmbaylots-land.com')
-BLOG_API_KEY = os.environ.get('BLOG_API_KEY', '')
+BLOG_API_KEY = os.environ.get('BLOG_API_KEY', '').strip().strip('"').strip("'")  # tolerate stray spaces/quotes in the saved secret
 
 
 # ---------- Pydantic models ----------
