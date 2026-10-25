@@ -15,7 +15,10 @@ Keep it accurate — when a fact below changes, update it here.
 - **Phone:** 321-333-7230
 - **Email:** vahid@palmbayland.com
 - **Office:** 1663 Georgia St NE, Suite 700, Palm Bay, FL 32907
-- **Founded:** 2003
+- **Founded / "since" dates (do NOT "fix" as inconsistent):** M. David Moallem, Inc. (the
+  brokerage of record) has served Brevard **since 1983**; Vahid has sold Palm Bay land
+  **since 2003**. So "Serving Brevard since 1983" (the firm) and "since 2003" (Vahid) are
+  both correct and intentional.
 - **Crexi broker page:** https://www.crexi.com/properties?searchBrokerId=fca17317-df0a-4445-9f8e-f6e05efc6cb8
 
 **What we do:** Sell residential (and some commercial/multifamily) vacant land lots in
