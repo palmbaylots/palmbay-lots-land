@@ -117,8 +117,8 @@ const FeaturedSpecialListing = () => {
             <div className="p-6">
               {/* Two maps */}
               <div className="grid grid-cols-2 gap-3 mb-4">
-                <a href={AERIAL} target="_blank" rel="noopener noreferrer" className="rounded-lg overflow-hidden aspect-[4/3] block"><img src={AERIAL} alt="Aerial view of 1039 Hooper Ave NE" className="w-full h-full object-cover" /></a>
-                <a href={PARCEL} target="_blank" rel="noopener noreferrer" className="rounded-lg overflow-hidden aspect-[4/3] block bg-white border border-slate-200"><img src={PARCEL} alt="Parcel survey map of 1039 Hooper Ave NE" className="w-full h-full object-contain" /></a>
+                <a href={AERIAL} target="_blank" rel="noopener noreferrer" className="rounded-lg overflow-hidden aspect-[4/3] block"><img src={AERIAL} alt="Aerial view of 1039 Hooper Ave NE" className="w-full h-full object-cover" loading="lazy" /></a>
+                <a href={PARCEL} target="_blank" rel="noopener noreferrer" className="rounded-lg overflow-hidden aspect-[4/3] block bg-white border border-slate-200"><img src={PARCEL} alt="Parcel survey map of 1039 Hooper Ave NE" className="w-full h-full object-contain" loading="lazy" /></a>
               </div>
 
               {/* Cash price */}

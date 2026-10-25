@@ -160,7 +160,7 @@ const MlsListingDetail = () => {
                     idx === photoIndex ? 'border-[#d97706]' : 'border-slate-300'
                   }`}
                 >
-                  <img src={photo} alt={`Photo ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img src={photo} alt={`${listing.address} — photo ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>
