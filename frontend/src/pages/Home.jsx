@@ -487,6 +487,98 @@ const Home = () => {
       </section>
 
       {/* 1039 Hooper Ave NE featured listing moved to the Inventory page */}
+      {/* Credibility strip — quick trust signals under the hero */}
+      <section className="bg-slate-50 border-y border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-6 text-center">
+            <div>
+              <p className="text-xl md:text-2xl font-bold text-amber-600">582+</p>
+              <p className="text-xs md:text-sm text-slate-600 mt-1">Palm Bay lots in inventory</p>
+            </div>
+            <div>
+              <p className="text-xl md:text-2xl font-bold text-amber-600">20+ years</p>
+              <p className="text-xs md:text-sm text-slate-600 mt-1">Local land expertise since 2003</p>
+            </div>
+            <div>
+              <p className="text-xl md:text-2xl font-bold text-amber-600">No bank</p>
+              <p className="text-xs md:text-sm text-slate-600 mt-1">Owner financing with personal approval</p>
+            </div>
+            <div>
+              <p className="text-xl md:text-2xl font-bold text-amber-600">Lot exchange</p>
+              <p className="text-xs md:text-sm text-slate-600 mt-1">Buy-back &amp; exchange guarantee</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-4xl font-bold text-slate-900 mb-2">Featured Properties</h2>
+              <p className="text-lg text-slate-600">Explore our current available lots and properties</p>
+            </div>
+            <Link 
+              to="/price-guide" 
+              className="hidden md:flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700 transition-colors"
+            >
+              View All
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {mockFeaturedProperties.map((property, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+                <div className="h-48 overflow-hidden grid grid-cols-2">
+                  <img 
+                    src={property.houseImage} 
+                    alt={`${property.name} - House Example`}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img 
+                    src={property.lotImage} 
+                    alt={`${property.name} - Lot`}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">{property.name}</h3>
+                  <p className="text-2xl font-bold text-amber-600 mb-4">{property.price}</p>
+                  <div className="space-y-2 mb-4">
+                    {property.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-sm text-slate-600">
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Link 
+                    to="/price-guide" 
+                    className="block w-full py-2 text-center bg-amber-600 text-white rounded-lg font-medium hover:bg-amber-700 transition-colors"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center md:hidden">
+            <Link 
+              to="/price-guide" 
+              className="inline-flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700 transition-colors"
+            >
+              View All Properties
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
 
       {/* Owner Financing Terms */}
       <section className="py-14 bg-slate-900">
@@ -710,74 +802,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Properties */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-2">Featured Properties</h2>
-              <p className="text-lg text-slate-600">Explore our current available lots and properties</p>
-            </div>
-            <Link 
-              to="/price-guide" 
-              className="hidden md:flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700 transition-colors"
-            >
-              View All
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {mockFeaturedProperties.map((property, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
-                <div className="h-48 overflow-hidden grid grid-cols-2">
-                  <img 
-                    src={property.houseImage} 
-                    alt={`${property.name} - House Example`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img 
-                    src={property.lotImage} 
-                    alt={`${property.name} - Lot`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{property.name}</h3>
-                  <p className="text-2xl font-bold text-amber-600 mb-4">{property.price}</p>
-                  <div className="space-y-2 mb-4">
-                    {property.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-slate-600">
-                        <CheckCircle className="w-4 h-4 text-green-600" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Link 
-                    to="/price-guide" 
-                    className="block w-full py-2 text-center bg-amber-600 text-white rounded-lg font-medium hover:bg-amber-700 transition-colors"
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center md:hidden">
-            <Link 
-              to="/price-guide" 
-              className="inline-flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700 transition-colors"
-            >
-              View All Properties
-              <ArrowRight className="w-5 h-5" />
-            </Link>
           </div>
         </div>
       </section>
