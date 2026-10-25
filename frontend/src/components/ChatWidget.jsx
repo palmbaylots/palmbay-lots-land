@@ -180,6 +180,7 @@ const ChatWidget = () => {
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
+                aria-label="Send message"
                 className="p-2 bg-amber-600 hover:bg-amber-700 text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 data-testid="chat-send-btn"
               >
