@@ -165,7 +165,7 @@ const Properties = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-[#1a3a5c] text-white rounded-t-lg px-6 py-5 flex items-center gap-4 justify-center text-center sm:text-left">
-              <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-16 w-16 shrink-0" />
+              <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-16 w-16 shrink-0" loading="lazy" />
               <div>
                 <h2 className="text-2xl font-bold text-amber-400">Owner Financing — Terms &amp; Policies</h2>
                 <p className="text-sm text-gray-200 mt-1">Vahid Rajabian, Broker Associate · M. David Moallem, Inc. · License #BK3454072</p>
@@ -308,7 +308,7 @@ const Properties = () => {
         <div className="max-w-3xl mx-auto">
           {/* Branded header */}
           <div className="bg-[#1a3a5c] text-white rounded-t-lg px-6 py-5 flex items-center gap-4 justify-center text-center sm:text-left">
-            <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-16 w-16 shrink-0" />
+            <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-16 w-16 shrink-0" loading="lazy" />
             <div>
               <h2 className="text-2xl font-bold text-amber-400">2026 Palm Bay Lots — Prices &amp; Policies</h2>
               <p className="text-sm text-gray-200 mt-1">Vahid Rajabian, Broker Associate · M. David Moallem, Inc. · License #BK3454072</p>
@@ -391,7 +391,7 @@ const Properties = () => {
           {/* Contact + logo grouped, disclaimer */}
           <div className="bg-white border-t border-slate-200 shadow-lg rounded-b-lg p-6 sm:p-8">
             <div className="flex items-center justify-center gap-3 flex-col sm:flex-row text-center sm:text-left">
-              <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-24 w-24 shrink-0" />
+              <img src="/images/palm-bay-logo.png" alt="Palm Bay Lot-Land Real Estate — Florida Land Specialist seal logo" className="h-24 w-24 shrink-0" loading="lazy" />
               <div className="leading-relaxed">
                 <p className="font-bold text-slate-900">Contact: Vahid Rajabian, Broker Associate</p>
                 <p className="text-slate-700 text-sm">M. David Moallem, Inc. | License #BK3454072</p>

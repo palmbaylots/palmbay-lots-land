@@ -1118,7 +1118,7 @@ const Inventory = () => {
             <button onClick={() => setShowUnitMap(false)} aria-label="Close" className="absolute top-2 right-2 bg-white/90 hover:bg-white rounded-full p-1 shadow">
               <X className="w-6 h-6 text-slate-700" />
             </button>
-            <img src="/images/palm-bay-unit-map.jpg" alt="City of Palm Bay unit map showing all Port Malabar units" className="w-full h-auto" />
+            <img src="/images/palm-bay-unit-map.jpg" alt="City of Palm Bay unit map showing all Port Malabar units" className="w-full h-auto" loading="lazy" />
             <div className="p-3 text-center border-t border-slate-200">
               <a href="/images/palm-bay-unit-map.jpg" target="_blank" rel="noopener noreferrer" className="text-sm text-amber-700 underline font-semibold">Open full size in a new tab</a>
             </div>
