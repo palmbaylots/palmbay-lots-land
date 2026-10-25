@@ -345,25 +345,35 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             {/* Left - Headline & CTA */}
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                Own Land in Palm Bay, Florida — <span className="text-amber-400">Residential Lots Starting at $41,000</span> with Owner Financing
-              </h1>
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 mb-6">
+                <img
+                  src="/images/palm-bay-logo.png"
+                  alt="Palm Bay Lots & Land logo"
+                  className="h-24 md:h-28 w-auto object-contain flex-shrink-0 drop-shadow-lg"
+                  loading="eager"
+                  decoding="async"
+                />
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                  Own Land in Palm Bay, Florida — <span className="text-amber-400">Residential Lots Starting at $41,000</span> with Owner Financing
+                </h1>
+              </div>
               <p className="text-lg text-gray-200 mb-6">
                 No bank needed. Cash or owner financing — just fill out a simple application and we handle the rest. 500+ lots available across residential, commercial, and industrial. 23 years of local expertise serving individuals, builders, and investors.
               </p>
               <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-6">
-                <Link 
-                  to="/contact" 
-                  className="px-8 py-4 bg-amber-500 text-white rounded-lg text-lg font-bold hover:bg-amber-600 transition-colors shadow-xl"
-                >
-                  Get a Free Land Value Assessment
-                </Link>
                 <Link
                   to="/inventory"
-                  className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:border-amber-400 text-white rounded-lg text-lg font-bold hover:bg-white/20 transition-all"
+                  className="px-8 py-4 bg-amber-500 text-white rounded-lg text-lg font-bold hover:bg-amber-600 transition-colors shadow-xl"
                   data-testid="hero-inventory-link"
                 >
-                  Browse Our Palm Bay Lot Inventory
+                  Browse Our Lots
+                </Link>
+                <Link
+                  to="/sell-land"
+                  className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:border-amber-400 text-white rounded-lg font-bold hover:bg-white/20 transition-all text-center leading-tight"
+                >
+                  <span className="block text-lg">Looking to Sell Your Lot?</span>
+                  <span className="block text-xs font-medium text-gray-300">We'll get the best value for your lot</span>
                 </Link>
               </div>
               <button
