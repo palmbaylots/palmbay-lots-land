@@ -98,7 +98,10 @@ const MlsListingDetail = () => {
     <div className="min-h-screen bg-slate-50">
       <Helmet>
         <title>{listing.address} - Space Coast MLS | Palm Bay Lots &amp; Land</title>
-        <meta name="description" content={`${listing.address} · ${money(listing.price)}`} />
+        <meta name="description" content={`${listing.address} — ${money(listing.price)}. Space Coast MLS listing in Palm Bay, FL. Owner financing available on our own lots — call Vahid Rajabian 321-333-7230.`} />
+        {/* Syndicated IDX/MLS detail = duplicate content across many sites — noindex to protect the domain, follow so links are still crawled. */}
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`https://palmbaylots-land.com/mls-listing/${listingKey}`} />
       </Helmet>
 
       <div className="bg-white border-b">
