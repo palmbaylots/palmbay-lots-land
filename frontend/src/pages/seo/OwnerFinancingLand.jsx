@@ -361,7 +361,7 @@ const OwnerFinancingLand = () => {
 
               <div className="bg-slate-900 border-2 border-amber-500 rounded-xl p-8 mb-8">
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold text-slate-900 mb-4">$25,000 Purchase Price Example</h3>
+                  <h3 className="text-xl font-bold text-white mb-4">$25,000 Purchase Price Example</h3>
 
                   <div className="space-y-4">
                     <div className="flex items-center justify-between bg-transparent p-3 rounded border-b border-amber-600/30">
@@ -411,7 +411,7 @@ const OwnerFinancingLand = () => {
                     </li>
                   </ol>
 
-                  <p className="text-slate-700 font-medium mb-3 mt-6">Two options for the financing charge (approximately $1,652):</p>
+                  <p className="text-slate-100 font-medium mb-3 mt-6">Two options for the financing charge (approximately $1,652):</p>
                   <div className="space-y-3 ml-4">
                     <div className="bg-green-50 p-4 rounded-lg border border-green-300">
                       <p className="font-semibold text-slate-900 mb-2">OPTION 1: Pay the Financing Charge at Closing</p>
@@ -427,7 +427,7 @@ const OwnerFinancingLand = () => {
                 </div>
               </div>
 
-              <div className="bg-slate-900 border-l-4 border-amber-500 p-6 rounded-r-xl mb-8">
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl mb-8">
                 <h3 className="font-bold text-slate-900 mb-4">📋 Financing Charge & APR Information</h3>
                 <div className="space-y-3 text-slate-700">
                   <p>
