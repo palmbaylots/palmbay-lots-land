@@ -273,7 +273,7 @@ const Inventory = () => {
             tag: prop.tags?.[0] || prop.propertyType,
             tagColor: tagColorMap[prop.propertyType] || 'bg-slate-600',
             why: prop.description || '',
-            link: prop.featured ? `/listing/${prop.id}` : null
+            link: prop.featured ? `/property/${prop.id}` : null
           }));
           setFeaturedProperties(dbFeatured);
         } else {

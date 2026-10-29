@@ -310,9 +310,13 @@ async def sitemap_full():
             continue
         pri = "1.0" if path == "/" else "0.9"
         urls.append((SITE + path, None, pri))
+    db_slugs = set()
     async for b in db.blogs.find({}, {"_id": 0, "slug": 1, "date": 1, "publishedAt": 1, "updatedAt": 1}):
+        db_slugs.add(b["slug"])
         pub, mod = blog_dates(b)
         urls.append((f"{SITE}/blog/{b['slug']}", mod or pub, "0.8"))
+    for slug in sorted(FRONTEND_BLOG_SLUGS - db_slugs):
+        urls.append((f"{SITE}/blog/{slug}", None, "0.8"))
     seen = set()
     async for p in db.properties.find({}, {"_id": 0, "title": 1, "streetNumber": 1, "streetName": 1, "updatedAt": 1}):
         s = slugify(p.get("title") or f"{p.get('streetNumber', '')} {p.get('streetName', '')}")
