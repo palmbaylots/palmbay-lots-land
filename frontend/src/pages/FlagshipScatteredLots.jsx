@@ -138,7 +138,7 @@ const FlagshipScatteredLots = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                    <span>No HOA fees — property taxes average $300-500/year</span>
+                    <span>No HOA fees — low property taxes</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />

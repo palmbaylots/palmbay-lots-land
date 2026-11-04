@@ -77,7 +77,7 @@ const BuildableLotsPage = () => {
         "name": "How much does it cost to build a house in Palm Bay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A local builder can build a home in Palm Bay for approximately $125-150 per square foot total cost — this includes all the permits and such. A 2,000 sq ft home would cost roughly $250,000-$300,000 to build, not including the land. Well installation runs $5,000-$10,000 and septic systems cost $8,000-$15,000 if needed."
+          "text": "A local builder can build a home in Palm Bay with all permits included; total cost depends on home size and whether well and septic are needed — contact us for current estimates."
         }
       },
       {
@@ -85,7 +85,7 @@ const BuildableLotsPage = () => {
         "name": "Do I need septic or sewer in Palm Bay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It depends on the lot's location (unit number). Some areas have city sewer connections available — no septic needed. Other areas have city water only, meaning you need to install a septic system ($8,000-$15,000). Some areas require both well and septic. We can tell you the exact utility situation for any lot."
+          "text": "It depends on the lot's location (unit number). Some areas have city sewer connections available — no septic needed. Other areas have city water only, meaning you need to install a septic system. Some areas require both well and septic. We can tell you the exact utility situation for any lot."
         }
       },
       {
@@ -384,7 +384,7 @@ const BuildableLotsPage = () => {
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     Is the land cleared and ready to build?
                   </h3>
-                  <p className="text-slate-600">Most lots are in natural condition with native Florida vegetation. Clearing typically costs $2,000-$5,000 depending on lot size and vegetation density. Some lots may already be partially cleared.</p>
+                  <p className="text-slate-600">Most lots are in natural condition with native Florida vegetation. Clearing costs vary depending on lot size and vegetation density. Some lots may already be partially cleared.</p>
                 </div>
                 
                 <div className="bg-slate-50 p-6 rounded-xl">

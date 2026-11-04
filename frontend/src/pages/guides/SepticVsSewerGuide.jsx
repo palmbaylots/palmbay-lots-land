@@ -12,7 +12,7 @@ const faqSchema = {
       "name": "Do I need septic or sewer for a lot in Palm Bay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It depends on the lot's unit number. Units 5, 7, 8, 9, and 38 have city water and sewer — no septic needed. Units 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, and 50 have city water only — you need septic ($8,000-$15,000). All other units require both well ($5,000-$10,000) and septic."
+        "text": "It depends on the lot's unit number. Units 5, 7, 8, 9, and 38 have city water and sewer — no septic needed. Units 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, and 50 have city water only — you need septic. All other units require both well and septic."
       }
     },
     {
@@ -20,7 +20,7 @@ const faqSchema = {
       "name": "How much does a septic system cost in Palm Bay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A standard septic system in Palm Bay costs $8,000-$15,000 installed, depending on soil conditions and system type. This is a one-time cost. Annual maintenance (pumping every 3-5 years) runs $300-$500. Septic systems are common and reliable in Palm Bay."
+        "text": "A standard septic system in Palm Bay is a one-time installed cost that depends on soil conditions and system type. Annual maintenance means pumping every 3-5 years. Septic systems are common and reliable in Palm Bay."
       }
     },
     {
@@ -28,7 +28,7 @@ const faqSchema = {
       "name": "How much does it cost to drill a well in Palm Bay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Drilling a well in Palm Bay typically costs $5,000-$10,000 depending on depth and water table. A well pump and pressure tank add to the cost. Well water in Palm Bay is generally good quality. Annual costs are minimal — just electricity for the pump."
+        "text": "Drilling a well in Palm Bay costs vary by depth and water table. A well pump and pressure tank add to the cost. Well water in Palm Bay is generally good quality. Annual costs are minimal — just electricity for the pump."
       }
     },
     {
@@ -36,7 +36,7 @@ const faqSchema = {
       "name": "Is city water better than well water in Palm Bay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "City water is treated and tested by the city, so quality is guaranteed. Well water quality varies by location. City water lots cost more upfront (lot price premium) but save you $5,000-$10,000 on well drilling. For resale value, city water lots generally appraise higher."
+        "text": "City water is treated and tested by the city, so quality is guaranteed. Well water quality varies by location. City water lots cost more upfront (lot price premium) but save you the cost of well drilling. For resale value, city water lots generally appraise higher."
       }
     },
     {
@@ -102,7 +102,7 @@ const SepticVsSewerGuide = () => {
                   <p className="text-blue-800 font-medium mb-2">Units 5, 7, 8, 9, 38</p>
                   <p className="text-blue-700 text-sm mb-3">No well or septic needed. Best for building — connect directly to city lines.</p>
                   <div className="bg-blue-100 p-3 rounded-lg">
-                    <p className="text-sm font-bold text-blue-900">Additional cost: ~$0</p>
+                    <p className="text-sm font-bold text-blue-900">Additional cost: none</p>
                     <p className="text-xs text-blue-700">Utility premium built into lot price (+$40,000)</p>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ const SepticVsSewerGuide = () => {
                   <p className="text-cyan-800 font-medium mb-2">Units 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, 50</p>
                   <p className="text-cyan-700 text-sm mb-3">City water available. You install septic system.</p>
                   <div className="bg-cyan-100 p-3 rounded-lg">
-                    <p className="text-sm font-bold text-cyan-900">Additional cost: $8K-$15K</p>
+                    <p className="text-sm font-bold text-cyan-900">Additional cost: varies</p>
                     <p className="text-xs text-cyan-700">Septic system installation</p>
                   </div>
                 </div>
@@ -128,8 +128,8 @@ const SepticVsSewerGuide = () => {
                   <p className="text-amber-800 font-medium mb-2">All other units</p>
                   <p className="text-amber-700 text-sm mb-3">No city utilities. You drill a well and install septic.</p>
                   <div className="bg-amber-100 p-3 rounded-lg">
-                    <p className="text-sm font-bold text-amber-900">Additional cost: $13K-$25K</p>
-                    <p className="text-xs text-amber-700">Well ($5K-$10K) + Septic ($8K-$15K)</p>
+                    <p className="text-sm font-bold text-amber-900">Additional cost: varies</p>
+                    <p className="text-xs text-amber-700">Well + Septic</p>
                   </div>
                 </div>
               </div>
@@ -154,28 +154,28 @@ const SepticVsSewerGuide = () => {
                         <td className="text-right py-2 px-4">$41,000</td>
                       </tr>
                       <tr>
-                        <td className="py-2 pr-4 text-slate-700">Construction (2,000 sqft @ $140)</td>
-                        <td className="text-right py-2 px-4">$280,000</td>
-                        <td className="text-right py-2 px-4">$280,000</td>
-                        <td className="text-right py-2 px-4">$280,000</td>
+                        <td className="py-2 pr-4 text-slate-700">Construction (2,000 sqft)</td>
+                        <td className="text-right py-2 px-4">Varies</td>
+                        <td className="text-right py-2 px-4">Varies</td>
+                        <td className="text-right py-2 px-4">Varies</td>
                       </tr>
                       <tr>
                         <td className="py-2 pr-4 text-slate-700">Well</td>
                         <td className="text-right py-2 px-4">$0</td>
                         <td className="text-right py-2 px-4">$0</td>
-                        <td className="text-right py-2 px-4">$7,500</td>
+                        <td className="text-right py-2 px-4">Varies</td>
                       </tr>
                       <tr>
                         <td className="py-2 pr-4 text-slate-700">Septic</td>
                         <td className="text-right py-2 px-4">$0</td>
-                        <td className="text-right py-2 px-4">$12,000</td>
-                        <td className="text-right py-2 px-4">$12,000</td>
+                        <td className="text-right py-2 px-4">Varies</td>
+                        <td className="text-right py-2 px-4">Varies</td>
                       </tr>
                       <tr className="font-bold border-t-2 border-slate-400">
                         <td className="py-2 pr-4 text-slate-900">Total</td>
-                        <td className="text-right py-2 px-4 text-blue-700">~$361,000</td>
-                        <td className="text-right py-2 px-4 text-cyan-700">~$353,000</td>
-                        <td className="text-right py-2 px-4 text-amber-700">~$340,500</td>
+                        <td className="text-right py-2 px-4 text-blue-700">Varies</td>
+                        <td className="text-right py-2 px-4 text-cyan-700">Varies</td>
+                        <td className="text-right py-2 px-4 text-amber-700">Varies</td>
                       </tr>
                     </tbody>
                   </table>

@@ -341,7 +341,7 @@ export const blogContent = {
       <h2>Three Investment Strategies That Work in Palm Bay</h2>
 
       <h3>Strategy 1: Buy and Build (Spec Home)</h3>
-      <p>Buy a lot, build a spec home, sell for profit. Palm Bay's construction costs are reasonable — around $120–150 per square foot of living space. Finished homes sell quickly to Space Coast workers relocating to the area.</p>
+      <p>Buy a lot, build a spec home, sell for profit. Palm Bay's construction costs are reasonable. Finished homes sell quickly to Space Coast workers relocating to the area.</p>
 
       <h3>Strategy 2: Buy and Hold (Land Banking)</h3>
       <p>Buy lots in areas where infrastructure is expanding — particularly SW Palm Bay — and hold for appreciation. Lots that sold for $15,000 a decade ago now command $40,000–$55,000 in arms-length transactions. The key is knowing which areas are in the path of development. <strong>That's where 20+ years of local market knowledge matters.</strong></p>
@@ -477,8 +477,8 @@ export const blogContent = {
   'building-costs-palm-bay': {
     title: 'Cost to Build a Home in Palm Bay, Florida in 2026 — Full Breakdown',
     metaTitle: 'Cost to Build a Home in Palm Bay Florida 2026 — Full Breakdown',
-    metaDescription: 'Full breakdown of land, permits, construction, utilities, and landscaping costs in Palm Bay. Real example: $363,000 total for a 2,000 sq ft home.',
-    subtitle: 'How much does it cost to build a home in Palm Bay, FL in 2026? Full breakdown of land, permits, construction, utilities, and landscaping costs — with a real $363,000 example.',
+    metaDescription: 'Full breakdown of land, permits, construction, utilities, and landscaping costs in Palm Bay.',
+    subtitle: 'How much does it cost to build a home in Palm Bay, FL in 2026? Full breakdown of land, permits, construction, utilities, and landscaping costs.',
     category: 'Building',
     date: 'April 2026',
     readTime: '9 min read',
@@ -494,8 +494,8 @@ export const blogContent = {
       <p>Building a home in Palm Bay is significantly more affordable than in South Florida. Here's a realistic breakdown of what you should budget in 2026. Keep in mind that these numbers may vary based on the materials used, options you want to include, and current labor costs.</p>
 
       <h2>Construction Cost Per Square Foot</h2>
-      <p>A local builder can build a home in Palm Bay for approximately <strong>$125-150 per square foot</strong> total cost — this includes all the permits and such. This is significantly less than what you'd pay in more expensive Florida markets.</p>
-      <p>For context, retail builders in the area sell finished homes (including land) for around $180-190 per square foot of living space. So building yourself or working with a local builder offers real savings.</p>
+      <p>A local builder can build a home in Palm Bay with all permits included — contact us for a current per-square-foot estimate. This is significantly less than what you'd pay in more expensive Florida markets.</p>
+      <p>For context, retail builders in the area sell finished homes (including land) at a higher per-square-foot cost. So building yourself or working with a local builder offers real savings.</p>
       <p>These costs can vary based on:</p>
       <ul>
         <li><strong>Material choices</strong> — Standard vs. upgraded finishes</li>
@@ -507,26 +507,26 @@ export const blogContent = {
       <h2>Pre-Development Costs</h2>
       <p>Before construction begins, you'll need to prepare the lot:</p>
 
-      <h3>Land Clearing: $2,000-$8,000</h3>
+      <h3>Land Clearing</h3>
       <p>Most Palm Bay lots have native Florida vegetation that needs removal. Cost depends on lot size, vegetation density, and tree removal requirements.</p>
 
-      <h3>Impact Fees: $8,000-$15,000</h3>
-      <p>Brevard County charges impact fees for schools, fire, transportation, and other services. These are non-negotiable and typically run $10,000-$12,000 for a standard single-family home.</p>
+      <h3>Impact Fees</h3>
+      <p>Brevard County charges impact fees for schools, fire, transportation, and other services. These are non-negotiable and vary by project for a standard single-family home.</p>
 
       <h2>Utility Connections</h2>
       <ul>
-        <li><strong>City Water Connection:</strong> $3,000-$5,000</li>
-        <li><strong>City Sewer Connection:</strong> $5,000-$8,000</li>
-        <li><strong>Well Installation:</strong> $3,000-$10,000 (if no city water)</li>
-        <li><strong>Septic System:</strong> $8,000-$15,000 (if no city sewer)</li>
-        <li><strong>Electric Service:</strong> $2,000-$5,000</li>
-        <li><strong>Driveway & Landscaping:</strong> $8,000-$20,000 — Concrete driveway, basic landscaping to meet code, and sod installation.</li>
+        <li><strong>City Water Connection</strong></li>
+        <li><strong>City Sewer Connection</strong></li>
+        <li><strong>Well Installation</strong> (if no city water)</li>
+        <li><strong>Septic System</strong> (if no city sewer)</li>
+        <li><strong>Electric Service</strong></li>
+        <li><strong>Driveway & Landscaping:</strong> Concrete driveway, basic landscaping to meet code, and sod installation.</li>
       </ul>
 
-      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/naop02ni_image.png" alt="A 2,000 sq ft home on a $41,000 lot in Palm Bay can be completed for approximately $363,000 — well below comparable markets" style="width:100%; border-radius: 12px; margin: 24px 0;" />
+      <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/naop02ni_image.png" alt="A 2,000 sq ft home on a $41,000 lot in Palm Bay — well below comparable markets" style="width:100%; border-radius: 12px; margin: 24px 0;" />
 
       <h2>Total Build Cost Example</h2>
-      <p>Let's put it all together for a 2,000 sq ft home on a $41,000 lot with city water, using a local builder at $140/sqft:</p>
+      <p>Let's put it all together for a 2,000 sq ft home on a $41,000 lot with city water, using a local builder:</p>
 
       <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
         <tr style="background: #1e293b; color: white;">
@@ -534,15 +534,15 @@ export const blogContent = {
           <th style="padding: 12px; border: 1px solid #334155; text-align: left;">Cost</th>
         </tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Land</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$41,000</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Land Clearing</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$4,000</td></tr>
-        <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Impact Fees</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$11,000</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Utilities (Water + Septic)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$15,000</td></tr>
-        <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Construction (2,000 sqft @ $140)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$280,000</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Driveway & Landscaping</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$12,000</td></tr>
-        <tr style="background: #fef3c7;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>TOTAL</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>$363,000</strong></td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Land Clearing</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td></tr>
+        <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Impact Fees</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Utilities (Water + Septic)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td></tr>
+        <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Construction (2,000 sqft)</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Driveway & Landscaping</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td></tr>
+        <tr style="background: #fef3c7;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>TOTAL</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Varies</strong></td></tr>
       </table>
 
-      <p>Add 10% contingency for unexpected costs: <strong>Final Budget: ~$400,000</strong></p>
+      <p>Add a contingency for unexpected costs.</p>
       <p><em>Note: These are estimates. Actual costs vary based on materials, labor, and options selected. Get multiple quotes from local builders for accurate pricing.</em></p>
 
       <h2>Timeline: How Long Does Building Take?</h2>
@@ -576,7 +576,7 @@ export const blogContent = {
     faqs: [
       { q: 'Can I act as my own general contractor?', a: 'Florida allows owner-builders, but it requires pulling permits, managing subs, and handling inspections. Most people hire a licensed GC.' },
       { q: 'Do I need construction financing?', a: 'For the home build, yes. Construction loans are different from mortgages. Your land (if owned outright) can serve as equity toward the construction loan.' },
-      { q: 'How much do property taxes cost in Palm Bay?', a: 'On a finished home worth $400,000, expect roughly $6,000-$8,000/year in property taxes. Florida homestead exemption reduces this for primary residences.' }
+      { q: 'How much do property taxes cost in Palm Bay?', a: 'Property taxes in Palm Bay are low, and the Florida homestead exemption reduces them further for primary residences.' }
     ]
   },
 
@@ -1184,10 +1184,10 @@ export const blogContent = {
       <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
         <tr style="background: #1e293b; color: white;"><th style="padding: 12px; border: 1px solid #e2e8f0; text-align: left;">Item</th><th style="padding: 12px; border: 1px solid #e2e8f0; text-align: left;">City Water/Sewer</th><th style="padding: 12px; border: 1px solid #e2e8f0; text-align: left;">Well/Septic</th></tr>
         <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Lot Price Premium</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">+$15,000–$25,000</td><td style="padding: 10px; border: 1px solid #e2e8f0;">Base price</td></tr>
-        <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Connection/Installation</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$8,000–$13,000</td><td style="padding: 10px; border: 1px solid #e2e8f0;">$13,000–$25,000</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Monthly Cost</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$80–$150/month</td><td style="padding: 10px; border: 1px solid #e2e8f0;">~$20–$50/month (electric for pump only)</td></tr>
+        <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Connection/Installation</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Monthly Cost</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies</td><td style="padding: 10px; border: 1px solid #e2e8f0;">Varies (electric for pump only)</td></tr>
         <tr style="background: #f1f5f9;"><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Routine Maintenance</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">$0 (city maintains)</td><td style="padding: 10px; border: 1px solid #e2e8f0;">Minimal — follow basic usage guidelines</td></tr>
-        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Pumping</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">N/A</td><td style="padding: 10px; border: 1px solid #e2e8f0;">Every 3–7 years as needed: $250–$400</td></tr>
+        <tr><td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Pumping</strong></td><td style="padding: 10px; border: 1px solid #e2e8f0;">N/A</td><td style="padding: 10px; border: 1px solid #e2e8f0;">Every 3–7 years as needed</td></tr>
       </table>
 
       <img src="https://customer-assets.emergentagent.com/job_a74cb13c-f46b-4ec9-916c-be1fdcdeedb8/artifacts/agq1cmuj_image.png" alt="Well pump installation and septic system diagram — a properly maintained septic system can last 25-40 years" style="width:100%; border-radius: 12px; margin: 24px 0;" />
@@ -1201,7 +1201,7 @@ export const blogContent = {
         <li>Spread laundry loads throughout the week rather than all at once</li>
       </ul>
       <p>That's essentially it. Most Palm Bay homeowners on septic go years — sometimes decades — without a single issue.</p>
-      <p><strong>Pumping</strong> is needed every 3–7 years depending on household size and usage, not annually. Cost is typically $250–$400 per pumping. It's a minor, infrequent expense.</p>
+      <p><strong>Pumping</strong> is needed every 3–7 years depending on household size and usage, not annually. It's a minor, infrequent expense.</p>
       <p><strong>Lifespan</strong> — A properly installed and properly used septic system routinely lasts 25–40 years or more. Major repairs are uncommon when the system is used correctly. The "scary" repair costs you might read about elsewhere are typically the result of abuse or neglect, not normal use.</p>
 
       <h2>Advantages of City Water & Sewer</h2>
@@ -1216,7 +1216,7 @@ export const blogContent = {
       <h2>Advantages of Well & Septic</h2>
       <ul>
         <li><strong>Lower lot cost</strong> — Save $15,000–$25,000 on purchase price</li>
-        <li><strong>No monthly water or sewer bill</strong> — Your only ongoing cost is electricity for the pump, typically $20–$50/month</li>
+        <li><strong>No monthly water or sewer bill</strong> — Your only ongoing cost is electricity for the pump</li>
         <li><strong>Water independence</strong> — Not affected by city water restrictions, rate increases, or outages</li>
         <li><strong>No rate increases</strong> — City utility rates rise regularly; your well cost stays flat</li>
         <li><strong>Florida aquifer quality</strong> — The Florida aquifer provides generally excellent natural water. Many well owners prefer the taste over treated municipal water</li>
@@ -1254,7 +1254,7 @@ export const blogContent = {
     `,
     faqs: [
       { q: 'Can I connect to city water later if I start with a well?', a: 'Yes, if city water lines extend to your property in the future, you can connect. You\'ll pay the full connection fee plus the cost to modify your plumbing. It\'s usually cheaper to connect during initial construction if city water is available.' },
-      { q: 'How often does a septic tank actually need pumping?', a: 'Every 3–7 years for a typical family, depending on household size and usage habits. Cost is $250–$400 per pumping. Some systems go longer with proper maintenance.' },
+      { q: 'How often does a septic tank actually need pumping?', a: 'Every 3–7 years for a typical family, depending on household size and usage habits. Some systems go longer with proper maintenance.' },
       { q: 'Is Palm Bay well water safe to drink?', a: 'Generally yes. The Florida aquifer provides good quality water throughout Brevard County. Some homeowners add a filtration or softener system to address hardness (mineral content) common in Florida groundwater — this is a personal preference, not a health requirement.' },
       { q: 'Are well and septic lots harder to get permits for?', a: 'The permitting process requires a septic system approval from the county health department, which adds a step. Your builder handles this as part of the construction process. It\'s routine in Palm Bay.' }
     ]
