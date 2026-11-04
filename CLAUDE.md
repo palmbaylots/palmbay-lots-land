@@ -98,7 +98,32 @@ or letter-block/commercial pricing we don't have data for.
 
 ---
 
-## 5. How to work in this repo
+## 5. Autonomy rules — NEVER ask Vahid to do what Claude can do
+
+**Claude must exhaust every available option before asking Vahid to do anything manually.**
+
+Before saying "I can't" or "you'll need to":
+1. Check Google Drive master file (`VAHID_MASTER_FILE_Sept2026`) for credentials, context, or answers
+2. Try WebSearch for current information
+3. Try Composio connectors (search with COMPOSIO_SEARCH_TOOLS — there are 500+ apps available)
+4. Try Playwright headless browser
+5. Try the YouTube API key or other API keys from Google Drive
+6. Try WebFetch
+7. Try any other available tool
+
+Only after all options fail: tell Vahid what was tried and why it failed. Never say "go look in your master file" — Claude looks in the master file. Never say "paste the transcript here" — Claude finds a tool to get it. The user pays Claude to solve problems, not to be handed work back.
+
+**Response style:**
+- SHORT. Only write more when complexity genuinely requires it.
+- No filler: no "great question", no compliments, no reassurance.
+- State the answer, then stop.
+- Confidence rating when relevant: [Certain] [Likely] [Guessing]
+- Free tools / free tiers first. Only suggest paid when free genuinely can't do the job.
+- Vahid is on Windows (not Mac). Give Windows instructions.
+
+---
+
+## 6. How to work in this repo
 
 - **ALWAYS work from the latest code — check before you change.** This repo is deployed
   by Emergent from `main`, and other chats/sessions (e.g. the CEO marketing chat) push
