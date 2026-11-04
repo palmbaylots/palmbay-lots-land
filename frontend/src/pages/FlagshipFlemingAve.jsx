@@ -120,7 +120,7 @@ const FlagshipFlemingAve = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-slate-900">No HOA Fees</p>
-                      <p className="text-sm text-slate-600">Property taxes ~$300-500/year</p>
+                      <p className="text-sm text-slate-600">Low property taxes</p>
                     </div>
                   </div>
                 </div>
@@ -140,19 +140,19 @@ const FlagshipFlemingAve = () => {
                       <p className="font-bold text-slate-900">$65,000</p>
                     </div>
                     <div>
-                      <p className="text-slate-600">2,000 sqft Home @ $140/sqft</p>
-                      <p className="font-bold text-slate-900">$280,000</p>
+                      <p className="text-slate-600">2,000 sqft Home</p>
+                      <p className="font-bold text-slate-900">Varies</p>
                     </div>
                     <div>
                       <p className="text-slate-600">Septic (city water, no sewer)</p>
-                      <p className="font-bold text-slate-900">~$12,000</p>
+                      <p className="font-bold text-slate-900">Varies</p>
                     </div>
                     <div>
                       <p className="text-slate-600 font-bold">Estimated Total</p>
-                      <p className="font-bold text-amber-600 text-lg">~$357,000</p>
+                      <p className="font-bold text-amber-600 text-lg">Varies</p>
                     </div>
                   </div>
-                  <p className="text-xs text-slate-500 mt-3">Retail builders sell comparable finished homes at $180-190/sqft. Building yourself saves real money.</p>
+                  <p className="text-xs text-slate-500 mt-3">Retail builders sell comparable finished homes for more. Building yourself saves real money.</p>
                 </div>
               </div>
 

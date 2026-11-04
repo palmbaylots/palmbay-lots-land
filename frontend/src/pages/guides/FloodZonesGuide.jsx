@@ -126,14 +126,14 @@ const FloodZonesGuide = () => {
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">If Your Lot Is Zone X</h3>
                   <p className="text-slate-700">
-                    You're in the clear. No flood insurance needed (though you can buy it cheaply as optional protection). Build at standard construction costs — $125-150/sqft with a local builder. No elevation requirements. The majority of our inventory falls in Zone X — <Link to="/inventory" className="text-amber-600 font-semibold hover:underline" data-testid="floodzone-inventory-link">browse our Palm Bay lot inventory</Link> to see what's available.
+                    You're in the clear. No flood insurance needed (though you can buy it cheaply as optional protection). Build at standard construction costs with a local builder. No elevation requirements. The majority of our inventory falls in Zone X — <Link to="/inventory" className="text-amber-600 font-semibold hover:underline" data-testid="floodzone-inventory-link">browse our Palm Bay lot inventory</Link> to see what's available.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">If Your Lot Is Zone AE</h3>
                   <p className="text-slate-700">
-                    You can still build, but the home must be above the Base Flood Elevation (BFE). This means elevated foundations — typically adding $10,000-$25,000 to construction costs. If you're financing the build with a bank, flood insurance is required. For owner-financed vacant land, flood insurance isn't required.
+                    You can still build, but the home must be above the Base Flood Elevation (BFE). This means elevated foundations — which adds to construction costs. If you're financing the build with a bank, flood insurance is required. For owner-financed vacant land, flood insurance isn't required.
                   </p>
                 </div>
 

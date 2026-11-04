@@ -12,7 +12,7 @@ const faqSchema = {
       "name": "Can you build on vacant land in Palm Bay, Florida?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Most vacant lots in Palm Bay are zoned RS-2 (Residential Single Family) and are buildable. Before you build, you need to verify zoning, utility access (city water/sewer vs well/septic), and pull permits through the City of Palm Bay. A local builder can build a home for $125-150 per square foot total cost including all permits."
+        "text": "Yes. Most vacant lots in Palm Bay are zoned RS-2 (Residential Single Family) and are buildable. Before you build, you need to verify zoning, utility access (city water/sewer vs well/septic), and pull permits through the City of Palm Bay. A local builder can build a home with all permits included."
       }
     },
     {
@@ -20,7 +20,7 @@ const faqSchema = {
       "name": "What permits do I need to build on land in Palm Bay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You need a building permit from the City of Palm Bay. This includes site plan approval, foundation inspection, framing inspection, and final inspection. If you need a septic system, you also need a permit from Brevard County Health Department. The total permit and impact fee cost varies but is included in the $125-150/sqft building cost when using a local builder."
+        "text": "You need a building permit from the City of Palm Bay. This includes site plan approval, foundation inspection, framing inspection, and final inspection. If you need a septic system, you also need a permit from Brevard County Health Department. The total permit and impact fee cost varies but is included in the building cost when using a local builder."
       }
     },
     {
@@ -28,7 +28,7 @@ const faqSchema = {
       "name": "How much does it cost to build a house on land in Palm Bay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A local builder can build a home in Palm Bay for approximately $125-150 per square foot total cost — this includes all permits. A 2,000 sq ft home costs roughly $250,000-$300,000 to build, not including the land. Additional costs may include well installation ($5,000-$10,000) and septic system ($8,000-$15,000) depending on utility availability."
+        "text": "A local builder can build a home in Palm Bay with all permits included. Additional costs may include well installation and a septic system depending on utility availability."
       }
     },
     {
@@ -36,7 +36,7 @@ const faqSchema = {
       "name": "Do I need city water or can I use a well in Palm Bay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It depends on the lot location. Some areas (Units 5, 7, 8, 9, 38) have city water and sewer — no well or septic needed. Other areas have city water only — you install septic. Many areas require both well and septic. Lots with city water cost more but save you the expense of drilling a well ($5,000-$10,000)."
+        "text": "It depends on the lot location. Some areas (Units 5, 7, 8, 9, 38) have city water and sewer — no well or septic needed. Other areas have city water only — you install septic. Many areas require both well and septic. Lots with city water cost more but save you the expense of drilling a well."
       }
     },
     {
@@ -87,7 +87,7 @@ const BuildOnLandGuide = () => {
               <div className="bg-green-50 border-l-4 border-green-600 p-6 rounded-r-lg mb-8">
                 <h2 className="text-xl font-bold text-green-900 mb-2">The Short Answer</h2>
                 <p className="text-green-800">
-                  Most vacant lots in Palm Bay are buildable. They're zoned RS-2 (Residential Single Family). A local builder can build a home for <strong>$125-150 per square foot</strong> total cost, including all permits. The main variable is utility access — city water/sewer vs. well/septic.
+                  Most vacant lots in Palm Bay are buildable. They're zoned RS-2 (Residential Single Family). A local builder can build a home with all permits included. The main variable is utility access — city water/sewer vs. well/septic.
                 </p>
               </div>
 
@@ -124,12 +124,12 @@ const BuildOnLandGuide = () => {
                     <div className="bg-cyan-50 p-4 rounded-lg">
                       <p className="font-bold text-cyan-900 mb-1">City Water Only</p>
                       <p className="text-cyan-800 text-sm">Units 10, 11, 12, 16, 21, 28, 31, 42, 44, 46, 48, 50</p>
-                      <p className="text-cyan-700 text-sm mt-1">Need septic system ($8K-$15K).</p>
+                      <p className="text-cyan-700 text-sm mt-1">Need septic system.</p>
                     </div>
                     <div className="bg-amber-50 p-4 rounded-lg">
                       <p className="font-bold text-amber-900 mb-1">Well & Septic</p>
                       <p className="text-amber-800 text-sm">All other units</p>
-                      <p className="text-amber-700 text-sm mt-1">Need well ($5K-$10K) + septic ($8K-$15K). Most affordable lots.</p>
+                      <p className="text-amber-700 text-sm mt-1">Need well + septic. Most affordable lots.</p>
                     </div>
                   </div>
                 </div>
@@ -143,17 +143,17 @@ const BuildOnLandGuide = () => {
                     <div className="grid grid-cols-2 gap-4 mb-4">
                       <div>
                         <p className="text-sm text-slate-600">Construction Cost</p>
-                        <p className="text-xl font-bold text-slate-900">$125-150/sqft</p>
+                        <p className="text-xl font-bold text-slate-900">Varies</p>
                         <p className="text-xs text-slate-500">Includes all permits</p>
                       </div>
                       <div>
                         <p className="text-sm text-slate-600">2,000 sqft Home</p>
-                        <p className="text-xl font-bold text-slate-900">$250K-$300K</p>
+                        <p className="text-xl font-bold text-slate-900">Varies</p>
                         <p className="text-xs text-slate-500">Not including land</p>
                       </div>
                     </div>
                     <p className="text-sm text-slate-600">
-                      For context, retail builders sell finished homes (land included) at $180-190/sqft. Building yourself or with a local builder offers real savings.
+                      For context, retail builders sell finished homes (land included) for more. Building yourself or with a local builder offers real savings.
                     </p>
                   </div>
                 </div>

@@ -15,9 +15,9 @@ const WATER_SEWER_UNITS = ['5', '7', '8', '9', '38'];
 const WATER_ONLY_UNITS = ['10', '11', '12', '16', '21', '28', '31', '42', '44', '46', '48', '50'];
 
 const getUtilityInfo = (unit) => {
-  if (WATER_SEWER_UNITS.includes(unit)) return { type: 'city water and city sewer', label: 'City Water & Sewer', cost: 'No well or septic needed', color: 'blue', extra: '$0 for water/sewer' };
-  if (WATER_ONLY_UNITS.includes(unit)) return { type: 'city water (septic system required)', label: 'City Water Only', cost: 'Septic ~$8,000-$15,000', color: 'cyan', extra: '$8K-$15K for septic' };
-  return { type: 'well and septic', label: 'Well & Septic', cost: 'Well ~$5K-$10K + Septic ~$8K-$15K', color: 'amber', extra: '$13K-$25K for well & septic' };
+  if (WATER_SEWER_UNITS.includes(unit)) return { type: 'city water and city sewer', label: 'City Water & Sewer', cost: 'No well or septic needed', color: 'blue', extra: 'No well or septic needed' };
+  if (WATER_ONLY_UNITS.includes(unit)) return { type: 'city water (septic system required)', label: 'City Water Only', cost: 'Septic system required', color: 'cyan', extra: 'Septic required' };
+  return { type: 'well and septic', label: 'Well & Septic', cost: 'Well & septic required', color: 'amber', extra: 'Well & septic required' };
 };
 
 const getQuadrant = (address) => {
@@ -72,12 +72,12 @@ const getUseCases = (property, utility, acresNum, sqft, isCashSpecial) => {
   if (utility.color === 'blue') {
     cases.push({ title: 'Build Your Home', desc: 'City water and sewer means the lowest development costs. No well or septic to install — just connect to municipal lines and build.' });
   } else if (utility.color === 'cyan') {
-    cases.push({ title: 'Build Your Home', desc: 'City water is available — just install septic. Saves $5K-$10K compared to lots needing both well and septic.' });
+    cases.push({ title: 'Build Your Home', desc: 'City water is available — just install septic. Saves on cost compared to lots needing both well and septic.' });
   } else {
-    cases.push({ title: 'Build Affordably', desc: 'Most affordable lots in Palm Bay. Well and septic installation adds $13K-$25K but lot prices are significantly lower.' });
+    cases.push({ title: 'Build Affordably', desc: 'Most affordable lots in Palm Bay. Well and septic installation adds some upfront cost but lot prices are significantly lower.' });
   }
 
-  cases.push({ title: 'Invest & Hold', desc: `No HOA. Taxes ~$300-500/year. Palm Bay land has been appreciating as the Space Coast grows. Low holding cost while values increase.` });
+  cases.push({ title: 'Invest & Hold', desc: `No HOA. Low property taxes. Palm Bay land has been appreciating as the Space Coast grows. Low holding cost while values increase.` });
 
   // Cash-special lots are sold for cash only — no owner financing, so omit the finance-and-resell angle.
   if (!isCashSpecial) {
@@ -85,7 +85,7 @@ const getUseCases = (property, utility, acresNum, sqft, isCashSpecial) => {
   }
 
   if (acresNum >= 0.3) {
-    cases.push({ title: 'Spec Home Build', desc: `At ${sqft.toLocaleString()} sq ft, this lot fits a generous floor plan. Build a spec home at $125-150/sqft and sell in a growing market.` });
+    cases.push({ title: 'Spec Home Build', desc: `At ${sqft.toLocaleString()} sq ft, this lot fits a generous floor plan. Build a spec home and sell in a growing market.` });
   }
   
   return cases;
@@ -97,13 +97,13 @@ const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area, 
   
   faqs.push({
     q: `Can I build a house at ${property.title}?`,
-    a: `Yes. This ${acresNum.toFixed(2)}-acre lot (${sqft.toLocaleString()} sq ft) is a verified buildable residential parcel in ${property.city}. It can accommodate a typical 1,500-2,500 sq ft single-family home with garage and yard. A local builder charges $125-150/sqft total cost including all permits.`
+    a: `Yes. This ${acresNum.toFixed(2)}-acre lot (${sqft.toLocaleString()} sq ft) is a verified buildable residential parcel in ${property.city}. It can accommodate a typical 1,500-2,500 sq ft single-family home with garage and yard. A local builder can build it with all permits included.`
   });
   
   if (property.unit) {
     faqs.push({
       q: `What utilities are available at this lot in Unit ${property.unit}?`,
-      a: `This lot has ${utility.type}. ${utility.cost}. ${utility.color === 'blue' ? 'Connect directly to city water and sewer lines — no well or septic needed.' : utility.color === 'cyan' ? 'City water is available. You will need to install a septic system ($8,000-$15,000).' : 'You will need to install both a well ($5,000-$10,000) and septic system ($8,000-$15,000).'}`
+      a: `This lot has ${utility.type}. ${utility.cost}. ${utility.color === 'blue' ? 'Connect directly to city water and sewer lines — no well or septic needed.' : utility.color === 'cyan' ? 'City water is available. You will need to install a septic system.' : 'You will need to install both a well and septic system.'}`
     });
   }
   
@@ -121,7 +121,7 @@ const generatePropertyFaq = (property, utility, acresNum, sqft, quadrant, area, 
   
   faqs.push({
     q: `Are there HOA fees on this Palm Bay lot?`,
-    a: `No. There are no HOA fees. Property taxes average $300-500 per year for residential lots in Palm Bay. Florida has no state income tax.`
+    a: `No. There are no HOA fees. Property taxes are low for residential lots in Palm Bay. Florida has no state income tax.`
   });
   
   if (quadrant) {

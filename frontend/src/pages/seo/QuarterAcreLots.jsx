@@ -95,7 +95,7 @@ const QuarterAcreLots = () => {
         "name": "Are there property taxes or HOA fees on vacant land in Palm Bay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Property taxes on most residential lots in Palm Bay average $300-500 per year. There are no HOA fees on our lots. Florida has no state income tax, making holding costs very low for land investors."
+          "text": "Property taxes on most residential lots in Palm Bay are low. There are no HOA fees on our lots. Florida has no state income tax, making holding costs very low for land investors."
         }
       },
       {

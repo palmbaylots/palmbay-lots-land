@@ -109,7 +109,7 @@ const PalmBayLandForSale = () => {
         "name": "Is there an HOA on Palm Bay lots?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Our lots do not have HOA fees. Property taxes average $300-500 per year for most residential lots, making holding costs very low."
+          "text": "No. Our lots do not have HOA fees. Property taxes are low for most residential lots, making holding costs very low."
         }
       }
     ]
