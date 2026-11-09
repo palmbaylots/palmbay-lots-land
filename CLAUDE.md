@@ -21,10 +21,13 @@ Keep it accurate — when a fact below changes, update it here.
   both correct and intentional.
 - **Crexi broker page:** https://www.crexi.com/properties?searchBrokerId=fca17317-df0a-4445-9f8e-f6e05efc6cb8
 
-**What we do:** Sell residential (and some commercial/multifamily) vacant land lots in
-Palm Bay, FL, with **owner financing**. ~582+ lots in inventory. We also help people
-**sell** their Palm Bay land. Our edge: owner financing with personal approval, a lot
-protection/exchange guarantee, and deep local knowledge.
+**What we do:** Our core business is selling residential (and some commercial/multifamily)
+vacant land lots in Palm Bay, FL, with **owner financing** — ~582+ lots in inventory — and we
+also help people **sell** their Palm Bay land. Beyond land, Vahid is a full-service Palm Bay
+agent who **also handles new build homes** (working with builders and buyers) **and existing
+home sales**. So the business = lots, land, new construction, and existing homes (do NOT
+describe it as "land only"). Our edge on land specifically: owner financing with personal
+approval, a lot protection/exchange guarantee, and deep local knowledge.
 
 The website's AI chat assistant persona is named **"Derrick"** (see
 `backend/routes/chat.py` — that system prompt is the authoritative product/pricing spec).
@@ -57,8 +60,12 @@ The site-wide "starting at" figure is **$41,000** (least-expensive office-invent
 - Personal approval (we look at the person, not just a credit score), same-day in most cases
 - No prepayment penalty, no balloon, 10-day grace period
 
-**Lot protection guarantee:** if a lot has an issue, buyer can exchange for another lot
-of the same price category and size at no extra cost (except deed transfer fee).
+**Lot protection guarantee:** if a lot has an issue, buyer can exchange it **within the same
+year they purchased it** for another lot of the same price category and size (no recording fee
+during the option contract; fees apply after the deed transfers), unless otherwise noted in the
+contract. Choosing a larger/different category means paying the difference, with the original
+lot price credited. (This is the "same-year" window — the live site already states it; do not
+change it to "any time.")
 
 **Palm Bay quadrants:** SW = most upside (St. Johns Heritage Pkwy corridor, national
 builders), $35–65k. NW = established, near Melbourne/Viera, $40–70k. NE = most developed,
