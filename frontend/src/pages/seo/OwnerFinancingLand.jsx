@@ -78,7 +78,7 @@ const OwnerFinancingLand = () => {
         "name": "What is the minimum down payment for owner financed land?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The down payment depends on whether you choose an option contract or take the deed at closing. Full terms, including the APR, are on our price guide, or call for terms. No bank qualification required."
+          "text": "Our minimum down payment is 30% of the purchase price with an option contract, or 40% to receive the deed at closing. Interest is 10% fixed (12.33% APR if the 10% finance charge is financed, 12.58% if it is paid at closing), for up to 10 years. Full terms are on our price guide, or call 321-333-7230. No bank qualification required."
         }
       },
       {
@@ -135,12 +135,12 @@ const OwnerFinancingLand = () => {
   return (
     <>
       <Helmet>
-        <title>Owner Financing Land in Florida | No Bank | Palm Bay Lots</title>
+        <title>Owner Financing Land in Palm Bay, FL | No Bank | Palm Bay Lots</title>
         <meta name="description" content="Buy land in Palm Bay, FL with owner financing. No bank qualification, and the deed transfers before payoff. Owner financing available, call for terms." />
         <meta name="keywords" content="owner financing land Florida, land contract Florida, seller financing vacant land, no bank land purchase, Palm Bay owner financing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://palmbaylots-land.com/owner-financing-land-florida" />
-        <meta property="og:title" content="Owner Financing Land Florida | No Bank Needed" />
+        <meta property="og:title" content="Owner Financing Land in Palm Bay, FL | No Bank | Palm Bay Lots" />
         <meta property="og:description" content="Buy Florida land with owner financing. No bank needed. Owner financing available, call for terms. 500+ lots available." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://palmbaylots-land.com/owner-financing-land-florida" />
@@ -157,10 +157,10 @@ const OwnerFinancingLand = () => {
                 NO BANK QUALIFICATION NEEDED
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Owner Financing Land in <span className="text-amber-400">Florida</span>
+                Owner Financing Land in <span className="text-amber-400">Palm Bay, Florida</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Skip the banks and buy your dream lot directly from us. We offer <strong>owner financing on Florida land</strong> with low down payments, affordable monthly terms, and a simple closing process. Over 500 <strong>buildable lots in Palm Bay</strong> qualify for our flexible financing program.
+                Buy a lot in Palm Bay (Brevard County) with owner financing — no bank. Our terms: <strong>30% down</strong> (option contract) or <strong>40% down</strong> (deed at closing), <strong>10% fixed interest (12.33%–12.58% APR*)</strong>, up to 10 years, and a simple closing process. Over 500 <strong>buildable lots in Palm Bay</strong> qualify for our flexible financing program.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 

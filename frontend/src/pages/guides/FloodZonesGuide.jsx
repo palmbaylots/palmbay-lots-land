@@ -54,11 +54,11 @@ const FloodZonesGuide = () => {
   return (
     <>
       <Helmet>
-        <meta property="og:title" content="Palm Bay Flood Zones Explained | Palm Bay Lots & Land" />
-        <meta property="og:description" content="Find out which flood zone your Palm Bay lot is in before you buy. We explain FEMA flood zones, what they mean, and how they affect building in Palm Bay, FL." />
+        <meta property="og:title" content="Palm Bay Flood Zone Map 2026 | Check Any Lot (X, AE, A) | Palm Bay Lots" />
+        <meta property="og:description" content="Is Palm Bay a flood zone? Most Palm Bay lots are FEMA zone X (low risk). See how to check any lot on the FEMA and City of Palm Bay flood zone maps in 3 steps." />
         <meta property="og:url" content="https://palmbaylots-land.com/guide/flood-zones-palm-bay" />
-        <title>Palm Bay Flood Zones Explained | Palm Bay Lots & Land</title>
-        <meta name="description" content="Find out which flood zone your Palm Bay lot is in before you buy. We explain FEMA flood zones, what they mean, and how they affect building in Palm Bay, FL." />
+        <title>Palm Bay Flood Zone Map 2026 | Check Any Lot (X, AE, A) | Palm Bay Lots</title>
+        <meta name="description" content="Is Palm Bay a flood zone? Most Palm Bay lots are FEMA zone X (low risk). See how to check any lot on the FEMA and City of Palm Bay flood zone maps in 3 steps." />
         <meta name="keywords" content="flood zone Palm Bay FL, FEMA flood map Palm Bay, flood insurance Palm Bay, Zone X Palm Bay, building in flood zone Florida" />
         <link rel="canonical" href="https://palmbaylots-land.com/guide/flood-zones-palm-bay" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -69,10 +69,10 @@ const FloodZonesGuide = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                Flood Zones in <span className="text-amber-400">Palm Bay</span> Explained
+                Palm Bay <span className="text-amber-400">Flood Zone Map</span>: Check Your Lot
               </h1>
               <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-                Most lots in Palm Bay are NOT in a high-risk flood zone. Here's what you need to know about FEMA zones, insurance, and building requirements.
+                Is Palm Bay a flood zone? Most Palm Bay lots are FEMA zone X (low risk). Some lots near creeks, canals and wetlands are zone AE or A (high risk). Always check your exact lot — here's how, plus what each zone means for insurance and building.
               </p>
             </div>
           </div>
@@ -148,12 +148,13 @@ const FloodZonesGuide = () => {
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">How to Check Flood Zone</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Palm Bay Flood Zone Map: Check Your Lot in 3 Steps</h2>
               <div className="bg-slate-50 p-6 rounded-xl mb-8">
                 <ol className="space-y-3 text-slate-700">
                   <li><strong>1. Ask us</strong> — We look up flood zone for any lot before you buy. Free, no obligation.</li>
-                  <li><strong>2. FEMA Flood Map Service</strong> — Visit <span className="text-slate-500">msc.fema.gov</span> and search by address.</li>
-                  <li><strong>3. Brevard County GIS</strong> — The county GIS portal shows flood zone overlays on property maps.</li>
+                  <li><strong>2. FEMA Flood Map Service</strong> — Open the <a href="https://msc.fema.gov/portal/search" target="_blank" rel="noopener noreferrer" className="text-amber-700 underline">FEMA Flood Map Service Center</a> and search the lot address.</li>
+                  <li><strong>3. City of Palm Bay / Brevard County GIS</strong> — The <a href="https://gis.palmbayflorida.org" target="_blank" rel="noopener noreferrer" className="text-amber-700 underline">City of Palm Bay GIS map</a> and the Brevard County GIS portal show flood zone layers on property maps.</li>
+                  <li><strong>Looking for a low-risk lot?</strong> See <a href="/inventory" className="text-amber-700 underline">Palm Bay lots for sale</a> — ask us for the flood zone of any lot.</li>
                 </ol>
               </div>
             </div>

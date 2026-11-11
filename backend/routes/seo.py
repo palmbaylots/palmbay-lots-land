@@ -82,9 +82,9 @@ STATIC_PAGES = {
     "/palm-bay-land-for-sale": ("Land for Sale in Palm Bay, FL | 500+ Lots | Owner Financing",
                                 f"Browse 500+ lots for sale in Palm Bay, Florida. Residential, commercial, and buildable land. Prices starting at $41,000. {FIN}",
                                 "Land for Sale in Palm Bay, FL"),
-    "/owner-financing-land-florida": ("Owner Financing Land Florida | No Bank Qualification | Palm Bay Lots",
+    "/owner-financing-land-florida": ("Owner Financing Land in Palm Bay, FL | No Bank | Palm Bay Lots",
                                       f"Buy land in Palm Bay, Florida with owner financing. No bank qualification, personal approval, deed transfer before payoff. {FIN}",
-                                      "Owner Financing Land in Florida"),
+                                      "Owner Financing Land in Palm Bay, Florida"),
     "/quarter-acre-lots-palm-bay": ("Quarter Acre Lots Palm Bay FL | 1/4 Acre Land for Sale | Owner Financing",
                                     f"Buy 1/4 acre lots in Palm Bay, Florida. 10,000+ sq ft residential lots for single family homes. Starting at $41,000. {FIN}",
                                     "Quarter Acre Lots in Palm Bay"),
@@ -103,9 +103,9 @@ STATIC_PAGES = {
     "/guide/buy-land-without-realtor": ("How to Buy Land Without a Realtor in Florida | Step-by-Step Guide",
                                         "How to buy land in Florida without a realtor: verify zoning, check utilities, avoid scams, and close directly with the seller.",
                                         "How to Buy Land Without a Realtor"),
-    "/guide/flood-zones-palm-bay": ("Palm Bay Flood Zones Explained | Palm Bay Lots & Land",
-                                    "Find out which flood zone your Palm Bay lot is in before you buy. FEMA flood zones explained and how they affect building in Palm Bay, FL.",
-                                    "Palm Bay Flood Zones Explained"),
+    "/guide/flood-zones-palm-bay": ("Palm Bay Flood Zone Map 2026 | Check Any Lot (X, AE, A) | Palm Bay Lots",
+                                    "Is Palm Bay a flood zone? Most Palm Bay lots are FEMA zone X (low risk). See how to check any lot on the FEMA and City of Palm Bay flood zone maps in 3 steps.",
+                                    "Palm Bay Flood Zone Map: Check Your Lot"),
 }
 NOINDEX = {"/privacy-policy"}
 REDIRECTS = {"/privacy": "/privacy-policy"}
