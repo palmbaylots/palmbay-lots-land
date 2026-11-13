@@ -1,155 +1,190 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, CheckCircle, Ruler, ArrowRight, HelpCircle, TrendingUp, DollarSign, Sun, Building } from 'lucide-react';
+import { Phone, ArrowRight, HelpCircle, MapPin, Droplets, Waves, Landmark, Hammer } from 'lucide-react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
+import LotImage from '../../components/LotImage';
+import { lotDetailSlug } from '../../components/LotCard';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
+
+const PAGE_URL = 'https://palmbaylots-land.com/palm-bay-land-for-sale';
+const PAGE_TITLE = 'Land for Sale in Palm Bay, FL | 500+ Lots | Owner Financing';
+// Keep in sync with backend/routes/seo.py STATIC_PAGES["/palm-bay-land-for-sale"].
+// COMPLIANCE: no finance trigger terms here (no %, rate, payment or term).
+const PAGE_DESCRIPTION = 'See 500+ lots for sale in Palm Bay, FL, each with its price, map and utilities. Residential lots from $41,000. Owner financing available, call for terms.';
+
+const LOT_IMAGE_PX = [480, 320];
+
+// The four areas of Palm Bay. Each card opens the inventory already filtered to that area.
+const AREAS = [
+  {
+    code: 'NE',
+    name: 'Northeast Palm Bay',
+    text: 'Closest to Melbourne and I-95. Many lots here have city water and sewer.',
+  },
+  {
+    code: 'NW',
+    name: 'Northwest Palm Bay',
+    text: 'A mix of city-water lots and lots that use a well and septic system.',
+  },
+  {
+    code: 'SE',
+    name: 'Southeast Palm Bay',
+    text: 'An active area for new home construction.',
+  },
+  {
+    code: 'SW',
+    name: 'Southwest Palm Bay',
+    text: 'Usually the lowest prices. Most lots here use a well and septic system.',
+  },
+];
+
+// One list feeds both the visible FAQ and the FAQ schema, so they always match.
+// COMPLIANCE: never "guaranteed buildable"; no finance trigger terms; no promises about future value.
+const FAQS = [
+  {
+    q: 'How much does land cost in Palm Bay, Florida?',
+    a: 'Residential lots in our inventory start at $41,000. The price depends on the location, the lot size and the utilities. Lots with city water and sewer cost more than lots that need a well and septic system. Every lot in our inventory shows its current price.',
+    link: { to: '/inventory', label: 'See current prices' },
+  },
+  {
+    q: 'Can I buy land in Palm Bay with owner financing?',
+    a: 'Yes. Owner financing is available on most of our residential lots, with no bank involved and a personal approval. Call 321-333-7230 for terms.',
+    link: { to: '/owner-financing-land-florida', label: 'How our owner financing works' },
+  },
+  {
+    q: 'Are the lots buildable?',
+    a: 'Our residential lots are zoned for single-family homes, and we check zoning and utilities on each lot before we list it. If a lot turns out to have an issue, our lot exchange guarantee lets you exchange it within the same year you purchased it for another lot of the same price and size category, unless otherwise noted in the contract.',
+    link: { to: '/guide/build-on-land-palm-bay', label: 'How to build on a lot in Palm Bay' },
+  },
+  {
+    q: 'Do the lots have city water and sewer?',
+    a: 'It depends on the unit. Some lots have city water and sewer. Some have city water only and need a septic system. Others need a well and a septic system. The inventory groups lots by utility type, and we can confirm the utilities for any lot before you buy.',
+    link: { to: '/guide/septic-vs-sewer-palm-bay', label: 'Septic vs sewer in Palm Bay' },
+  },
+  {
+    q: 'Is the lot in a flood zone?',
+    a: 'Most residential lots in Palm Bay are in FEMA Flood Zone X, which is minimal flood risk. Some lots near canals, ponds and wetlands are in higher-risk zones. Ask us and we will look up the flood zone for any lot before you buy.',
+    link: { to: '/guide/flood-zones-palm-bay', label: 'Palm Bay flood zone map' },
+  },
+  {
+    q: 'What size are the lots?',
+    a: 'Most are about a quarter acre (roughly 10,000 square feet), the standard size for a single-family home in Palm Bay. Larger lots and tracts are also available.',
+    link: { to: '/quarter-acre-lots-palm-bay', label: 'Quarter acre lots in Palm Bay' },
+  },
+  {
+    q: 'Is there an HOA?',
+    a: 'No. Our residential lots do not have HOA fees.',
+  },
+  {
+    q: 'Can I see a lot before I buy?',
+    a: 'Yes. Every lot has a map and satellite view online, and you can visit any lot in person. Call us and we will give you the exact location or meet you there.',
+  },
+];
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Real Estate Land Sales',
+  name: 'Land for Sale in Palm Bay, Florida',
+  description: PAGE_DESCRIPTION,
+  url: PAGE_URL,
+  areaServed: {
+    '@type': 'City',
+    name: 'Palm Bay',
+    containedInPlace: { '@type': 'State', name: 'Florida' },
+  },
+  provider: {
+    '@type': 'RealEstateAgent',
+    name: 'Vahid Reza Rajabian',
+    telephone: '+1-321-333-7230',
+    email: 'vahid@palmbayland.com',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Palm Bay',
+      addressRegion: 'FL',
+      addressCountry: 'US',
+    },
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const textLink = 'text-amber-700 font-semibold underline hover:text-amber-800';
 
 const PalmBayLandForSale = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
     const fetchProperties = async () => {
       try {
         const response = await axios.get(`${API}/properties`);
-        setProperties(response.data.slice(0, 12));
+        const list = Array.isArray(response.data) ? response.data : [];
+        // Only lots a buyer can act on: available, with a real price and a street address.
+        const available = list.filter((p) =>
+          !p.sold &&
+          (p.status || 'available') === 'available' &&
+          /^\$\d/.test(String(p.price || '')) &&
+          String(p.streetName || '').trim()
+        );
+        if (!cancelled) setProperties(available.slice(0, 8));
       } catch (error) {
         console.error('Error fetching properties:', error);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
     fetchProperties();
+    return () => { cancelled = true; };
   }, []);
-
-  // Service Schema for SEO
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Real Estate Land Sales",
-    "name": "Land for Sale in Palm Bay, Florida",
-    "description": "Browse 500+ lots for sale in Palm Bay, FL. Residential, commercial, and buildable land with owner financing. Prices starting at $41,000. Expert local guidance from a 20+ year veteran.",
-    "url": "https://palmbaylots-land.com/palm-bay-land-for-sale",
-    "areaServed": {
-      "@type": "City",
-      "name": "Palm Bay",
-      "containedInPlace": {
-        "@type": "State",
-        "name": "Florida"
-      }
-    },
-    "provider": {
-      "@type": "RealEstateAgent",
-      "name": "Vahid Reza Rajabian",
-      "telephone": "+1-321-333-7230",
-      "email": "vahid@palmbayland.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Palm Bay",
-        "addressRegion": "FL",
-        "addressCountry": "US"
-      }
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceRange": "$41,000 - $5,000,000",
-      "priceCurrency": "USD"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much does land cost in Palm Bay, Florida?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Buildable quarter-acre lots in Palm Bay start at $41,000. Prices vary by location, utility access, and zoning. Lots with city water and sewer cost more than well-and-septic lots. Commercial and multi-family land ranges from $275,000 to $5,000,000+. Contact Vahid Rajabian at 321-333-7230 for current pricing."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use owner financing to buy land in Palm Bay?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We offer owner financing on most residential lots. No bank qualification required. No prepayment penalty. We do a personal approval — we look at you as an individual, not just a credit score."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are the lots in Palm Bay buildable?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Our lots are buildable residential parcels in the City of Palm Bay. Utility availability varies by unit — some lots have city water and sewer, some have city water only (septic required), and some require well and septic. We can tell you exactly what utilities are available for any lot before you buy."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do lots have utilities available?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It depends on the unit. Some lots have city water and sewer (no well or septic needed). Some have city water only (you install septic). And some require well and septic. Our inventory page groups lots by utility type so you can see exactly what's available. City water lots cost more because they save you the expense of drilling a well."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How fast can I close on a lot in Palm Bay?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "With owner financing, closing can happen in as little as 2-3 weeks. Cash purchases close even faster. We handle all paperwork and make the process straightforward."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is there an HOA on Palm Bay lots?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Our lots do not have HOA fees. Property taxes are low for most residential lots, making holding costs very low."
-        }
-      }
-    ]
-  };
 
   return (
     <>
       <Helmet>
-        <title>Land for Sale in Palm Bay, FL | 500+ Lots | Owner Financing</title>
-        <meta name="description" content="Browse 500+ lots for sale in Palm Bay, FL. Residential, commercial, and buildable land from $41,000 with owner financing available. Vahid Rajabian." />
-        <meta name="keywords" content="land for sale Palm Bay FL, Palm Bay lots, vacant land Brevard County, Florida land for sale, residential lots Palm Bay, buildable land Florida" />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://palmbaylots-land.com/palm-bay-land-for-sale" />
-        <meta property="og:title" content="Land for Sale in Palm Bay, FL | Owner Financing Available" />
-        <meta property="og:description" content="500+ lots for sale in Palm Bay, Florida. Owner financing available. Prices from $41,000." />
+        <link rel="canonical" href={PAGE_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://palmbaylots-land.com/palm-bay-land-for-sale" />
+        <meta property="og:url" content={PAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <div className="min-h-screen bg-slate-50">
-        {/* Hero Section - H1 */}
-        <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16 md:py-24">
+        {/* Hero */}
+        <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16 md:py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Land for Sale in <span className="text-amber-400">Palm Bay, FL</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Discover over 500 <strong>buildable lots in Palm Bay</strong>, on Florida's Space Coast. Whether you're looking for <strong>residential land in Brevard County</strong> to build your dream home or <strong>vacant lots for investment</strong>, we have properties starting at just $41,000 with flexible owner financing options.
+                500+ residential lots for sale across Palm Bay, on Florida's Space Coast. Every lot shows its price, map and utilities. Lots start at $41,000. Owner financing available, call for terms.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  to="/listings"
+                <Link
+                  to="/inventory"
                   className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
+                  data-testid="landforsale-hero-inventory"
                 >
-                  Browse All Listings
+                  See Available Lots
                 </Link>
-                <a 
+                <a
                   href="tel:3213337230"
                   className="px-8 py-4 bg-white text-slate-900 rounded-lg text-lg font-bold hover:bg-gray-100 transition-colors"
                 >
@@ -160,8 +195,8 @@ const PalmBayLandForSale = () => {
           </div>
         </section>
 
-        {/* Stats Bar */}
-        <section className="bg-amber-500 py-6">
+        {/* Stats bar */}
+        <section className="bg-amber-700 py-6">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-white">
               <div className="text-center">
@@ -173,8 +208,8 @@ const PalmBayLandForSale = () => {
                 <p className="text-sm">Starting Price</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold">20+</p>
-                <p className="text-sm">Years Experience</p>
+                <p className="text-3xl font-bold">2003</p>
+                <p className="text-sm">Selling Palm Bay Land Since</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl font-bold">0%</p>
@@ -184,344 +219,335 @@ const PalmBayLandForSale = () => {
           </div>
         </section>
 
-        {/* H2: Land for Sale in Palm Bay, FL */}
+        {/* Browse by area */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Land for Sale in Palm Bay, FL
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                Browse Palm Bay Land by Area
               </h2>
-              
-              <p className="text-lg text-slate-700 mb-6">
-                <strong>Palm Bay land</strong> represents one of Florida's best remaining opportunities for affordable property ownership. As the largest city by area in Brevard County, Palm Bay offers an incredible variety of <strong>vacant lots in Palm Bay FL</strong> ranging from quarter-acre residential parcels to large commercial tracts. Unlike overcrowded South Florida markets where entry prices start at $100,000+, you can still find excellent <strong>buildable land in Palm Bay</strong> starting at just $41,000.
-              </p>
-
-              <p className="text-lg text-slate-700 mb-6">
-                What makes <strong>Palm Bay real estate</strong> particularly attractive is the combination of location, affordability, and growth potential. Situated along Florida's Space Coast, Palm Bay residents enjoy easy access to pristine Atlantic beaches, the Indian River Lagoon, and major employers like Kennedy Space Center. The city's population has grown consistently for decades, driving demand for new housing and increasing property values over time.
-              </p>
-
               <p className="text-lg text-slate-700 mb-8">
-                Whether you're a first-time land buyer looking to build your dream home, an investor seeking <strong>Florida land for sale</strong> with appreciation potential, or a builder searching for inventory, Palm Bay delivers exceptional value. Our listings include properties with city water and sewer, well and septic options, and various zoning designations to meet your specific needs.
+                Palm Bay is split into four areas. Malabar Road divides north from south, and Minton Road divides east from west. Pick an area to see the lots for sale there.
               </p>
 
-              <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg">
-                <p className="text-slate-800 font-medium">
-                  <strong>Key Takeaway:</strong> Palm Bay offers the rare combination of beachside Florida living at inland prices. With proper due diligence and expert guidance, buying <strong>land in Palm Bay</strong> can be the smartest real estate decision you make.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* H2: Why Buy Land in Palm Bay, Florida? */}
-        <section className="py-16 bg-slate-100">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Why Buy Land in Palm Bay, Florida?
-              </h2>
-              
-              <p className="text-lg text-slate-700 mb-6">
-                The question isn't whether you should buy <strong>land in Palm Bay</strong> — it's why you haven't already. Palm Bay was ranked the #13 most affordable city in America in 2026, the only Florida city in the top 20 (Source: The Palm Bayer). The Space Coast economy is booming with aerospace giants like SpaceX, Blue Origin, and L3Harris Technologies creating thousands of high-paying jobs. This economic growth directly translates to increased housing demand and rising land values.
-              </p>
-
-              <p className="text-lg text-slate-700 mb-8">
-                Beyond economics, Florida's tax advantages make Palm Bay even more attractive. With no state income tax, residents keep more of their earnings. Property taxes remain reasonable compared to other coastal Florida areas. And if you're relocating from high-tax states like New York, New Jersey, or California, the savings can be substantial — often enough to pay for your land within a few years.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex items-start gap-4 p-5 bg-white rounded-xl shadow-sm">
-                  <DollarSign className="w-8 h-8 text-green-600 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-slate-900 mb-2">No State Income Tax</h3>
-                    <p className="text-slate-600">Florida is one of only 9 states with no state income tax. For a family earning $100,000, that's potentially $5,000-$10,000+ in annual savings compared to high-tax states. Plus, the Florida legislature just passed a bill to eliminate property tax for homestead residences — if approved by voters in November, many more people will want to move here, spiking land prices.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 bg-white rounded-xl shadow-sm">
-                  <Sun className="w-8 h-8 text-amber-500 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-slate-900 mb-2">Year-Round Florida Weather</h3>
-                    <p className="text-slate-600">With an average temperature of 72°F, Palm Bay offers the classic Florida lifestyle. Beaches, fishing, boating, and outdoor activities are available 365 days a year.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 bg-white rounded-xl shadow-sm">
-                  <TrendingUp className="w-8 h-8 text-blue-600 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-slate-900 mb-2">Strong Appreciation Potential</h3>
-                    <p className="text-slate-600">Palm Bay land values have appreciated consistently over the past decade. Limited supply and growing demand suggest this trend will continue.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 bg-white rounded-xl shadow-sm">
-                  <Building className="w-8 h-8 text-slate-700 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-slate-900 mb-2">Space Coast Economy</h3>
-                    <p className="text-slate-600">Kennedy Space Center, SpaceX, Blue Origin, and defense contractors create a robust job market. These high-paying jobs fuel housing demand.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* H2: Best Areas for Land in Palm Bay */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Best Areas for Land in Palm Bay
-              </h2>
-              
-              <p className="text-lg text-slate-700 mb-6">
-                Palm Bay is organized into numbered "units," each with distinct characteristics that affect pricing, utilities, and buildability. Understanding these differences is crucial when shopping for <strong>vacant land in Palm Bay FL</strong>. Location within the city dramatically impacts both purchase price and long-term value.
-              </p>
-
-              <p className="text-lg text-slate-700 mb-8">
-                Generally, lots closer to Melbourne (north) and those with city water/sewer command premium prices. Meanwhile, southwestern areas offer the best value for buyers willing to use well and septic systems. Here's a breakdown of Palm Bay's key areas:
-              </p>
-              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-slate-50 p-6 rounded-xl border-2 border-slate-200">
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">Northeast Palm Bay (NE)</h3>
-                  <p className="text-slate-600 mb-3">The most established and convenient area. Closest to Melbourne, I-95, shopping, and services. Many lots have <strong>city water and sewer</strong> available, making them more expensive but easier to build on.</p>
-                  <p className="text-sm text-amber-600 font-semibold">Popular Units: 5, 7, 8, 9, 38</p>
-                  <p className="text-sm text-slate-500 mt-2">Price Range: $50,000 - $150,000+</p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border-2 border-slate-200">
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">Northwest Palm Bay (NW)</h3>
-                  <p className="text-slate-600 mb-3">Growing area with good infrastructure development. Mix of city water and well/septic lots. Offers a balance between convenience and affordability. Popular with families building new homes.</p>
-                  <p className="text-sm text-amber-600 font-semibold">Popular Units: 10, 11, 12, 16, 21</p>
-                  <p className="text-sm text-slate-500 mt-2">Price Range: $40,000 - $90,000</p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border-2 border-slate-200">
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">Southeast Palm Bay (SE)</h3>
-                  <p className="text-slate-600 mb-3">Rapidly developing area popular with builders and investors. Strong mix of new construction and available lots. Good appreciation potential as infrastructure expands southward.</p>
-                  <p className="text-sm text-amber-600 font-semibold">Popular Units: 28, 31, 42, 44, 46</p>
-                  <p className="text-sm text-slate-500 mt-2">Price Range: $35,000 - $75,000</p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border-2 border-slate-200">
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">Southwest Palm Bay (SW)</h3>
-                  <p className="text-slate-600 mb-3">The most affordable area for <strong>vacant lots in Palm Bay</strong>. Primarily requires well and septic. Perfect for value-focused buyers and investors seeking maximum land for minimum investment.</p>
-                  <p className="text-sm text-amber-600 font-semibold">Popular Units: 13, 14, 15, 17-25</p>
-                  <p className="text-sm text-slate-500 mt-2">Price Range: $41,000 - $55,000</p>
-                </div>
+                {AREAS.map((area) => (
+                  <Link
+                    key={area.code}
+                    to={`/inventory?quadrant=${area.code}`}
+                    className="block bg-slate-50 p-6 rounded-xl border-2 border-slate-200 hover:border-amber-600 hover:shadow-md transition-all"
+                    data-testid={`landforsale-area-${area.code}`}
+                  >
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                      <MapPin className="w-5 h-5 text-amber-700" aria-hidden="true" />
+                      {area.name} ({area.code})
+                    </h3>
+                    <p className="text-slate-700 mb-3">{area.text}</p>
+                    <span className="inline-flex items-center gap-1 text-amber-700 font-semibold">
+                      See {area.code} lots for sale
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </span>
+                  </Link>
+                ))}
               </div>
 
-              <div className="text-center">
-                <Link 
-                  to="/inventory"
-                  className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold"
-                >
-                  View Full Inventory by Unit
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
+              <p className="text-slate-700">
+                Looking for commercial, industrial or multifamily land instead?{' '}
+                <Link to="/listings" className={textLink}>See commercial and investment land</Link>.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Available Lots */}
+        {/* Lots for sale now */}
         <section className="py-16 bg-slate-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                Available Land in Palm Bay
+                Palm Bay Lots for Sale Right Now
               </h2>
-              <p className="text-lg text-slate-600">
-                Browse our current inventory of <strong>buildable lots</strong>
+              <p className="text-lg text-slate-700">
+                A few of the lots in our inventory. Open any lot for its map, utilities and details.
               </p>
             </div>
 
             {loading ? (
-              <div className="text-center py-12">
+              <div className="text-center py-12" role="status" aria-label="Loading lots">
                 <div className="w-8 h-8 border-4 border-amber-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
               </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            ) : properties.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {properties.map((prop) => {
-                  const slug = prop.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+                  const address = [prop.streetNumber, prop.streetName].filter(Boolean).join(' ').trim() || prop.title;
+                  // acres comes as "0.23" or "0.23 AC" — only add the unit when it is missing.
+                  const acres = String(prop.acres || '').trim();
+                  const acresLabel = acres && !/[a-z]/i.test(acres) ? `${acres} ac` : acres;
                   return (
-                    <Link 
-                      key={prop.id} 
-                      to={`/property/${slug}`}
+                    <Link
+                      key={prop.id}
+                      to={`/property/${lotDetailSlug(prop)}`}
                       className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow"
                     >
-                      <div className="h-40 overflow-hidden">
-                        <img 
-                          src={prop.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop&auto=format,compress&q=75'} 
-                          alt={`${prop.title} - Land for sale in Palm Bay`}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
+                      <LotImage item={prop} className="w-full h-40" px={LOT_IMAGE_PX} />
                       <div className="p-4">
-                        <h3 className="font-bold text-slate-900 mb-1">{prop.title}</h3>
-                        <p className="text-sm text-slate-500 mb-2">{prop.city}</p>
+                        <h3 className="font-bold text-slate-900 mb-1">{address}</h3>
+                        <p className="text-sm text-slate-600 mb-2">{prop.city || 'Palm Bay, FL'}</p>
                         <div className="flex items-center justify-between">
-                          <span className="font-bold text-amber-600">{prop.price}</span>
-                          <span className="text-sm text-slate-500">{prop.acres}</span>
+                          <span className="font-bold text-amber-700">{prop.price}</span>
+                          {acresLabel && <span className="text-sm text-slate-600">{acresLabel}</span>}
                         </div>
                       </div>
                     </Link>
                   );
                 })}
               </div>
+            ) : (
+              <p className="text-center text-slate-700">
+                See every available lot, with prices, in the <Link to="/inventory" className={textLink}>lot inventory</Link>.
+              </p>
             )}
 
             <div className="text-center mt-10">
-              <Link 
-                to="/listings"
+              <Link
+                to="/inventory"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
+                data-testid="landforsale-all-lots"
               >
-                View All 500+ Listings
-                <ArrowRight className="w-5 h-5" />
+                See All Available Lots
+                <ArrowRight className="w-5 h-5" aria-hidden="true" />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* H2: Types of Land Available */}
+        {/* What to check */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Types of Land Available in Palm Bay
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                What to Check Before You Buy Land in Palm Bay
               </h2>
-              
-              <p className="text-lg text-slate-700 mb-6">
-                Our inventory includes diverse property types to meet every buyer's needs. From standard <strong>residential lots in Palm Bay</strong> perfect for single-family homes to larger commercial parcels suitable for business development, we can help you find exactly what you're looking for. Here's what's available:
+              <p className="text-lg text-slate-700 mb-8">
+                Two lots on the same street can be very different. These four things decide what a lot is worth and what it takes to build on it. We will tell you all four for any lot before you buy.
               </p>
 
-              <div className="space-y-4 mb-8">
-                <div className="bg-slate-50 p-5 rounded-lg">
-                  <h3 className="font-bold text-slate-900 mb-2">Residential Lots (RS-1, RS-2 Zoning)</h3>
-                  <p className="text-slate-600">Our most popular category. <strong>Quarter-acre lots</strong> (approximately 10,000 sq ft) perfect for building 1,500-3,000 sq ft single-family homes. These <strong>buildable lots in Palm Bay</strong> meet all zoning requirements for residential construction.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-start gap-4 p-5 bg-slate-50 rounded-xl">
+                  <Droplets className="w-8 h-8 text-blue-700 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-2">Utilities</h3>
+                    <p className="text-slate-700">
+                      Some lots have city water and sewer. Some have city water only. Others need a well and a septic system. It depends on the unit.{' '}
+                      <Link to="/guide/septic-vs-sewer-palm-bay" className={textLink}>Septic vs sewer in Palm Bay</Link>
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-slate-50 p-5 rounded-lg">
-                  <h3 className="font-bold text-slate-900 mb-2">Commercial Land</h3>
-                  <p className="text-slate-600">Zoned for retail, office, or mixed-use development. Ideal for entrepreneurs, investors, or developers looking to capitalize on Palm Bay's growth. Prime locations along major corridors.</p>
+                <div className="flex items-start gap-4 p-5 bg-slate-50 rounded-xl">
+                  <Waves className="w-8 h-8 text-cyan-700 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-2">Flood Zone</h3>
+                    <p className="text-slate-700">
+                      Most Palm Bay lots are in FEMA Zone X (minimal risk), but not all. Always check the exact lot.{' '}
+                      <Link to="/guide/flood-zones-palm-bay" className={textLink}>Palm Bay flood zone map</Link>
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-slate-50 p-5 rounded-lg">
-                  <h3 className="font-bold text-slate-900 mb-2">Multi-Family Parcels</h3>
-                  <p className="text-slate-600">Larger lots zoned for duplex, triplex, or small apartment construction. Perfect for investors seeking rental income or developers building multi-unit projects.</p>
+                <div className="flex items-start gap-4 p-5 bg-slate-50 rounded-xl">
+                  <Landmark className="w-8 h-8 text-slate-700 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-2">Zoning</h3>
+                    <p className="text-slate-700">
+                      Zoning decides what you are allowed to build. Most of our lots are zoned for single-family homes.{' '}
+                      <Link to="/blog/palm-bay-zoning-explained" className={textLink}>Palm Bay zoning explained</Link>
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-slate-50 p-5 rounded-lg">
-                  <h3 className="font-bold text-slate-900 mb-2">Acreage</h3>
-                  <p className="text-slate-600">For buyers wanting more space, privacy, or subdivision potential. Half-acre to multi-acre parcels available in various locations throughout Palm Bay.</p>
+                <div className="flex items-start gap-4 p-5 bg-slate-50 rounded-xl">
+                  <Hammer className="w-8 h-8 text-amber-700 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-2">Building</h3>
+                    <p className="text-slate-700">
+                      Permits, site work and the steps from an empty lot to a finished home.{' '}
+                      <Link to="/guide/build-on-land-palm-bay" className={textLink}>How to build on a lot in Palm Bay</Link>
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <p className="text-slate-600">
-                Learn about our <Link to="/buildable-lots-palm-bay" className="text-amber-600 hover:underline font-semibold">100% buildable guarantee</Link> — every lot we sell has been verified for zoning, permits, and utility access.
-              </p>
+              <div className="bg-amber-50 border-l-4 border-amber-600 p-6 rounded-r-lg mt-8">
+                <p className="text-slate-800">
+                  <strong>Lot exchange guarantee:</strong> if a lot has an issue, you can exchange it within the same year you purchased it for another lot of the same price and size category, unless otherwise noted in the contract.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* H2: FAQs */}
+        {/* Why Palm Bay */}
+        <section className="py-16 bg-slate-100">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                Why Buy Land in Palm Bay, Florida?
+              </h2>
+
+              <p className="text-lg text-slate-700 mb-4">
+                Palm Bay is in Brevard County on Florida's Space Coast, about an hour east of Orlando and roughly halfway between Miami and Jacksonville. Florida has no state income tax.
+              </p>
+              <p className="text-lg text-slate-700 mb-4">
+                Palm Bay was ranked the #13 most affordable city in America for 2026, and it was the only Florida city in the top 20 (source: The Palm Bayer).{' '}
+                <Link to="/blog/palm-bay-13-most-affordable-city-2026" className={textLink}>Read about the ranking</Link>
+              </p>
+              <p className="text-lg text-slate-700 mb-8">
+                Nobody can promise what land will be worth later, and we won't. What we can show you is what is being built around these lots:
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Link to="/blog/emerald-lakes-palm-bay-2026-update" className="block p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="font-bold text-slate-900 mb-2">Emerald Lakes</h3>
+                  <p className="text-slate-700 mb-3">A 1,561-acre master-planned community at the I-95 and St. Johns Heritage Parkway interchange.</p>
+                  <span className="text-amber-700 font-semibold">Emerald Lakes update</span>
+                </Link>
+                <Link to="/blog/malabar-road-widening-palm-bay-2026" className="block p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="font-bold text-slate-900 mb-2">Malabar Road Widening</h3>
+                  <p className="text-slate-700 mb-3">Planned widening from 2 to 4 lanes between the St. Johns Heritage Parkway and Minton Road. It is in the design phase.</p>
+                  <span className="text-amber-700 font-semibold">Malabar Road widening</span>
+                </Link>
+                <Link to="/blog/ashton-park-palm-bay-what-it-means-for-land-buyers" className="block p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="font-bold text-slate-900 mb-2">Ashton Park</h3>
+                  <p className="text-slate-700 mb-3">A planned 1,568-acre community off Micco Road with 5,500+ homes planned.</p>
+                  <span className="text-amber-700 font-semibold">Ashton Park for land buyers</span>
+                </Link>
+              </div>
+              <p className="text-sm text-slate-600 mt-4">Sources for each project are listed in the linked article.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* How buying works */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8">
+                How Buying a Lot Works
+              </h2>
+              <ol className="space-y-6">
+                <li className="flex items-start gap-4">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center" aria-hidden="true">1</span>
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-1">Pick a lot</h3>
+                    <p className="text-slate-700">
+                      Browse the <Link to="/inventory" className={textLink}>lot inventory</Link> or the <Link to="/map" className={textLink}>lot map</Link>. Save the ones you like.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center" aria-hidden="true">2</span>
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-1">Call Vahid</h3>
+                    <p className="text-slate-700">
+                      He confirms the utilities, zoning and flood zone for that lot and answers your questions. Straight answers, no pressure.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center" aria-hidden="true">3</span>
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-1">Buy with cash or owner financing</h3>
+                    <p className="text-slate-700">
+                      Owner financing is available on most residential lots, with no bank and a personal approval. Call for terms.{' '}
+                      <Link to="/owner-financing-land-florida" className={textLink}>How our owner financing works</Link>
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
         <section className="py-16 bg-slate-100">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
-                FAQs About Land for Sale in Palm Bay
+                Questions About Land for Sale in Palm Bay
               </h2>
-              
+
               <div className="space-y-6">
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-amber-600" />
-                    Are all lots buildable?
-                  </h3>
-                  <p className="text-slate-600">Yes, we guarantee all our lots are <Link to="/buildable-lots-palm-bay" className="text-amber-600 hover:underline">100% buildable</Link>. We verify zoning and permit eligibility before listing any property. Unlike other land sellers, we never sell wetlands, landlocked parcels, or lots with restrictive covenants that prevent construction.</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-amber-600" />
-                    Do lots have utilities available?
-                  </h3>
-                  <p className="text-slate-600">Utility availability varies by lot location. Many have city water available (adds approximately $20,000 to base price), and some have both water and sewer. Lots without city utilities use well and septic systems, which are common and reliable in Palm Bay. Check our <Link to="/price-guide" className="text-amber-600 hover:underline">Price Guide</Link> for unit-specific utility information.</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-amber-600" />
-                    What size lots are available?
-                  </h3>
-                  <p className="text-slate-600">Most of our inventory consists of <Link to="/quarter-acre-lots-palm-bay" className="text-amber-600 hover:underline">quarter-acre lots</Link> (approximately 10,000 square feet), which is the ideal size for single-family home construction in Palm Bay. We also have larger parcels available for those wanting more space or development potential.</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-amber-600" />
-                    How does owner financing work?
-                  </h3>
-                  <p className="text-slate-600">We offer <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">flexible owner financing</Link> with no bank qualification required. No prepayment penalty — pay it off early anytime. Visit our <Link to="/price-guide" className="text-amber-600 hover:underline">Price Guide</Link> for full terms.</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-amber-600" />
-                    Can I visit the property before buying?
-                  </h3>
-                  <p className="text-slate-600">Absolutely! We encourage site visits. Contact us to schedule a tour of any property you're interested in. We provide GPS coordinates, aerial imagery, and can meet you at the property to walk the lot and answer questions in person.</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-amber-600" />
-                    How fast can I close on a property?
-                  </h3>
-                  <p className="text-slate-600">With owner financing, closing can happen in as little as 2-3 weeks — much faster than traditional bank financing. Cash purchases close even faster. We handle all paperwork and make the process simple and transparent.</p>
-                </div>
+                {FAQS.map((faq) => (
+                  <div key={faq.q} className="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 className="font-bold text-slate-900 mb-2 flex items-start gap-2">
+                      <HelpCircle className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                      {faq.q}
+                    </h3>
+                    <p className="text-slate-700">
+                      {faq.a}
+                      {faq.link && (
+                        <>
+                          {' '}
+                          <Link to={faq.link.to} className={textLink}>{faq.link.label}</Link>
+                        </>
+                      )}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Internal Links Section */}
+        {/* More options */}
         <section className="py-12 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Explore More Palm Bay Land Options</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">More Palm Bay Land Options</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Link to="/owner-financing-land-florida" className="p-4 bg-slate-50 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
                   <p className="font-bold text-slate-900">Owner Financing</p>
-                  <p className="text-sm text-slate-500">No bank needed</p>
+                  <p className="text-sm text-slate-600">No bank needed</p>
                 </Link>
                 <Link to="/quarter-acre-lots-palm-bay" className="p-4 bg-slate-50 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
                   <p className="font-bold text-slate-900">Quarter Acre Lots</p>
-                  <p className="text-sm text-slate-500">Ideal home size</p>
+                  <p className="text-sm text-slate-600">The standard home lot</p>
                 </Link>
                 <Link to="/buildable-lots-palm-bay" className="p-4 bg-slate-50 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
                   <p className="font-bold text-slate-900">Buildable Lots</p>
-                  <p className="text-sm text-slate-500">100% guaranteed</p>
+                  <p className="text-sm text-slate-600">Lot exchange guarantee</p>
                 </Link>
                 <Link to="/price-guide" className="p-4 bg-slate-50 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-                  <p className="font-bold text-slate-900">Price Calculator</p>
-                  <p className="text-sm text-slate-500">Estimate your lot</p>
+                  <p className="font-bold text-slate-900">Price Guide</p>
+                  <p className="text-sm text-slate-600">Pricing by unit and area</p>
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA */}
         <section className="py-16 bg-slate-900 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Own Land in Palm Bay?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Look at Lots?</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Contact Vahid Rajabian today. With 20+ years of Palm Bay expertise and thousands of successful transactions, I'll help you find the perfect lot for your needs and budget.
+              Vahid Rajabian has sold land in Palm Bay since 2003. M. David Moallem, Inc. has been in Palm Bay and Brevard County since 1983.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <a
                 href="tel:3213337230"
-                className="px-10 py-5 bg-amber-500 text-white rounded-lg text-xl font-bold hover:bg-amber-600 transition-colors"
+                className="px-10 py-5 bg-amber-600 text-white rounded-lg text-xl font-bold hover:bg-amber-700 transition-colors inline-flex items-center justify-center gap-2"
               >
+                <Phone className="w-6 h-6" aria-hidden="true" />
                 Call 321-333-7230
               </a>
-              <Link 
-                to="/contact"
+              <Link
+                to="/inventory"
                 className="px-10 py-5 bg-white text-slate-900 rounded-lg text-xl font-bold hover:bg-gray-100 transition-colors"
               >
-                Send a Message
+                See Available Lots
               </Link>
             </div>
+            <p className="text-sm text-gray-400 mt-8">
+              Vahid Rajabian, Broker Associate | M. David Moallem, Inc. | License #BK3454072
+            </p>
           </div>
         </section>
       </div>

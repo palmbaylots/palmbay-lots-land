@@ -216,6 +216,19 @@ const Inventory = () => {
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [searchParams] = useSearchParams();
 
+  // Deep link from other pages: /inventory?quadrant=SE (or ?quadrant=NE,NW)
+  // pre-selects the area filter and opens the filter panel so it is visible.
+  useEffect(() => {
+    const wanted = (searchParams.get('quadrant') || '')
+      .toUpperCase()
+      .split(',')
+      .filter((q) => ['NW', 'NE', 'SW', 'SE'].includes(q));
+    if (wanted.length) {
+      setQuadrantFilter(wanted);
+      setShowFilters(true);
+    }
+  }, [searchParams]);
+
   // Returning from a lot's detail page with ?lot=<id> → scroll to that card and
   // briefly highlight it, so the visitor lands back on the exact lot they viewed.
   useEffect(() => {

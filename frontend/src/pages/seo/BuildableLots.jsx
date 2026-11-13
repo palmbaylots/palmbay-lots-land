@@ -130,7 +130,7 @@ const BuildableLotsPage = () => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 rounded-full text-sm font-bold mb-6">
                 <Shield className="w-4 h-4" />
-                100% BUILDABLE GUARANTEE
+                LOT EXCHANGE GUARANTEE
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Buildable Lots in Palm Bay, FL
@@ -140,7 +140,7 @@ const BuildableLotsPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
-                  to="/listings"
+                  to="/inventory"
                   className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
                 >
                   Browse Buildable Lots
@@ -199,7 +199,7 @@ const BuildableLotsPage = () => {
               </div>
 
               <p className="text-slate-600">
-                When you buy from us, all these factors have already been verified. That's our <strong>100% buildable guarantee</strong>. Learn more about <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline font-semibold">owner financing options</Link> for your buildable lot purchase.
+                We check these factors on every lot before we list it, and every lot comes with our <strong>lot exchange guarantee</strong>: if a lot has an issue, you can exchange it within the same year you purchased it for another lot of the same price and size category. Learn more about <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline font-semibold">owner financing options</Link> for your buildable lot purchase.
               </p>
             </div>
           </div>
@@ -289,7 +289,7 @@ const BuildableLotsPage = () => {
                   <strong>Owner Financing Available:</strong> Don't have cash or traditional financing? We offer <Link to="/owner-financing-land-florida" className="text-amber-600 hover:underline">owner financing with no bank qualification required</Link>. Low down payments and affordable monthly terms make land ownership accessible.
                 </p>
                 <p>
-                  <strong>Build Equity:</strong> Whether you plan to build immediately or hold for appreciation, owning <strong>buildable land in Florida</strong> is a tangible asset that historically appreciates over time.
+                  <strong>Build Now or Later:</strong> There is no deadline to build. Buy the lot now and build when you are ready.
                 </p>
               </div>
 
@@ -360,7 +360,7 @@ const BuildableLotsPage = () => {
 
             <div className="text-center mt-10">
               <Link 
-                to="/listings"
+                to="/inventory"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
               >
                 View All 500+ Buildable Lots

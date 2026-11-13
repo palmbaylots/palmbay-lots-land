@@ -164,7 +164,7 @@ const OwnerFinancingLand = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
-                  to="/listings"
+                  to="/inventory"
                   className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
                 >
                   See Available Lots
@@ -573,7 +573,7 @@ const OwnerFinancingLand = () => {
 
             <div className="text-center mt-10">
               <Link 
-                to="/listings"
+                to="/inventory"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
               >
                 View All 500+ Lots
@@ -656,7 +656,7 @@ const OwnerFinancingLand = () => {
                 </Link>
                 <Link to="/buildable-lots-palm-bay" className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
                   <p className="font-bold text-slate-900">Buildable Lots</p>
-                  <p className="text-sm text-slate-500">100% guaranteed</p>
+                  <p className="text-sm text-slate-500">Lot exchange guarantee</p>
                 </Link>
                 <Link to="/quarter-acre-lots-palm-bay" className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
                   <p className="font-bold text-slate-900">Quarter Acre Lots</p>

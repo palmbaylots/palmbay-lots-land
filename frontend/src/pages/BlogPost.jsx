@@ -170,7 +170,14 @@ const BlogPost = () => {
         <section className="py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-              <article 
+              {/* Most blog readers arrive from Google on a news/info search. Give them a direct path to the lots. */}
+              <p className="mb-8 text-slate-700" data-testid="blog-top-buyer-link">
+                Looking for a lot?{' '}
+                <Link to="/inventory" className="text-amber-700 font-semibold underline hover:text-amber-800">
+                  See 500+ Palm Bay lots for sale
+                </Link>
+              </p>
+              <article
                 className="prose prose-slate prose-lg max-w-none
                   prose-headings:text-slate-900 prose-headings:font-bold
                   prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
@@ -181,7 +188,33 @@ const BlogPost = () => {
                   prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
-              
+
+              {/* Buyer box */}
+              <aside
+                className="mt-10 rounded-xl border-2 border-amber-500 bg-amber-50 p-6"
+                aria-label="Palm Bay lots for sale"
+                data-testid="blog-buyer-box"
+              >
+                <h2 className="text-xl font-bold text-slate-900 mb-2">Looking for land in Palm Bay?</h2>
+                <p className="text-slate-700 mb-4">
+                  We have 500+ residential lots for sale across Palm Bay, from $41,000. Each lot shows its price, map and utilities. Owner financing available, call for terms.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/inventory"
+                    className="px-6 py-3 bg-amber-700 hover:bg-amber-800 text-white rounded-lg font-bold text-center transition-colors"
+                  >
+                    See Available Lots
+                  </Link>
+                  <Link
+                    to="/palm-bay-land-for-sale"
+                    className="px-6 py-3 bg-white border border-slate-300 hover:border-amber-600 text-slate-900 rounded-lg font-bold text-center transition-colors"
+                  >
+                    Land for Sale in Palm Bay
+                  </Link>
+                </div>
+              </aside>
+
               {/* FAQs */}
               {post.faqs && post.faqs.length > 0 && (
                 <div className="mt-12 bg-slate-100 rounded-xl p-8">
@@ -232,7 +265,7 @@ const BlogPost = () => {
                 Call 321-333-7230
               </a>
               <Link 
-                to="/listings"
+                to="/inventory"
                 className="px-10 py-5 bg-white text-slate-900 rounded-lg text-xl font-bold hover:bg-gray-100 transition-colors"
               >
                 Browse Available Lots

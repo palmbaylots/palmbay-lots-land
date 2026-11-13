@@ -154,7 +154,7 @@ const FloodZonesGuide = () => {
                   <li><strong>1. Ask us</strong> — We look up flood zone for any lot before you buy. Free, no obligation.</li>
                   <li><strong>2. FEMA Flood Map Service</strong> — Open the <a href="https://msc.fema.gov/portal/search" target="_blank" rel="noopener noreferrer" className="text-amber-700 underline">FEMA Flood Map Service Center</a> and search the lot address.</li>
                   <li><strong>3. City of Palm Bay / Brevard County GIS</strong> — The <a href="https://gis.palmbayflorida.org" target="_blank" rel="noopener noreferrer" className="text-amber-700 underline">City of Palm Bay GIS map</a> and the Brevard County GIS portal show flood zone layers on property maps.</li>
-                  <li><strong>Looking for a low-risk lot?</strong> See <a href="/inventory" className="text-amber-700 underline">Palm Bay lots for sale</a> — ask us for the flood zone of any lot.</li>
+                  <li><strong>Looking for a low-risk lot?</strong> See <Link to="/inventory" className="text-amber-700 underline">Palm Bay lots for sale</Link> or read about <Link to="/palm-bay-land-for-sale" className="text-amber-700 underline">land for sale in Palm Bay</Link> — ask us for the flood zone of any lot.</li>
                 </ol>
               </div>
             </div>
@@ -210,10 +210,15 @@ const FloodZonesGuide = () => {
             <p className="text-gray-300 mb-8 max-w-xl mx-auto">
               I'll look it up for you — free, no obligation. Just tell me the lot address or inventory ID.
             </p>
-            <a href="tel:3213337230" className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold transition-colors inline-flex items-center gap-2">
-              <Phone className="w-5 h-5" />
-              Call 321-333-7230
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="tel:3213337230" className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold transition-colors inline-flex items-center justify-center gap-2">
+                <Phone className="w-5 h-5" />
+                Call 321-333-7230
+              </a>
+              <Link to="/inventory" className="px-8 py-4 bg-white text-slate-900 hover:bg-gray-100 rounded-lg font-bold transition-colors inline-flex items-center justify-center" data-testid="floodzone-cta-inventory">
+                See Available Lots
+              </Link>
+            </div>
           </div>
         </section>
       </div>

@@ -150,7 +150,7 @@ const QuarterAcreLots = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
-                  to="/listings"
+                  to="/inventory"
                   className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
                 >
                   Browse Quarter Acre Lots
@@ -309,7 +309,7 @@ const QuarterAcreLots = () => {
                   to="/buildable-lots-palm-bay"
                   className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold"
                 >
-                  Learn About Our Buildable Guarantee
+                  Learn About Our Lot Exchange Guarantee
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
@@ -368,7 +368,7 @@ const QuarterAcreLots = () => {
               <div className="text-center py-12 bg-white rounded-xl">
                 <p className="text-slate-600 mb-4">Loading quarter acre inventory...</p>
                 <Link 
-                  to="/listings"
+                  to="/inventory"
                   className="text-amber-600 hover:text-amber-700 font-semibold"
                 >
                   View All Available Lots
@@ -378,7 +378,7 @@ const QuarterAcreLots = () => {
 
             <div className="text-center mt-10">
               <Link 
-                to="/listings"
+                to="/inventory"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-lg font-bold transition-colors"
               >
                 View All Available Lots
@@ -531,7 +531,7 @@ const QuarterAcreLots = () => {
                 </Link>
                 <Link to="/buildable-lots-palm-bay" className="p-4 bg-slate-50 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
                   <p className="font-bold text-slate-900">Buildable Lots</p>
-                  <p className="text-sm text-slate-500">100% guaranteed</p>
+                  <p className="text-sm text-slate-500">Lot exchange guarantee</p>
                 </Link>
                 <Link to="/price-guide" className="p-4 bg-slate-50 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
                   <p className="font-bold text-slate-900">Price Calculator</p>

@@ -80,7 +80,7 @@ STATIC_PAGES = {
               "Palm Bay land buying guides, market updates, zoning explained, owner financing tips, and investment analysis from a 23-year Palm Bay land specialist.",
               "Palm Bay Land Blog"),
     "/palm-bay-land-for-sale": ("Land for Sale in Palm Bay, FL | 500+ Lots | Owner Financing",
-                                f"Browse 500+ lots for sale in Palm Bay, Florida. Residential, commercial, and buildable land. Prices starting at $41,000. {FIN}",
+                                f"See 500+ lots for sale in Palm Bay, FL, each with its price, map and utilities. Residential lots from $41,000. {FIN}",
                                 "Land for Sale in Palm Bay, FL"),
     "/owner-financing-land-florida": ("Owner Financing Land in Palm Bay, FL | No Bank | Palm Bay Lots",
                                       f"Buy land in Palm Bay, Florida with owner financing. No bank qualification, personal approval, deed transfer before payoff. {FIN}",
